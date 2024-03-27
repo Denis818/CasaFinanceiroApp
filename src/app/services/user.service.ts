@@ -21,7 +21,7 @@ export class UserService extends BaseService {
     return this.SendHttpRequest('POST', this.url + '/login', dados).pipe(
       tap((response) => {
         debugger;
-        this.guardarToken(response.dados);
+        this.guardarToken(response.Dados);
         this.getUserInfo();
       })
     );
@@ -38,8 +38,8 @@ export class UserService extends BaseService {
   public getUserInfo(): void {
     this.SendHttpRequest('GET', this.url + '/info').subscribe({
       next: (response) => {
-        localStorage.setItem('userEmail', response.dados.email);
-        localStorage.setItem('isAdmin', response.dados.isAdmin);
+        localStorage.setItem('userEmail', response.Dados.Email);
+        localStorage.setItem('isAdmin', response.Dados.IsAdmin);
       },
       error: (error) => {
         throw new Error(error);
@@ -48,13 +48,9 @@ export class UserService extends BaseService {
   }
 
   private guardarToken(response: any) {
-    if (response && response.token && response.expiration) {
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('expirationToken', response.expiration);
+    if (response && response.Token && response.Expiration) {
+      localStorage.setItem('token', response.Token);
+      localStorage.setItem('expirationToken', response.Expiration);
     }
-  }
-
-  public isAdmin(): Observable<any> {
-    return this.SendHttpRequest('GET', this.url + '/admin');
   }
 }

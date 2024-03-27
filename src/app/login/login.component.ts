@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -10,13 +10,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('passwordInput') passwordInput!: ElementRef;
-
   public email!: string;
   public password!: string;
   public showPassword: boolean = false;
-  hide = true;
-  public errorMessage!: string;
 
   constructor(
     private userService: UserService,
@@ -29,6 +25,8 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.spinner.show();
+
+    debugger;
     const dados = {
       email: this.email,
       password: this.password,
@@ -43,20 +41,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-    if (this.showPassword) {
-      this.passwordInput.nativeElement.setAttribute('type', 'text');
-    } else {
-      this.passwordInput.nativeElement.setAttribute('type', 'password');
-    }
-  }
-
-  public error(errMessages: any): void {
+  public error(arrayMessages: any): void {
     this.spinner.hide();
 
-    if (errMessages?.length > 0) {
-      errMessages.forEach((mensagem: any) => {
+    if (arrayMessages?.length > 0) {
+      arrayMessages.forEach((mensagem: any) => {
         this.toastr.error(mensagem.Descricao, 'Erro');
       });
     } else {
