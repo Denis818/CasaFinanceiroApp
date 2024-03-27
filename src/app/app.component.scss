@@ -1,0 +1,36 @@
+.spinner-style {
+  font-size: 20px;
+  color: white;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.container-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer.footer-style {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: right;
+  font-family: "Open Sans", sans-serif;
+  border-top: 1px solid #eaeaea;
+}
+
+.footer-style div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

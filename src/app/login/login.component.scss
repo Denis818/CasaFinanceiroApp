@@ -1,31 +1,21 @@
-.vh-100 {
+mat-card {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+mat-card-header {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.card-container{
-  padding: 100px 50px 100px 50px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
 }
 
-.text-color{
-  color: #708090;
-  font-weight: bold;
-}
-
-.fa-eye,
-.fa-eye-slash {
-  font-size: 24px;
-}
-
-.sombra {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.194);
-  transition: box-shadow 0.3s ease;
-  outline: none;
-}
-
-.sombra:focus {
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.237);
-  outline: none;
+button {
+  width: 100%;
+  margin-top: 8px;
 }

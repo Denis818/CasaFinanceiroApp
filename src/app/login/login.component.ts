@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public email!: string;
   public password!: string;
   public showPassword: boolean = false;
-
+  hide = true;
   public errorMessage!: string;
 
   constructor(
@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
       errMessages.forEach((mensagem: any) => {
         this.toastr.error(mensagem.Descricao, 'Erro');
       });
-      
     } else {
       this.toastr.error(
         'Não foi possível efetuar o login. Verifique seus dados.',
