@@ -3,10 +3,10 @@
   color: white;
 }
 
-body,
-html {
+body, html {
   height: 100%;
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container-page {
@@ -20,17 +20,41 @@ footer.footer-style {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #f8f9fa;
-  color: #6c757d;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa; /* Ou qualquer outra cor de fundo desejada */
+  color: #6c757d; /* Ou qualquer outra cor de texto desejada */
   padding: 1rem;
-  text-align: right;
-  font-family: "Open Sans", sans-serif;
-  border-top: 1px solid #eaeaea;
+  text-align: left; /* Alinha o texto à esquerda */
+  border-top: 1px solid #eaeaea; /* Adiciona uma borda sutil na parte superior */
 }
 
-.footer-style div {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+@media (max-width: 768px) {
+  footer.footer-style {
+    text-align: center;
+  }
+
+  footer.footer-style .d-flex {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .login-card {
+    width: 90%;
+    margin: auto;
+
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    width: auto;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-icon-link {
+    margin: 0 10px;
+  }
 }
