@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.spinner.show();
-
-    debugger;
     const dados = {
       email: this.email,
       password: this.password,
@@ -50,7 +48,7 @@ export class LoginComponent implements OnInit {
       });
     } else {
       this.toastr.error(
-        'Não foi possível efetuar o login. Verifique seus dados.',
+        'Ocorreu um erro, tente novamente.',
         'Erro'
       );
     }

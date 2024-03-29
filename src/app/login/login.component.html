@@ -1,90 +1,50 @@
-<body>
-  <section class="container">
-    <div class="login-container">
-      <div class="circle circle-one"></div>
-      <div class="form-container">
-        <img
-          src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
-          alt="illustration"
-          class="illustration"
-        />
-        <h1 class="opacity">LOGIN</h1>
-        <form>
+<div class="container">
+  <div class="screen">
+    <div class="screen__content">
+      <form class="login">
+        <div class="login__field">
+          <mat-icon class="login__icon">person</mat-icon>
           <input
             [(ngModel)]="email"
             name="email"
-            type="email"
-            placeholder="EMAIL"
+            type="text"
+            class="login__input"
+            placeholder="User name / Email"
           />
+        </div>
+        <div class="login__field">
+          <mat-icon class="login__icon">lock</mat-icon>
           <input
             [(ngModel)]="password"
             name="password"
             type="password"
-            placeholder="SENHA"
+            class="login__input"
+            matInput
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Password"
           />
-          <button class="opacity" (click)="login()">ENTRAR</button>
-        </form>
-        <div class="register-forget opacity">
-          <a href="">ESQUECI A SENHA</a>
+          <button
+            type="button"
+            class="toggle-visibility"
+            (click)="showPassword = !showPassword"
+          >
+            <mat-icon class="visibility-icon">{{
+              showPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
         </div>
-      </div>
-      <div class="circle circle-two"></div>
+
+        <button class="button login__submit" (click)="login()">
+          <span class="button__text">Conecte-se agora</span>
+          <i class="button__icon fas fa-chevron-right"></i>
+        </button>
+      </form>
     </div>
-    <div class="theme-btn-container"></div>
-  </section>
-</body>
-<script>
-  const themes = [
-    {
-      background: "#1A1A2E",
-      color: "#FFFFFF",
-      primaryColor: "#0F3460",
-    },
-    {
-      background: "#461220",
-      color: "#FFFFFF",
-      primaryColor: "#E94560",
-    },
-    {
-      background: "#192A51",
-      color: "#FFFFFF",
-      primaryColor: "#967AA1",
-    },
-    {
-      background: "#F7B267",
-      color: "#000000",
-      primaryColor: "#F4845F",
-    },
-    {
-      background: "#F25F5C",
-      color: "#000000",
-      primaryColor: "#642B36",
-    },
-    {
-      background: "#231F20",
-      color: "#FFF",
-      primaryColor: "#BB4430",
-    },
-  ];
-
-  const setTheme = (theme) => {
-    const root = document.querySelector(":root");
-    root.style.setProperty("--background", theme.background);
-    root.style.setProperty("--color", theme.color);
-    root.style.setProperty("--primary-color", theme.primaryColor);
-    root.style.setProperty("--glass-color", theme.glassColor);
-  };
-
-  const displayThemeButtons = () => {
-    const btnContainer = document.querySelector(".theme-btn-container");
-    themes.forEach((theme) => {
-      const div = document.createElement("div");
-      div.className = "theme-btn";
-      div.style.cssText = `background: ${theme.background}; width: 25px; height: 25px`;
-      btnContainer.appendChild(div);
-      div.addEventListener("click", () => setTheme(theme));
-    });
-  };
-
-  displayThemeButtons();
-</script>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+  </div>
+</div>

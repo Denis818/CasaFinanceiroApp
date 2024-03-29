@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 export abstract class BaseService {
   constructor(private http: HttpClient) {}
 
-  protected urlBase: string = 'https://localhost:7022';
+  protected urlBase: string = 'https://family-finance-api.up.railway.app';
 
   protected SendHttpRequest(
     metodo: string,
