@@ -7,28 +7,27 @@
 }
 .container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  min-height: calc(100vh - 100px);
-  padding-bottom: 20px;
-  box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .screen {
-  margin: auto;
   display: flex;
-  overflow: hidden;
+  flex-direction: column;
   background: linear-gradient(90deg, #5d54a4, #7c78b8);
   position: relative;
-  height: 600px;
-  width: 360px;
+  height: 100vh;
+  width: 100%;
   box-shadow: 0px 0px 24px #5c5696;
+  margin: 0 auto;
 }
-
 .screen__content {
   z-index: 1;
   position: relative;
-  height: 100%;
+  overflow-y: auto;
 }
 
 .screen__background {
@@ -99,9 +98,7 @@
 .login__icon {
   position: absolute;
   top: 50%;
-  transform: translateY(
-    -50%
-  );
+  transform: translateY(-50%);
   color: #7875b5;
   left: 8px;
 }
@@ -113,9 +110,7 @@
   padding: 10px;
   padding-left: 24px;
   padding-left: 40px;
-  width: calc(
-    100% - 80px
-  ) !important;
+  width: calc(100% - 80px) !important;
   font-weight: 700;
   width: 75%;
   transition: 0.2s;
