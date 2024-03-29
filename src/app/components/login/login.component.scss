@@ -116,6 +116,12 @@
   transition: 0.2s;
   height: 40px;
 }
+@media (min-width: 1024px) {
+  input::placeholder {
+    color: white;
+  }
+}
+
 .toggle-visibility {
   position: absolute;
   top: 50%;
