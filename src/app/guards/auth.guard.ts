@@ -11,13 +11,12 @@ import { StorageService } from './../services/storage/storage.service';
 })
 export class AuthGuard {
   public readonly storageService = inject(StorageService);
+  public readonly router = inject(Router);
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const router = inject(Router);
-
     const token = this.storageService.getItem('token');
     const expiration = this.storageService.getItem('expirationToken');
 
@@ -38,11 +37,11 @@ export class AuthGuard {
 
       if (expirationDate <= nowUTC) {
         this.resetLocalStorage();
-        router.navigateByUrl('/login');
+        this.router.navigateByUrl('/login');
         return false;
       }
     } else {
-      router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
       return false;
     }
     return true;
