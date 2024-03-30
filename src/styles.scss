@@ -18,7 +18,15 @@ body {
 }
 .mat-mdc-form-field .mat-mdc-text-field-wrapper {
   border-radius: 20px;
+  max-width: 90%;
 }
+
+@media (min-width: 1024px) {
+  .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+    max-width: 20%;
+  }
+}
+
 mat-form-field {
   mat-icon {
     color: #4c489d;
