@@ -1,7 +1,26 @@
-html, body {
+@import "reset";
+
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-y: hidden;
 }
 
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: #d4d3e8;
+}
+.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  border-radius: 20px;
+}
+mat-form-field {
+  mat-icon {
+    color: #4c489d;
+  }
+}

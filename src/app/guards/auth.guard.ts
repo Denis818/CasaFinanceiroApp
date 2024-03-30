@@ -1,24 +1,39 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
+import { StorageService } from './../services/storage/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-class AuthGuard {
-  CanActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+export class AuthGuard {
+  public readonly storageService = inject(StorageService);
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     const router = inject(Router);
 
-    const token = localStorage.getItem('token');
-    const expiration = localStorage.getItem('expirationToken');
+    const token = this.storageService.getItem('token');
+    const expiration = this.storageService.getItem('expirationToken');
 
     if (token && expiration) {
       const expirationDate = new Date(expiration);
       const now = new Date();
 
-      const nowUTC = new Date(Date.UTC(
-        now.getFullYear(), now.getMonth(),
-        now.getDate(), now.getHours(),
-        now.getMinutes(), now.getSeconds())
+      const nowUTC = new Date(
+        Date.UTC(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+          now.getHours(),
+          now.getMinutes(),
+          now.getSeconds()
+        )
       );
 
       if (expirationDate <= nowUTC) {
@@ -26,7 +41,6 @@ class AuthGuard {
         router.navigateByUrl('/login');
         return false;
       }
-
     } else {
       router.navigateByUrl('/login');
       return false;
@@ -35,13 +49,6 @@ class AuthGuard {
   }
 
   private resetLocalStorage(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('expirationToken');
+    this.storageService.clear();
   }
 }
-
-export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
-  return inject(AuthGuard).CanActivate(route, state);
-};

@@ -1,56 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  public email!: string;
-  public password!: string;
-  public showPassword: boolean = false;
+export class LoginComponent {
+  showPassword: boolean;
+  form: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+  });
 
   constructor(
-    private userService: UserService,
-    private spinner: NgxSpinnerService,
-    private toastr: ToastrService,
-    private router: Router
+    private readonly userService: UserService,
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router
   ) {}
 
-  ngOnInit() {}
+  login() {
+    const { email, password } = this.form.value;
 
-  public login() {
-    this.spinner.show();
-    const dados = {
-      email: this.email,
-      password: this.password,
-    };
-
-    this.userService.login(dados).subscribe({
-      next: () => {
-        this.spinner.hide();
-        this.router.navigateByUrl('/dashboard');
-      },
-      error: (err) => this.error(err?.error?.Mensagens),
-    });
-  }
-
-  public error(arrayMessages: any): void {
-    this.spinner.hide();
-
-    if (arrayMessages?.length > 0) {
-      arrayMessages.forEach((mensagem: any) => {
-        this.toastr.error(mensagem.Descricao, 'Erro');
+    this.userService
+      .login({
+        email,
+        password,
+      })
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/dashboard');
+        },
       });
-    } else {
-      this.toastr.error(
-        'Ocorreu um erro, tente novamente.',
-        'Erro'
-      );
-    }
   }
 }

@@ -1,50 +1,40 @@
-<div class="container">
-  <div class="screen">
-    <div class="screen__content">
-      <form class="login">
-        <div class="login__field">
-          <mat-icon class="login__icon">person</mat-icon>
-          <input
-            [(ngModel)]="email"
-            name="email"
-            type="text"
-            class="login__input"
-            placeholder="User name / Email"
-          />
-        </div>
-        <div class="login__field">
-          <mat-icon class="login__icon">lock</mat-icon>
-          <input
-            [(ngModel)]="password"
-            name="password"
-            type="password"
-            class="login__input"
-            matInput
-            [type]="showPassword ? 'text' : 'password'"
-            placeholder="Password"
-          />
-          <button
-            type="button"
-            class="toggle-visibility"
-            (click)="showPassword = !showPassword"
-          >
-            <mat-icon class="visibility-icon">{{
-              showPassword ? "visibility_off" : "visibility"
-            }}</mat-icon>
-          </button>
-        </div>
+<div class="screen">
+  <div class="screen-content">
+    <form class="login" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Usuário / Email</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input
+          placeholder="Digite seu email"
+          matInput
+          formControlName="email"
+        />
+      </mat-form-field>
 
-        <button class="button login__submit" (click)="login()">
-          <span class="button__text">Conecte-se agora</span>
-          <i class="button__icon fas fa-chevron-right"></i>
-        </button>
-      </form>
-    </div>
-    <div class="screen__background">
-      <span class="screen__background__shape screen__background__shape4"></span>
-      <span class="screen__background__shape screen__background__shape3"></span>
-      <span class="screen__background__shape screen__background__shape2"></span>
-      <span class="screen__background__shape screen__background__shape1"></span>
-    </div>
+      <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          placeholder="Digite sua senha"
+          matInput
+          [type]="!showPassword ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="showPassword = !showPassword">
+          {{ showPassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
+      </mat-form-field>
+
+      <button mat-raised-button class="login-submit" (click)="login()">
+        Conecte-se agora
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="screen-background">
+    <span class="screen-background-shape"></span>
+    <span class="screen-background-shape"></span>
+    <span class="screen-background-shape"></span>
+    <span class="screen-background-shape"></span>
   </div>
 </div>
