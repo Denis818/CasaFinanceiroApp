@@ -24,18 +24,20 @@ export class AuthInterceptor implements HttpInterceptor {
     private toastr: ToastrService,
     private readonly storageService: StorageService
   ) {}
-
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.storageService.getItem('token');
-    req.headers.append('Authorization', 'Bearer ' + token);
+
+    const authReq = req.clone({
+      headers: req.headers.set('Authorization', 'Bearer ' + token),
+    });
 
     this.requestCount++;
     this.spinner.show();
 
-    return next.handle(req).pipe(
+    return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         this.error(error?.error?.mensagens);
 
