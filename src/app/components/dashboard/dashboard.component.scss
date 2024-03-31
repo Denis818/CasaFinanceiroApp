@@ -1,3 +1,48 @@
 :host {
-  display: block;
+  .example-container {
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .example-sidenav {
+    user-select: none;
+  }
+  .full-width {
+    width: 100%;
+  }
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  .submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+  }
+  .submenu.expanded {
+    transform: scaleY(1);
+  }
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    padding: 0px;
+  }
+
+  .sidenav-trigger {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px; /* ou a largura que você desejar para a área sensível ao mouse */
+    z-index: 1000; /* deve ser maior que o conteúdo da página, mas menor que o sidenav */
+  }
 }
