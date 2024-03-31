@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserDto } from 'src/app/dtos/user/UserDto';
 import { UserService } from '../../services/user/user.service';
 
 @Component({
@@ -22,17 +23,12 @@ export class LoginComponent {
   ) {}
 
   login() {
-    const { email, password } = this.form.value;
+    const user: UserDto = this.form.value;
 
-    this.userService
-      .login({
-        email,
-        password,
-      })
-      .subscribe({
-        next: () => {
-          this.router.navigateByUrl('/dashboard');
-        },
-      });
+    this.userService.login(user).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/dashboard');
+      },
+    });
   }
 }
