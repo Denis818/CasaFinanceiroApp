@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './core/pages/home/home.component';
+import { HomePage } from './core/pages/home/home.page';
 import { AuthGuard } from './domain/auth/guards/auth.guard';
 import { LoginComponent } from './domain/auth/pages/login/login.component';
 
@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'portal',
     title: 'Finanças de casa',
-    component: HomeComponent,
+    component: HomePage,
     children: [
       {
         path: 'dashboard',

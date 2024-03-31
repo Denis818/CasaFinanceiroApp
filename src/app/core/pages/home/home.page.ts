@@ -29,11 +29,11 @@ export const onSideNavChange = trigger('onSideNavChange', [
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
   animations: [onSideNavChange],
 })
-export class HomeComponent {
+export class HomePage {
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
   constructor(

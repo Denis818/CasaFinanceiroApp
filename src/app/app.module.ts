@@ -26,11 +26,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { HomeComponent } from './core/pages/home/home.component';
+import { HomePage } from './core/pages/home/home.page';
 import { LoginComponent } from './domain/auth/pages/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, HomePage],
   imports: [
     MatListModule,
     MatToolbarModule,
