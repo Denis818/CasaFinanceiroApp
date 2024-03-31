@@ -9,7 +9,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Title } from '@angular/platform-browser';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-
+import { Router } from '@angular/router';
 export const onSideNavChange = trigger('onSideNavChange', [
   state(
     'close',
@@ -37,7 +37,7 @@ export const onSideNavChange = trigger('onSideNavChange', [
 export class HomeComponent {
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
 
-  constructor(
+  constructor(private readonly router: Router,
     private readonly user: UserService,
     public readonly titleService: Title
   ) {}
@@ -54,6 +54,10 @@ export class HomeComponent {
     this.sidenav.toggle();
   }
   logout() {
-    this.user.logout();
+    this.user.logout().subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login');
+      },
+    });
   }
 }
