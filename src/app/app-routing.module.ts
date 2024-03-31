@@ -1,20 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './core/pages/home/home.component';
+import { AuthGuard } from './domain/auth/guards/auth.guard';
+import { LoginComponent } from './domain/auth/pages/login/login.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
+    path: 'portal',
+    title: 'Finanças de casa',
+    component: HomeComponent,
+    children: [
+      {
+        path: 'dashboard',
+        title: 'Dashboard',
+        loadComponent: async () =>
+          (
+            await import(
+              'src/app/domain/dashboard/pages/dashboard/dashboard.page'
+            )
+          ).DashboardPage,
+      },
+      {
+        path: 'financy',
+        title: 'Finanças Divididas',
+        loadComponent: async () =>
+          (await import('src/app/domain/financy/pages/financy/financy.page'))
+            .FinancyPage,
+      },
+    ],
+    canMatch: [AuthGuard],
   },
-
   { path: 'login', component: LoginComponent },
-
-  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'portal', pathMatch: 'full' },
+  { path: '', redirectTo: 'portal', pathMatch: 'full' },
 ];
 
 @NgModule({

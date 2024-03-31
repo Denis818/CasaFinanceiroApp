@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="app-name">{{ titleService.getTitle() }}</h1>
+  <span class="toolbar-spacer"></span>
+  <button mat-icon-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="container" [hasBackdrop]="false">
+  <mat-sidenav
+    [@onSideNavChange]="!sidenav.opened ? 'close' : 'open'"
+    #sidenav
+    class="sidenav"
+    mode="over"
+  >
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'dashboard'">
+        <mat-icon> home </mat-icon>
+        <span *ngIf="sidenav.opened"> Dashboard </span>
+      </a>
+      <a mat-list-item [routerLink]="'financy'">
+        <mat-icon> attach_money </mat-icon>
+        <span *ngIf="sidenav.opened"> Finanças Divididas </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
