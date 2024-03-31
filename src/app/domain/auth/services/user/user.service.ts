@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
@@ -9,6 +10,8 @@ import { TokenResponse } from '../../interfaces/user/user-token-response.interfa
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends BaseService {
+  public readonly router = inject(Router);
+
   public url: string = `${environment.base_url_financy}/api/Users`;
 
   login(user: UserRequest): Observable<ApiResponse<TokenResponse>> {
@@ -26,7 +29,11 @@ export class UserService extends BaseService {
 
   logout(): void {
     this.storageService.clear();
-    this.sendHttpRequest('GET', this.url + '/logout');
+    this.sendHttpRequest('GET', this.url + '/logout').subscribe({
+      next: () => {
+        this.router.navigateByUrl('/login');
+      },
+    });
   }
 
   //  Support Methods
