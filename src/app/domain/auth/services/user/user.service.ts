@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
@@ -14,23 +14,29 @@ export class UserService extends BaseService {
 
   public url: string = `${environment.base_url_financy}/api/Users`;
 
-  login(user: UserRequest): Observable<ApiResponse<TokenResponse>> {
-    return this.sendHttpRequest<ApiResponse<TokenResponse>>(
+  login(user: UserRequest): void {
+    this.sendHttpRequest<ApiResponse<TokenResponse>>(
       'POST',
       this.url + '/login',
       user
-    ).pipe(
-      tap((response) => {
-        this.guardarToken(response.dados);
-        this.getUserInfo();
-      })
-    );
+    )
+      .pipe(
+        tap((response) => {
+          this.guardarToken(response.dados);
+          this.getUserInfo();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/home');
+        },
+      });
   }
 
   logout(): void {
-    this.storageService.clear();
     this.sendHttpRequest('GET', this.url + '/logout').subscribe({
       next: () => {
+        this.storageService.clear();
         this.router.navigateByUrl('/login');
       },
     });

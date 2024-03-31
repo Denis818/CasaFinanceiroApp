@@ -25,10 +25,6 @@ export class LoginComponent {
   login() {
     const user: UserRequest = this.form.value;
 
-    this.userService.login(user).subscribe({
-      next: () => {
-        this.router.navigateByUrl('/home');
-      },
-    });
+    this.userService.login(user);
   }
 }
