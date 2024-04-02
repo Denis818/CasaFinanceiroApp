@@ -64,12 +64,11 @@
 
   .sidenav {
     height: 100%;
-    width: 50px; /* Largura inicial da sidebar */
+    width: 50px;
     position: fixed;
     background-color: rgb(103, 58, 183);
-    overflow-x: hidden; /* Mudança de 'auto' para 'hidden' para evitar o scrollbar horizontal */
+    overflow-x: hidden;
     transition: width 0.5s;
-    z-index: 1000; /* Assegurar que a sidebar está acima do conteúdo */
   }
 
   .sidenav a {
@@ -87,6 +86,7 @@
 
   .sidenav.expanded {
     width: 190px;
+    box-shadow: 20px 0 24px -20px rgb(0 0 0 / 75%);
   }
 
   .sidenav.expanded a span {
