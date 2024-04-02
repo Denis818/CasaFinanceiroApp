@@ -1,16 +1,14 @@
 :host {
-  [table-finance-app] {
-    padding: 20px 40px 5px 85px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
 
+  table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
   th,
   td {
     text-align: left;
-    padding: 8px;
+    padding: 8px; /* Ou qualquer outro valor que desejar */
   }
 
   tr:nth-child(even) {
@@ -20,5 +18,13 @@
   th {
     background-color: rgb(103 58 183);
     color: white;
+  }
+
+  @media (max-width: 768px) {
+    table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+    }
   }
 }

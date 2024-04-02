@@ -29,23 +29,8 @@ mat-form-field {
 }
 //end
 
-//sidebar
-.mat-drawer-container {
-  .mat-drawer {
-    transition: 0.5s all ease-in-out;
-    &.ng-animating {
-      min-width: 174px;
-    }
-    &:not(.ng-animating, .mat-drawer-opened) {
-      width: 40px;
-      transform: translate3d(-100%, 0px, 0px) translateX(40px) !important;
-    }
-    &[style*="visibility: hidden"] {
-      display: block;
-      visibility: visible !important;
-      box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.05),
-        0px 16px 24px 2px rgba(0, 0, 0, 0.05),
-        0px 6px 30px 5px rgba(0, 0, 0, 0.05) !important;
-    }
-  }
+//title navbar
+.mat-typography h1 {
+  margin: 0;
 }
+//end

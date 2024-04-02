@@ -15,3 +15,9 @@ footer {
   border-top: 1px solid #eaeaea;
   z-index: 2;
 }
+
+@media (max-width: 768px) {
+  footer {
+    display: none;
+  }
+}
