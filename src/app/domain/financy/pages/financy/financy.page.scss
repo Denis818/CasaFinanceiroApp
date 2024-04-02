@@ -1,14 +1,16 @@
 :host {
-
   table {
-    width: 100%;
-    height: 100%;
+    width: 50%;
     border-collapse: collapse;
+    table-layout: fixed;
+    border: solid;
+    margin: 20px;
   }
+
   th,
   td {
     text-align: left;
-    padding: 8px; /* Ou qualquer outro valor que desejar */
+    padding: 8px;
   }
 
   tr:nth-child(even) {
@@ -16,7 +18,7 @@
   }
 
   th {
-    background-color: rgb(103 58 183);
+    background-color: rgb(103, 58, 183);
     color: white;
   }
 
@@ -25,6 +27,7 @@
       width: 100%;
       height: 100%;
       border-collapse: collapse;
+      margin: 0px;
     }
   }
 }

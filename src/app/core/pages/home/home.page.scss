@@ -1,10 +1,9 @@
 :host {
-  .content {
+  [container-app] {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    min-height: 100vh;
   }
+
   .navbar {
     width: 100%;
     background-color: #673ab7;
@@ -65,11 +64,12 @@
 
   .sidenav {
     height: 100%;
-    width: 50px;
+    width: 50px; /* Largura inicial da sidebar */
     position: fixed;
     background-color: rgb(103, 58, 183);
-    overflow-x: auto;
+    overflow-x: hidden; /* Mudança de 'auto' para 'hidden' para evitar o scrollbar horizontal */
     transition: width 0.5s;
+    z-index: 1000; /* Assegurar que a sidebar está acima do conteúdo */
   }
 
   .sidenav a {
@@ -104,7 +104,29 @@
     color: white;
   }
 
+  .content {
+    transition: margin-left 0.5s;
+    margin-left: 50px;
+    flex-shrink: 0;
+    width: calc(100% - 50px);
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .sidenav.expanded ~ .content {
+    margin-left: 190px;
+  }
+
   @media (max-width: 768px) {
+    .content {
+      transition: margin-left 0.5s;
+      margin: 20px;
+      flex-shrink: 0;
+      width: calc(100% - 50px);
+      box-sizing: border-box;
+      overflow-x: auto;
+    }
+
     .sidenav {
       height: 45px;
       width: 100%;

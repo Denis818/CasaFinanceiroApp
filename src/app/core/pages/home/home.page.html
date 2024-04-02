@@ -8,27 +8,29 @@
   </button>
 </nav>
 
-<div [ngClass]="{'sidenav': true, 'expanded': sidenavExpanded}">
-  <a
-    [routerLink]="'dashboard'"
-    (click)="selectedButton = 'home'"
-    [ngClass]="{'selected': selectedButton === 'home'}"
-    class="nav-link"
-  >
-    <mat-icon id="home">home</mat-icon>
-    <span *ngIf="sidenavExpanded">Home</span>
-  </a>
-  <a
-    [routerLink]="'financy'"
-    (click)="selectedButton = 'attach_money'"
-    [ngClass]="{'selected': selectedButton === 'attach_money'}"
-    class="nav-link"
-  >
-    <mat-icon>attach_money</mat-icon>
-    <span *ngIf="sidenavExpanded">Finanças Divididas</span>
-  </a>
-</div>
+<div container-app>
+  <div [ngClass]="{'sidenav': true, 'expanded': sidenavExpanded}">
+    <a
+      [routerLink]="'dashboard'"
+      (click)="selectedButton = 'home'"
+      [ngClass]="{'selected': selectedButton === 'home'}"
+      class="nav-link"
+    >
+      <mat-icon id="home">home</mat-icon>
+      <span *ngIf="sidenavExpanded">Home</span>
+    </a>
+    <a
+      [routerLink]="'financy'"
+      (click)="selectedButton = 'attach_money'"
+      [ngClass]="{'selected': selectedButton === 'attach_money'}"
+      class="nav-link"
+    >
+      <mat-icon>attach_money</mat-icon>
+      <span *ngIf="sidenavExpanded">Finanças Divididas</span>
+    </a>
+  </div>
 
-<div>
-  <router-outlet></router-outlet>
+  <div [ngClass]="{'content': true, 'expanded': sidenavExpanded}">
+    <router-outlet></router-outlet>
+  </div>
 </div>
