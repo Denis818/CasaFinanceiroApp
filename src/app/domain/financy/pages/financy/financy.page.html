@@ -1,17 +1,21 @@
-<div table-finance-app>
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Valor</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let despesa of despesasPorMembros">
-        <td>{{ despesa.nome }}</td>
-        <td>{{ despesa.valor | currency:'BRL' }}</td>
-        <!-- Exibe o valor formatado como moeda -->
-      </tr>
-    </tbody>
-  </table>
+<div class="table-finance-app">
+  <div class="card">
+    <div class="card-header">Divisão de Despesas</div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Contribuição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let despesa of despesasPorMembros">
+            <td>{{ despesa.nome }}</td>
+            <td>{{ despesa.valor | currency:'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

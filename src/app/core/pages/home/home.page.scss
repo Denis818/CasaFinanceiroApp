@@ -3,6 +3,18 @@
     display: flex;
     min-height: 100vh;
   }
+  .content-app {
+    transition: margin-left 0.5s;
+    margin-left: 50px;
+    flex-shrink: 0;
+    width: calc(100% - 50px);
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .sidenav.expanded ~ .content {
+    margin-left: 190px;
+  }
 
   .navbar {
     width: 100%;
@@ -104,27 +116,11 @@
     color: white;
   }
 
-  .content {
-    transition: margin-left 0.5s;
-    margin-left: 50px;
-    flex-shrink: 0;
-    width: calc(100% - 50px);
-    box-sizing: border-box;
-    overflow-x: auto;
-  }
-
-  .sidenav.expanded ~ .content {
-    margin-left: 190px;
-  }
-
   @media (max-width: 768px) {
-    .content {
-      transition: margin-left 0.5s;
-      margin: 20px;
+    .content-app {
       flex-shrink: 0;
-      width: calc(100% - 50px);
-      box-sizing: border-box;
-      overflow-x: auto;
+      margin: 0px;
+      width: 100%;
     }
 
     .sidenav {
