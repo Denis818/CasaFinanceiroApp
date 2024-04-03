@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FamilyFinanceApp": {
+    "HouseFinancesApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -33,7 +33,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/family-finance-app",
+            "outputPath": "dist/house-finances-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -83,10 +83,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "FamilyFinanceApp:build:production"
+              "browserTarget": "HouseFinancesApp:build:production"
             },
             "development": {
-              "browserTarget": "FamilyFinanceApp:build:development"
+              "browserTarget": "HouseFinancesApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FamilyFinanceApp:build"
+            "browserTarget": "HouseFinancesApp:build"
           }
         },
         "test": {
