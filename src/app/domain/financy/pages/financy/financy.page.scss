@@ -12,6 +12,7 @@
       margin: 8px;
       margin-top: 53px;
       width: 99%;
+      margin-bottom: 60px !important;
 
       .card-header {
         background-color: #673ab7;
@@ -34,7 +35,7 @@
       width: 100%;
     }
 
-    [alinhamento-table] {
+    [alinhar-table] {
       width: calc(50% - 10px);
       margin-bottom: 20px;
     }
@@ -66,13 +67,12 @@
     @media (max-width: 768px) {
       .card {
         width: 95%;
-        margin-bottom: 60px !important;
         .card-body {
           flex-direction: column;
         }
       }
 
-      [alinhamento-table] {
+      [alinhar-table] {
         width: 100%;
         margin-bottom: 20px;
       }

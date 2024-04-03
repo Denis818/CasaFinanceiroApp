@@ -6,6 +6,7 @@ import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { RelatorioDespesasMensais } from '../../interfaces/financy/relatorio-despesas-mensais-response.interface';
+import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class FinancyService extends BaseService {
@@ -34,5 +35,12 @@ export class FinancyService extends BaseService {
       null,
       params
     ).pipe(map((response: any) => response.dados));
+  }
+
+  public getTotalPorCategoria(): Observable<TotalPorCategoriaResponse[]> {
+    return this.sendHttpRequest<ApiResponse<TotalPorCategoriaResponse[]>>(
+      'GET',
+      `${this.url}/total-por-categoria`
+    ).pipe(map((response) => response.dados));
   }
 }

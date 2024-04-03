@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">Relatório</div>
     <div class="card-body">
-      <div alinhamento-table>
+      <div alinhar-table>
         <h2>Despesas Divididas por Membros</h2>
         <table>
           <thead>
@@ -12,15 +12,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let despesa of despesasPorMembros">
-              <td>{{ despesa.nome }}</td>
-              <td>{{ despesa.valor | currency:'BRL' }}</td>
+            <tr *ngFor="let item of despesasPorMembros">
+              <td>{{ item.nome }}</td>
+              <td>{{ item.valor | currency:'BRL' }}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div alinhamento-table>
+      <div alinhar-table>
         <h2>Total de Despesas por Mês</h2>
         <table>
           <thead>
@@ -30,15 +30,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let despesa of despesasPorMembros">
-              <td>{{ despesa.nome }}</td>
-              <td>{{ despesa.valor | currency:'BRL' }}</td>
+            <tr *ngFor="let item of listComprasPorMes">
+              <td>{{ item.mes }}</td>
+              <td>{{ item.totalDespesas | currency:'BRL' }}</td>
             </tr>
           </tbody>
         </table>
+        <mat-paginator
+          [length]="page.totalItens"
+          [pageSize]="page.itensPorPagina"
+          [pageIndex]="page.paginaAtual-1"
+          (page)="mudarPagina($event)"
+        >
+        </mat-paginator>
       </div>
 
-      <div alinhamento-table>
+      <div alinhar-table>
         <h2>Total por categoria</h2>
         <table>
           <thead>
@@ -48,9 +55,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let despesa of despesasPorMembros">
-              <td>{{ despesa.nome }}</td>
-              <td>{{ despesa.valor | currency:'BRL' }}</td>
+            <tr *ngFor="let item of despesasPorCategoria">
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.total| currency:'BRL' }}</td>
             </tr>
           </tbody>
         </table>
