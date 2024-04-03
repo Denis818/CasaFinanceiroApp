@@ -44,4 +44,10 @@ table {
   th {
     background-color: #f7f7f7;
   }
+
+  @media (max-width: 768px) {
+    .card {
+      flex: 0 0 100%; /* Faz cada card ocupar 100% da largura disponível */
+    }
+  }
 }
