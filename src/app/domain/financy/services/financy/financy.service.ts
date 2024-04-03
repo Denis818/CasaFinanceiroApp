@@ -22,18 +22,11 @@ export class FinancyService extends BaseService {
   }
 
   public getTotaisComprasPorMes(
-    paginaAtual: number,
-    itensPorPagina: number
   ): Observable<any[]> {
-    const params = new HttpParams()
-      .set('paginaAtual', paginaAtual.toString())
-      .set('itensPorPagina', itensPorPagina.toString());
 
     return this.sendHttpRequest(
       'GET',
-      `${this.url}/total-por-mes`,
-      null,
-      params
+      `${this.url}/total-por-mes`
     ).pipe(map((response: any) => response.dados));
   }
 

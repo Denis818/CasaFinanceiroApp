@@ -1,67 +1,49 @@
-<div class="table-finance-app">
+<div class="card-container">
   <div class="card">
-    <div class="card-header">Relatório</div>
+    <div class="card-head">Despesas Divididas por Membros</div>
     <div class="card-body">
-      <div alinhar-table>
-        <h2>Despesas Divididas por Membros</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of despesasPorMembros">
-              <td>{{ item.nome }}</td>
-              <td>{{ item.valor | currency:'BRL' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of despesasPorMembros">
+            <td>{{ item.nome }}</td>
+            <td>{{ item.valor | currency:'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-      <div alinhar-table>
-        <h2>Total de Despesas por Mês</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Mês</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of listComprasPorMes">
-              <td>{{ item.mes }}</td>
-              <td>{{ item.totalDespesas | currency:'BRL' }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <mat-paginator
-          [length]="page.totalItens"
-          [pageSize]="page.itensPorPagina"
-          [pageIndex]="page.paginaAtual-1"
-          (page)="mudarPagina($event)"
-        >
-        </mat-paginator>
-      </div>
+  <div class="card">
+    <div class="card-head">Total por Mês</div>
+    <div class="card-body">
+      <app-graphic [datasets]="graphicComprasPorMes" chartType="line">
+      </app-graphic>
+    </div>
+  </div>
 
-      <div alinhar-table>
-        <h2>Total por categoria</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Mês</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of despesasPorCategoria">
-              <td>{{ item.categoria }}</td>
-              <td>{{ item.total| currency:'BRL' }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="card">
+    <div class="card-head">Total por categoria</div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listDespesasPorCategoria">
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.total| currency:'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
