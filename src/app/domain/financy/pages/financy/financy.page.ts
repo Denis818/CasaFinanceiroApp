@@ -12,6 +12,7 @@ import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-ca
 import { TotalPorMembroResponse } from '../../interfaces/financy/total-por-membro-response.interface';
 import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
+import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 
 registerLocaleData(localePt);
 
@@ -29,19 +30,22 @@ registerLocaleData(localePt);
 export class FinancyPage implements OnInit {
   despesasPorMembros: TotalPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
+
+  relatorioGastosDoMes: RelatorioGastosDoMesResponse;
   graphicComprasPorMes: CustomDataset;
 
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
+    this.getResumoDespesasMensal();
     this.getTotalPorCategoria();
-    this.getTotalParaCadaMembro();
     this.getTotaisComprasPorMes();
   }
 
-  getTotalParaCadaMembro() {
-    this.financyService.getTotalParaCadaMembro().subscribe((dados) => {
+  getResumoDespesasMensal() {
+    this.financyService.getResumoDespesasMensal().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembros;
+      this.relatorioGastosDoMes = dados.relatorioGastosDoMes;
     });
   }
 

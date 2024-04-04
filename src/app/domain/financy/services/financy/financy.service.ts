@@ -1,11 +1,10 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
-import { RelatorioDespesasMensais } from '../../interfaces/financy/relatorio-despesas-mensais-response.interface';
+import { ResumoMensalResponse } from '../../interfaces/financy/resumo-mensal-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -14,20 +13,17 @@ export class FinancyService extends BaseService {
 
   public url: string = `${environment.base_url_financy}/api/Despesa`;
 
-  public getTotalParaCadaMembro(): Observable<RelatorioDespesasMensais> {
-    return this.sendHttpRequest<ApiResponse<RelatorioDespesasMensais>>(
+  public getResumoDespesasMensal(): Observable<ResumoMensalResponse> {
+    return this.sendHttpRequest<ApiResponse<ResumoMensalResponse>>(
       'GET',
-      this.url + '/total-por-membro'
+      this.url + '/resumo-despesas-mensal'
     ).pipe(map((response) => response.dados));
   }
 
-  public getTotaisComprasPorMes(
-  ): Observable<any[]> {
-
-    return this.sendHttpRequest(
-      'GET',
-      `${this.url}/total-por-mes`
-    ).pipe(map((response: any) => response.dados));
+  public getTotaisComprasPorMes(): Observable<any[]> {
+    return this.sendHttpRequest('GET', `${this.url}/total-por-mes`).pipe(
+      map((response: any) => response.dados)
+    );
   }
 
   public getTotalPorCategoria(): Observable<TotalPorCategoriaResponse[]> {
