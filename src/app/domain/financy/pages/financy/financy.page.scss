@@ -7,7 +7,7 @@
     width: 99.1%;
 
     .card {
-      flex: 1 1 calc(50% - 20px);
+      flex: 1 1 calc(50% - 100px);
       margin-bottom: 10px;
       text-align: center;
 
@@ -24,6 +24,10 @@
         border: 1px solid #ccc;
         border-radius: 5px;
       }
+
+       .card:last-child {
+      flex: 1 1 calc(50% - 20px);
+    }
     }
 
     table {

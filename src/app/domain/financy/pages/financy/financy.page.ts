@@ -34,9 +34,9 @@ export class FinancyPage implements OnInit {
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
+    this.getTotalPorCategoria();
     this.getTotalParaCadaMembro();
     this.getTotaisComprasPorMes();
-    this.getTotalPorCategoria();
   }
 
   getTotalParaCadaMembro() {

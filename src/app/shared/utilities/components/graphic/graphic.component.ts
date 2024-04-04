@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
@@ -10,16 +16,15 @@ import { BaseChartDirective } from 'ng2-charts';
 
 Chart.register(...registerables);
 
+export class CustomDataset {
+  datasets: Dataset[] = [];
+  labels: string[] = [];
+}
 export interface Dataset {
   data: any[];
   label: string;
   borderColor: string;
   backgroundColor?: string;
-}
-
-export class CustomDataset {
-  datasets: Dataset[] = [];
-  labels: string[] = [];
 }
 
 @Component({
@@ -29,11 +34,10 @@ export class CustomDataset {
   standalone: true,
   imports: [BaseChartDirective],
 })
-export class GraphicComponent implements OnChanges {
+export class GraphicComponent implements OnInit, OnChanges {
   @Input() chartType: ChartType = 'line';
   @Input() datasets: CustomDataset = new CustomDataset();
 
-  teste: string = 'teste';
   chartData: ChartData = {
     datasets: [],
     labels: [],
@@ -48,20 +52,28 @@ export class GraphicComponent implements OnChanges {
     },
   };
 
+  ngOnInit(): void {
+    this.updateChartData();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['datasets']) {
+    // Assegurando que a atualização é feita apenas se houver mudanças relevantes
+    if (changes['datasets'] && !changes['datasets'].firstChange) {
       this.updateChartData();
     }
   }
 
   private updateChartData(): void {
-    this.chartData.labels = this.datasets.labels;
-    this.chartData.datasets = this.datasets.datasets.map((dataSet) => ({
-      data: dataSet.data,
-      borderColor: dataSet.borderColor,
-      backgroundColor: dataSet.backgroundColor || dataSet.borderColor,
-      label: dataSet.label,
-      fill: false,
-    }));
+    // Verificação de segurança para garantir que datasets e labels estejam definidos
+    if (this.datasets && this.datasets.labels && this.datasets.datasets) {
+      this.chartData.labels = this.datasets.labels;
+      this.chartData.datasets = this.datasets.datasets.map((ds) => ({
+        data: ds.data,
+        borderColor: ds.borderColor,
+        backgroundColor: ds.backgroundColor || ds.borderColor,
+        label: ds.label,
+        fill: false,
+      }));
+    }
   }
 }
