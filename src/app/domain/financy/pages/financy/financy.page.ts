@@ -68,7 +68,7 @@ export class FinancyPage implements OnInit {
 };
   canvasStyle = {
     width: 350, 
-    height: 290
+    height: 404
   };
 
   constructor(private readonly financyService: FinancyService) {}
