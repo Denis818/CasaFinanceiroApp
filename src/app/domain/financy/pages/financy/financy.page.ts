@@ -39,7 +39,7 @@ export class FinancyPage implements OnInit {
     labels: [],
   };
   chartOptions: ChartConfiguration['options'] = {
-    responsive: true,
+    responsive: false,
     plugins: {
       legend: {
         display: true,

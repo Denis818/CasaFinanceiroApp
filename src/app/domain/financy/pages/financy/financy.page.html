@@ -1,5 +1,39 @@
 <div card-container>
   <div class="card">
+    <div class="card-head">Despesas Divididas por Membros</div>
+    <div class="card-body borda">
+      <div *ngFor="let item of despesasPorMembros" class="expense-item">
+        <div class="expense-title">{{ item.nome }}</div>
+        <div class="expense-value">{{ item.valor | currency:'BRL' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Relatório De {{relatorioGastosDoMes.mesAtual}}</div>
+    <div class="card-body borda">
+      <div class="expense-item">
+        <div class="expense-title">Total do Aluguel com Condomínio</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalAluguelCondominio | currency:'BRL' }}
+        </div>
+      </div>
+      <div class="expense-item">
+        <div class="expense-title">Total Gastos Gerais</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
+        </div>
+      </div>
+      <div class="expense-item">
+        <div class="expense-title">Total Geral</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalGeral | currency:'BRL' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
     <div class="card-head">Total por categoria</div>
     <div class="card-body">
       <table>
@@ -19,61 +53,22 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card borda">
     <div class="card-head">Total por Mês</div>
-    <div class="card-body">
+    <div class="card-body centralizar">
       <canvas
         baseChart
         [type]="'line'"
         [options]="chartOptions"
         [data]="chartData"
-        height="94"
+        style="
+          display: block;
+          box-sizing: border-box;
+          height: 404px;
+          width: 790px;
+        "
       >
       </canvas>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">Despesas Divididas por Membros</div>
-    <div class="card-body">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Valor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of despesasPorMembros">
-            <td>{{ item.nome }}</td>
-            <td>{{ item.valor | currency:'BRL' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">Relatório De {{relatorioGastosDoMes.mesAtual}}</div>
-    <div class="card-body">
-      <div class="expense-item">
-        <div class="expense-title">Total do Aluguel com Condomínio</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalAluguelCondominio | currency:'BRL' }}
-        </div>
-      </div>
-      <div class="expense-item">
-        <div class="expense-title">Total Gastos Gerais</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
-        </div>
-      </div>
-      <div class="expense-item">
-        <div class="expense-title">Total Geral</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalGeral | currency:'BRL' }}
-        </div>
-      </div>
     </div>
   </div>
 </div>
