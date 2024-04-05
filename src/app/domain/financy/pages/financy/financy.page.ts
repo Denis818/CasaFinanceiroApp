@@ -38,34 +38,50 @@ export class FinancyPage implements OnInit {
     datasets: [],
     labels: [],
   };
- chartOptions: ChartConfiguration['options'] = {
-  responsive: false,
-  plugins: {
-    legend: {
-      display: true,
-      position: 'bottom',
-    },
-  },
-  indexAxis: 'y', // Isto orienta o gráfico de barras horizontalmente
-  scales: {
-    x: {
-      grid: {
-        display: true, // Mantém as linhas de grade do eixo X
+ mobileChartOptions: ChartConfiguration['options'] = {
+    responsive: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
       },
-      ticks: {
-        display: false, // Oculta os rótulos (labels) do eixo X
-      }
     },
-    y: {
-      grid: {
-        display: true, // Mantém as linhas de grade do eixo Y
+    indexAxis: 'y', // Orienta o gráfico de barras horizontalmente
+    scales: {
+      x: {
+        grid: {
+          display: true,
+        },
+        ticks: {
+          display: false, // Oculta os rótulos do eixo X
+        }
       },
-      ticks: {
-        display: false, // Oculta os rótulos (labels) do eixo Y
+      y: {
+        grid: {
+          display: true,
+        },
+        ticks: {
+          display: false, // Oculta os rótulos do eixo Y
+        }
       }
     }
-  }
-};
+  };
+
+  // Configurações padrão para desktops
+  desktopChartOptions: ChartConfiguration['options'] = {
+    responsive: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+      },
+    },
+    // Outras configurações específicas para desktop, se necessário
+  };
+
+  // Inicialmente, defina chartOptions como mobileChartOptions
+  chartOptions: ChartConfiguration['options'] = this.mobileChartOptions;
+  
   canvasStyle = {
     graphicType: 'bar',
     width: 350, 
@@ -81,15 +97,27 @@ export class FinancyPage implements OnInit {
     this.getTotaisComprasPorMes();
   }
 
-  adjustCanvasSize() {
-    // Considera-se tela de dispositivo móvel até 768px
-    if (window.innerWidth > 768) {
-      this.canvasStyle.graphicType = 'line'
-      this.canvasStyle.width = 790; // Largura para desktop
-      this.canvasStyle.height = 404; // Altura para desktop
-    }
+ @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.adjustCanvasSizeAndOptions();
   }
 
+  adjustCanvasSizeAndOptions() {
+    if (window.innerWidth > 768) {
+      // Configurações para desktop
+      this.canvasStyle.graphicType = 'line';
+      this.canvasStyle.width = 790;
+      this.canvasStyle.height = 404;
+      this.chartOptions = this.desktopChartOptions;
+    } else {
+      // Configurações para dispositivos móveis
+      this.canvasStyle.graphicType = 'bar';
+      this.canvasStyle.width = 350;
+      this.canvasStyle.height = 290;
+      this.chartOptions = this.mobileChartOptions;
+    }
+  }
+  
   getResumoDespesasMensal() {
     this.financyService.getResumoDespesasMensal().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembros;
