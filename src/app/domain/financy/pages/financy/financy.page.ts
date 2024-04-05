@@ -46,6 +46,7 @@ export class FinancyPage implements OnInit {
         position: 'bottom',
       },
     },
+    indexAxis: 'y',
   };
 
   constructor(private readonly financyService: FinancyService) {}
