@@ -67,6 +67,7 @@ export class FinancyPage implements OnInit {
   }
 };
   canvasStyle = {
+    graphicType: 'bar',
     width: 350, 
     height: 404
   };
@@ -83,6 +84,7 @@ export class FinancyPage implements OnInit {
   adjustCanvasSize() {
     // Considera-se tela de dispositivo móvel até 768px
     if (window.innerWidth > 768) {
+      this.canvasStyle.graphicType = 'line'
       this.canvasStyle.width = 790; // Largura para desktop
       this.canvasStyle.height = 404; // Altura para desktop
     }
