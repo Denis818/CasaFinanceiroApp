@@ -56,14 +56,26 @@ export class FinancyPage implements OnInit {
     }
   }
 };
-
+  canvasStyle = {
+    width: 350, 
+    height: 290
+  };
 
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
+     this.adjustCanvasSize();
     this.getResumoDespesasMensal();
     this.getTotalPorCategoria();
     this.getTotaisComprasPorMes();
+  }
+
+  adjustCanvasSize() {
+    // Considera-se tela de dispositivo móvel até 768px
+    if (window.innerWidth > 768) {
+      this.canvasStyle.width = 790; // Largura para desktop
+      this.canvasStyle.height = 404; // Altura para desktop
+    }
   }
 
   getResumoDespesasMensal() {
