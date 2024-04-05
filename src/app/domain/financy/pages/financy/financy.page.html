@@ -1,7 +1,7 @@
 <div card-container>
   <div class="card">
     <div class="card-head">Despesas Divididas por Membros</div>
-    <div class="card-body borda">
+    <div class="card-body">
       <div *ngFor="let item of despesasPorMembros" class="expense-item">
         <div class="expense-title">{{ item.nome }}</div>
         <div class="expense-value">{{ item.valor | currency:'BRL' }}</div>
@@ -11,7 +11,7 @@
 
   <div class="card">
     <div class="card-head">Relatório De {{relatorioGastosDoMes.mesAtual}}</div>
-    <div class="card-body borda">
+    <div class="card-body">
       <div class="expense-item">
         <div class="expense-title">Total do Aluguel com Condomínio</div>
         <div class="expense-value">
@@ -53,22 +53,19 @@
     </div>
   </div>
 
-  <div class="card borda">
+  <div class="card">
     <div class="card-head">Análise de Compras Mensal de 2024</div>
     <div class="card-body centralizar">
-     <canvas
-  baseChart
-  [type]="'line'"
-  [options]="chartOptions"
-  [data]="chartData"
-  style="
-    display: block;
-    box-sizing: border-box;
-     padding: 10px 10px 0px;
-    width: 100%;
-    height: 400px;"
->
-></canvas>
+      <canvas
+        baseChart
+        [type]="canvasStyle.graphicType"
+        [options]="chartOptions"
+        [data]="chartData"
+        [style.height.px]="canvasStyle.height"
+        [style.width.px]="canvasStyle.width"
+      >
+        ></canvas
+      >
     </div>
   </div>
 </div>

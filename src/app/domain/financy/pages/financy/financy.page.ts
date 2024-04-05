@@ -1,11 +1,17 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, HostListener , LOCALE_ID, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
-import { Chart, ChartConfiguration, ChartData, registerables } from 'chart.js';
+import {
+  Chart,
+  ChartConfiguration,
+  ChartData,
+  ChartType,
+  registerables,
+} from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
@@ -38,7 +44,14 @@ export class FinancyPage implements OnInit {
     datasets: [],
     labels: [],
   };
- mobileChartOptions: ChartConfiguration['options'] =  {
+
+  canvasStyle: CanvasStyle = {
+    graphicType: 'line',
+    width: 700,
+    height: 404,
+  };
+
+  chartOptions: ChartConfiguration['options'] = {
     responsive: false,
     plugins: {
       legend: {
@@ -46,59 +59,25 @@ export class FinancyPage implements OnInit {
         position: 'top',
       },
     },
-    indexAxis: 'y',
-  };
-
-  // Configurações padrão para desktops
-  desktopChartOptions: ChartConfiguration['options'] = {
-    responsive: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-      },
-    }
-  };
-
-  // Inicialmente, defina chartOptions como mobileChartOptions
-  chartOptions: ChartConfiguration['options'] = this.desktopChartOptions;
-  
-  canvasStyle = {
-    padding: 1,
-    width: 350, 
-    height: 404
   };
 
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
-     this.adjustCanvasSizeAndOptions();
+    this.adjustCanvasSizeAndOptions();
     this.getResumoDespesasMensal();
     this.getTotalPorCategoria();
     this.getTotaisComprasPorMes();
   }
 
- @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.adjustCanvasSizeAndOptions();
-  }
-
   adjustCanvasSizeAndOptions() {
-    if (window.innerWidth > 768) {
-      // Configurações para desktop
-      this.canvasStyle.padding = 30;
-      this.canvasStyle.width = 790;
-      this.canvasStyle.height = 404;
-      this.chartOptions = this.desktopChartOptions;
-    } else {
-      // Configurações para dispositivos móveis
-      this.canvasStyle.padding = 1;
-      this.canvasStyle.width = 350;
+    if (window.innerWidth < 768) {
+      this.canvasStyle.graphicType = 'bar';
+      this.canvasStyle.width = 340;
       this.canvasStyle.height = 290;
-      this.chartOptions = this.mobileChartOptions;
     }
   }
-  
+
   getResumoDespesasMensal() {
     this.financyService.getResumoDespesasMensal().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembros;
@@ -130,4 +109,10 @@ export class FinancyPage implements OnInit {
         ];
       });
   }
+}
+
+interface CanvasStyle {
+  graphicType: ChartType; // Usando ChartType como o tipo
+  width: number;
+  height: number;
 }
