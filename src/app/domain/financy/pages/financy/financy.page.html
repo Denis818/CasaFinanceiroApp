@@ -56,19 +56,15 @@
   <div class="card borda">
     <div class="card-head">Total por Mês</div>
     <div class="card-body centralizar">
-      <canvas
-        baseChart
-        [type]="'bar'"
-        [options]="chartOptions"
-        [data]="chartData"
-        style="
-          display: block;
-          box-sizing: border-box;
-          height: 404px;
-          width: 790px;
-        "
-      >
-      </canvas>
+     <canvas
+  baseChart
+  [type]="'bar'"
+  [options]="chartOptions"
+  [data]="chartData"
+  [style.height.px]="canvasStyle.height"
+  [style.width.px]="canvasStyle.width"
+  style="display: block; box-sizing: border-box;"
+></canvas>
     </div>
   </div>
 </div>
