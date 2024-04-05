@@ -7,21 +7,30 @@
     width: 99.1%;
 
     .card {
-      flex: 1 1 calc(50% - 100px);
+     flex: 1 1 calc(50% - 20px); /* Ajustado para levar em conta o gap de 20px */
       margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Isso ajuda a manter todos os cards com o mesmo tamanho */
       text-align: center;
+      border-radius: 8px; /* Para consistência, mover borda arredondada para aqui */
+      border: 1px solid #ccc; /* Border moved here for consistency */
+      background-color: #fff; /* Background color here for consistency */
 
       .card-head {
         background-color: #673ab7;
         color: white;
         padding: 10px;
         font-size: 16px;
-        text-align: center;
+
       }
 
       .card-body {
-        padding: 0px;
-        border: 1px solid #ccc;
+           padding: 0px;
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: flex-start; 
       }
 
       .centralizar {
@@ -98,12 +107,10 @@
     }
   }
 
-  @media (max-width: 768px) {
+   @media (max-width: 768px) {
     [card-container] {
-      width: 98.5%;
-      margin: 51px 0px 45px 3px;
       .card {
-        flex: 0 0 100%;
+        flex: 0 0 100%; /* Certifica que em telas pequenas cada card ocupe a linha inteira */
       }
     }
   }
