@@ -38,33 +38,15 @@ export class FinancyPage implements OnInit {
     datasets: [],
     labels: [],
   };
- mobileChartOptions: ChartConfiguration['options'] = {
+ mobileChartOptions: ChartConfiguration['options'] =  {
     responsive: false,
     plugins: {
       legend: {
         display: true,
-        position: 'bottom',
+        position: 'top',
       },
     },
-    indexAxis: 'y', // Orienta o gráfico de barras horizontalmente
-    scales: {
-      x: {
-        grid: {
-          display: true,
-        },
-        ticks: {
-          display: false, // Oculta os rótulos do eixo X
-        }
-      },
-      y: {
-        grid: {
-          display: true,
-        },
-        ticks: {
-          display: false, // Oculta os rótulos do eixo Y
-        }
-      }
-    }
+    indexAxis: 'y',
   };
 
   // Configurações padrão para desktops
@@ -75,15 +57,14 @@ export class FinancyPage implements OnInit {
         display: true,
         position: 'bottom',
       },
-    },
-    indexAxis: 'y',
+    }
   };
 
   // Inicialmente, defina chartOptions como mobileChartOptions
   chartOptions: ChartConfiguration['options'] = this.desktopChartOptions;
   
   canvasStyle = {
-    graphicType: 'bar',
+    padding: 1,
     width: 350, 
     height: 404
   };
@@ -105,16 +86,16 @@ export class FinancyPage implements OnInit {
   adjustCanvasSizeAndOptions() {
     if (window.innerWidth > 768) {
       // Configurações para desktop
-      this.canvasStyle.graphicType = 'line';
+      this.canvasStyle.padding = 30;
       this.canvasStyle.width = 790;
       this.canvasStyle.height = 404;
       this.chartOptions = this.desktopChartOptions;
     } else {
       // Configurações para dispositivos móveis
-      this.canvasStyle.graphicType = 'bar';
+      this.canvasStyle.padding = 1;
       this.canvasStyle.width = 350;
       this.canvasStyle.height = 290;
-     // this.chartOptions = this.mobileChartOptions;
+      this.chartOptions = this.mobileChartOptions;
     }
   }
   
