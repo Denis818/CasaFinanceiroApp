@@ -101,10 +101,12 @@
     }
   }
 
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     [card-container] {
+      width: 98.5%;
+      margin: 51px 0px 45px 3px;
       .card {
-        flex: 0 0 100%; /* Certifica que em telas pequenas cada card ocupe a linha inteira */
+        flex: 0 0 100%;
       }
     }
   }
