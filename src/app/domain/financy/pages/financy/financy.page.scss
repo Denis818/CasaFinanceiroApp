@@ -7,29 +7,21 @@
   width: 99.1%;
 
     .card {
-     flex: 1 1 calc(50% - 20px);
+      flex: 1 1 calc(50% - 100px);
       margin-bottom: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       text-align: center;
-      border-radius: 8px; 
-      border: 1px solid #ccc; 
-      background-color: #fff; 
 
       .card-head {
         background-color: #673ab7;
         color: white;
         padding: 10px;
         font-size: 16px;
+        text-align: center;
       }
 
       .card-body {
-       padding: 0px;
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        justify-content: flex-start;
+        padding: 0px;
+        border: 1px solid #ccc;
       }
 
       .centralizar {
@@ -39,6 +31,7 @@
       }
 
       .expense-item {
+        background-color: #fff;
         border: 1px solid #ccc;
         border-radius: 5px;
         margin: 10px;
@@ -99,9 +92,13 @@
         font-weight: bold;
       } */
     }
+
+    .borda {
+      border-radius: 8px;
+    }
   }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     [card-container] {
       width: 98.5%;
       margin: 51px 0px 45px 3px;
