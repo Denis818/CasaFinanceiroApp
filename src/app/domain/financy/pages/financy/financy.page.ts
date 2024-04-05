@@ -5,14 +5,16 @@ import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
-import { GraphicComponent } from 'src/app/shared/utilities/components/graphic/graphic.component';
-import { CustomDataset } from '../../../../shared/utilities/components/graphic/graphic.component';
+import { Chart, ChartConfiguration, ChartData, registerables } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
+import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { TotalPorMembroResponse } from '../../interfaces/financy/total-por-membro-response.interface';
 import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
-import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
+
+Chart.register(...registerables);
 
 registerLocaleData(localePt);
 
@@ -25,14 +27,26 @@ registerLocaleData(localePt);
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
-  imports: [CommonModule, MatPaginatorModule, GraphicComponent],
+  imports: [CommonModule, MatPaginatorModule, BaseChartDirective],
 })
 export class FinancyPage implements OnInit {
   despesasPorMembros: TotalPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
-
   relatorioGastosDoMes: RelatorioGastosDoMesResponse;
-  graphicComprasPorMes: CustomDataset;
+
+  chartData: ChartData = {
+    datasets: [],
+    labels: [],
+  };
+  chartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+      },
+    },
+  };
 
   constructor(private readonly financyService: FinancyService) {}
 
@@ -49,26 +63,28 @@ export class FinancyPage implements OnInit {
     });
   }
 
-  getTotaisComprasPorMes() {
-    this.financyService
-      .getTotaisComprasPorMes()
-      .subscribe((dados: TotalPorMesResponse[]) => {
-        this.graphicComprasPorMes = new CustomDataset();
-        this.graphicComprasPorMes.labels = dados.map((item) => item.mes);
-        this.graphicComprasPorMes.datasets.push({
-          data: dados.map((item) => item.totalDespesas),
-          label: 'Total',
-          borderColor: '#673ab7',
-          backgroundColor: '#6b18ffd4',
-        });
-      });
-  }
-
   getTotalPorCategoria() {
     this.financyService
       .getTotalPorCategoria()
       .subscribe((dados: TotalPorCategoriaResponse[]) => {
         this.listDespesasPorCategoria = dados;
+      });
+  }
+
+  getTotaisComprasPorMes() {
+    this.financyService
+      .getTotaisComprasPorMes()
+      .subscribe((dados: TotalPorMesResponse[]) => {
+        this.chartData.labels = dados.map((item) => item.mes);
+        this.chartData.datasets = [
+          {
+            data: dados.map((item) => item.totalDespesas),
+            borderColor: '#673ab7',
+            backgroundColor: '#6b18ffd4',
+            label: 'Total',
+            fill: false,
+          },
+        ];
       });
   }
 }

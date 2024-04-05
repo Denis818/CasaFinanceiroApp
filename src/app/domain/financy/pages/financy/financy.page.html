@@ -22,8 +22,14 @@
   <div class="card">
     <div class="card-head">Total por Mês</div>
     <div class="card-body">
-      <app-graphic [datasets]="graphicComprasPorMes" chartType="line">
-      </app-graphic>
+      <canvas
+        baseChart
+        [type]="'line'"
+        [options]="chartOptions"
+        [data]="chartData"
+        height="94"
+      >
+      </canvas>
     </div>
   </div>
 
