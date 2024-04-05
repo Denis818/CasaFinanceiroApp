@@ -38,16 +38,25 @@ export class FinancyPage implements OnInit {
     datasets: [],
     labels: [],
   };
-  chartOptions: ChartConfiguration['options'] = {
-    responsive: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-      },
+ chartOptions: ChartConfiguration['options'] = {
+  responsive: false,
+  plugins: {
+    legend: {
+      display: true,
+      position: 'bottom',
     },
-    indexAxis: 'y',
-  };
+  },
+  indexAxis: 'y',
+  scales: {
+    x: {
+      display: false,
+    },
+    y: {
+      display: false, 
+    }
+  }
+};
+
 
   constructor(private readonly financyService: FinancyService) {}
 
