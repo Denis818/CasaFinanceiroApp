@@ -80,7 +80,7 @@ export class FinancyPage implements OnInit {
   };
 
   // Inicialmente, defina chartOptions como mobileChartOptions
-  chartOptions: ChartConfiguration['options'] = this.mobileChartOptions;
+  chartOptions: ChartConfiguration['options'] = this.desktopChartOptions;
   
   canvasStyle = {
     graphicType: 'bar',
@@ -114,7 +114,7 @@ export class FinancyPage implements OnInit {
       this.canvasStyle.graphicType = 'bar';
       this.canvasStyle.width = 350;
       this.canvasStyle.height = 290;
-      this.chartOptions = this.mobileChartOptions;
+     // this.chartOptions = this.mobileChartOptions;
     }
   }
   
