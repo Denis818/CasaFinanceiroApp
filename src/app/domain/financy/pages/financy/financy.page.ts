@@ -76,7 +76,7 @@ export class FinancyPage implements OnInit {
         position: 'bottom',
       },
     },
-    // Outras configurações específicas para desktop, se necessário
+    indexAxis: 'y',
   };
 
   // Inicialmente, defina chartOptions como mobileChartOptions
