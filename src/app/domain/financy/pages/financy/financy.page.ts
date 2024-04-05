@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, HostListener , LOCALE_ID, OnInit } from '@angular/core';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
