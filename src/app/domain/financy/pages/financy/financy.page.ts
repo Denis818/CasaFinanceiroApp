@@ -46,13 +46,23 @@ export class FinancyPage implements OnInit {
       position: 'bottom',
     },
   },
-  indexAxis: 'y',
+  indexAxis: 'y', // Isto orienta o gráfico de barras horizontalmente
   scales: {
     x: {
-      display: false,
+      grid: {
+        display: true, // Mantém as linhas de grade do eixo X
+      },
+      ticks: {
+        display: false, // Oculta os rótulos (labels) do eixo X
+      }
     },
     y: {
-      display: false, 
+      grid: {
+        display: true, // Mantém as linhas de grade do eixo Y
+      },
+      ticks: {
+        display: false, // Oculta os rótulos (labels) do eixo Y
+      }
     }
   }
 };
