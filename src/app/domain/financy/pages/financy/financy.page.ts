@@ -98,7 +98,7 @@ export class FinancyPage implements OnInit {
   }
 
  @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize((event: any)) {
     this.adjustCanvasSizeAndOptions();
   }
 
