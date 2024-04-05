@@ -101,14 +101,14 @@
     }
   }
 
-    @media (max-width: 768px) {
-    [card-container] {
-      width: 98.5%;
-      margin: 51px 0px 45px 3px;
-      .card {
-        flex: 0 0 100%;
-      }
-    }
+   @media (max-width: 768px) {
+  [card-container] {
+    grid-template-columns: 1fr; /* Faz com que cada card ocupe a linha inteira */
+    gap: 20px; /* Mantém o gap, se desejado */
+    margin: 51px 0px 45px 3px;
+    width: 98.5%;
   }
+}
+
 }
 
