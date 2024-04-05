@@ -7,7 +7,6 @@
     width: 99.1%;
 
     .card {
-     flex: 1 1 calc(50% - 20px); /* Ajustado para levar em conta o gap de 20px */
       margin-bottom: 10px;
       display: flex;
       flex-direction: column;
