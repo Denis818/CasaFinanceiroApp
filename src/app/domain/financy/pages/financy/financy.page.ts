@@ -91,7 +91,7 @@ export class FinancyPage implements OnInit {
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
-     this.adjustCanvasSize();
+     this.adjustCanvasSizeAndOptions();
     this.getResumoDespesasMensal();
     this.getTotalPorCategoria();
     this.getTotaisComprasPorMes();
