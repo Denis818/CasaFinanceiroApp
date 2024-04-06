@@ -8,7 +8,7 @@
     margin: 56px 11px 70px 8px;
 
     .card {
-      flex: 1 1 calc(50% - 20px);
+      flex: 1 1 calc(50% - 100px);
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -22,19 +22,28 @@
       }
 
       .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: stretch;
+        flex-grow: 1;
+        padding: 0px;
+        border: 1px solid #ccc;
         padding: 0px;
         border: 1px solid #ccc;
       }
 
-      .centralizar {
+      .centralizar-graphic {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-left: 5px;
       }
 
       .expense-item {
         background-color: #fff;
         border: 1px solid #ccc;
+        border-radius: 8px;
         margin: 10px;
         padding: 10px 20px;
         display: flex;
@@ -79,20 +88,6 @@
       td {
         color: #708090;
       }
-
-      /*  .money {
-        color: #673ab7;
-      }
- */
-      /*    .despesa-alta {
-        color: red;
-        font-weight: bold;
-      }
-
-      .despesa-baixa {
-        color: #0fe400;
-        font-weight: bold;
-      } */
     }
   }
 
