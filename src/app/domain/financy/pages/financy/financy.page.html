@@ -56,16 +56,10 @@
   <div class="card">
     <div class="card-head">Análise de Compras Mensal de 2024</div>
     <div class="card-body centralizar">
-      <canvas
-        baseChart
-        [type]="canvasStyle.graphicType"
-        [options]="chartOptions"
-        [data]="chartData"
-        [style.height.px]="canvasStyle.height"
-        [style.width.px]="canvasStyle.width"
+      <app-graphic
+        [graphicConfig]="graphicConfig"
       >
-        ></canvas
-      >
+      </app-graphic>
     </div>
   </div>
 </div>

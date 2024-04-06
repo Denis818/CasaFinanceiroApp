@@ -5,22 +5,15 @@ import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
-import {
-  Chart,
-  ChartConfiguration,
-  ChartData,
-  ChartType,
-  registerables,
-} from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { ChartData } from 'chart.js';
+import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
+import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { TotalPorMembroResponse } from '../../interfaces/financy/total-por-membro-response.interface';
 import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
-
-Chart.register(...registerables);
 
 registerLocaleData(localePt);
 
@@ -33,30 +26,27 @@ registerLocaleData(localePt);
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
-  imports: [CommonModule, MatPaginatorModule, BaseChartDirective],
+  imports: [CommonModule, MatPaginatorModule, GraphicComponent],
 })
 export class FinancyPage implements OnInit {
   despesasPorMembros: TotalPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
   relatorioGastosDoMes: RelatorioGastosDoMesResponse;
 
-  chartData: ChartData = {
-    datasets: [],
-    labels: [],
-  };
-
-  canvasStyle: CanvasStyle = {
-    graphicType: 'line',
-    width: 700,
-    height: 404,
-  };
-
-  chartOptions: ChartConfiguration['options'] = {
-    responsive: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
+  graphicConfig: GraphicConfiguration = {
+    chartData: { datasets: [], labels: [] },
+    graphicStyle: {
+      graphicType: 'line',
+      width: 700,
+      height: 404,
+    },
+    chartOptions: {
+      responsive: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+        },
       },
     },
   };
@@ -64,17 +54,17 @@ export class FinancyPage implements OnInit {
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
-    this.adjustCanvasSizeAndOptions();
+    this.adjustGraphicForMobile();
     this.getResumoDespesasMensal();
     this.getTotalPorCategoria();
     this.getTotaisComprasPorMes();
   }
 
-  adjustCanvasSizeAndOptions() {
+  adjustGraphicForMobile() {
     if (window.innerWidth < 768) {
-      this.canvasStyle.graphicType = 'bar';
-      this.canvasStyle.width = 340;
-      this.canvasStyle.height = 290;
+      this.graphicConfig.graphicStyle.graphicType = 'bar';
+      this.graphicConfig.graphicStyle.width = 340;
+      this.graphicConfig.graphicStyle.height = 290;
     }
   }
 
@@ -97,8 +87,8 @@ export class FinancyPage implements OnInit {
     this.financyService
       .getTotaisComprasPorMes()
       .subscribe((dados: TotalPorMesResponse[]) => {
-        this.chartData.labels = dados.map((item) => item.mes);
-        this.chartData.datasets = [
+        this.graphicConfig.chartData.labels = dados.map((item) => item.mes);
+        this.graphicConfig.chartData.datasets = [
           {
             data: dados.map((item) => item.totalDespesas),
             borderColor: '#673ab7',
@@ -109,10 +99,4 @@ export class FinancyPage implements OnInit {
         ];
       });
   }
-}
-
-interface CanvasStyle {
-  graphicType: ChartType; // Usando ChartType como o tipo
-  width: number;
-  height: number;
 }

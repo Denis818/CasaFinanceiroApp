@@ -11,6 +11,11 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
         path: 'dashboard',
         title: 'Dashboard',
         loadComponent: async () =>
@@ -31,8 +36,8 @@ const routes: Routes = [
     canMatch: [AuthGuard],
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'portal', pathMatch: 'full' },
-  { path: '', redirectTo: 'portal', pathMatch: 'full' },
+  { path: '**', redirectTo: 'portal/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
