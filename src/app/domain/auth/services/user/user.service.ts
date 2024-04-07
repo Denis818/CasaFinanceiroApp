@@ -34,12 +34,8 @@ export class UserService extends BaseService {
   }
 
   logout(): void {
-    this.sendHttpRequest('GET', this.url + '/logout').subscribe({
-      next: () => {
-        this.storageService.clear();
-        this.router.navigateByUrl('/login');
-      },
-    });
+    this.storageService.clear();
+    this.router.navigateByUrl('/login');
   }
 
   //  Support Methods
