@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
-import { StorageService } from '../services/storage/storage.service';
+import { catchError, finalize, tap } from 'rxjs/operators';
+import { StorageService } from './../services/storage/storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -38,20 +38,10 @@ export class AuthInterceptor implements HttpInterceptor {
     this.spinner.show();
 
     return next.handle(authReq).pipe(
+      tap((event) => this.haveMessages(event)),
       catchError((error: HttpErrorResponse) => {
         this.error(error?.error?.mensagens);
-
-        if (error.status === 401) {
-          this.unauthorizedErrorCount++;
-
-          if (this.unauthorizedErrorCount >= 2) {
-            this.router.navigate(['/login']);
-            this.unauthorizedErrorCount = 0;
-          }
-        } else {
-          this.unauthorizedErrorCount = 0;
-        }
-
+        this.checkTokenExpired(error);
         return throwError(() => of(error));
       }),
       finalize(() => {
@@ -68,6 +58,29 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     } else {
       this.toastr.error('Ocorreu um erro, tente novamente.', 'Erro');
+    }
+  }
+
+  public checkTokenExpired(error: any) {
+    if (error.status === 401) {
+      this.unauthorizedErrorCount++;
+
+      if (this.unauthorizedErrorCount >= 2) {
+        this.router.navigate(['/login']);
+        this.unauthorizedErrorCount = 0;
+      }
+    } else {
+      this.unauthorizedErrorCount = 0;
+    }
+  }
+
+  public haveMessages(event: any) {
+    if (event?.body?.mensagens) {
+      event.body.mensagens.forEach((mensagem: any) => {
+        if (mensagem.statusCode === 200 && mensagem.descricao) {
+          this.toastr.warning(mensagem.descricao, 'Aviso');
+        }
+      });
     }
   }
 }
