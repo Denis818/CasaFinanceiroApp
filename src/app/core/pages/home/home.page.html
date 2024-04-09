@@ -9,8 +9,8 @@
   <div
     class="sidenav"
     [ngClass]="{'expanded': sidenavExpanded}"
-    (mouseenter)="abrirSidenav()"
-    (mouseleave)="fecharSidenav()"
+    (mouseenter)="checkIfMobile() && abrirSidenav()"
+    (mouseleave)="checkIfMobile() && fecharSidenav()"
   >
     <a
       [routerLink]="'dashboard'"

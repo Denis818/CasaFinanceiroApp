@@ -10,6 +10,7 @@ import { UserService } from 'src/app/domain/auth/services/user/user.service';
 export class HomePage {
   selectedButton: string;
   sidenavExpanded = false;
+  isDesktop: boolean = true;
 
   constructor(
     private readonly user: UserService,
@@ -22,6 +23,13 @@ export class HomePage {
 
   fecharSidenav() {
     this.sidenavExpanded = false;
+  }
+
+  checkIfMobile(): boolean {
+    if (window.innerWidth < 768) {
+      return false;
+    }
+    return true;
   }
 
   logout() {
