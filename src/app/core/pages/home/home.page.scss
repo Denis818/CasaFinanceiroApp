@@ -8,7 +8,7 @@
     align-items: center;
     padding: 0 14px;
 
-    [title]{
+    [title] {
       position: relative;
       left: 40px;
     }
@@ -26,7 +26,6 @@
   .nav-link {
     display: flex;
     align-items: center;
-    padding: 10px;
     color: #ffffff;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
@@ -37,7 +36,6 @@
     }
 
     & mat-icon {
-      margin-right: 8px;
       transition: transform 0.3s;
     }
   }
@@ -58,52 +56,43 @@
         display: flex;
         align-items: center;
         color: rgba(255, 255, 255, 0.55);
-        padding: 5px 15px 7px;
         transition: color 0.3s;
-      }
 
-      & a span {
-        display: none;
-        white-space: nowrap;
+        & span {
+          display: none;
+          white-space: nowrap;
+          height: 12px;
+        }
+
+        &.selected {
+          color: white;
+
+          & mat-icon {
+            transform: scale(1.2);
+          }
+        }
+
+        &:hover {
+          color: #f1f1f1;
+          background: none;
+        }
       }
 
       &.expanded {
         width: 190px;
         box-shadow: 20px 0 24px -20px rgb(0 0 0 / 75%);
+
+        & a span {
+          display: inline;
+          transition: opacity 0.5s ease;
+          opacity: 1;
+        }
       }
 
-      &.expanded a span {
-        display: inline;
-        transition: opacity 0.5s ease;
-        opacity: 1;
+      mat-icon {
+        flex-shrink: 0;
+        padding: 7px 12px;
       }
-
-      & a:hover {
-        color: #f1f1f1;
-        background: none;
-      }
-
-      & a.selected {
-        color: white;
-      }
-
-      /*   &.expanded ~ .content-app {
-        margin-left: 190px;
-      } */
-    }
-
-    .selected {
-      color: #fff;
-
-      & mat-icon {
-        transform: scale(1.2);
-      }
-    }
-
-    mat-icon {
-      flex-shrink: 0;
-      position: relative;
-      right: 3px;
     }
 
     .content-app {
@@ -146,10 +135,6 @@
       }
       .navbar {
         padding: 0px;
-      }
-
-      .hiden-in-movel {
-        display: none;
       }
     }
   }

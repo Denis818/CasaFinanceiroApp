@@ -5,7 +5,6 @@ import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
-import { ChartData } from 'chart.js';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
@@ -31,7 +30,12 @@ registerLocaleData(localePt);
 export class FinancyPage implements OnInit {
   despesasPorMembros: TotalPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
-  relatorioGastosDoMes: RelatorioGastosDoMesResponse;
+  relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
+    mesAtual: '',
+    totalAluguelCondominio: 0,
+    totalGastosGerais: 0,
+    totalGeral: 0,
+  };
 
   graphicConfig: GraphicConfiguration = {
     chartData: { datasets: [], labels: [] },
