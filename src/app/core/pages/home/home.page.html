@@ -1,15 +1,17 @@
 <nav class="navbar">
-  <mat-icon class="menu-icon hiden-in-movel" (click)="toggleSidenav()"
-    >menu</mat-icon
-  >
-  <h1>{{ titleService.getTitle() }}</h1>
+  <h1 title>{{ titleService.getTitle() }}</h1>
   <button mat-icon-button class="logout-icon" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
 </nav>
 
 <div container-app>
-  <div [ngClass]="{'sidenav': true, 'expanded': sidenavExpanded}">
+  <div
+    class="sidenav"
+    [ngClass]="{'expanded': sidenavExpanded}"
+    (mouseenter)="abrirSidenav()"
+    (mouseleave)="fecharSidenav()"
+  >
     <a
       [routerLink]="'dashboard'"
       (click)="selectedButton = 'home'"

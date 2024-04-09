@@ -8,6 +8,10 @@
     align-items: center;
     padding: 0 14px;
 
+    [title]{
+      position: relative;
+      left: 40px;
+    }
     &.navbar h1 {
       flex-grow: 1;
       text-align: left;
@@ -48,7 +52,7 @@
       background-color: rgb(103, 58, 183);
       overflow-x: hidden;
       transition: width 0.5s;
-      margin-top: 48px;
+      box-shadow: 1px 0 15px -3px rgba(0, 0, 0, 0.75);
 
       & a {
         display: flex;
@@ -83,9 +87,9 @@
         color: white;
       }
 
-      &.expanded ~ .content-app {
+      /*   &.expanded ~ .content-app {
         margin-left: 190px;
-      }
+      } */
     }
 
     .selected {

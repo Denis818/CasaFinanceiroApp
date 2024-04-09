@@ -16,8 +16,12 @@ export class HomePage {
     public readonly titleService: Title
   ) {}
 
-  toggleSidenav() {
-    this.sidenavExpanded = !this.sidenavExpanded;
+  abrirSidenav() {
+    this.sidenavExpanded = true;
+  }
+
+  fecharSidenav() {
+    this.sidenavExpanded = false;
   }
 
   logout() {
