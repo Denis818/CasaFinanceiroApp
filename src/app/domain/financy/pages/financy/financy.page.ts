@@ -67,7 +67,7 @@ export class FinancyPage implements OnInit {
   adjustGraphicForMobile() {
     if (window.innerWidth < 768) {
       this.graphicConfig.graphicStyle.graphicType = 'bar';
-      this.graphicConfig.graphicStyle.width = 340;
+      this.graphicConfig.graphicStyle.width = 330;
       this.graphicConfig.graphicStyle.height = 290;
     }
   }
