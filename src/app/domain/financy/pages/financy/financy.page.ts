@@ -8,9 +8,9 @@ import {
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
+import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
-import { TotalPorMembroResponse } from '../../interfaces/financy/total-por-membro-response.interface';
 import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
 
@@ -28,7 +28,7 @@ registerLocaleData(localePt);
   imports: [CommonModule, MatPaginatorModule, GraphicComponent],
 })
 export class FinancyPage implements OnInit {
-  despesasPorMembros: TotalPorMembroResponse[] = [];
+  despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
   relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
     mesAtual: '',

@@ -1,16 +1,35 @@
 <div card-container>
   <div class="card">
-    <div class="card-head">Despesas Divididas por Membros</div>
+    <div class="card-head">Gastos gerais da casa por membro</div>
     <div class="card-body">
       <div *ngFor="let item of despesasPorMembros" class="expense-item">
         <div class="expense-title">{{ item.nome }}</div>
-        <div class="expense-value">{{ item.valor | currency:'BRL' }}</div>
+        <div class="expense-value">
+          {{ item.valorDespesasCasa | currency:'BRL' }}
+        </div>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-head">Relatório De {{relatorioGastosDoMes.mesAtual}}</div>
+    <div class="card-head">Valor do Aluguel e Conta de Luz por membro</div>
+    <div class="card-body">
+      <ng-container *ngFor="let item of despesasPorMembros">
+        <div
+          *ngIf="item.valorCondominioAluguelContaDeLuz != 0"
+          class="expense-item"
+        >
+          <div class="expense-title">{{ item.nome }}</div>
+          <div class="expense-value">
+            {{ item.valorCondominioAluguelContaDeLuz | currency:'BRL' }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Relatório de {{relatorioGastosDoMes.mesAtual}}</div>
     <div class="card-body">
       <div class="expense-item">
         <div class="expense-title">Total do Aluguel com Condomínio</div>
@@ -19,7 +38,7 @@
         </div>
       </div>
       <div class="expense-item">
-        <div class="expense-title">Total Gastos Gerais</div>
+        <div class="expense-title">Total gastos gerais</div>
         <div class="expense-value">
           {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
         </div>
