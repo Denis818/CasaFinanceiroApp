@@ -11,7 +11,6 @@ import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-p
 import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
-import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
 
 registerLocaleData(localePt);
@@ -28,8 +27,10 @@ registerLocaleData(localePt);
   imports: [CommonModule, MatPaginatorModule, GraphicComponent],
 })
 export class FinancyPage implements OnInit {
+  graphicConfig: GraphicConfiguration = new GraphicConfiguration();
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
+
   relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
     mesAtual: '',
     totalAluguelCondominio: 0,
@@ -37,39 +38,21 @@ export class FinancyPage implements OnInit {
     totalGeral: 0,
   };
 
-  graphicConfig: GraphicConfiguration = {
-    chartData: { datasets: [], labels: [] },
-    graphicStyle: {
-      graphicType: 'line',
-      width: 700,
-      height: 404,
-    },
-    chartOptions: {
-      responsive: false,
-      plugins: {
-        legend: {
-          display: true,
-          position: 'top',
-        },
-      },
-    },
-  };
-
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
     this.adjustGraphicForMobile();
-    this.getResumoDespesasMensal();
+    this.getGraficoTotaisComprasPorMes();
     this.getTotalPorCategoria();
-    this.getTotaisComprasPorMes();
+    this.getResumoDespesasMensal();
   }
 
-  adjustGraphicForMobile() {
-    if (window.innerWidth < 768) {
-      this.graphicConfig.graphicStyle.graphicType = 'bar';
-      this.graphicConfig.graphicStyle.width = 330;
-      this.graphicConfig.graphicStyle.height = 290;
-    }
+  getGraficoTotaisComprasPorMes() {
+    this.financyService
+      .getGrraficoTotaisComprasPorMes()
+      .subscribe((graphicConfig) => {
+        this.graphicConfig = graphicConfig;
+      });
   }
 
   getResumoDespesasMensal() {
@@ -80,27 +63,16 @@ export class FinancyPage implements OnInit {
   }
 
   getTotalPorCategoria() {
-    this.financyService
-      .getTotalPorCategoria()
-      .subscribe((dados: TotalPorCategoriaResponse[]) => {
-        this.listDespesasPorCategoria = dados;
-      });
+    this.financyService.getTotalPorCategoria().subscribe((dados) => {
+      this.listDespesasPorCategoria = dados;
+    });
   }
 
-  getTotaisComprasPorMes() {
-    this.financyService
-      .getTotaisComprasPorMes()
-      .subscribe((dados: TotalPorMesResponse[]) => {
-        this.graphicConfig.chartData.labels = dados.map((item) => item.mes);
-        this.graphicConfig.chartData.datasets = [
-          {
-            data: dados.map((item) => item.totalDespesas),
-            borderColor: '#673ab7',
-            backgroundColor: '#6b18ffd4',
-            label: 'Total',
-            fill: false,
-          },
-        ];
-      });
+  adjustGraphicForMobile() {
+    if (window.innerWidth < 768) {
+      this.graphicConfig.graphicStyle.graphicType = 'bar';
+      this.graphicConfig.graphicStyle.width = 330;
+      this.graphicConfig.graphicStyle.height = 290;
+    }
   }
 }

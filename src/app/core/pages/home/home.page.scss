@@ -1,4 +1,6 @@
 :host {
+  font-family: Sans-serif;
+
   .navbar {
     position: fixed;
     width: 100%;
@@ -64,6 +66,11 @@
           height: 12px;
         }
 
+        & h2 {
+          white-space: nowrap;
+          height: 0px;
+        }
+
         &.selected {
           color: white;
 
@@ -87,6 +94,28 @@
           transition: opacity 0.5s ease;
           opacity: 1;
         }
+
+        & [logo-content] {
+          margin-right: 10px;
+        }
+      }
+
+      [logo-content] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+        max-height: 100px;
+
+        [logo-app] {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      [line] {
+        margin: 10px;
+        border-color: #ad7eff;
       }
 
       mat-icon {
@@ -125,6 +154,10 @@
           display: flex;
           align-items: center;
           transition: color 0.3s;
+        }
+
+        & [logo-content] {
+          display: none;
         }
       }
 

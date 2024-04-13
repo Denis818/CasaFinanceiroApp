@@ -12,14 +12,22 @@
     (mouseenter)="checkIfMobile() && abrirSidenav()"
     (mouseleave)="checkIfMobile() && fecharSidenav()"
   >
+    <div logo-content>
+      <a [routerLink]="'dashboard'" class="nav-link">
+        <img logo-app src="../../../../favicon.ico" alt="logo" />
+        <h2 *ngIf="sidenavExpanded">Despesas</h2>
+      </a>
+    </div>
+    <hr line />
+
     <a
       [routerLink]="'dashboard'"
-      (click)="selectedButton = 'home'"
-      [ngClass]="{'selected': selectedButton === 'home'}"
+      (click)="selectedButton = 'dashboard'"
+      [ngClass]="{'selected': selectedButton === 'dashboard'}"
       class="nav-link"
     >
       <mat-icon id="home">home</mat-icon>
-      <span *ngIf="sidenavExpanded">Home</span>
+      <span *ngIf="sidenavExpanded">Dashboard</span>
     </a>
     <a
       [routerLink]="'financy'"

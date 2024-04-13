@@ -8,10 +8,11 @@
     margin: 56px 11px 70px 8px;
 
     .card {
-      flex: 1 1 calc(50% - 100px);
+      flex: 1 1 calc(50% - 50px);
       text-align: center;
       display: flex;
       flex-direction: column;
+
 
       .card-head {
         background-color: #673ab7;
@@ -19,25 +20,20 @@
         padding: 10px;
         font-size: 16px;
         text-align: center;
+        border-radius: 8px 8px 0px 0px;
       }
 
       .card-body {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
         flex-grow: 1;
-        padding: 0px;
         border: 1px solid #ccc;
-        padding: 0px;
-        border: 1px solid #ccc;
+        border-radius: 0px 0px 8px 8px;
       }
 
       .centralizar-graphic {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-left: 5px;
+        padding-left: 10px;
       }
 
       .expense-item {
@@ -63,6 +59,10 @@
         font-weight: bold;
         color: #673ab7;
       }
+    }
+
+    & .card:last-child {
+      max-width: calc(54.9% - 100px);
     }
 
     table {

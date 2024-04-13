@@ -14,21 +14,5 @@ Chart.register(...registerables);
   imports: [CommonModule, BaseChartDirective],
 })
 export class GraphicComponent {
-  @Input() graphicConfig: GraphicConfiguration = {
-    chartData: { datasets: [], labels: [] },
-    graphicStyle: {
-      graphicType: 'line',
-      width: 700,
-      height: 400,
-    },
-    chartOptions: {
-      responsive: false,
-      plugins: {
-        legend: {
-          display: true,
-          position: 'top',
-        },
-      },
-    },
-  };
+  @Input() graphicConfig: GraphicConfiguration = new GraphicConfiguration();
 }
