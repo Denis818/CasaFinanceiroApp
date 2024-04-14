@@ -30,13 +30,13 @@
       <span *ngIf="sidenavExpanded">Dashboard</span>
     </a>
     <a
-      [routerLink]="'financy'"
+      [routerLink]="'gerenciar'"
       (click)="selectedButton = 'attach_money'"
       [ngClass]="{'selected': selectedButton === 'attach_money'}"
       class="nav-link"
     >
       <mat-icon>attach_money</mat-icon>
-      <span *ngIf="sidenavExpanded">Finanças Divididas</span>
+      <span *ngIf="sidenavExpanded">Gerenciar</span>
     </a>
   </div>
 

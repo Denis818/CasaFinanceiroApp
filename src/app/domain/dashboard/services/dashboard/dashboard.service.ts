@@ -10,7 +10,7 @@ import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-ca
 import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
 
 @Injectable({ providedIn: 'root' })
-export class FinancyService extends BaseService {
+export class DashboardService extends BaseService {
   public readonly router = inject(Router);
 
   public url: string = `${environment.base_url_financy}/api/Despesa`;
@@ -60,7 +60,7 @@ export class FinancyService extends BaseService {
             height: 404,
           },
           chartOptions: {
-            responsive: false,
+            responsive: true,
             plugins: {
               legend: {
                 display: true,

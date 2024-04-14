@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FinancyPage } from './financy.page';
+import { GerenciarPage } from './gerenciar.page';
 
-describe('FinancyComponent', () => {
-  let component: FinancyPage;
-  let fixture: ComponentFixture<FinancyPage>;
+describe('GerenciarComponent', () => {
+  let component: GerenciarPage;
+  let fixture: ComponentFixture<GerenciarPage>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FinancyPage],
+      declarations: [GerenciarPage],
     });
-    fixture = TestBed.createComponent(FinancyPage);
+    fixture = TestBed.createComponent(GerenciarPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

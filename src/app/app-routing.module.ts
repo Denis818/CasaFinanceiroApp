@@ -26,11 +26,14 @@ const routes: Routes = [
           ).DashboardPage,
       },
       {
-        path: 'financy',
-        title: 'Finanças Divididas',
+        path: 'gerenciar',
+        title: 'Gerenciar',
         loadComponent: async () =>
-          (await import('src/app/domain/financy/pages/financy/financy.page'))
-            .FinancyPage,
+          (
+            await import(
+              'src/app/domain/gerenciar/pages/gerenciar/gerenciar.page'
+            )
+          ).GerenciarPage,
       },
     ],
     canMatch: [AuthGuard],

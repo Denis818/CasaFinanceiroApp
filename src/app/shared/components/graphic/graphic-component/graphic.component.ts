@@ -32,7 +32,7 @@ export class GraphicComponent implements OnChanges {
             height: 400,
           },
           chartOptions: {
-            responsive: false,
+            responsive: true,
             plugins: {
               legend: {
                 display: true,

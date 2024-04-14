@@ -5,10 +5,10 @@ import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
-import { Despesa } from '../interfaces/dashboard/despesa.interface';
+import { Despesa } from '../interfaces/despesa.interface';
 
 @Injectable({ providedIn: 'root' })
-export class DashboardService extends BaseService {
+export class GerenciarService extends BaseService {
   public readonly router = inject(Router);
   public url: string = `${environment.base_url_financy}/api`;
 

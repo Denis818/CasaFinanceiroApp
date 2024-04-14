@@ -1,3 +1,98 @@
 :host {
-  display: block;
+  [card-container] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .card {
+      flex: 0 0 calc(50% - 10px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .card-head {
+        background-color: #673ab7;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        text-align: center;
+        border-radius: 8px 8px 0px 0px;
+      }
+
+      .card-body {
+        flex-grow: 1;
+        border: 1px solid #ccc;
+        border-radius: 0px 0px 8px 8px;
+      }
+
+      .centralizar-graphic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10px;
+      }
+
+      .expense-item {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #708090 !important;
+
+        &:hover {
+          box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
+          transition: box-shadow 0.2s ease-in-out;
+        }
+      }
+
+      .expense-title {
+        font-size: 14px;
+        color: #708090;
+        text-align: start;
+      }
+
+      .expense-value {
+        font-size: 18px;
+        font-weight: bold;
+        color: #673ab7;
+      }
+    }
+
+    table {
+      width: 100%;
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: none;
+      }
+
+      th {
+        background-color: #f7f7f7;
+      }
+
+      td {
+        color: #708090;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    [card-container] .card {
+      flex: 1 1 100%;
+    }
+  }
 }
