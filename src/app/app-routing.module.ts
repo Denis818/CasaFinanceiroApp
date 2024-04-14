@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'gerenciar',
-        title: 'Gerenciar',
+        title: 'Painel de Controle',
         loadComponent: async () =>
           (
             await import(

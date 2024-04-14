@@ -26,7 +26,7 @@
       [ngClass]="{'selected': selectedButton === 'dashboard'}"
       class="nav-link"
     >
-      <mat-icon id="home">home</mat-icon>
+      <mat-icon>dashboard_customize</mat-icon>
       <span *ngIf="sidenavExpanded">Dashboard</span>
     </a>
     <a
@@ -35,8 +35,8 @@
       [ngClass]="{'selected': selectedButton === 'attach_money'}"
       class="nav-link"
     >
-      <mat-icon>attach_money</mat-icon>
-      <span *ngIf="sidenavExpanded">Gerenciar</span>
+      <mat-icon>settings_applications</mat-icon>
+      <span *ngIf="sidenavExpanded">Painel de Controle</span>
     </a>
   </div>
 
