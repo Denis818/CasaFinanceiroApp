@@ -45,6 +45,11 @@
         justify-content: space-between;
         align-items: center;
         color: #708090 !important;
+
+        &:hover {
+          box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
+          transition: box-shadow 0.2s ease-in-out;
+        }
       }
 
       .expense-title {
