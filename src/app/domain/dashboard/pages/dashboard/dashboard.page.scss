@@ -11,7 +11,13 @@
       text-align: center;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
 
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.250);
+        transition: box-shadow 0.3s ease-in-out;
+      }
       .card-head {
         background-color: #673ab7;
         color: white;

@@ -29,29 +29,16 @@
   </div>
 
   <div class="card">
-    <div class="card-head">Relatório de {{relatorioGastosDoMes.mesAtual}}</div>
-    <div class="card-body">
-      <div class="expense-item">
-        <div class="expense-title">Total do Aluguel com Condomínio</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalAluguelCondominio | currency:'BRL' }}
-        </div>
-      </div>
-      <div class="expense-item">
-        <div class="expense-title">Total gastos gerais</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
-        </div>
-      </div>
-      <div class="expense-item">
-        <div class="expense-title">Total Geral</div>
-        <div class="expense-value">
-          {{ relatorioGastosDoMes.totalGeral | currency:'BRL' }}
-        </div>
-      </div>
+    <div class="card-head">Análise de Compras Mensal de 2024</div>
+    <div class="card-body centralizar-graphic">
+      <app-graphic
+        [graphicConfig]="graphicConfig"
+        [graphicMobile]="graphicMobile"
+      >
+      </app-graphic>
     </div>
   </div>
-
+  
   <div class="card">
     <div class="card-head">Total por categoria</div>
     <div class="card-body">
@@ -73,13 +60,26 @@
   </div>
 
   <div class="card">
-    <div class="card-head">Análise de Compras Mensal de 2024</div>
-    <div class="card-body centralizar-graphic">
-      <app-graphic
-        [graphicConfig]="graphicConfig"
-        [graphicMobile]="graphicMobile"
-      >
-      </app-graphic>
+    <div class="card-head">Relatório de {{relatorioGastosDoMes.mesAtual}}</div>
+    <div class="card-body">
+      <div class="expense-item">
+        <div class="expense-title">Total do Aluguel com Condomínio</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalAluguelCondominio | currency:'BRL' }}
+        </div>
+      </div>
+      <div class="expense-item">
+        <div class="expense-title">Total gastos gerais</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
+        </div>
+      </div>
+      <div class="expense-item">
+        <div class="expense-title">Total Geral</div>
+        <div class="expense-value">
+          {{ relatorioGastosDoMes.totalGeral | currency:'BRL' }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
