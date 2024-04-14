@@ -26,14 +26,14 @@ const routes: Routes = [
           ).DashboardPage,
       },
       {
-        path: 'gerenciar',
+        path: 'painel-controle',
         title: 'Painel de Controle',
         loadComponent: async () =>
           (
             await import(
-              'src/app/domain/gerenciar/pages/gerenciar/gerenciar.page'
+              'src/app/domain/painel-controle/pages/painel-controle/painel-controle.page'
             )
-          ).GerenciarPage,
+          ).PainelControlePage,
       },
     ],
     canMatch: [AuthGuard],
