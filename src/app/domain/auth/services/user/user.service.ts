@@ -12,7 +12,7 @@ import { TokenResponse } from '../../interfaces/user/user-token-response.interfa
 export class UserService extends BaseService {
   public readonly router = inject(Router);
 
-  public url: string = `${environment.base_url_financy}/api/Users`;
+  public url: string = `${environment.base_url_financy}/Users`;
 
   login(user: UserRequest): void {
     this.sendHttpRequest<ApiResponse<TokenResponse>>(

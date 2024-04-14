@@ -8,9 +8,9 @@ import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { Despesa } from '../interfaces/despesa.interface';
 
 @Injectable({ providedIn: 'root' })
-export class GerenciarService extends BaseService {
+export class PainelControleService extends BaseService {
   public readonly router = inject(Router);
-  public url: string = `${environment.base_url_financy}/api`;
+  public url: string = `${environment.base_url_financy}`;
 
   public getAllDespesas(
     paginaAtual: number,
@@ -24,24 +24,24 @@ export class GerenciarService extends BaseService {
   }
 
   public getAll<TEntity>(uri: string): Observable<TEntity[]> {
-    const url = `${this.url}/${uri}}`;
+    const url = `${this.url}/${uri}`;
     return this.sendHttpRequest<ApiResponse<TEntity[]>>('GET', url).pipe(
       map((response) => response.dados)
     );
   }
 
-  public insert<TEntity>(entity: TEntity, uri: string): void {
-    const url = `${this.url}/${uri}}`;
-    this.sendHttpRequest('POST', url, entity);
+  public insert<TEntity>(entity: TEntity, uri: string) {
+    const url = `${this.url}/${uri}`;
+    return this.sendHttpRequest('POST', url, entity);
   }
 
-  public update<TEntity>(id: number, entity: TEntity, uri: string): void {
-    const url = `${this.url}/${uri}}`;
-    this.sendHttpRequest('PUT', url, entity);
+  public update<TEntity>(id: number, entity: TEntity, uri: string) {
+    const url = `${this.url}/${uri}/?id=${id}`;
+    return this.sendHttpRequest('PUT', url, entity);
   }
 
-  public delete(id: number, uri: string): void {
-    const url = `${this.url}/${uri}}`;
-    this.sendHttpRequest('DELETE', url + `?id=${id}`);
+  public delete(id: number, uri: string) {
+    const url = `${this.url}/${uri}/?id=${id}`;
+    return this.sendHttpRequest('DELETE', url);
   }
 }

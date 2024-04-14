@@ -26,7 +26,7 @@ const routes: Routes = [
           ).DashboardPage,
       },
       {
-        path: 'painel-controle',
+        path: 'painel',
         title: 'Painel de Controle',
         loadComponent: async () =>
           (

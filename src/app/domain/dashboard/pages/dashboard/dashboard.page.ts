@@ -25,7 +25,7 @@ registerLocaleData(localePt);
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
-  imports: [CommonModule, MatPaginatorModule, GraphicComponent],
+  imports: [CommonModule, GraphicComponent],
 })
 export class DashboardPage implements OnInit {
   despesasPorMembros: DespesaPorMembroResponse[] = [];

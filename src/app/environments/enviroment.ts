@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url_financy: 'https://house-finances-api.up.railway.app',
+  base_url_financy: 'https://house-finances-api.up.railway.app/api',
 };
 
 /*
