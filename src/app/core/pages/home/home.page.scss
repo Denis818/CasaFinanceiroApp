@@ -68,7 +68,7 @@
 
         & h2 {
           white-space: nowrap;
-          height: 0px;
+          height: 11px;
         }
 
         &.selected {
@@ -105,11 +105,11 @@
         justify-content: center;
         align-items: center;
         margin-top: 5px;
-        max-height: 100px;
 
         [logo-app] {
-          width: 40px;
-          height: 40px;
+          margin-right: 5px;
+          width: 32px;
+          height: 32px;
         }
       }
 
