@@ -8,16 +8,10 @@
     color: white;
     display: flex;
     align-items: center;
-    padding: 0 14px;
 
-    [title] {
-      position: relative;
-      left: 40px;
-    }
-    &.navbar h1 {
+    & [title] {
+      margin-left: 58px;
       flex-grow: 1;
-      text-align: left;
-      padding-left: 9px;
     }
 
     &.navbar .logout-icon {
@@ -132,8 +126,10 @@
       box-sizing: border-box;
       overflow-x: auto;
     }
+  }
 
-    @media (max-width: 768px) {
+  @media screen and (max-width: 600px) {
+    [container-app] {
       .sidenav {
         height: 45px;
         width: 100%;
@@ -171,9 +167,11 @@
         margin: 0px;
         width: 100%;
       }
-      .navbar {
-        padding: 0px;
-      }
+    }
+
+    .navbar [title] {
+      margin-left: 2%;
+      flex-grow: 1;
     }
   }
 }
