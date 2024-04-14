@@ -15,7 +15,7 @@
       border-radius: 8px;
 
       &:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.240);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
         transition: box-shadow 0.4s ease-in-out;
       }
       .card-head {
@@ -31,13 +31,6 @@
         flex-grow: 1;
         border: 1px solid #ccc;
         border-radius: 0px 0px 8px 8px;
-      }
-
-      .centralizar-graphic {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-left: 10px;
       }
 
       .expense-item {
