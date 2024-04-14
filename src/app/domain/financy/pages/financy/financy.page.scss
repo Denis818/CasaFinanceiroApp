@@ -8,11 +8,10 @@
     margin: 56px 11px 70px 8px;
 
     .card {
-      flex: 1 1 calc(50% - 50px);
+      flex: 0 0 calc(50% - 10px);
       text-align: center;
       display: flex;
       flex-direction: column;
-
 
       .card-head {
         background-color: #673ab7;
@@ -59,10 +58,6 @@
         font-weight: bold;
         color: #673ab7;
       }
-    }
-
-    & .card:last-child {
-      max-width: calc(54.9% - 100px);
     }
 
     table {

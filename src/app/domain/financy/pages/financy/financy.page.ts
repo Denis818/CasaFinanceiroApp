@@ -12,6 +12,7 @@ import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-m
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { FinancyService } from '../../services/financy/financy.service';
+import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
 
 registerLocaleData(localePt);
 
@@ -27,7 +28,6 @@ registerLocaleData(localePt);
   imports: [CommonModule, MatPaginatorModule, GraphicComponent],
 })
 export class FinancyPage implements OnInit {
-  graphicConfig: GraphicConfiguration = new GraphicConfiguration();
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
 
@@ -38,21 +38,27 @@ export class FinancyPage implements OnInit {
     totalGeral: 0,
   };
 
+  graphicConfig: GraphicConfiguration;
+  graphicMobile: GraphicMobile = {
+    graphicType: 'bar',
+    width: 330,
+    height: 290,
+  };
+
   constructor(private readonly financyService: FinancyService) {}
 
   ngOnInit() {
-    this.adjustGraphicForMobile();
     this.getGraficoTotaisComprasPorMes();
     this.getTotalPorCategoria();
     this.getResumoDespesasMensal();
   }
 
   getGraficoTotaisComprasPorMes() {
-    this.financyService
-      .getGrraficoTotaisComprasPorMes()
-      .subscribe((graphicConfig) => {
+    this.financyService.getGrraficoTotaisComprasPorMes().subscribe({
+      next: (graphicConfig) => {
         this.graphicConfig = graphicConfig;
-      });
+      },
+    });
   }
 
   getResumoDespesasMensal() {
@@ -66,13 +72,5 @@ export class FinancyPage implements OnInit {
     this.financyService.getTotalPorCategoria().subscribe((dados) => {
       this.listDespesasPorCategoria = dados;
     });
-  }
-
-  adjustGraphicForMobile() {
-    if (window.innerWidth < 768) {
-      this.graphicConfig.graphicStyle.graphicType = 'bar';
-      this.graphicConfig.graphicStyle.width = 330;
-      this.graphicConfig.graphicStyle.height = 290;
-    }
   }
 }
