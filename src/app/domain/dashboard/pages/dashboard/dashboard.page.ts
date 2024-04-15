@@ -1,14 +1,11 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
-import {
-  MatPaginatorIntl,
-  MatPaginatorModule,
-} from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
-import { MatPaginatorIntlPt } from '../../../../shared/utilities/paginator/mat-paginator-intl-pt';
+import { CustomPaginator } from '../../../../shared/utilities/paginator/custom-paginator';
 import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
@@ -22,7 +19,7 @@ registerLocaleData(localePt);
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
   providers: [
-    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlPt },
+    { provide: MatPaginatorIntl, useClass: CustomPaginator },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
   imports: [CommonModule, GraphicComponent],

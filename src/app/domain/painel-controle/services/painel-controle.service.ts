@@ -6,6 +6,7 @@ import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/enviroment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { Despesa } from '../interfaces/despesa.interface';
+import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class PainelControleService extends BaseService {
@@ -15,12 +16,17 @@ export class PainelControleService extends BaseService {
   public getAllDespesas(
     paginaAtual: number,
     itensPorPagina: number
-  ): Observable<Despesa[]> {
+  ): Observable<PaginationResponse<Despesa>> {
     const params = new HttpParams()
       .set('paginaAtual', paginaAtual.toString())
       .set('itensPorPagina', itensPorPagina.toString());
 
-    return this.sendHttpRequest('GET', `${this.url}/Despesa`, null, params);
+    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
+      'GET',
+      `${this.url}/Despesa`,
+      null,
+      params
+    ).pipe(map((response) => response.dados));
   }
 
   public getAll<TEntity>(uri: string): Observable<TEntity[]> {

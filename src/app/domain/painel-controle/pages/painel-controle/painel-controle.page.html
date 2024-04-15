@@ -1,1 +1,69 @@
-<h1>Olá Mundo!</h1>
+<div card-container-painel>
+  <div class="card">
+    <div class="card-head">
+      Lista de compras do mes de {{totalItens}} {{itensPorPagina}}
+      {{paginaAtual}}
+    </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Item</th>
+            <th>Categoria</th>
+            <th>Fornecedor</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+            <th>Data da compra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let despesa of despesas">
+            <td>{{ despesa.id }}</td>
+            <td>{{ despesa.item }}</td>
+            <td>{{ despesa.categoria.descricao }}</td>
+            <td>{{ despesa.fornecedor }}</td>
+            <td>{{ despesa.preco | currency:'BRL' }}</td>
+            <td>{{ despesa.quantidade }}</td>
+            <td>{{ despesa.total | currency:'BRL' }}</td>
+            <td>{{ despesa.dataCompra}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator
+        [length]="totalItens"
+        [pageSize]="itensPorPagina"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="mudarPagina($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Membros</div>
+    <div class="card-body">
+      <table>
+        <tbody>
+          <tr *ngFor="let membro of membros">
+            <td>{{ membro.nome }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Categorias de despesas</div>
+    <div class="card-body">
+      <table>
+        <tbody>
+          <tr *ngFor="let categoria of categorias">
+            <td>{{ categoria.descricao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
