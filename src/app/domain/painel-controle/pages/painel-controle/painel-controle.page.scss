@@ -1,44 +1,24 @@
 :host {
   [card-container-painel] {
-    display: grid;
-    grid-template-columns: auto 200px; /* O primeiro cartão ocupa o espaço necessário, e os menores têm largura fixa */
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: stretch;
 
     .card {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      flex: 100%;
       text-align: center;
       display: flex;
       flex-direction: column;
-
-      &:first-child {
-        grid-column: 1; /* O cartão maior na primeira coluna */
-      }
-
-      &:not(:first-child) {
-        grid-column: 2; /* Os cartões menores na segunda coluna */
-        width: 200px; /* Largura fixa para os cartões menores */
-        margin-top: 10px; /* Espaço no topo dos cartões menores */
-      }
-
-      /* Remove a margem do topo do primeiro cartão menor */
-      &:nth-child(2) {
-        margin-top: 0;
-      }
-
-       &:nth-child(3) {
-        position: relative;
-        bottom: 320px;
-      }
-
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
 
       &:hover {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
         transition: box-shadow 0.4s ease-in-out;
       }
-
-      &-head {
+      .card-head {
         background-color: #673ab7;
         color: white;
         padding: 10px;
@@ -47,32 +27,44 @@
         border-radius: 8px 8px 0px 0px;
       }
 
-      &-body {
+      .card-body {
         flex-grow: 1;
         border: 1px solid #ccc;
         border-radius: 0px 0px 8px 8px;
+      }
 
-        & table {
-          width: 100%;
 
-          td {
-            text-align: center;
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            border-right: 1px solid #e0e0e0;
-          }
+    }
 
-          td:last-child {
-            border-right: none;
-          }
+     table {
+      width: 100%;
 
-          td {
-            color: #708090;
-          }
-        }
+      th,
+      td {
+        text-align: center;
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: none;
+      }
+
+      th {
+        background-color: #f7f7f7;
+      }
+
+      td {
+        color: #708090;
       }
     }
   }
 
-
+  @media screen and (max-width: 600px) {
+    [card-container] .card {
+      flex: 1 1 100%;
+    }
+  }
 }

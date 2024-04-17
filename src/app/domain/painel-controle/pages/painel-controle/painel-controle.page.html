@@ -1,9 +1,6 @@
 <div card-container-painel>
   <div class="card">
-    <div class="card-head">
-      Lista de compras do mes de {{totalItens}} {{itensPorPagina}}
-      {{paginaAtual}}
-    </div>
+    <div class="card-head">Lista de compras do mes</div>
     <div class="card-body">
       <table>
         <thead>
@@ -32,16 +29,19 @@
         </tbody>
       </table>
       <mat-paginator
-        [length]="totalItens"
-        [pageSize]="itensPorPagina"
-        [pageSizeOptions]="[5, 10, 20]"
+        #paginator
+        class="demo-paginator"
         (page)="mudarPagina($event)"
+        [length]="page.totalItens"
+        [pageSize]="page.itensPorPagina"
+        [pageSizeOptions]="tamanhosDePagina"
+        aria-label="Select page"
       >
       </mat-paginator>
     </div>
   </div>
 
-  <div class="card">
+   <div class="card">
     <div class="card-head">Membros</div>
     <div class="card-body">
       <table>

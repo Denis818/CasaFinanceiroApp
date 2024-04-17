@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
   PageEvent,
 } from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormatDateModule } from 'src/app/shared/pipes/date/format-date-module/format-date.module';
+import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
+import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Categoria } from '../../interfaces/categoria.interface';
-import { Despesa } from '../../interfaces/despesa.interface';
+import { DespesaResponse } from '../../interfaces/despesa-response.interface';
 import { Membro } from '../../interfaces/membro.interface';
 import { PainelControleService } from '../../services/painel-controle.service';
 
@@ -16,18 +20,26 @@ import { PainelControleService } from '../../services/painel-controle.service';
   templateUrl: './painel-controle.page.html',
   styleUrls: ['./painel-controle.page.scss'],
   standalone: true,
-  imports: [CommonModule, MatPaginatorModule, FormatDateModule],
-  providers: [{ provide: MatPaginatorIntl }],
+  imports: [
+    CommonModule,
+    MatPaginatorModule,
+    FormatDateModule,
+    FormsModule,
+    MatSlideToggleModule,
+  ],
+  providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class PainelControlePage implements OnInit {
-  [x: string]: any;
-  despesas: Despesa[];
+  despesas: DespesaResponse[];
   membros: Membro[];
   categorias: Categoria[];
 
-  totalItens = 0;
-  paginaAtual = 1;
-  itensPorPagina = 10;
+  tamanhosDePagina: number[] = [5, 10, 50, 100];
+  page: Pagination = {
+    totalItens: 0,
+    paginaAtual: 1,
+    itensPorPagina: this.tamanhosDePagina[1],
+  };
 
   constructor(private painelService: PainelControleService) {}
 
@@ -37,33 +49,31 @@ export class PainelControlePage implements OnInit {
     this.getAllDespesas();
   }
 
+  getAllDespesas() {
+    this.painelService
+      .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
+      .subscribe((data) => {
+        this.despesas = data.itens;
+        this.page.totalItens = data.totalItens;
+        this.page.paginaAtual = data.paginaAtual;
+      });
+  }
+
   getAllCategorias() {
     this.painelService
       .getAll<Categoria>('Categoria')
       .subscribe((categorias) => (this.categorias = categorias));
   }
-  
+
   getAllMembros() {
     this.painelService
       .getAll<Membro>('Membro')
       .subscribe((membros) => (this.membros = membros));
   }
 
-  getAllDespesas() {
-    this.painelService
-      .getAllDespesas(this.paginaAtual, this.itensPorPagina)
-      .subscribe((data) => {
-        this.despesas = data.itens;
-        this.totalItens = data.totalItens;
-        this.paginaAtual = data.paginaAtual;
-
-        console.log(this.paginaAtual, this.itensPorPagina);
-      });
-  }
-
   mudarPagina(event: PageEvent): void {
-    this.paginaAtual = event.pageIndex + 1;
-    this.itensPorPagina = event.pageSize;
+    this.page.paginaAtual = event.pageIndex + 1;
+    this.page.itensPorPagina = event.pageSize;
     this.getAllDespesas();
   }
 }
