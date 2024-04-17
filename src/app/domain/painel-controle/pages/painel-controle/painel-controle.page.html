@@ -1,5 +1,5 @@
 <div card-container-painel>
-  <div class="card">
+<!--   <div class="card">
     <div class="card-head">Lista de compras do mes</div>
     <div class="card-body">
       <table>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-   <div class="card">
+  <div class="card">
     <div class="card-head">Membros</div>
     <div class="card-body">
       <table>
@@ -52,15 +52,35 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </div> -->
 
   <div class="card">
     <div class="card-head">Categorias de despesas</div>
     <div class="card-body">
-      <table>
+      <table class="mat-elevation-z8 table-editable">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
         <tbody>
           <tr *ngFor="let categoria of categorias">
-            <td>{{ categoria.descricao }}</td>
+            <td>
+              <div *ngIf="categoria.isEditing">
+                <input
+                  type="text"
+                  [(ngModel)]="categoria.descricao"
+                  (keyup.enter)="updateCategoria(categoria.id, categoria)"
+                  (blur)="updateCategoria(categoria.id, categoria)"
+
+                />
+              </div>
+              <div *ngIf="!categoria.isEditing">{{ categoria.descricao }}</div>
+            </td>
+            <td>
+              <mat-icon (click)="toggleEdit(categoria)">edit</mat-icon>
+            </td>
           </tr>
         </tbody>
       </table>

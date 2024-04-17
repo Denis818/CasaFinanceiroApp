@@ -32,17 +32,41 @@
         border: 1px solid #ccc;
         border-radius: 0px 0px 8px 8px;
       }
-
-
     }
 
-     table {
+    .table-editable {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .table-editable th,
+    .table-editable td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .table-editable input[type="text"] {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      text-align: center;
+      font-size: 15px;
+      color: #708090;
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    .table-editable .mat-icon {
+      cursor: pointer;
+      color: #673ab7;
+    }
+
+    table {
       width: 100%;
 
       th,
       td {
         text-align: center;
-        padding: 12px;
+        padding: 10px;
         border-bottom: 1px solid #e0e0e0;
         border-right: 1px solid #e0e0e0;
       }
@@ -56,8 +80,12 @@
         background-color: #f7f7f7;
       }
 
+      [optios-td] {
+        text-align: right;
+      }
       td {
         color: #708090;
+        font-size: 15px;
       }
     }
   }

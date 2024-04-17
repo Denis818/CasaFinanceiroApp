@@ -1,8 +1,13 @@
+import { Categoria } from './categoria.interface';
+
 export interface Despesa {
-  categoriaId: number;
+  id: number;
+  dataCompra: Date;
   item: string;
   preco: number;
   quantidade: number;
   fornecedor: string;
-  dataCompra: Date;
+  total: number;
+  categoria: Categoria;
+  categoriaId: number;
 }
