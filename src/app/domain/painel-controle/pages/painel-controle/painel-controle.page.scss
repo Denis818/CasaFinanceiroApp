@@ -31,61 +31,61 @@
         flex-grow: 1;
         border: 1px solid #ccc;
         border-radius: 0px 0px 8px 8px;
-      }
-    }
 
-    .table-editable {
-      table-layout: fixed;
-      width: 100%;
-    }
+        table {
+          width: 100%;
 
-    .table-editable th,
-    .table-editable td {
-      text-align: center;
-      vertical-align: middle;
-    }
+          th,
+          td {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+          }
 
-    .table-editable input[type="text"] {
-      border: none;
-      outline: none;
-      background-color: transparent;
-      text-align: center;
-      font-size: 15px;
-      color: #708090;
-      border-bottom: 1px solid #d3d3d3;
-    }
+          th:last-child,
+          td:last-child {
+            border-right: none;
+          }
 
-    .table-editable .mat-icon {
-      cursor: pointer;
-      color: #673ab7;
-    }
+          th {
+            background-color: #f7f7f7;
+          }
 
-    table {
-      width: 100%;
+          [optios-td] {
+            text-align: right;
+          }
+          td {
+            color: #708090;
+            font-size: 15px;
+          }
+        }
 
-      th,
-      td {
-        text-align: center;
-        padding: 10px;
-        border-bottom: 1px solid #e0e0e0;
-        border-right: 1px solid #e0e0e0;
-      }
+        .table-editable {
+          table-layout: fixed;
+          width: 100%;
 
-      th:last-child,
-      td:last-child {
-        border-right: none;
-      }
+          & th,
+          & td {
+            text-align: center;
+            vertical-align: middle;
+          }
 
-      th {
-        background-color: #f7f7f7;
-      }
+          & input[type="text"] {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            text-align: center;
+            font-size: 15px;
+            color: #708090;
+            border-bottom: 1px solid #d3d3d3;
+          }
 
-      [optios-td] {
-        text-align: right;
-      }
-      td {
-        color: #708090;
-        font-size: 15px;
+          & .mat-icon {
+            cursor: pointer;
+            color: #673ab7;
+          }
+        }
       }
     }
   }

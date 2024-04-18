@@ -38,7 +38,6 @@ export class PainelControlePage implements OnInit {
   despesas: Despesa[];
   membros: Membro[];
   categorias: Categoria[];
-  categoriaDescricao: string = '';
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -60,11 +59,11 @@ export class PainelControlePage implements OnInit {
 
   toggleEdit(categoria: Categoria): void {
     categoria.isEditing = !categoria.isEditing;
-    this.categoriaDescricao = categoria.descricao;
+    categoria.valueAtual = categoria.descricao;
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    if (categoria.descricao != this.categoriaDescricao) {
+    if (categoria.descricao != categoria.valueAtual) {
       console.log('chamou');
       this.painelService.update(id, categoria, 'Categoria').subscribe({
         next: () => {
