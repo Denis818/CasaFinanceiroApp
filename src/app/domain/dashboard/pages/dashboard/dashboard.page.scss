@@ -111,8 +111,16 @@
   }
 
   @media screen and (max-width: 600px) {
-    [card-container] .card {
-      flex: 1 1 100%;
+    [card-container] {
+      .card {
+        flex: 1 1 100%;
+
+        .card-body {
+          [download-button] {
+            margin-bottom: 14px;
+          }
+        }
+      }
     }
   }
 }
