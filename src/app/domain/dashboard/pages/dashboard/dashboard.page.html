@@ -12,7 +12,9 @@
   </div>
 
   <div class="card">
-    <div class="card-head">Valor do Aluguel, Condomínio e Conta de Luz por membro</div>
+    <div class="card-head">
+      Valor do Aluguel, Condomínio e Conta de Luz por membro
+    </div>
     <div class="card-body">
       <ng-container *ngFor="let item of despesasPorMembros">
         <div
@@ -25,6 +27,10 @@
           </div>
         </div>
       </ng-container>
+
+      <button download-button (click)="downloadRelatorioDespesas()">
+        Download do Relatório
+      </button>
     </div>
   </div>
 

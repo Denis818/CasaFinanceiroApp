@@ -65,4 +65,9 @@ export class DashboardPage implements OnInit {
       this.listDespesasPorCategoria = dados;
     });
   }
+
+  downloadRelatorioDespesas() {
+
+    this.dashboardService.downloadRelatorioDeDespesas();
+  }
 }

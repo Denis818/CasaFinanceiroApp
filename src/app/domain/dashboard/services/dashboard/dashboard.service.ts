@@ -35,6 +35,21 @@ export class DashboardService extends BaseService {
     );
   }
 
+  public downloadRelatorioDeDespesas() {
+    this.sendHttpRequestForDownload(this.url + '/gerar-pdf').subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'relatorio-de-despesas.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      },
+    });
+  }
+
   getGrraficoTotaisComprasPorMes(): Observable<GraphicConfiguration> {
     return this.sendHttpRequest<ApiResponse<TotalPorMesResponse[]>>(
       'GET',

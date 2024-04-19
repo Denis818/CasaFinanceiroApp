@@ -18,4 +18,15 @@ export abstract class BaseService {
       params: params,
     });
   }
+
+  // Este método é específico para fazer requisições de download de arquivos
+  protected sendHttpRequestForDownload(
+    url: string,
+    params?: HttpParams
+  ): Observable<Blob> {
+    return this.http.request<Blob>('GET', url, {
+      params: params,
+      responseType: 'blob' as 'json', // Truque necessário para evitar erros de tipo no Angular
+    });
+  }
 }
