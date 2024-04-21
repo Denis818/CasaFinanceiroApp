@@ -8,7 +8,7 @@ import { UserService } from 'src/app/domain/auth/services/user/user.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  selectedButton: string;
+  selectedButton: string = 'dashboard';
   sidenavExpanded = false;
   isDesktop: boolean = true;
 
