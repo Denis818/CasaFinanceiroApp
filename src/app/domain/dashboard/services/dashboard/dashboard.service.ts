@@ -35,13 +35,29 @@ export class DashboardService extends BaseService {
     );
   }
 
-  public downloadRelatorioDeDespesas() {
-    this.sendHttpRequestForDownload(this.url + '/gerar-pdf').subscribe({
+  public downloadRelatorioDespesasHabitacional() {
+    this.sendHttpRequestForDownload(
+      this.url + '/pdf-despesas-habitacional'
+    ).subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'relatorio-de-despesas.pdf';
+        a.download = 'relatorio-despesas-habitacional.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      },
+    });
+  }
+  public downloadRelatorioDespesasCasa() {
+    this.sendHttpRequestForDownload(this.url + '/pdf-despesas-casa').subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'relatorio-despesas-casa.pdf';
         document.body.appendChild(a);
         a.click();
         a.remove();

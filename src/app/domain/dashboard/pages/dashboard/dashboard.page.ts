@@ -66,8 +66,11 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  downloadRelatorioDespesas() {
+  downloadRelatorioDespesasHabitacional() {
+    this.dashboardService.downloadRelatorioDespesasHabitacional();
+  }
 
-    this.dashboardService.downloadRelatorioDeDespesas();
+  downloadRelatorioDespesasCasa() {
+    this.dashboardService.downloadRelatorioDespesasCasa();
   }
 }
