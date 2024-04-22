@@ -1,0 +1,45 @@
+<div class="modal-content">
+  <h2>Adicionar Despesa</h2>
+  <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="item">Item</label>
+      <input id="item" type="text" formControlName="item" />
+    </div>
+
+    <div class="form-field">
+      <label for="preco">Preço</label>
+      <input id="preco" type="number" formControlName="preco" />
+    </div>
+
+    <div class="form-field">
+      <label for="quantidade">Quantidade</label>
+      <input id="quantidade" type="number" formControlName="quantidade" />
+    </div>
+
+    <div class="form-field">
+      <label for="fornecedor">Fornecedor</label>
+      <input id="fornecedor" type="text" formControlName="fornecedor" />
+    </div>
+
+    <div class="form-field">
+      <label for="dataCompra">Data da Compra</label>
+      <input id="dataCompra" type="text" formControlName="dataCompra" />
+    </div>
+
+    <div class="select-wrapper">
+      <label for="categoria">Categoria</label>
+      <select id="categoria" formControlName="categoria">
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.descricao }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Salvar</button>
+      <button type="button" class="btn btn-cancel" (click)="onClose()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

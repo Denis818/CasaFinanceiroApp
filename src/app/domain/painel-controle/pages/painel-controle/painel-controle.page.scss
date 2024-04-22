@@ -1,99 +1,109 @@
 :host {
-  [card-container-painel] {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    align-items: stretch;
 
-    .card {
-      flex: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-
-      &:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
-        transition: box-shadow 0.4s ease-in-out;
-      }
-      .card-head {
-        background-color: #673ab7;
-        color: white;
-        padding: 10px;
-        font-size: 16px;
-        text-align: center;
-        border-radius: 8px 8px 0px 0px;
-      }
-
-      .card-body {
-        flex-grow: 1;
-        border: 1px solid #ccc;
-        border-radius: 0px 0px 8px 8px;
-
-        table {
-          width: 100%;
-
-          th,
-          td {
-            text-align: center;
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-            border-right: 1px solid #e0e0e0;
-          }
-
-          th:last-child,
-          td:last-child {
-            border-right: none;
-          }
-
-          th {
-            background-color: #f7f7f7;
-          }
-
-          [optios-td] {
-            text-align: right;
-          }
-          td {
-            color: #708090;
-            font-size: 15px;
-          }
-        }
-
-        .table-editable {
-          table-layout: fixed;
-          width: 100%;
-
-          & th,
-          & td {
-            text-align: center;
-            vertical-align: middle;
-          }
-
-          & input[type="text"] {
-            border: none;
-            outline: none;
-            width: 100%;
-            background-color: transparent;
-            text-align: center;
-            font-size: 15px;
-            color: #708090;
-            border-bottom: 1px solid #d3d3d3;
-          }
-
-          & .mat-icon {
-            cursor: pointer;
-            color: #673ab7;
-          }
-        }
-      }
-    }
+  body {
+    font-family: "Arial", sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
   }
 
+  h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  /* Estilização das Tabelas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f8f8f8;
+    color: #333;
+  }
+
+  /* Estilização do cabeçalho da tabela */
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .button {
+    padding: 8px 16px;
+    color: white;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #004494;
+  }
+
+  /* Responsividade para elementos do formulário */
+  form div {
+    margin-bottom: 10px;
+  }
+
+  label {
+    margin-right: 10px;
+  }
+
+  input,
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .table-editable {
+    table-layout: fixed;
+    width: 100%;
+
+    & th,
+    & td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    & input[type="text"] {
+      border: none;
+      outline: none;
+      width: 50%;
+      background-color: transparent;
+      text-align: center;
+      font-size: 15px;
+      color: #708090;
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    & .mat-icon {
+      cursor: pointer;
+      color: #673ab7;
+    }
+  }
   @media screen and (max-width: 600px) {
-    [card-container] .card {
-      flex: 1 1 100%;
+    .table-editable {
+      & input[type="text"] {
+        width: 100%;
+      }
     }
   }
 }

@@ -1,89 +1,110 @@
-<div card-container-painel>
-<!--   <div class="card">
-    <div class="card-head">Lista de compras do mes</div>
-    <div class="card-body">
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Item</th>
-            <th>Categoria</th>
-            <th>Fornecedor</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Total</th>
-            <th>Data da compra</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let despesa of despesas">
-            <td>{{ despesa.id }}</td>
-            <td>{{ despesa.item }}</td>
-            <td>{{ despesa.categoria.descricao }}</td>
-            <td>{{ despesa.fornecedor }}</td>
-            <td>{{ despesa.preco | currency:'BRL' }}</td>
-            <td>{{ despesa.quantidade }}</td>
-            <td>{{ despesa.total | currency:'BRL' }}</td>
-            <td>{{ despesa.dataCompra}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <mat-paginator
-        #paginator
-        class="demo-paginator"
-        (page)="mudarPagina($event)"
-        [length]="page.totalItens"
-        [pageSize]="page.itensPorPagina"
-        [pageSizeOptions]="tamanhosDePagina"
-        aria-label="Select page"
-      >
-      </mat-paginator>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">Membros</div>
-    <div class="card-body">
-      <table>
-        <tbody>
-          <tr *ngFor="let membro of membros">
-            <td>{{ membro.nome }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> -->
-
-  <div class="card">
-    <div class="card-head">Categorias de despesas</div>
-    <div class="card-body">
-      <table class="table-editable">
-        <thead>
-          <tr>
-            <th>Descrição</th>
-            <th>Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let categoria of categorias">
-            <td>
-              <div *ngIf="categoria.isEditing">
-                <input
-                  type="text"
-                  [(ngModel)]="categoria.descricao"
-                  (keyup.enter)="updateCategoria(categoria.id, categoria)"
-                  (blur)="updateCategoria(categoria.id, categoria)"
-
-                />
-              </div>
-              <div *ngIf="!categoria.isEditing">{{ categoria.descricao }}</div>
-            </td>
-            <td>
-              <mat-icon (click)="toggleEdit(categoria)">edit</mat-icon>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<!-- Cabeçalho da Tabela de Despesas com Botão de Inserção -->
+<div class="table-header">
+  <h2>Despesas</h2>
+  <button (click)="openModalInsertDespesa()">Inserir Despesa</button>
 </div>
+
+<!-- Tabela de Despesas -->
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Item</th>
+      <th>Categoria</th>
+      <th>Fornecedor</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th>Total</th>
+      <th>Data da compra</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let despesa of despesas">
+      <td>{{ despesa.id }}</td>
+      <td>{{ despesa.item }}</td>
+      <td>{{ despesa.categoria.descricao }}</td>
+      <td>{{ despesa.fornecedor }}</td>
+      <td>{{ despesa.preco | currency:'BRL' }}</td>
+      <td>{{ despesa.quantidade }}</td>
+      <td>{{ despesa.total | currency:'BRL' }}</td>
+      <td>{{ despesa.dataCompra }}</td>
+    </tr>
+  </tbody>
+</table>
+<mat-paginator
+  #paginator
+  class="demo-paginator"
+  (page)="mudarPagina($event)"
+  [length]="page.totalItens"
+  [pageSize]="page.itensPorPagina"
+  [pageSizeOptions]="tamanhosDePagina"
+  aria-label="Select page"
+>
+</mat-paginator>
+
+<!-- Tabela de Membros -->
+<h2>Membros</h2>
+<table>
+  <tbody>
+    <tr *ngFor="let membro of membros">
+      <td>{{ membro.nome }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Tabela Editável de Categorias -->
+<h2>Categorias</h2>
+<table class="table-editable">
+  <tbody>
+    <tr *ngFor="let categoria of categorias">
+      <td>
+        <div *ngIf="categoria.isEditing">
+          <input
+            type="text"
+            [(ngModel)]="categoria.descricao"
+            (keyup.enter)="updateCategoria(categoria.id, categoria)"
+            (blur)="updateCategoria(categoria.id, categoria)"
+          />
+        </div>
+        <div *ngIf="!categoria.isEditing">{{ categoria.descricao }}</div>
+      </td>
+      <td>
+        <mat-icon (click)="toggleEdit(categoria)">edit</mat-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulário de Inserção de Despesa -->
+<h2>Inserir Despesa</h2>
+<form (ngSubmit)="inserirDespesa(form.value)" #form="ngForm">
+  <div>
+    <label>Data da Compra:</label>
+    <input type="date" name="dataCompra" ngModel />
+  </div>
+  <div>
+    <label>Item:</label>
+    <input type="text" name="item" ngModel required />
+  </div>
+  <div>
+    <label>Preço:</label>
+    <input type="number" name="preco" ngModel required />
+  </div>
+  <div>
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" ngModel required />
+  </div>
+  <div>
+    <label>Fornecedor:</label>
+    <input type="text" name="fornecedor" ngModel required />
+  </div>
+  <div>
+    <label>Categoria:</label>
+    <select name="categoriaId" ngModel required>
+      <option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.descricao }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Adicionar Despesa</button>
+</form>
