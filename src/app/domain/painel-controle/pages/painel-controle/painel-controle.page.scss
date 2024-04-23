@@ -29,7 +29,7 @@
       }
     }
 
-    & [botao-add] {
+    [botao-add] {
       position: relative;
       background-color: #6a00cb;
       color: #ffffff;
@@ -79,11 +79,11 @@
           height: 15px;
         }
 
-        /*  &.categoria-position {
+        &.categoria-position {
           height: 19px;
           position: relative;
           right: 24.1%;
-        } */
+        }
       }
 
       & .botao-title {
@@ -185,18 +185,23 @@
         justify-content: flex-start;
 
         & .icon-position {
-          right: 5%;
+          right: 3.9%;
           top: 8px;
           transform: translateY(-50%);
 
           &.categoria-position {
-            right: 4.6%;
+            right: 3.9%;
             top: 10px;
           }
 
           &.despesa-position {
-            right: 4.6%;
+            right: 4%;
             top: 10px;
+          }
+
+          &.membro-position {
+            right: 4.1%;
+
           }
         }
 
