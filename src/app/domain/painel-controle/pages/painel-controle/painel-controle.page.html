@@ -1,7 +1,34 @@
-<!-- Cabeçalho da Tabela de Despesas com Botão de Inserção -->
-<div class="table-header">
-  <h2>Despesas</h2>
-  <button (click)="openModalInsertDespesa()">Inserir Despesa</button>
+<div options>
+  <input type="text" name="firstname" placeholder="Buscar por item..." />
+
+  <div>
+    <button botao-add>
+      <img
+        class="icon-position categoria-position"
+        src="../../../../../assets/icons/nova-categoria.svg"
+        alt="Ícone de nova compra"
+      />
+      <span class="botao-title">Nova Categoria</span>
+    </button>
+
+    <button botao-add (click)="openModalInsertDespesa()">
+      <img
+        class="icon-position despesa-position"
+        src="../../../../../assets/icons/nova-compra.svg"
+        alt="Ícone de nova compra"
+      />
+      <span class="botao-title">Nova Despesa</span>
+    </button>
+
+    <button botao-add>
+      <img
+        class="icon-position membro-position"
+        src="../../../../../assets/icons/novo-membro.svg"
+        alt="Ícone de nova compra"
+      />
+      <span class="botao-title">Novo Membro</span>
+    </button>
+  </div>
 </div>
 
 <!-- Tabela de Despesas -->
@@ -74,37 +101,3 @@
     </tr>
   </tbody>
 </table>
-
-<!-- Formulário de Inserção de Despesa -->
-<h2>Inserir Despesa</h2>
-<form (ngSubmit)="inserirDespesa(form.value)" #form="ngForm">
-  <div>
-    <label>Data da Compra:</label>
-    <input type="date" name="dataCompra" ngModel />
-  </div>
-  <div>
-    <label>Item:</label>
-    <input type="text" name="item" ngModel required />
-  </div>
-  <div>
-    <label>Preço:</label>
-    <input type="number" name="preco" ngModel required />
-  </div>
-  <div>
-    <label>Quantidade:</label>
-    <input type="number" name="quantidade" ngModel required />
-  </div>
-  <div>
-    <label>Fornecedor:</label>
-    <input type="text" name="fornecedor" ngModel required />
-  </div>
-  <div>
-    <label>Categoria:</label>
-    <select name="categoriaId" ngModel required>
-      <option *ngFor="let categoria of categorias" [value]="categoria.id">
-        {{ categoria.descricao }}
-      </option>
-    </select>
-  </div>
-  <button type="submit">Adicionar Despesa</button>
-</form>

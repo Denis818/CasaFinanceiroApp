@@ -10,7 +10,7 @@
     align-items: center;
 
     & [title] {
-      margin-left: 58px;
+      margin-left: 62px;
       flex-grow: 1;
     }
 
@@ -30,6 +30,9 @@
     &:hover {
       background-color: #7e57c2;
       color: #e0e0e0;
+      & mat-icon {
+        transform: scale(1.2);
+      }
     }
 
     & mat-icon {
@@ -48,7 +51,7 @@
       overflow-x: hidden;
       transition: width 0.5s;
       box-shadow: 1px 0 15px -3px rgba(0, 0, 0, 0.75);
-      z-index: 1;
+      z-index: 100;
 
       & a {
         display: flex;
@@ -121,7 +124,7 @@
 
     .content-app {
       transition: margin-left 0.5s, width 0.5s;
-      margin-left: 50px;
+      margin-left: 55px;
       padding: 56px 11px 70px 8px;
       width: calc(100% - 50px);
       box-sizing: border-box;

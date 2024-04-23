@@ -13,10 +13,10 @@
       flex-direction: column;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
+      transition: box-shadow 0.4s ease-in-out;
 
       &:hover {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
-        transition: box-shadow 0.4s ease-in-out;
       }
       .card-head {
         background-color: #673ab7;
@@ -68,10 +68,10 @@
           justify-content: space-between;
           align-items: center;
           color: #708090 !important;
+          transition: box-shadow 0.2s ease-in-out;
 
           &:hover {
             box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
-            transition: box-shadow 0.2s ease-in-out;
           }
 
           .expense-title {
@@ -119,6 +119,11 @@
     [card-container] {
       .card {
         flex: 1 1 100%;
+      }
+
+      [download-button]:hover {
+        background-color: #fff;
+        box-shadow: none;
       }
     }
   }

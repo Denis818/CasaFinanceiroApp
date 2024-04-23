@@ -1,11 +1,100 @@
 :host {
+  [options] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1%;
+    transition: box-shadow 0.2s ease-in-out;
 
-  body {
-    font-family: "Arial", sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    &:hover {
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
+    }
+
+    & input[type="text"] {
+      width: 50%;
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border: 1px solid #ddd;
+      }
+    }
+
+    & [botao-add] {
+      position: relative;
+      background-color: #6a00cb;
+      color: #ffffff;
+      padding: 10px 0px 10px 40px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 40px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        transition: box-shadow 0.3s ease;
+      }
+
+      &:hover {
+        box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        background-color: #5e00b1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      & .icon-position {
+        height: 20px;
+        position: relative;
+        right: 26.4%;
+        z-index: 1;
+
+        &.membro-position {
+          height: 15px;
+        }
+
+        /*  &.categoria-position {
+          height: 19px;
+          position: relative;
+          right: 24.1%;
+        } */
+      }
+
+      & .botao-title {
+        position: relative;
+        margin-top: 2px;
+        right: 13%;
+      }
+    }
   }
 
+  /* ----------------------------------------------------------------------------------------------------------------- */
   h2 {
     color: #333;
     margin-bottom: 15px;
@@ -32,17 +121,6 @@
     color: #333;
   }
 
-  /* Estilização do cabeçalho da tabela */
-  .table-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
   .button {
     padding: 8px 16px;
     color: white;
@@ -55,22 +133,6 @@
 
   .button:hover {
     background-color: #004494;
-  }
-
-  /* Responsividade para elementos do formulário */
-  form div {
-    margin-bottom: 10px;
-  }
-
-  label {
-    margin-right: 10px;
-  }
-
-  input,
-  select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
 
   .table-editable {
@@ -100,6 +162,50 @@
     }
   }
   @media screen and (max-width: 600px) {
+    [options] {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 10px;
+      margin-bottom: 10px;
+      transition: none;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: none;
+      }
+
+      & input[type="text"] {
+        width: 100%;
+      }
+
+      & [botao-add] {
+        width: 100%;
+        padding: 8px 20px;
+        margin-top: 10px;
+        justify-content: flex-start;
+
+        & .icon-position {
+          right: 5%;
+          top: 8px;
+          transform: translateY(-50%);
+
+          &.categoria-position {
+            right: 4.6%;
+            top: 10px;
+          }
+
+          &.despesa-position {
+            right: 4.6%;
+            top: 10px;
+          }
+        }
+
+        & .botao-title {
+          left: 1%;
+        }
+      }
+    }
+
     .table-editable {
       & input[type="text"] {
         width: 100%;

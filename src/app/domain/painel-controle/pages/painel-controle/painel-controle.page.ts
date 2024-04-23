@@ -11,7 +11,7 @@ import {
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { ModalDespesaComponent } from 'src/app/shared/components/modal/despesa/modal-despesa.component';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Membro } from '../../interfaces/membro.interface';
@@ -32,7 +32,7 @@ import { Despesa } from './../../interfaces/despesa.interface';
     MatIconModule,
     MatTableModule,
     MatDialogModule,
-    ModalComponent,
+    ModalDespesaComponent,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
@@ -93,7 +93,7 @@ export class PainelControlePage implements OnInit {
   //#region Create
 
   openModalInsertDespesa(): void {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open(ModalDespesaComponent, {
       width: '400px',
     });
 
