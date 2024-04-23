@@ -1,6 +1,9 @@
-<div modal-content>
+<div header-model>
   <h2>Adicionar Despesa</h2>
-  <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()">
+</div>
+
+<div modal-content>
+  <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
     <div class="form-field">
       <label for="item">Item</label>
       <input id="item" type="text" formControlName="item" />
