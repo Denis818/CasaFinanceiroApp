@@ -3,39 +3,134 @@
 </div>
 
 <div modal-content>
-  <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
-    <div class="form-field">
-      <label for="item">Item</label>
-      <input id="item" type="text" formControlName="item" />
-    </div>
-
-    <div class="form-field">
-      <label for="preco">Preço</label>
-      <input id="preco" type="number" formControlName="preco" />
-    </div>
-
-    <div class="form-field">
-      <label for="quantidade">Quantidade</label>
-      <input id="quantidade" type="number" formControlName="quantidade" />
-    </div>
-
-    <div class="form-field">
-      <label for="fornecedor">Fornecedor</label>
-      <input id="fornecedor" type="text" formControlName="fornecedor" />
-    </div>
-
-    <div class="form-field">
-      <label for="dataCompra">Data da Compra</label>
-      <input id="dataCompra" type="text" formControlName="dataCompra" />
-    </div>
-
-    <div class="select-container" style="width: 200px">
+  <form
+    [formGroup]="despesaForm"
+    (ngSubmit)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    form-custom
+  >
+    <div class="select-wrapper" style="width: 200px">
       <label for="categoria">Categoria</label>
-      <select id="categoria" formControlName="categoriaId">
+      <select id="categoria" formControlName="categoriaId" title="Categoria">
+        <option value="0">Selecione uma categoria:</option>
         <option *ngFor="let categoria of categorias" [value]="categoria.id">
           {{ categoria.descricao }}
         </option>
       </select>
+    </div>
+
+    <div class="form-field">
+      <label for="item">Item</label>
+      <input
+        id="item"
+        type="text"
+        formControlName="item"
+        [ngClass]="{
+          'is-invalid':
+            vendaValidator.item.errors && vendaValidator.item.touched
+        }"
+      />
+      <div *ngIf="vendaValidator.item.errors?.required" invalid-feedback>
+        Item é obrigatório.
+      </div>
+      <div *ngIf="vendaValidator.item.errors?.minlength" invalid-feedback>
+        Item deve ter no mínimo 4 caracteres
+      </div>
+      <div *ngIf="vendaValidator.item.errors?.maxlength" invalid-feedback>
+        Item deve ter no maxímo 80 caracteres
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="preco">Preço</label>
+      <input
+        id="preco"
+        type="number"
+        formControlName="preco"
+        [ngClass]="{
+          'is-invalid':
+            vendaValidator.preco.errors && vendaValidator.preco.touched
+        }"
+      />
+      <div *ngIf="vendaValidator.preco.errors?.required" invalid-feedback>
+        Preço é obrigatório.
+      </div>
+
+      <div *ngIf="vendaValidator.preco.errors?.min" invalid-feedback>
+        Preço não pode ser menor que 0.01.
+      </div>
+      <div *ngIf="vendaValidator.preco.errors?.max" invalid-feedback>
+        Preço não pode ser maior que 99999.
+      </div>
+      <div *ngIf="vendaValidator.preco.errors?.pattern" invalid-feedback>
+        Preço não é valido.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="quantidade">Quantidade</label>
+      <input
+        id="quantidade"
+        type="number"
+        formControlName="quantidade"
+        [ngClass]="{
+          'is-invalid':
+            vendaValidator.quantidade.errors &&
+            vendaValidator.quantidade.touched
+        }"
+      />
+      <div *ngIf="vendaValidator.quantidade.errors?.required" invalid-feedback>
+        Quantidade é obrigatória.
+      </div>
+      <div *ngIf="vendaValidator.quantidade.errors?.pattern" invalid-feedback>
+        Quantidade não é valida.
+      </div>
+      <div *ngIf="vendaValidator.quantidade.errors?.min" invalid-feedback>
+        Quantidade não pode ser menor que 1.
+      </div>
+      <div *ngIf="vendaValidator.quantidade.errors?.max" invalid-feedback>
+        Quantidade não pode ser maior que 99999.
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="fornecedor">Fornecedor</label>
+      <input
+        id="fornecedor"
+        type="text"
+        formControlName="fornecedor"
+        [ngClass]="{
+          'is-invalid':
+            vendaValidator.fornecedor.errors &&
+            vendaValidator.fornecedor.touched
+        }"
+      />
+      <div *ngIf="vendaValidator.fornecedor.errors?.required" invalid-feedback>
+        Fornecedor é obrigatório.
+      </div>
+      <div *ngIf="vendaValidator.fornecedor.errors?.minlength" invalid-feedback>
+        Fornecedor deve ter no mínimo 4 caracteres
+      </div>
+      <div *ngIf="vendaValidator.fornecedor.errors?.maxlength" invalid-feedback>
+        Fornecedor deve ter no maxímo 80 caracteres
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="dataCompra">Data da Compra</label>
+      <input
+        id="dataCompra"
+        type="text"
+        formControlName="dataCompra"
+        [ngClass]="{
+          'is-invalid':
+            vendaValidator.dataCompra.errors &&
+            vendaValidator.dataCompra.touched
+        }"
+      />
+      <div *ngIf="vendaValidator.dataCompra.errors?.maxlength" invalid-feedback>
+        Data da compra e obrigatória.
+      </div>
     </div>
 
     <div class="form-actions">

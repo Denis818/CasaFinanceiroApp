@@ -91,29 +91,12 @@ export class PainelControlePage implements OnInit {
   //#endregion
 
   //#region Create
-
   openModalInsertDespesa(): void {
     const dialogRef = this.dialog.open(ModalDespesaComponent, {
       width: '400px',
     });
-
-    dialogRef.afterClosed().subscribe((result: Despesa | undefined) => {
-      console.log('Dialog closed with:', result);
-      if (result) {
-        this.inserirDespesa(result);
-      }
-    });
-  }
-
-  inserirDespesa(despesa: Despesa): void {
-    this.painelService.insert(despesa, 'Despesa').subscribe({
-      next: () => {
-        this.toastr.success(
-          'Alterações realizadas com sucesso!',
-          'Finalizado!'
-        );
-        this.getAllDespesas();
-      },
+    dialogRef.componentInstance.despesaInserida.subscribe(() => {
+      this.getAllDespesas();
     });
   }
   //#endregion
