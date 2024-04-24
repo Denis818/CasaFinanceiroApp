@@ -11,7 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
@@ -32,10 +34,13 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatDatepickerModule,
     MatNativeDateModule,
     CurrencyMaskModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
 })
 export class ModalDespesaComponent {
   despesaForm: FormGroup;
+
   get vendaValidator(): any {
     return this.despesaForm.controls;
   }
@@ -43,6 +48,7 @@ export class ModalDespesaComponent {
   @Output() despesaInserida = new EventEmitter<void>();
 
   categorias: Categoria[] = [];
+  dropdownOpen = false;
 
   constructor(
     private painelService: PainelControleService,
