@@ -74,6 +74,60 @@
       }
     }
   }
+  .select-container {
+    font-family: Arial, sans-serif;
+    width: 200px; /* Como especificado inline no seu HTML */
+    margin: 20px auto; /* Centralizado horizontalmente */
+    position: relative;
+  }
+
+  .select-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 16px;
+  }
+
+  .select-container select {
+    width: 100%;
+    padding: 10px 10px 10px 10px; /* Ajustado para ter espaço igual ao redor */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  /* Estilo para o seletor de seta customizado */
+  .select-container::after {
+    content: "▼";
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+  }
+
+  .select-container select:focus {
+    border-color: #0056b3;
+    outline: none;
+  }
+
+  /* Efeito visual para o hover do select */
+  .select-container select:hover {
+    background-color: #f2f2f2;
+  }
+
+  /* Mudança de cor do background ao selecionar */
+  .select-container select:active {
+    background-color: #e8e8e8;
+  }
 
   [header-model] {
     background-color: #673ab7;

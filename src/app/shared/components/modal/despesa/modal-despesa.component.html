@@ -29,9 +29,9 @@
       <input id="dataCompra" type="text" formControlName="dataCompra" />
     </div>
 
-    <div>
+    <div class="select-container" style="width: 200px">
       <label for="categoria">Categoria</label>
-      <select id="categoria" formControlName="categoria">
+      <select id="categoria" formControlName="categoriaId">
         <option *ngFor="let categoria of categorias" [value]="categoria.id">
           {{ categoria.descricao }}
         </option>

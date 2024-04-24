@@ -44,6 +44,7 @@ export class ModalDespesaComponent {
       preco: 0.01,
       quantidade: 1,
       fornecedor: 'Epa',
+      categoriaId: 0,
       dataCompra: this.formatDate(new Date()),
     });
 
@@ -73,5 +74,16 @@ export class ModalDespesaComponent {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
+  }
+
+  resetForm(): void {
+    this.despesaForm.reset({
+      item: 'item',
+      preco: 0.01,
+      quantidade: 1,
+      fornecedor: 'Epa',
+      categoriaId: this.despesaForm.value.categoriaId,
+      dataCompra: this.formatDate(new Date()),
+    });
   }
 }
