@@ -71,7 +71,7 @@
         }
       }
 
-      & [options-title]{
+      & [options-title] {
         position: relative;
         margin-top: 2px;
         right: 13%;
@@ -174,8 +174,8 @@
           top: 8px;
         }
 
-        & .botao-title {
-          left: 1%;
+        & [options-title] {
+          left: 2%;
         }
       }
     }
