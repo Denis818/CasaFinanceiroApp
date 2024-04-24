@@ -42,29 +42,25 @@
     </div>
 
     <div class="form-field">
-      <label for="preco">Preço</label>
+      <label>Preço</label>
       <input
-        id="preco"
         type="text"
         formControlName="preco"
         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         currencyMask
-        style="text-align: left !important"
         [ngClass]="{
           'is-invalid':
             vendaValidator.preco.errors && vendaValidator.preco.touched
         }"
       />
-
       <div *ngIf="vendaValidator.preco.errors?.required" invalid-feedback>
         Preço é obrigatório.
       </div>
-
       <div *ngIf="vendaValidator.preco.errors?.min" invalid-feedback>
         Preço não pode ser menor que 0.01.
       </div>
       <div *ngIf="vendaValidator.preco.errors?.max" invalid-feedback>
-        Preço não pode ser maior que 99999.
+        Preço não pode ser maior que R$ 999.999,99.
       </div>
       <div *ngIf="vendaValidator.preco.errors?.pattern" invalid-feedback>
         Preço não é valido.
@@ -72,9 +68,8 @@
     </div>
 
     <div class="form-field">
-      <label for="quantidade">Quantidade</label>
+      <label>Quantidade</label>
       <input
-        id="quantidade"
         type="number"
         formControlName="quantidade"
         [ngClass]="{
@@ -98,9 +93,8 @@
     </div>
 
     <div class="form-field">
-      <label for="fornecedor">Fornecedor</label>
+      <label>Fornecedor</label>
       <input
-        id="fornecedor"
         type="text"
         formControlName="fornecedor"
         [ngClass]="{
@@ -121,9 +115,8 @@
     </div>
 
     <div class="form-field">
-      <label for="dataCompra">Data da Compra</label>
+      <label>Data da Compra</label>
       <input
-        id="dataCompra"
         type="text"
         formControlName="dataCompra"
         [ngClass]="{
@@ -141,7 +134,10 @@
       <button type="button" class="btn btn-cancel" (click)="onClose()">
         Cancelar
       </button>
-      <button type="submit" class="btn">Salvar</button>
+      <button type="submit" class="btn" [disabled]="!despesaForm.valid">
+        Salvar
+      </button>
+   
     </div>
   </form>
 </div>

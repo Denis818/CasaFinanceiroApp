@@ -121,7 +121,7 @@ export class ModalDespesaComponent {
           Validators.required,
           Validators.pattern('^[0-9,.]+$'),
           Validators.min(0.01),
-          Validators.max(99999.99),
+          Validators.max(999999.99),
         ],
       ],
       quantidade: [
@@ -150,7 +150,7 @@ export class ModalDespesaComponent {
       preco: 1,
       quantidade: 1,
       fornecedor: 'Epa',
-      categoriaId: this.despesaForm?.value?.categoriaId,
+      categoriaId: this.despesaForm.value.categoriaId || 0,
       dataCompra: this.formatDate(new Date()),
     });
   }

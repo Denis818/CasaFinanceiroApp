@@ -11,14 +11,14 @@
       .form-field {
         margin-bottom: 15px;
 
-        & label {
+        label {
           display: block;
           margin-bottom: 5px;
           color: #673ab7;
           font-weight: bold;
         }
 
-        & input,
+        input,
         button {
           width: 100%;
           padding: 10px;
@@ -32,6 +32,10 @@
           }
         }
 
+        input {
+          text-align: left !important;
+        }
+
         [invalid-feedback] {
           color: red;
         }
@@ -43,41 +47,45 @@
         margin-top: 20px;
 
         .btn {
-          background-color: #673ab7;
-          color: white;
           cursor: pointer;
           border: none;
           border-radius: 20px;
           padding: 10px 20px;
           text-transform: uppercase;
           font-weight: bold;
-          transition: background-color 0.3s ease;
+          background-color: #e0e0e0;
+          color: #a3a3a3;
 
-          &:hover {
-            background-color: #5e35b1;
-          }
-
-          & .btn-primary {
-            background-color: #673ab7;
+          &:not(:disabled) {
             color: white;
-          }
+            background-color: #673ab7;
+            transition: background-color 200ms ease, transform 200ms ease;
 
-          & .btn-primary:hover {
-            background-color: #5e35b1;
+            &:hover {
+              transform: translateY(-1px);
+            }
           }
 
           &.btn-cancel {
-            background-color: #f7f5fb;
+            background-color: #ddccff;
             color: #673ab7;
-          }
+            transition: background-color 200ms ease, transform 200ms ease;
 
-          & .btn-cancel:hover {
-            background-color: #f2f2f2;
+            &:hover {
+              background-color: #b894ff;
+              transform: translateY(-1px);
+            }
           }
         }
       }
     }
   }
+  .btn.btn-disabled:disabled {
+    background-color: red;
+    color: white;
+    /* Outros estilos específicos */
+  }
+
   /* -------------------------------------------------------------- */
   .select-wrapper {
     position: relative;
