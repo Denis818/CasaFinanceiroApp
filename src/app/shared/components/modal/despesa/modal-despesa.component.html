@@ -45,13 +45,17 @@
       <label for="preco">Preço</label>
       <input
         id="preco"
-        type="number"
+        type="text"
         formControlName="preco"
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        currencyMask
+        style="text-align: left !important"
         [ngClass]="{
           'is-invalid':
             vendaValidator.preco.errors && vendaValidator.preco.touched
         }"
       />
+
       <div *ngIf="vendaValidator.preco.errors?.required" invalid-feedback>
         Preço é obrigatório.
       </div>

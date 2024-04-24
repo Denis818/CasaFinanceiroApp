@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
@@ -30,6 +31,7 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    CurrencyMaskModule,
   ],
 })
 export class ModalDespesaComponent {
@@ -119,7 +121,7 @@ export class ModalDespesaComponent {
           Validators.required,
           Validators.pattern('^[0-9,.]+$'),
           Validators.min(0.01),
-          Validators.max(99999),
+          Validators.max(99999.99),
         ],
       ],
       quantidade: [
@@ -145,7 +147,7 @@ export class ModalDespesaComponent {
   resetForm(): void {
     this.despesaForm.reset({
       item: 'item',
-      preco: 0.01,
+      preco: 1,
       quantidade: 1,
       fornecedor: 'Epa',
       categoriaId: this.despesaForm?.value?.categoriaId,
