@@ -71,7 +71,7 @@
         }
       }
 
-      & .botao-title {
+      & [options-title]{
         position: relative;
         margin-top: 2px;
         right: 13%;
@@ -165,7 +165,7 @@
 
       & [botao-add] {
         width: 100%;
-        padding: 8px 40px;
+        padding: 11px 40px;
         margin-top: 10px;
         justify-content: flex-start;
 
