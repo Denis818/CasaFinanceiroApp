@@ -14,7 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Membro } from '../../interfaces/membro.interface';
-import { ModalDespesaComponent } from '../../modal/despesa/modal-despesa.component';
+import { ModalDespesaComponent } from '../../modal/create/despesa/modal-despesa.component';
+import { ConfirmDeleteComponent } from '../../modal/delete/confirm-delete.component';
 import { PainelControleService } from '../../services/painel-controle.service';
 import { Categoria } from './../../interfaces/categoria.interface';
 import { Despesa } from './../../interfaces/despesa.interface';
@@ -33,6 +34,7 @@ import { Despesa } from './../../interfaces/despesa.interface';
     MatTableModule,
     MatDialogModule,
     ModalDespesaComponent,
+    ConfirmDeleteComponent,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
@@ -101,29 +103,29 @@ export class PainelControlePage implements OnInit {
   }
   //#endregion
 
-  //#region Update
+  //#region Update categoria
   toggleEdit(categoria: Categoria): void {
     categoria.isEditing = !categoria.isEditing;
-    categoria.valueAtual = categoria.descricao;
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    if (categoria.descricao != categoria.valueAtual) {
-      this.painelService.update(id, categoria, 'Categoria').subscribe({
-        next: () => {
-          this.toastr.success(
-            'Alterações realizadas com sucesso!',
-            'Finalizado!'
-          );
-          categoria.isEditing = false;
-          this.getAllCategorias();
-        },
-      });
-    }
+    this.painelService.update(id, categoria, 'Categoria').subscribe({
+      next: () => {
+        this.toastr.success(
+          'Alterações realizadas com sucesso!',
+          'Finalizado!'
+        );
+        categoria.isEditing = false;
+        this.getAllCategorias();
+      },
+    });
+
     categoria.isEditing = false;
     this.getAllCategorias();
   }
+  //#endregion
 
+  //#region Update Despesa
   toggleEditDespesa(despesa: Despesa): void {
     despesa.isEditing = !despesa.isEditing;
   }
@@ -131,10 +133,7 @@ export class PainelControlePage implements OnInit {
     despesa.categoriaId = despesa.categoria.id;
     this.painelService.update(id, despesa, 'Despesa').subscribe({
       next: () => {
-        this.toastr.success(
-          'Alterações realizadas com sucesso!',
-          'Finalizado!'
-        );
+        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         despesa.isEditing = false;
         this.getAllDespesas();
       },
@@ -143,5 +142,30 @@ export class PainelControlePage implements OnInit {
     despesa.isEditing = false;
     this.getAllDespesas();
   }
+  //#endregion
+
+  //#region Delete Despesa
+  openDialog(despesaId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '250px',
+      data: { despesaId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteDespesa(despesaId);
+      }
+    });
+  }
+
+  deleteDespesa(despesaId: number): void {
+    this.painelService.delete(despesaId, 'Despesa').subscribe({
+      next: () => {
+        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        this.getAllDespesas();
+      },
+    });
+  }
+
   //#endregion
 }

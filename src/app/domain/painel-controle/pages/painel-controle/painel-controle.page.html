@@ -50,7 +50,8 @@
       <th>Quantidade</th>
       <th>Total</th>
       <th>Data da compra</th>
-      <th>Opções</th>
+      <th>Editar</th>
+      <th>Excluir</th>
     </tr>
   </thead>
   <tbody>
@@ -67,19 +68,7 @@
         </div>
         <ng-template #viewItem>{{ despesa.item }}</ng-template>
       </td>
-      <td>
-        <div *ngIf="despesa.isEditing; else viewCategoria">
-          <input
-            type="text"
-            [(ngModel)]="despesa.categoria.descricao"
-            (blur)="updateDespesa(despesa.id, despesa)"
-            (keyup.enter)="updateDespesa(despesa.id, despesa)"
-          />
-        </div>
-        <ng-template #viewCategoria
-          >{{ despesa.categoria.descricao }}</ng-template
-        >
-      </td>
+      <td>{{ despesa.categoria.descricao }}</td>
       <td>
         <div *ngIf="despesa.isEditing; else viewFornecedor">
           <input
@@ -117,9 +106,11 @@
       </td>
       <td>{{ despesa.total | currency:'BRL' }}</td>
       <td>{{ despesa.dataCompra }}</td>
-
-      <td>
+      <td space>
         <mat-icon (click)="toggleEditDespesa(despesa)">edit</mat-icon>
+      </td>
+      <td space>
+        <mat-icon (click)="openDialog(despesa.id)">delete</mat-icon>
       </td>
     </tr>
   </tbody>

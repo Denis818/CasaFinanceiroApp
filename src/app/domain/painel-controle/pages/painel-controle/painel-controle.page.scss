@@ -90,38 +90,22 @@
 
     th,
     td {
-      text-align: left;
-      padding: 12px;
-      border-bottom: 1px solid #e0e0e0;
-      border-right: 1px solid #e0e0e0;
+      text-align: center;
+
+      border: 1px solid #e0e0e0;
     }
 
-    th:last-child,
-    td:last-child {
-      border-right: none;
-    }
+
 
     th {
       background-color: #f7f7f7;
+      padding: 12px;
     }
 
     td {
       color: #708090;
+      padding: 3px;
     }
-  }
-
-  .button {
-    padding: 8px 16px;
-    color: white;
-    background-color: #0056b3;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .button:hover {
-    background-color: #004494;
   }
 
   .table-editable {
@@ -148,6 +132,10 @@
     & .mat-icon {
       cursor: pointer;
       color: #673ab7;
+    }
+
+    [space] {
+      margin-left: 10px;
     }
   }
   @media screen and (max-width: 600px) {
