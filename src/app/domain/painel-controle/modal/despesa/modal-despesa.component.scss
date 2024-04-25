@@ -24,37 +24,6 @@
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
-
-        .btn {
-          cursor: pointer;
-          border: none;
-          border-radius: 20px;
-          padding: 10px 20px;
-          text-transform: uppercase;
-          font-weight: bold;
-          background-color: #e0e0e0;
-          color: #a3a3a3;
-
-          &:not(:disabled) {
-            color: white;
-            background-color: #673ab7;
-            transition: background-color 200ms ease, transform 200ms ease;
-
-            &:hover {
-              transform: translateY(-1px);
-            }
-          }
-
-          &.btn-cancel {
-            background-color: #ddccff;
-            color: #673ab7;
-            transition: background-color 200ms ease, transform 200ms ease;
-
-            &:hover {
-              transform: translateY(-1px);
-            }
-          }
-        }
       }
 
       ::ng-deep {

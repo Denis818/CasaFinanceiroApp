@@ -1,6 +1,6 @@
 import { Categoria } from './categoria.interface';
 
-export interface Despesa {
+export class Despesa {
   id: number;
   dataCompra: Date;
   item: string;
@@ -10,4 +10,5 @@ export interface Despesa {
   total: number;
   categoria: Categoria;
   categoriaId: number;
+  isEditing?: boolean = false;
 }

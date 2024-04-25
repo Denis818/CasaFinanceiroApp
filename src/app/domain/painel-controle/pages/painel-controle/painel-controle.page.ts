@@ -109,7 +109,6 @@ export class PainelControlePage implements OnInit {
 
   updateCategoria(id: number, categoria: Categoria): void {
     if (categoria.descricao != categoria.valueAtual) {
-      console.log('chamou');
       this.painelService.update(id, categoria, 'Categoria').subscribe({
         next: () => {
           this.toastr.success(
@@ -123,6 +122,26 @@ export class PainelControlePage implements OnInit {
     }
     categoria.isEditing = false;
     this.getAllCategorias();
+  }
+
+  toggleEditDespesa(despesa: Despesa): void {
+    despesa.isEditing = !despesa.isEditing;
+  }
+  updateDespesa(id: number, despesa: Despesa): void {
+    despesa.categoriaId = despesa.categoria.id;
+    this.painelService.update(id, despesa, 'Despesa').subscribe({
+      next: () => {
+        this.toastr.success(
+          'Alterações realizadas com sucesso!',
+          'Finalizado!'
+        );
+        despesa.isEditing = false;
+        this.getAllDespesas();
+      },
+    });
+
+    despesa.isEditing = false;
+    this.getAllDespesas();
   }
   //#endregion
 }

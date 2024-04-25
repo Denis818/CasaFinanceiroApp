@@ -85,25 +85,29 @@
     margin-bottom: 15px;
   }
 
-  /* Estilização das Tabelas */
   table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
 
-  th,
-  td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
+    th,
+    td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+    }
 
-  th {
-    background-color: #f8f8f8;
-    color: #333;
+    th:last-child,
+    td:last-child {
+      border-right: none;
+    }
+
+    th {
+      background-color: #f7f7f7;
+    }
+
+    td {
+      color: #708090;
+    }
   }
 
   .button {

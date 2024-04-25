@@ -96,7 +96,6 @@ export class ModalDespesaComponent {
     return `${day}-${month}-${year}`;
   }
   id: number;
-  dataCompra: Date;
   item: string;
   preco: number;
   quantidade: number;
@@ -107,7 +106,6 @@ export class ModalDespesaComponent {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      dataCompra: ['', [Validators.required]],
       categoriaId: [
         '',
         [Validators.required, Validators.pattern('^[1-9][0-9]*$')],
@@ -157,7 +155,6 @@ export class ModalDespesaComponent {
       quantidade: 1,
       fornecedor: 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 0,
-      dataCompra: this.formatDate(new Date()),
     });
   }
 }

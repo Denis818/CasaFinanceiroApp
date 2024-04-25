@@ -39,7 +39,7 @@
 </div>
 
 <!-- Tabela de Despesas -->
-<table>
+<table class="table-editable">
   <thead>
     <tr>
       <th>Id</th>
@@ -50,21 +50,81 @@
       <th>Quantidade</th>
       <th>Total</th>
       <th>Data da compra</th>
+      <th>Opções</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let despesa of despesas">
       <td>{{ despesa.id }}</td>
-      <td>{{ despesa.item }}</td>
-      <td>{{ despesa.categoria.descricao }}</td>
-      <td>{{ despesa.fornecedor }}</td>
-      <td>{{ despesa.preco | currency:'BRL' }}</td>
-      <td>{{ despesa.quantidade }}</td>
+      <td>
+        <div *ngIf="despesa.isEditing; else viewItem">
+          <input
+            type="text"
+            [(ngModel)]="despesa.item"
+            (blur)="updateDespesa(despesa.id, despesa)"
+            (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          />
+        </div>
+        <ng-template #viewItem>{{ despesa.item }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="despesa.isEditing; else viewCategoria">
+          <input
+            type="text"
+            [(ngModel)]="despesa.categoria.descricao"
+            (blur)="updateDespesa(despesa.id, despesa)"
+            (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          />
+        </div>
+        <ng-template #viewCategoria
+          >{{ despesa.categoria.descricao }}</ng-template
+        >
+      </td>
+      <td>
+        <div *ngIf="despesa.isEditing; else viewFornecedor">
+          <input
+            type="text"
+            [(ngModel)]="despesa.fornecedor"
+            (blur)="updateDespesa(despesa.id, despesa)"
+            (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          />
+        </div>
+        <ng-template #viewFornecedor>{{ despesa.fornecedor }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="despesa.isEditing; else viewPreco">
+          <input
+            type="text"
+            [(ngModel)]="despesa.preco"
+            (blur)="updateDespesa(despesa.id, despesa)"
+            (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          />
+        </div>
+        <ng-template #viewPreco
+          >{{ despesa.preco | currency:'BRL' }}</ng-template
+        >
+      </td>
+      <td>
+        <div *ngIf="despesa.isEditing; else viewQuantidade">
+          <input
+            type="text"
+            [(ngModel)]="despesa.quantidade"
+            (blur)="updateDespesa(despesa.id, despesa)"
+            (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          />
+        </div>
+        <ng-template #viewQuantidade>{{ despesa.quantidade }}</ng-template>
+      </td>
       <td>{{ despesa.total | currency:'BRL' }}</td>
       <td>{{ despesa.dataCompra }}</td>
+
+      <td>
+        <mat-icon (click)="toggleEditDespesa(despesa)">edit</mat-icon>
+      </td>
     </tr>
   </tbody>
 </table>
+
 <mat-paginator
   #paginator
   class="demo-paginator"

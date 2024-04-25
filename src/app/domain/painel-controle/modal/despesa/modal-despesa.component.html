@@ -121,24 +121,6 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Data da Compra</mat-label>
-      <input
-        matInput
-        formControlName="dataCompra"
-        [ngClass]="{
-          'is-invalid':
-            vendaValidator.dataCompra.errors &&
-            vendaValidator.dataCompra.touched
-        }"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="vendaValidator.dataCompra.hasError('required')">
-        Data da compra é obrigatória.
-      </mat-error>
-    </mat-form-field>
-
     <div class="form-actions">
       <button mat-raised-button color="primary" (click)="onClose()">
         Cancelar
