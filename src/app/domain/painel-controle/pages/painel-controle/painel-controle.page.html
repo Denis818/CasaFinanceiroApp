@@ -1,5 +1,5 @@
 <div options-header>
-  <input type="text" name="firstname" placeholder="Buscar por item..." />
+<input type="text" name="filtro" placeholder="Buscar por item..." [(ngModel)]="filtroTexto" (input)="onInputChange()" />
 
   <button botao-add (click)="openModalInsertCategoria()">
     <div icon-bg>
@@ -66,7 +66,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let despesa of despesas">
+    <tr *ngFor="let despesa of despesasFiltradas">
       <td>{{ despesa.id }}</td>
       <td>
         <div *ngIf="despesa.isEditing; else viewItem">

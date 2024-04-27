@@ -14,13 +14,13 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Membro } from '../../interfaces/membro.interface';
+import { ModalCategoriaComponent } from '../../modal/create/categoria/modal-categoria.component';
 import { ModalDespesaComponent } from '../../modal/create/despesa/modal-despesa.component';
 import { ModalMembroComponent } from '../../modal/create/membro/modal-membro.component';
 import { ConfirmDeleteComponent } from '../../modal/delete/confirm-delete.component';
 import { PainelControleService } from '../../services/painel-controle.service';
 import { Categoria } from './../../interfaces/categoria.interface';
 import { Despesa } from './../../interfaces/despesa.interface';
-import { ModalCategoriaComponent } from '../../modal/create/categoria/modal-categoria.component';
 
 @Component({
   selector: 'app-painel-controle-page',
@@ -43,9 +43,12 @@ import { ModalCategoriaComponent } from '../../modal/create/categoria/modal-cate
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class PainelControlePage implements OnInit {
-  despesas: Despesa[];
   membros: Membro[];
   categorias: Categoria[];
+
+  despesas: Despesa[];
+  despesasFiltradas: Despesa[];
+  filtroTexto: string = '';
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -66,12 +69,29 @@ export class PainelControlePage implements OnInit {
     this.getAllDespesas();
   }
 
+  //#region Filters
+  filterDespesas() {
+    if (this.filtroTexto.trim() === '') {
+      this.despesasFiltradas = this.despesas;
+    } else {
+      this.despesasFiltradas = this.despesas.filter((despesa) =>
+        despesa.item.toLowerCase().includes(this.filtroTexto.toLowerCase())
+      );
+    }
+  }
+
+  onInputChange() {
+    this.filterDespesas();
+  }
+  //#endregion
+
   //#region Gets
   getAllDespesas() {
     this.painelService
       .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
       .subscribe((data) => {
         this.despesas = data.itens;
+        this.despesasFiltradas = data.itens;
         this.page.totalItens = data.totalItens;
         this.page.paginaAtual = data.paginaAtual;
       });
