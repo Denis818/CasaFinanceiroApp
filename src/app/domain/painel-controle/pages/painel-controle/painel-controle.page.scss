@@ -1,108 +1,113 @@
 :host {
-  [options-header] {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #efefef;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1%;
-    transition: box-shadow 0.2s ease-in-out;
+  [painel-controle] {
+    margin-right: 30px;
 
-    &:hover {
-      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
-      transform: translateY(-1px);
-    }
-
-    [botao-add] {
-      position: relative;
-      background-color: #6a00cb;
-      color: #ffffff;
-      padding: 10px 0px 10px 60px;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      outline: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s, box-shadow 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    [options-header] {
+      width: 100%;
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #efefef;
+      border: 1px solid #ddd;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1%;
+      transition: box-shadow 0.2s ease-in-out;
 
       &:hover {
         box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
         transform: translateY(-1px);
       }
 
-      & [icon-bg] {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        left: -4px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 42px;
-        height: 40px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        transition: box-shadow 0.3s ease;
-
-        & .icon-position {
-          height: 20px;
-          z-index: 1;
-        }
-      }
-
-      & [options-title] {
+      [botao-add] {
         position: relative;
-        margin-top: 2px;
-        right: 13%;
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    [options-header] {
-      flex-direction: column;
-      align-items: stretch;
-      padding: 10px;
-      margin-bottom: 10px;
-      transition: none;
-
-      &:hover {
+        background-color: #6a00cb;
+        color: #ffffff;
+        padding: 10px 0px 10px 60px;
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        outline: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transform: none;
-      }
+        transition: background-color 0.3s, box-shadow 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
 
-      & input[type="text"] {
-        width: 100%;
-      }
+        &:hover {
+          box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+          transform: translateY(-1px);
+        }
 
-      & [botao-add] {
-        width: 100%;
-        padding: 11px 40px;
-        margin-top: 10px;
-        justify-content: flex-start;
+        & [icon-bg] {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          left: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 42px;
+          height: 40px;
+          background-color: #ffffff;
+          border-radius: 50%;
+          transition: box-shadow 0.3s ease;
 
-        & .icon-position {
-          right: 3.9%;
-          top: 8px;
+          & .icon-position {
+            height: 20px;
+            z-index: 1;
+          }
         }
 
         & [options-title] {
-          left: 2%;
+          position: relative;
+          margin-top: 2px;
+          right: 13%;
         }
       }
     }
 
-    table {
-      input[type="text"] {
-        width: 100%;
+    @media screen and (max-width: 600px) {
+      [options-header] {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        margin-bottom: 10px;
+        transition: none;
+
+        &:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          transform: none;
+        }
+
+        & input[type="text"] {
+          width: 100%;
+        }
+
+        & [botao-add] {
+          width: 100%;
+          padding: 11px 40px;
+          margin-top: 10px;
+          justify-content: flex-start;
+
+          & .icon-position {
+            right: 3.9%;
+            top: 8px;
+          }
+
+          & [options-title] {
+            left: 2%;
+          }
+        }
+      }
+
+      table {
+        input[type="text"] {
+          width: 100%;
+        }
       }
     }
   }

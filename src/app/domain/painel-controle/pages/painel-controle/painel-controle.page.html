@@ -1,41 +1,43 @@
-<div options-header>
-  <button botao-add (click)="openModalInsertCategoria()">
-    <div icon-bg>
-      <img
-        class="icon-position"
-        src="../../../../../assets/icons/nova-categoria.svg"
-        alt="Ícone de nova-categoria"
-      />
-    </div>
+<div painel-controle>
+  <div options-header>
+    <button botao-add (click)="openModalInsertCategoria()">
+      <div icon-bg>
+        <img
+          class="icon-position"
+          src="../../../../../assets/icons/nova-categoria.svg"
+          alt="Ícone de nova-categoria"
+        />
+      </div>
 
-    <span options-title>Nova Categoria</span>
-  </button>
+      <span options-title>Nova Categoria</span>
+    </button>
 
-  <button botao-add (click)="openModalInsertDespesa()">
-    <div icon-bg>
-      <img
-        class="icon-position"
-        src="../../../../../assets/icons/nova-compra.svg"
-        alt="Ícone de nova compra"
-      />
-    </div>
+    <button botao-add (click)="openModalInsertDespesa()">
+      <div icon-bg>
+        <img
+          class="icon-position"
+          src="../../../../../assets/icons/nova-compra.svg"
+          alt="Ícone de nova compra"
+        />
+      </div>
 
-    <span options-title>Nova Despesa</span>
-  </button>
+      <span options-title>Nova Despesa</span>
+    </button>
 
-  <button botao-add (click)="openModalInserirMembro()">
-    <div icon-bg>
-      <img
-        class="icon-position membro-position"
-        src="../../../../../assets/icons/novo-membro.svg"
-        alt="Ícone de novo-membro"
-      />
-    </div>
+    <button botao-add (click)="openModalInserirMembro()">
+      <div icon-bg>
+        <img
+          class="icon-position membro-position"
+          src="../../../../../assets/icons/novo-membro.svg"
+          alt="Ícone de novo-membro"
+        />
+      </div>
 
-    <span options-title>Novo Membro</span>
-  </button>
-  <button mat-button (click)="viewCategorias()">Ver Categorias</button>
-  <button mat-button (click)="viewMembros()">Ver Membros</button>
+      <span options-title>Novo Membro</span>
+    </button>
+    <button mat-button (click)="viewCategorias()">Ver Categorias</button>
+    <button mat-button (click)="viewMembros()">Ver Membros</button>
+  </div>
+
+  <app-view-despesa-modal></app-view-despesa-modal>
 </div>
-
-<app-view-despesa-modal></app-view-despesa-modal>

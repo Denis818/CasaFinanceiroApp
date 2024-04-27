@@ -1,129 +1,135 @@
 :host {
-  [card-container] {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    align-items: stretch;
+  [dashboard] {
+    width: 100%;
+    margin-right: 30px;
 
-    .card {
-      flex: 0 0 calc(50% - 10px);
-      text-align: center;
+    [card-container] {
       display: flex;
-      flex-direction: column;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      transition: box-shadow 0.4s ease-in-out;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+      align-items: stretch;
+      width: 100%;
 
-      &:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
-      }
-      .card-head {
-        background-color: #673ab7;
-        color: white;
-        padding: 10px;
-        border-radius: 8px 8px 0 0;
+      .card {
+        flex: 0 0 calc(50% - 10px);
+        text-align: center;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: box-shadow 0.4s ease-in-out;
 
-        [card-title] {
-          flex-grow: 1;
-          font-size: 20px;
-          text-align: center;
+        &:hover {
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
         }
-
-        [download-button] {
-          background-color: #fff;
-          color: #673ab7;
-          padding: 5px 5px;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 14px;
-          cursor: pointer;
-          border: none;
-          border-radius: 4px;
-          transition-duration: 0.4s;
-        }
-
-        [download-button]:hover {
-          background-color: #ffffffc4;
-          box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1),
-            0 17px 50px 0 rgba(0, 0, 0, 0.1);
-        }
-      }
-
-      .card-body {
-        flex-grow: 1;
-        border: 1px solid #ccc;
-        border-radius: 0px 0px 8px 8px;
-
-        .expense-item {
-          background-color: #fff;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          margin: 10px;
-          padding: 10px 20px;
+        .card-head {
+          background-color: #673ab7;
+          color: white;
+          padding: 10px;
+          border-radius: 8px 8px 0 0;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          color: #708090 !important;
-          transition: box-shadow 0.2s ease-in-out;
 
-          &:hover {
-            box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
+          [card-title] {
+            flex-grow: 1;
+            font-size: 20px;
+            text-align: center;
           }
 
-          .expense-title {
-            font-size: 14px;
-            color: #708090;
-            text-align: start;
-          }
-
-          .expense-value {
-            font-size: 18px;
-            font-weight: bold;
+          [download-button] {
+            background-color: #fff;
             color: #673ab7;
+            padding: 5px 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition-duration: 0.4s;
+          }
+
+          [download-button]:hover {
+            background-color: #ffffffc4;
+            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1),
+              0 17px 50px 0 rgba(0, 0, 0, 0.1);
           }
         }
 
-        table {
-          width: 100%;
+        .card-body {
+          flex-grow: 1;
+          border: 1px solid #ccc;
+          border-radius: 0px 0px 8px 8px;
 
-          th,
-          td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            border-right: 1px solid #e0e0e0;
+          .expense-item {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #708090 !important;
+            transition: box-shadow 0.2s ease-in-out;
+
+            &:hover {
+              box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
+            }
+
+            .expense-title {
+              font-size: 14px;
+              color: #708090;
+              text-align: start;
+            }
+
+            .expense-value {
+              font-size: 18px;
+              font-weight: bold;
+              color: #673ab7;
+            }
           }
 
-          th:last-child,
-          td:last-child {
-            border-right: none;
-          }
+          table {
+            width: 100%;
 
-          th {
-            background-color: #f7f7f7;
-          }
+            th,
+            td {
+              text-align: left;
+              padding: 12px;
+              border-bottom: 1px solid #e0e0e0;
+              border-right: 1px solid #e0e0e0;
+            }
 
-          td {
-            color: #708090;
+            th:last-child,
+            td:last-child {
+              border-right: none;
+            }
+
+            th {
+              background-color: #f7f7f7;
+            }
+
+            td {
+              color: #708090;
+            }
           }
         }
       }
     }
-  }
 
-  @media screen and (max-width: 600px) {
-    [card-container] {
-      .card {
-        flex: 1 1 100%;
-      }
+    @media screen and (max-width: 600px) {
+      [card-container] {
+        .card {
+          flex: 1 1 100%;
+        }
 
-      [download-button]:hover {
-        background-color: #fff;
-        box-shadow: none;
+        [download-button]:hover {
+          background-color: #fff;
+          box-shadow: none;
+        }
       }
     }
   }
