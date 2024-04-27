@@ -98,6 +98,7 @@ export class ViewDespesaModal {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllDespesas();
       },
+      error: () => this.getAllDespesas(),
     });
 
     despesa.isEditing = false;

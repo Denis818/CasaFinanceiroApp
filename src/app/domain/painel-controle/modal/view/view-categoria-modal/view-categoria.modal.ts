@@ -56,6 +56,7 @@ export class ViewCategoriaModal {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllCategorias();
       },
+      error: () => this.getAllCategorias(),
     });
 
     categoria.isEditing = false;

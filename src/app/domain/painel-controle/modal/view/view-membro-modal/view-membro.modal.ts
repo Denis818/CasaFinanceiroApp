@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
@@ -10,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Membro } from '../../../interfaces/membro.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'modal-view-membro',
@@ -54,10 +54,12 @@ export class ViewMembroModal {
     this.painelService.update(id, membro, 'Membro').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        this.getAllMembros();
       },
+      error: () => this.getAllMembros(),
     });
+
     membro.isEditing = false;
-    this.getAllMembros();
   }
   //#endregion
 
