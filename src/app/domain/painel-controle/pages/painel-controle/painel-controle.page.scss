@@ -33,9 +33,6 @@
         outline: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s, box-shadow 0.3s;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
 
         &:hover {
           box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);

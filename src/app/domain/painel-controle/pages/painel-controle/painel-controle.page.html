@@ -35,8 +35,13 @@
 
       <span options-title>Novo Membro</span>
     </button>
-    <button mat-button (click)="viewCategorias()">Ver Categorias</button>
-    <button mat-button (click)="viewMembros()">Ver Membros</button>
+
+    <button mat-stroked-button color="primary" (click)="viewCategorias()">
+      Ver Categorias
+    </button>
+    <button mat-stroked-button color="primary" (click)="viewMembros()">
+      Ver Membros
+    </button>
   </div>
 
   <app-view-despesa-modal></app-view-despesa-modal>
