@@ -132,7 +132,6 @@ export class ModalDespesaComponent {
   resetForm(): void {
     this.despesaForm.reset({
       item: 'item',
-      preco: 1,
       quantidade: 1,
       fornecedor: 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 0,
