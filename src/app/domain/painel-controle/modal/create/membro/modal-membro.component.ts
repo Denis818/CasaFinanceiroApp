@@ -33,8 +33,6 @@ import { PainelControleService } from '../../../services/painel-controle.service
   ],
 })
 export class ModalMembroComponent {
-  @Output() membroInserida = new EventEmitter<void>();
-
   membroForm: FormGroup;
 
   get membroValidator(): any {
@@ -62,7 +60,6 @@ export class ModalMembroComponent {
 
           this.onClose();
           this.resetForm();
-          this.membroInserida.emit();
         },
       });
     }

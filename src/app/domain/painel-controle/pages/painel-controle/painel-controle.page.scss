@@ -79,12 +79,9 @@
     }
   }
 
-/*----------------------------------------------------------------------------------------------------------------- */
-
   table {
     width: 100%;
     table-layout: fixed;
-    margin-bottom: 30px;
 
     th,
     td {
@@ -122,11 +119,6 @@
     [space] {
       margin-left: 40px;
     }
-  }
-
-  [paginator] {
-    display: flex;
-    justify-content: start;
   }
 
   @media screen and (max-width: 600px) {

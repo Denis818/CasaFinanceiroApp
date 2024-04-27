@@ -1,0 +1,31 @@
+<div membro-view>
+  <table>
+    <thead>
+      <th>Membro</th>
+      <th>Opções</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let membro of membros">
+        <td>
+          <div *ngIf="membro.isEditing; else viewNome">
+            <input
+              type="text"
+              [(ngModel)]="membro.nome"
+              (blur)="updateMembro(membro.id, membro)"
+              (keyup.enter)="updateMembro(membro.id, membro)"
+            />
+          </div>
+          <ng-template #viewNome>{{ membro.nome }}</ng-template>
+        </td>
+        <td>
+          <i>
+            <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+          </i>
+          <i space>
+            <mat-icon (click)="confirmDelete(membro.id)">delete</mat-icon>
+          </i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -13,13 +13,13 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-import { Membro } from '../../interfaces/membro.interface';
+import { ModalViewCategoria } from '../../modal/Read/modal-view-categoria/modal-view-categoria.component';
+import { ModalViewMembro } from '../../modal/Read/modal-view-membro/modal-view-membro.component';
 import { ModalCategoriaComponent } from '../../modal/create/categoria/modal-categoria.component';
 import { ModalDespesaComponent } from '../../modal/create/despesa/modal-despesa.component';
 import { ModalMembroComponent } from '../../modal/create/membro/modal-membro.component';
 import { ConfirmDeleteComponent } from '../../modal/delete/confirm-delete.component';
 import { PainelControleService } from '../../services/painel-controle.service';
-import { Categoria } from './../../interfaces/categoria.interface';
 import { Despesa } from './../../interfaces/despesa.interface';
 
 @Component({
@@ -39,13 +39,12 @@ import { Despesa } from './../../interfaces/despesa.interface';
     ModalMembroComponent,
     ConfirmDeleteComponent,
     ModalCategoriaComponent,
+    ModalViewCategoria,
+    ModalViewMembro,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class PainelControlePage implements OnInit {
-  membros: Membro[];
-  categorias: Categoria[];
-
   despesas: Despesa[];
   despesasFiltradas: Despesa[];
   filtroTexto: string = '';
@@ -64,8 +63,6 @@ export class PainelControlePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllCategorias();
-    this.getAllMembros();
     this.getAllDespesas();
   }
 
@@ -97,16 +94,18 @@ export class PainelControlePage implements OnInit {
       });
   }
 
-  getAllCategorias() {
-    this.painelService
-      .getAll<Categoria>('Categoria')
-      .subscribe((categorias) => (this.categorias = categorias));
+  viewCategorias() {
+    const dialogRef = this.dialog.open(ModalViewCategoria, {
+      width: '400px',
+    });
+    dialogRef.afterClosed();
   }
 
-  getAllMembros() {
-    this.painelService
-      .getAll<Membro>('Membro')
-      .subscribe((membros) => (this.membros = membros));
+  viewMembros() {
+    const dialogRef = this.dialog.open(ModalViewMembro, {
+      width: '400px',
+    });
+    dialogRef.afterClosed();
   }
 
   mudarPagina(event: PageEvent): void {
@@ -127,37 +126,21 @@ export class PainelControlePage implements OnInit {
   }
 
   openModalInserirMembro(): void {
-    const dialogRef = this.dialog.open(ModalMembroComponent, {
+    this.dialog.open(ModalMembroComponent, {
       width: '400px',
-    });
-    dialogRef.componentInstance.membroInserida.subscribe(() => {
-      this.getAllMembros();
     });
   }
 
   openModalInsertCategoria(): void {
-    const dialogRef = this.dialog.open(ModalCategoriaComponent, {
+    this.dialog.open(ModalCategoriaComponent, {
       width: '400px',
-    });
-    dialogRef.componentInstance.categoriaInserida.subscribe(() => {
-      this.getAllCategorias();
     });
   }
   //#endregion
 
   //#region Update
-  openEdit(souce: any): void {
-    souce.isEditing = !souce.isEditing;
-  }
-
-  updateCategoria(id: number, categoria: Categoria): void {
-    this.painelService.update(id, categoria, 'Categoria').subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllCategorias();
-      },
-    });
-    categoria.isEditing = false;
+  openEdit(despesa: Despesa): void {
+    despesa.isEditing = !despesa.isEditing;
   }
 
   updateDespesa(id: number, despesa: Despesa): void {
@@ -171,40 +154,17 @@ export class PainelControlePage implements OnInit {
 
     despesa.isEditing = false;
   }
-
-  updateMembro(id: number, membro: Membro): void {
-    this.painelService.update(id, membro, 'Membro').subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllMembros();
-      },
-    });
-    membro.isEditing = false;
-  }
   //#endregion
 
   //#region Delete
-  confirmDelete(id: number, source: string): void {
+  confirmDelete(idDespesa: number): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
-      data: source,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        switch (source) {
-          case 'Despesa':
-            this.deleteDespesa(id);
-            break;
-          case 'Membro':
-            this.deleteMembro(id);
-            break;
-          case 'Categoria':
-            this.deleteCategoria(id);
-            break;
-          default:
-            console.error('Tipo desconhecido', source);
-        }
+        this.deleteDespesa(idDespesa);
       }
     });
   }
@@ -214,24 +174,6 @@ export class PainelControlePage implements OnInit {
       next: () => {
         this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         this.getAllDespesas();
-      },
-    });
-  }
-
-  deleteMembro(membroId: number): void {
-    this.painelService.delete(membroId, 'Membro').subscribe({
-      next: () => {
-        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
-        this.getAllMembros();
-      },
-    });
-  }
-
-  deleteCategoria(categoriaId: number): void {
-    this.painelService.delete(categoriaId, 'Categoria').subscribe({
-      next: () => {
-        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
-        this.getAllCategorias();
       },
     });
   }

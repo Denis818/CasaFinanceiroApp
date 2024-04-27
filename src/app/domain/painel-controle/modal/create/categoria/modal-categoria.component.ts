@@ -12,6 +12,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { PainelControleService } from '../../../services/painel-controle.service';
+import { Categoria } from '../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'app-categoria',
@@ -28,8 +29,6 @@ import { PainelControleService } from '../../../services/painel-controle.service
   ],
 })
 export class ModalCategoriaComponent {
-  @Output() categoriaInserida = new EventEmitter<void>();
-
   categoriaForm: FormGroup;
 
   get categoriaValidator(): any {
@@ -59,7 +58,6 @@ export class ModalCategoriaComponent {
 
             this.onClose();
             this.resetForm();
-            this.categoriaInserida.emit();
           },
         });
     }

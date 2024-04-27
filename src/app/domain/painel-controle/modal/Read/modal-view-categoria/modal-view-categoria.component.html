@@ -1,0 +1,33 @@
+<div categoria-view>
+  <table>
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categoria of categorias">
+        <td>
+          <div *ngIf="categoria.isEditing; else viewDescricao">
+            <input
+              type="text"
+              [(ngModel)]="categoria.descricao"
+              (blur)="updateCategoria(categoria.id, categoria)"
+              (keyup.enter)="updateCategoria(categoria.id, categoria)"
+            />
+          </div>
+          <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
+        </td>
+        <td>
+          <i>
+            <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
+          </i>
+          <i space>
+            <mat-icon (click)="confirmDelete(categoria.id)">delete</mat-icon>
+          </i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
