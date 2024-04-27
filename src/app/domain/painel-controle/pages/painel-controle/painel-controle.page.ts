@@ -15,10 +15,12 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Membro } from '../../interfaces/membro.interface';
 import { ModalDespesaComponent } from '../../modal/create/despesa/modal-despesa.component';
+import { ModalMembroComponent } from '../../modal/create/membro/modal-membro.component';
 import { ConfirmDeleteComponent } from '../../modal/delete/confirm-delete.component';
 import { PainelControleService } from '../../services/painel-controle.service';
 import { Categoria } from './../../interfaces/categoria.interface';
 import { Despesa } from './../../interfaces/despesa.interface';
+import { ModalCategoriaComponent } from '../../modal/create/categoria/modal-categoria.component';
 
 @Component({
   selector: 'app-painel-controle-page',
@@ -34,7 +36,9 @@ import { Despesa } from './../../interfaces/despesa.interface';
     MatTableModule,
     MatDialogModule,
     ModalDespesaComponent,
+    ModalMembroComponent,
     ConfirmDeleteComponent,
+    ModalCategoriaComponent,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
@@ -101,6 +105,24 @@ export class PainelControlePage implements OnInit {
       this.getAllDespesas();
     });
   }
+
+  openModalInserirMembro(): void {
+    const dialogRef = this.dialog.open(ModalMembroComponent, {
+      width: '400px',
+    });
+    dialogRef.componentInstance.membroInserida.subscribe(() => {
+      this.getAllMembros();
+    });
+  }
+
+  openModalInsertCategoria(): void {
+    const dialogRef = this.dialog.open(ModalCategoriaComponent, {
+      width: '400px',
+    });
+    dialogRef.componentInstance.categoriaInserida.subscribe(() => {
+      this.getAllCategorias();
+    });
+  }
   //#endregion
 
   //#region Update
@@ -144,7 +166,8 @@ export class PainelControlePage implements OnInit {
   //#region Delete
   confirmDelete(id: number, source: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-      width: '250px',
+      width: '400px',
+      data: source,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

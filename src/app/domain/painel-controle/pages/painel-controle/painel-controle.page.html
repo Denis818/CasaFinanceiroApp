@@ -1,7 +1,7 @@
 <div options-header>
   <input type="text" name="firstname" placeholder="Buscar por item..." />
 
-  <button botao-add>
+  <button botao-add (click)="openModalInsertCategoria()">
     <div icon-bg>
       <img
         class="icon-position"
@@ -25,12 +25,12 @@
     <span options-title>Nova Despesa</span>
   </button>
 
-  <button botao-add>
+  <button botao-add (click)="openModalInserirMembro()">
     <div icon-bg>
       <img
         class="icon-position membro-position"
         src="../../../../../assets/icons/novo-membro.svg"
-        alt="Ícone de nova-categoria"
+        alt="Ícone de novo-membro"
       />
     </div>
 
@@ -39,16 +39,18 @@
 </div>
 
 <!-- Tabela de Despesas -->
-<mat-paginator
-  #paginator
-  class="demo-paginator"
-  (page)="mudarPagina($event)"
-  [length]="page.totalItens"
-  [pageSize]="page.itensPorPagina"
-  [pageSizeOptions]="tamanhosDePagina"
-  aria-label="Select page"
->
-</mat-paginator>
+<div paginator>
+  <mat-paginator
+    #paginator
+    class="demo-paginator"
+    (page)="mudarPagina($event)"
+    [length]="page.totalItens"
+    [pageSize]="page.itensPorPagina"
+    [pageSizeOptions]="tamanhosDePagina"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
 <table>
   <thead>
     <tr>

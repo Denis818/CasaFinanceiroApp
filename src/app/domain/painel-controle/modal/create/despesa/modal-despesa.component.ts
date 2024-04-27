@@ -8,10 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -31,24 +28,20 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     CurrencyMaskModule,
-    MatFormFieldModule,
     MatSelectModule,
   ],
 })
 export class ModalDespesaComponent {
   despesaForm: FormGroup;
 
-  get vendaValidator(): any {
+  get dsespesaValidator(): any {
     return this.despesaForm.controls;
   }
 
   @Output() despesaInserida = new EventEmitter<void>();
 
   categorias: Categoria[] = [];
-  dropdownOpen = false;
 
   constructor(
     private painelService: PainelControleService,
@@ -74,7 +67,7 @@ export class ModalDespesaComponent {
       this.painelService.insert(this.despesaForm.value, 'Despesa').subscribe({
         next: () => {
           this.toastr.success(
-            'Alterações realizadas com sucesso!',
+            ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,
             'Finalizado!'
           );
 
@@ -85,24 +78,12 @@ export class ModalDespesaComponent {
     }
   }
 
-  onClose(): void {
-    this.dialogRef.close();
-  }
-
   formatDate(date: Date): string {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   }
-  id: number;
-  item: string;
-  preco: number;
-  quantidade: number;
-  fornecedor: string;
-  total: number;
-  categoria: Categoria;
-  categoriaId: number;
 
   public validation(): void {
     this.despesaForm = this.fb.group({
@@ -156,5 +137,9 @@ export class ModalDespesaComponent {
       fornecedor: 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 0,
     });
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
   }
 }

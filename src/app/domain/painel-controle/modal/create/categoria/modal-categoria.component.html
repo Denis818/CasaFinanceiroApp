@@ -1,0 +1,49 @@
+<div header-model>
+  <h2>Adicionar Categoria</h2>
+</div>
+
+<div modal-content>
+  <form
+    [formGroup]="categoriaForm"
+    (ngSubmit)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    form-custom
+  >
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descricao</mat-label>
+      <input
+        matInput
+        formControlName="descricao"
+        [ngClass]="{
+          'is-invalid':
+            categoriaValidator.descricao.errors && categoriaValidator.descricao.touched
+        }"
+      />
+
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('required')">
+        Descricao é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('minlength')">
+        Descricao deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('maxlength')">
+        Descricao deve ter no máximo 25 caracteres.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onClose()"
+      >
+        Cancelar
+      </button>
+
+      <button mat-flat-button color="primary" [disabled]="!categoriaForm.valid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

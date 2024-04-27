@@ -1,0 +1,49 @@
+<div header-model>
+  <h2>Adicionar Membro</h2>
+</div>
+
+<div modal-content>
+  <form
+    [formGroup]="membroForm"
+    (ngSubmit)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    form-custom
+  >
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        formControlName="nome"
+        [ngClass]="{
+          'is-invalid':
+            membroValidator.nome.errors && membroValidator.nome.touched
+        }"
+      />
+
+      <mat-error *ngIf="membroValidator['nome'].hasError('required')">
+        Nome é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['nome'].hasError('minlength')">
+        Nome deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['nome'].hasError('maxlength')">
+        Nome deve ter no máximo 25 caracteres.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onClose()"
+      >
+        Cancelar
+      </button>
+
+      <button mat-flat-button color="primary" [disabled]="!membroForm.valid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>
