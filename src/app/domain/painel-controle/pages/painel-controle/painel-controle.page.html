@@ -1,4 +1,4 @@
-<div options>
+<div options-header>
   <input type="text" name="firstname" placeholder="Buscar por item..." />
 
   <button botao-add>
@@ -39,7 +39,17 @@
 </div>
 
 <!-- Tabela de Despesas -->
-<table class="table-editable">
+<mat-paginator
+  #paginator
+  class="demo-paginator"
+  (page)="mudarPagina($event)"
+  [length]="page.totalItens"
+  [pageSize]="page.itensPorPagina"
+  [pageSizeOptions]="tamanhosDePagina"
+  aria-label="Select page"
+>
+</mat-paginator>
+<table>
   <thead>
     <tr>
       <th>Id</th>
@@ -50,8 +60,7 @@
       <th>Quantidade</th>
       <th>Total</th>
       <th>Data da compra</th>
-      <th>Editar</th>
-      <th>Excluir</th>
+      <th>Opções</th>
     </tr>
   </thead>
   <tbody>
@@ -106,56 +115,88 @@
       </td>
       <td>{{ despesa.total | currency:'BRL' }}</td>
       <td>{{ despesa.dataCompra }}</td>
-      <td space>
-        <mat-icon (click)="toggleEditDespesa(despesa)">edit</mat-icon>
-      </td>
-      <td space>
-        <mat-icon (click)="openDialog(despesa.id)">delete</mat-icon>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<mat-paginator
-  #paginator
-  class="demo-paginator"
-  (page)="mudarPagina($event)"
-  [length]="page.totalItens"
-  [pageSize]="page.itensPorPagina"
-  [pageSizeOptions]="tamanhosDePagina"
-  aria-label="Select page"
->
-</mat-paginator>
-
-<!-- Tabela de Membros -->
-<h2>Membros</h2>
-<table>
-  <tbody>
-    <tr *ngFor="let membro of membros">
-      <td>{{ membro.nome }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- Tabela Editável de Categorias -->
-<h2>Categorias</h2>
-<table class="table-editable">
-  <tbody>
-    <tr *ngFor="let categoria of categorias">
       <td>
-        <div *ngIf="categoria.isEditing">
-          <input
-            type="text"
-            [(ngModel)]="categoria.descricao"
-            (keyup.enter)="updateCategoria(categoria.id, categoria)"
-            (blur)="updateCategoria(categoria.id, categoria)"
-          />
-        </div>
-        <div *ngIf="!categoria.isEditing">{{ categoria.descricao }}</div>
-      </td>
-      <td>
-        <mat-icon (click)="toggleEdit(categoria)">edit</mat-icon>
+        <i>
+          <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
+        </i>
+        <i space>
+          <mat-icon (click)="confirmDelete(despesa.id, 'Despesa')"
+            >delete</mat-icon
+          >
+        </i>
       </td>
     </tr>
   </tbody>
 </table>
+
+<div style="display: flex">
+  <div style="flex: 1">
+    <table>
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of categorias">
+          <td>
+            <div *ngIf="categoria.isEditing; else viewDescricao">
+              <input
+                type="text"
+                [(ngModel)]="categoria.descricao"
+                (blur)="updateCategoria(categoria.id, categoria)"
+                (keyup.enter)="updateCategoria(categoria.id, categoria)"
+              />
+            </div>
+            <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
+          </td>
+          <td>
+            <i>
+              <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
+            </i>
+            <i space>
+              <mat-icon (click)="confirmDelete(categoria.id, 'Categoria')"
+                >delete</mat-icon
+              >
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="flex: 1">
+    <table>
+      <thead>
+        <th>Membro</th>
+        <th>Opções</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let membro of membros">
+          <td>
+            <div *ngIf="membro.isEditing; else viewNome">
+              <input
+                type="text"
+                [(ngModel)]="membro.nome"
+                (blur)="updateMembro(membro.id, membro)"
+                (keyup.enter)="updateMembro(membro.id, membro)"
+              />
+            </div>
+            <ng-template #viewNome>{{ membro.nome }}</ng-template>
+          </td>
+          <td>
+            <i>
+              <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+            </i>
+            <i space>
+              <mat-icon (click)="confirmDelete(membro.id, 'Membro')"
+                >delete</mat-icon
+              >
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

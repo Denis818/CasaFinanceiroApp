@@ -103,57 +103,65 @@ export class PainelControlePage implements OnInit {
   }
   //#endregion
 
-  //#region Update categoria
-  toggleEdit(categoria: Categoria): void {
-    categoria.isEditing = !categoria.isEditing;
+  //#region Update
+  openEdit(souce: any): void {
+    souce.isEditing = !souce.isEditing;
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
     this.painelService.update(id, categoria, 'Categoria').subscribe({
       next: () => {
-        this.toastr.success(
-          'Alterações realizadas com sucesso!',
-          'Finalizado!'
-        );
-        categoria.isEditing = false;
+        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllCategorias();
       },
     });
-
     categoria.isEditing = false;
-    this.getAllCategorias();
   }
-  //#endregion
 
-  //#region Update Despesa
-  toggleEditDespesa(despesa: Despesa): void {
-    despesa.isEditing = !despesa.isEditing;
-  }
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
     this.painelService.update(id, despesa, 'Despesa').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        despesa.isEditing = false;
         this.getAllDespesas();
       },
     });
 
     despesa.isEditing = false;
-    this.getAllDespesas();
+  }
+
+  updateMembro(id: number, membro: Membro): void {
+    this.painelService.update(id, membro, 'Membro').subscribe({
+      next: () => {
+        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        this.getAllMembros();
+      },
+    });
+    membro.isEditing = false;
   }
   //#endregion
 
-  //#region Delete Despesa
-  openDialog(despesaId: number): void {
+  //#region Delete
+  confirmDelete(id: number, source: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '250px',
-      data: { despesaId },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteDespesa(despesaId);
+        switch (source) {
+          case 'Despesa':
+            this.deleteDespesa(id);
+            break;
+          case 'Membro':
+            this.deleteMembro(id);
+            break;
+          case 'Categoria':
+            this.deleteCategoria(id);
+            break;
+          default:
+            console.error('Tipo desconhecido', source);
+        }
       }
     });
   }
@@ -167,5 +175,22 @@ export class PainelControlePage implements OnInit {
     });
   }
 
+  deleteMembro(membroId: number): void {
+    this.painelService.delete(membroId, 'Membro').subscribe({
+      next: () => {
+        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        this.getAllMembros();
+      },
+    });
+  }
+
+  deleteCategoria(categoriaId: number): void {
+    this.painelService.delete(categoriaId, 'Categoria').subscribe({
+      next: () => {
+        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        this.getAllCategorias();
+      },
+    });
+  }
   //#endregion
 }
