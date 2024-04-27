@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalDespesaComponent } from './modal-despesa.component';
+import { ModalDespesaComponent } from './create-despesa.modal';
 
 describe('ModalComponent', () => {
   let component: ModalDespesaComponent;

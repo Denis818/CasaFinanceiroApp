@@ -10,15 +10,17 @@ import { ToastrService } from 'ngx-toastr';
 import { Membro } from '../../../interfaces/membro.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'modal-view-membro',
-  templateUrl: './modal-view-membro.component.html',
-  styleUrls: ['./modal-view-membro.component.scss'],
+  templateUrl: './view-membro.modal.html',
+  styleUrls: ['./view-membro.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
     MatPaginatorModule,
+    MatInputModule,
     FormsModule,
     MatSlideToggleModule,
     MatIconModule,
@@ -27,7 +29,7 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
     ConfirmDeleteComponent,
   ],
 })
-export class ModalViewMembro {
+export class ViewMembroModal {
   membros: Membro[];
   constructor(
     private painelService: PainelControleService,

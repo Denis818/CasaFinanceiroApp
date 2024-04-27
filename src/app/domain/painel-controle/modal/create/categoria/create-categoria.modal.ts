@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,20 +8,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { PainelControleService } from '../../../services/painel-controle.service';
 
 @Component({
-  selector: 'app-membro',
-  templateUrl: './modal-membro.component.html',
-  styleUrls: ['./modal-membro.component.scss'],
+  selector: 'app-categoria',
+  templateUrl: './create-categoria.modal.html',
+  styleUrls: ['./create-categoria.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -32,16 +27,16 @@ import { PainelControleService } from '../../../services/painel-controle.service
     MatInputModule,
   ],
 })
-export class ModalMembroComponent {
-  membroForm: FormGroup;
+export class ModalCategoriaComponent {
+  categoriaForm: FormGroup;
 
-  get membroValidator(): any {
-    return this.membroForm.controls;
+  get categoriaValidator(): any {
+    return this.categoriaForm.controls;
   }
 
   constructor(
     private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<ModalMembroComponent>,
+    public dialogRef: MatDialogRef<ModalCategoriaComponent>,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {
@@ -50,24 +45,26 @@ export class ModalMembroComponent {
   }
 
   onSubmit(): void {
-    if (this.membroForm.valid) {
-      this.painelService.insert(this.membroForm.value, 'Membro').subscribe({
-        next: () => {
-          this.toastr.success(
-            ` Membro ${this.membroForm.value.nome} criado com sucesso!`,
-            'Finalizado!'
-          );
+    if (this.categoriaForm.valid) {
+      this.painelService
+        .insert(this.categoriaForm.value, 'Categoria')
+        .subscribe({
+          next: () => {
+            this.toastr.success(
+              ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
+              'Finalizado!'
+            );
 
-          this.onClose();
-          this.resetForm();
-        },
-      });
+            this.onClose();
+            this.resetForm();
+          },
+        });
     }
   }
 
   public validation(): void {
-    this.membroForm = this.fb.group({
-      nome: [
+    this.categoriaForm = this.fb.group({
+      descricao: [
         '',
         [
           Validators.required,
@@ -79,8 +76,8 @@ export class ModalMembroComponent {
   }
 
   resetForm(): void {
-    this.membroForm.reset({
-      nome: '',
+    this.categoriaForm.reset({
+      descricao: '',
     });
   }
 

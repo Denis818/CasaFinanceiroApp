@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalViewMembroComponent } from './modal-view-membro.component';
+import { ModalViewMembroComponent } from './view-membro.modal';
 
 describe('ModalViewMembroComponent', () => {
   let component: ModalViewMembroComponent;
@@ -8,7 +8,7 @@ describe('ModalViewMembroComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalViewMembroComponent]
+      declarations: [ModalViewMembroComponent],
     });
     fixture = TestBed.createComponent(ModalViewMembroComponent);
     component = fixture.componentInstance;

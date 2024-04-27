@@ -13,8 +13,8 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
 @Component({
   selector: 'modal-view-categoria',
-  templateUrl: './modal-view-categoria.component.html',
-  styleUrls: ['./modal-view-categoria.component.scss'],
+  templateUrl: './view-categoria.modal.html',
+  styleUrls: ['./view-categoria.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
     ConfirmDeleteComponent,
   ],
 })
-export class ModalViewCategoria {
+export class ViewCategoriaModal {
   categorias: Categoria[];
   constructor(
     private painelService: PainelControleService,

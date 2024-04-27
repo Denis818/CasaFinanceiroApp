@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalMembroComponent } from './modal-membro.component';
+import { ModalMembroComponent } from './create-membro.modal';
 
 describe('ModalMembroComponent', () => {
   let component: ModalMembroComponent;

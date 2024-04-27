@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalViewCategoriaComponent } from './modal-view-categoria.component';
+import { ModalViewCategoriaComponent } from './view-categoria.modal';
 
 describe('ModalViewCategoriaComponent', () => {
   let component: ModalViewCategoriaComponent;
@@ -8,7 +8,7 @@ describe('ModalViewCategoriaComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalViewCategoriaComponent]
+      declarations: [ModalViewCategoriaComponent],
     });
     fixture = TestBed.createComponent(ModalViewCategoriaComponent);
     component = fixture.componentInstance;

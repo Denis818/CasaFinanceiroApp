@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalCategoriaComponent } from './modal-categoria.component';
+import { ModalCategoriaComponent } from './create-categoria.modal';
 
 describe('CategoriaComponent', () => {
   let component: ModalCategoriaComponent;

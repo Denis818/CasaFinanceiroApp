@@ -18,8 +18,8 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 
 @Component({
   selector: 'app-modal-despesa',
-  templateUrl: './modal-despesa.component.html',
-  styleUrls: ['./modal-despesa.component.scss'],
+  templateUrl: './create-despesa.modal.html',
+  styleUrls: ['./create-despesa.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
