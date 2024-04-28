@@ -20,7 +20,7 @@
         transform: translateY(-1px);
       }
 
-      [botao-add] {
+      [button-action] {
         position: relative;
         background-color: #6a00cb;
         color: #ffffff;
@@ -84,7 +84,7 @@
           width: 100%;
         }
 
-        & [botao-add] {
+        & [button-action] {
           width: 100%;
           padding: 11px 40px;
           margin-top: 10px;

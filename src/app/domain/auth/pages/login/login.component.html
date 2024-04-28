@@ -25,7 +25,12 @@
         </mat-icon>
       </mat-form-field>
 
-      <button mat-raised-button class="login-submit" (click)="login()">
+      <button
+        mat-raised-button
+        class="login-submit"
+        (click)="login()"
+        (keyup.enter)="login()"
+      >
         Conecte-se agora
         <mat-icon>chevron_right</mat-icon>
       </button>
