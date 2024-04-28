@@ -85,14 +85,11 @@
           transform: none;
         }
 
-        & input[type="text"] {
-          width: 100%;
-        }
-
         & [button-action] {
           width: 100%;
           padding: 11px 40px;
           margin-top: 10px;
+          display: flex;
           justify-content: flex-start;
 
           & .icon-position {
@@ -104,11 +101,11 @@
             left: 2%;
           }
         }
-      }
 
-      table {
-        input[type="text"] {
-          width: 100%;
+        .mdc-button {
+          display: flex;
+          justify-content: flex-start;
+          margin-top: 10px;
         }
       }
     }
