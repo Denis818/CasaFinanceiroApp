@@ -103,7 +103,7 @@
 
           th,
           td {
-            padding: 4px 4px;;
+            padding: 4px 4px;
             font-size: 14px;
             min-width: 100px;
           }
@@ -128,19 +128,21 @@
             }
 
             .mat-mdc-paginator-page-size-label {
+              margin: 0px;
               white-space: nowrap;
             }
             .mat-mdc-paginator-range-label {
-              margin: 0px 12px 0px 0px;
+              margin: 0px;
               white-space: nowrap;
             }
 
             .mat-mdc-paginator-page-size {
               margin-right: 0px;
             }
-
-            .mat-mdc-icon-button.mat-mdc-button-base {
+            .mat-mdc-paginator-range-actions {
               border: solid 1px #ccc;
+              border-radius: 5px;
+              padding: 0px 6px 0px;
             }
           }
         }
