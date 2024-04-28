@@ -1,13 +1,25 @@
 <div despesa-view>
   <div class="card">
     <div class="card-header">
-      <input
-        type="text"
-        name="filtro"
-        placeholder="Buscar por item..."
-        [(ngModel)]="filtroTexto"
-        (input)="onInputChange()"
-      />
+      <div input-buscar>
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar</mat-label>
+          <input
+            matInput
+            placeholder="Buscar por item..."
+            [(ngModel)]="filtroTexto"
+            (input)="filtrarDespesas()"
+          />
+          <i
+            style="border: none; background-color: transparent"
+            mat-icon-button
+            matSuffix
+            aria-label="Search button for search input"
+          >
+            <mat-icon>search</mat-icon>
+          </i>
+        </mat-form-field>
+      </div>
     </div>
     <table>
       <thead>

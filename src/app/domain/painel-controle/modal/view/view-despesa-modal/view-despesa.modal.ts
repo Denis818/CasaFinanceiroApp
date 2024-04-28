@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
@@ -28,6 +29,7 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
     MatIconModule,
     MatTableModule,
     MatDialogModule,
+    MatInputModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
@@ -62,7 +64,7 @@ export class ViewDespesaModal {
     }
   }
 
-  onInputChange() {
+  filtrarDespesas() {
     this.filterDespesas();
   }
   //#endregion

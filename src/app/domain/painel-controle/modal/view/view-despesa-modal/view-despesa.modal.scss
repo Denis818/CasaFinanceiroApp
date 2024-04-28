@@ -25,6 +25,33 @@
             border: 1px solid #ddd;
           }
         }
+
+        [input-buscar] {
+          width: 100%;
+
+          ::ng-deep {
+            mat-form-field {
+              width: 100%;
+            }
+            .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+              max-width: 100%;
+              border-radius: 10px;
+            }
+
+            .mat-mdc-form-field-bottom-align::before {
+              display: none;
+            }
+
+            .mdc-text-field--filled:not(.mdc-text-field--disabled)
+              .mdc-line-ripple::before {
+              border-bottom-color: #673ab7;
+            }
+          }
+
+          .mat-icon {
+            width: 40px;
+          }
+        }
       }
 
       table {
@@ -57,11 +84,6 @@
           font-size: 15px;
           color: #708090;
           border-bottom: 1px solid #d3d3d3;
-        }
-
-        .mat-icon {
-          cursor: pointer;
-          color: #673ab7;
         }
 
         [space] {
