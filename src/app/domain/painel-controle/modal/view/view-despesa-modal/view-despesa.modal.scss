@@ -87,7 +87,66 @@
         }
 
         [space] {
-          margin-left: 40px;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    [despesa-view] {
+      .card {
+        table {
+          width: 100%;
+          overflow-x: auto;
+          display: block;
+
+          th,
+          td {
+            padding: 6px 6px;
+            font-size: 14px;
+            min-width: 100px;
+          }
+
+          [space] {
+            margin: 20;
+          }
+        }
+
+        .mat-paginator {
+          font-size: 12px;
+        }
+        ::ng-deep {
+          .mat-mdc-paginator-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0px;
+            flex-wrap: nowrap;
+            width: 100%;
+          }
+
+          .mat-mdc-paginator-page-size-label,
+          .mat-mdc-paginator-range-label {
+            margin: 0px;
+            white-space: nowrap;
+          }
+
+          .mat-mdc-paginator-page-size-select {
+            margin: 0px;
+            width: 65px;
+          }
+
+          .mat-mdc-paginator-page-size {
+            margin-right: 0px;
+          }
+
+          .mat-mdc-select-trigger {
+            width: auto;
+          }
+          .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+            max-width: 90%;
+          }
         }
       }
     }
