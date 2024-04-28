@@ -87,7 +87,7 @@
           </td>
           <td>{{ despesa.total | currency:'BRL' }}</td>
           <td>{{ despesa.dataCompra }}</td>
-          <td icons-action>
+          <td>
             <i>
               <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
             </i>
@@ -98,7 +98,7 @@
         </tr>
       </tbody>
     </table>
-    <div>
+    <div pagination>
       <mat-paginator
         #paginator
         class="demo-paginator"

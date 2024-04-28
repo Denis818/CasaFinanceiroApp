@@ -113,40 +113,40 @@
           }
         }
 
+        [pagination] {
+          display: flex;
+          justify-content: center;
+
+          ::ng-deep {
+            .mat-mdc-paginator-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0px;
+              flex-wrap: nowrap;
+              width: 100%;
+            }
+
+            .mat-mdc-paginator-page-size-label {
+              white-space: nowrap;
+            }
+            .mat-mdc-paginator-range-label {
+              margin: 0px 12px 0px 0px;
+              white-space: nowrap;
+            }
+
+            .mat-mdc-paginator-page-size {
+              margin-right: 0px;
+            }
+
+            .mat-mdc-icon-button.mat-mdc-button-base {
+              border: solid 1px #ccc;
+            }
+          }
+        }
+
         .mat-paginator {
           font-size: 12px;
-        }
-        ::ng-deep {
-          .mat-mdc-paginator-container {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0px;
-            flex-wrap: nowrap;
-            width: 100%;
-          }
-
-          .mat-mdc-paginator-page-size-label,
-          .mat-mdc-paginator-range-label {
-            margin: 0px;
-            white-space: nowrap;
-          }
-
-          .mat-mdc-paginator-page-size-select {
-            margin: 0px;
-            width: 65px;
-          }
-
-          .mat-mdc-paginator-page-size {
-            margin-right: 0px;
-          }
-
-          .mat-mdc-select-trigger {
-            width: auto;
-          }
-          .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-            max-width: 90%;
-          }
         }
       }
     }
