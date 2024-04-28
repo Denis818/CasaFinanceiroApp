@@ -125,11 +125,13 @@
       [card-container] {
         .card {
           flex: 1 1 100%;
-        }
 
-        [download-button]:hover {
+          .card-head{
+            [download-button]:hover {
           background-color: #fff;
           box-shadow: none;
+            }
+          }
         }
       }
     }
