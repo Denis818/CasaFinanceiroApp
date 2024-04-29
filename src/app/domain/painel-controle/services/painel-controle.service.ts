@@ -65,9 +65,9 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest(
       'GET',
-      `${this.url}/enviar-mensagem`,
+      `${this.url}/Membro/enviar-mensagem`,
       null,
       params
-    );
+    ).pipe(map((response: any) => response.dados.redirectToWhatsApp));
   }
 }

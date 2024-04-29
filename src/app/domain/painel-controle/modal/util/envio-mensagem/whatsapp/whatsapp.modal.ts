@@ -62,8 +62,8 @@ export class WhatsappModal {
           this.valoresForm.value.isHabitacional,
           this.valoresForm.value.titleMessage ?? ''
         )
-        .subscribe((url) => {
-          window.open(url, '_blank');
+        .subscribe((redirectToWhatsApp) => {
+          window.open(redirectToWhatsApp, '_blank');
         });
     }
   }
