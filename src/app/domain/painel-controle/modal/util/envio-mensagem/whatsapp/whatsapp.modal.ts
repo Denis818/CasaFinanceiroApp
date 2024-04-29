@@ -38,13 +38,13 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 })
 export class WhatsappModal {
   valoresForm: FormGroup;
-  @Inject(MAT_DIALOG_DATA) public data: any;
 
   get valoresValidator(): any {
     return this.valoresForm.controls;
   }
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private painelService: PainelControleService,
     public dialogRef: MatDialogRef<WhatsappModal>,
     private fb: FormBuilder
@@ -55,16 +55,16 @@ export class WhatsappModal {
 
   enviarMensagem(): void {
     if (this.valoresForm.valid) {
-      console.log(this.data.data);
       this.painelService
         .enviarMensagemWhatsApp(
-          this.data.data,
+          this.data.nome,
           this.valoresForm.value.pix,
           this.valoresForm.value.isHabitacional,
           this.valoresForm.value.titleMessage ?? ''
         )
         .subscribe((url) => {
-          window.open(url, '_blank');
+          console.log(url)
+          /* window.open(url, '_blank'); */
         });
     }
   }
