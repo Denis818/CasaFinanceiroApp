@@ -91,7 +91,7 @@ export class DashboardPage implements OnInit {
 
   enviarMensagem(nome: string): void {
     this.dialog.open(WhatsappModal, {
-      width: '600px',
+      width: '500px',
       data: { nome: nome },
     });
   }

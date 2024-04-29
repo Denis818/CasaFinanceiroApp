@@ -33,7 +33,6 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatButtonModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatDialogModule,
   ],
 })
 export class WhatsappModal {
