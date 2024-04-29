@@ -89,10 +89,10 @@ export class DashboardPage implements OnInit {
     this.dashboardService.downloadRelatorioDespesasCasa();
   }
 
-  enviarMensagem(nome: string): void {
+  enviarMensagem(nome: string, isHabitacional: boolean): void {
     this.dialog.open(WhatsappModal, {
       width: '500px',
-      data: { nome: nome },
+      data: { nome: nome, isHabitacional: isHabitacional },
     });
   }
 }

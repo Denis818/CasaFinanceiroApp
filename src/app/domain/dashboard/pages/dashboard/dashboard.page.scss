@@ -42,8 +42,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         transition: box-shadow 0.4s ease-in-out;
-        
-        
+
         &:hover {
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
         }
@@ -88,6 +87,7 @@
           border-radius: 0px 0px 8px 8px;
 
           .expense-item {
+            position: relative;
             background-color: #fff;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -110,9 +110,28 @@
             }
 
             .expense-value {
+              position: relative;
+              right: 20%;
               font-size: 18px;
               font-weight: bold;
               color: #673ab7;
+            }
+
+            [share-whatsapp] {
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              background-color: #673ab7;
+              padding: 8px 12px;
+              border-radius: 0px 8px 8px 0px;
+              color: white;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+
+              & mat-icon {
+                margin-right: 8px;
+              }
             }
           }
 
@@ -149,10 +168,10 @@
         .card {
           flex: 1 1 100%;
 
-          .card-head{
+          .card-head {
             [download-button]:hover {
-          background-color: #fff;
-          box-shadow: none;
+              background-color: #fff;
+              box-shadow: none;
             }
           }
         }

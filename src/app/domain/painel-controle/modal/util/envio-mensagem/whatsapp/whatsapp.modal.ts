@@ -8,11 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -54,11 +50,12 @@ export class WhatsappModal {
 
   enviarMensagem(): void {
     if (this.valoresForm.valid) {
+      console.log(this.data.isHabitacional);
       this.painelService
         .enviarMensagemWhatsApp(
           this.data.nome,
           this.valoresForm.value.pix,
-          this.valoresForm.value.isHabitacional,
+          this.data.isHabitacional,
           this.valoresForm.value.titleMessage ?? ''
         )
         .subscribe((redirectToWhatsApp) => {

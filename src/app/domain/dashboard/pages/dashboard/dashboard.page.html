@@ -12,9 +12,10 @@
           <div class="expense-title">{{ item.nome }}</div>
           <div class="expense-value">
             {{ item.valorDespesaCasa | currency:'BRL' }}
-            <button mat-flat-button color="primary" (click)="enviarMensagem(item.nome)">
-              <span options-title>Enviar (WhatsApp)</span>
-            </button>
+          </div>
+          <div share-whatsapp (click)="enviarMensagem(item.nome, false)">
+            <mat-icon>share</mat-icon>
+            <span>WhatsApp</span>
           </div>
         </div>
       </div>
@@ -36,6 +37,10 @@
             <div class="expense-title">{{ item.nome }}</div>
             <div class="expense-value">
               {{ item.valorDespesaHabitacional | currency:'BRL' }}
+            </div>
+            <div share-whatsapp (click)="enviarMensagem(item.nome, true)">
+              <mat-icon>share</mat-icon>
+              <span>WhatsApp</span>
             </div>
           </div>
         </ng-container>
