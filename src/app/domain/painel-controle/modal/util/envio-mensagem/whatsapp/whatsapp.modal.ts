@@ -63,8 +63,7 @@ export class WhatsappModal {
           this.valoresForm.value.titleMessage ?? ''
         )
         .subscribe((url) => {
-          console.log(url)
-          /* window.open(url, '_blank'); */
+          window.open(url, '_blank');
         });
     }
   }
