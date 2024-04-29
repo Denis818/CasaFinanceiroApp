@@ -31,6 +31,25 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Telefone</mat-label>
+      <input
+        matInput
+        formControlName="telefone"
+        [ngClass]="{
+          'is-invalid':
+            membroValidator.telefone.errors && membroValidator.telefone.touched
+        }"
+      />
+
+      <mat-error *ngIf="membroValidator['telefone'].hasError('required')">
+        Telefone é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['telefone'].hasError('pattern')">
+        O formato do telefone deve ser (XX) XXXXX-XXXX.
+      </mat-error>
+    </mat-form-field>
+
     <div class="form-actions">
       <button
         mat-raised-button

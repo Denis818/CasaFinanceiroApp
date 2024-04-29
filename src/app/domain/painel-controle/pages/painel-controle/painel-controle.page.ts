@@ -9,6 +9,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { ModalCategoriaComponent } from '../../modal/create/categoria/create-categoria.modal';
 import { ModalDespesaComponent } from '../../modal/create/despesa/create-despesa.modal';
 import { ModalMembroComponent } from '../../modal/create/membro/create-membro.modal';
+import { WhatsappModal } from '../../modal/util/envio-mensagem/whatsapp/whatsapp.modal';
 import { ViewCategoriaModal } from '../../modal/view/view-categoria-modal/view-categoria.modal';
 import { ViewDespesaModal } from '../../modal/view/view-despesa-modal/view-despesa.modal';
 import { ViewMembroModal } from '../../modal/view/view-membro-modal/view-membro.modal';
@@ -32,6 +33,12 @@ import { ViewMembroModal } from '../../modal/view/view-membro-modal/view-membro.
 export class PainelControlePage {
   constructor(private dialog: MatDialog) {}
 
+  enviarMensagem(): void {
+    this.dialog.open(WhatsappModal, {
+      width: '600px',
+    });
+  }
+
   //#region  Views
   viewCategorias() {
     const dialogRef = this.dialog.open(ViewCategoriaModal, {
@@ -50,7 +57,7 @@ export class PainelControlePage {
 
   //#region Create
   openModalInsertDespesa(): void {
-    const dialogRef = this.dialog.open(ModalDespesaComponent, {
+    this.dialog.open(ModalDespesaComponent, {
       width: '400px',
     });
   }

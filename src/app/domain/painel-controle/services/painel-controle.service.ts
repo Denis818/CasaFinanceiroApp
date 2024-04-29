@@ -50,4 +50,24 @@ export class PainelControleService extends BaseService {
     const url = `${this.url}/${uri}/?id=${id}`;
     return this.sendHttpRequest('DELETE', url);
   }
+
+  public enviarMensagemWhatsApp(
+    nome: string,
+    pix: string,
+    isHabitacional: boolean,
+    titleMessage: string
+  ): Observable<string> {
+    const params = new HttpParams()
+      .set('nome', nome)
+      .set('pix', pix)
+      .set('isHabitacional', isHabitacional.toString())
+      .set('titleMessage', titleMessage);
+
+    return this.sendHttpRequest(
+      'GET',
+      `${this.url}/enviar-mensagem`,
+      null,
+      params
+    );
+  }
 }

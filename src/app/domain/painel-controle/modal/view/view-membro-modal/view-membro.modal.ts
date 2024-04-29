@@ -10,7 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Membro } from '../../../interfaces/membro.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
-import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from '../../util/delete/confirm-delete.component';
 
 @Component({
   selector: 'modal-view-membro',

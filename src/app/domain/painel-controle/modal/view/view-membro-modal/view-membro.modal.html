@@ -2,6 +2,7 @@
   <table>
     <thead>
       <th>Membro</th>
+      <th>Telefone</th>
       <th>Opções</th>
     </thead>
     <tbody>
@@ -11,11 +12,20 @@
             <input
               type="text"
               [(ngModel)]="membro.nome"
-              (blur)="updateMembro(membro.id, membro)"
               (keyup.enter)="updateMembro(membro.id, membro)"
             />
           </div>
           <ng-template #viewNome>{{ membro.nome }}</ng-template>
+        </td>
+        <td>
+          <div *ngIf="membro.isEditing; else viewTelefone">
+            <input
+              type="text"
+              [(ngModel)]="membro.telefone"
+              (keyup.enter)="updateMembro(membro.id, membro)"
+            />
+          </div>
+          <ng-template #viewTelefone>{{ membro.telefone }}</ng-template>
         </td>
         <td>
           <i>

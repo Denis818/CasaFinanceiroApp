@@ -15,7 +15,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from '../../../interfaces/despesa.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
-import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from '../../util/delete/confirm-delete.component';
 
 @Component({
   selector: 'app-view-despesa-modal',

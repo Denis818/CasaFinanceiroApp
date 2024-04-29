@@ -1,5 +1,25 @@
 @import "reset";
 
+//texto de ajuda para tooltip.
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  background-color: #673ab7c9 !important;
+}
+//end
+
+//table
+table {
+  .mat-icon {
+    cursor: pointer;
+    color: #673ab7;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+//end
+
 //Login
 .mat-mdc-form-field-focus-overlay {
   background-color: transparent;
@@ -19,19 +39,6 @@ mat-form-field {
     color: #4c489d;
   }
 }
-
-table {
-  .mat-icon {
-    cursor: pointer;
-    color: #673ab7;
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: translateY(-3px);
-    }
-  }
-}
-
 //end
 
 //title navbar
@@ -39,7 +46,3 @@ table {
   margin: 0;
 }
 //end
-
-.custom-backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}

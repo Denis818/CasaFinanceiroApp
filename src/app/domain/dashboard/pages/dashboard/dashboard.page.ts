@@ -1,6 +1,11 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { WhatsappModal } from 'src/app/domain/painel-controle/modal/util/envio-mensagem/whatsapp/whatsapp.modal';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
@@ -17,7 +22,14 @@ registerLocaleData(localePt);
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
-  imports: [CommonModule, GraphicComponent],
+  imports: [
+    CommonModule,
+    GraphicComponent,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
 })
 export class DashboardPage implements OnInit {
   despesasPorMembros: DespesaPorMembroResponse[] = [];
@@ -25,8 +37,8 @@ export class DashboardPage implements OnInit {
 
   relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
     mesAtual: '',
-    totalAluguelCondominio: 0,
-    totalGastosGerais: 0,
+    totalGastosHabitacional: 0,
+    totalGastosCasa: 0,
     totalGeral: 0,
   };
 
@@ -37,7 +49,10 @@ export class DashboardPage implements OnInit {
     height: 290,
   };
 
-  constructor(private readonly dashboardService: DashboardService) {}
+  constructor(
+    private readonly dashboardService: DashboardService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.getGraficoTotaisComprasPorMes();
@@ -55,7 +70,7 @@ export class DashboardPage implements OnInit {
 
   getResumoDespesasMensal() {
     this.dashboardService.getResumoDespesasMensal().subscribe((dados) => {
-      this.despesasPorMembros = dados.despesasPorMembros;
+      this.despesasPorMembros = dados.despesasPorMembro;
       this.relatorioGastosDoMes = dados.relatorioGastosDoMes;
     });
   }
@@ -72,5 +87,12 @@ export class DashboardPage implements OnInit {
 
   downloadRelatorioDespesasCasa() {
     this.dashboardService.downloadRelatorioDespesasCasa();
+  }
+
+  enviarMensagem(nome: string): void {
+    this.dialog.open(WhatsappModal, {
+      width: '600px',
+      data: nome,
+    });
   }
 }

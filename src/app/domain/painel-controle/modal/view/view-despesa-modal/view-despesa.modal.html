@@ -43,7 +43,6 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.item"
-                (blur)="updateDespesa(despesa.id, despesa)"
                 (keyup.enter)="updateDespesa(despesa.id, despesa)"
               />
             </div>
@@ -55,7 +54,6 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.fornecedor"
-                (blur)="updateDespesa(despesa.id, despesa)"
                 (keyup.enter)="updateDespesa(despesa.id, despesa)"
               />
             </div>
@@ -66,7 +64,6 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.preco"
-                (blur)="updateDespesa(despesa.id, despesa)"
                 (keyup.enter)="updateDespesa(despesa.id, despesa)"
               />
             </div>
@@ -79,7 +76,6 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.quantidade"
-                (blur)="updateDespesa(despesa.id, despesa)"
                 (keyup.enter)="updateDespesa(despesa.id, despesa)"
               />
             </div>

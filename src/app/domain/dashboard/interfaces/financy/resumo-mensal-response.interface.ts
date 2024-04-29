@@ -3,5 +3,5 @@ import { RelatorioGastosDoMesResponse } from './relatorio-gastos-mes-response.in
 
 export interface ResumoMensalResponse {
   relatorioGastosDoMes: RelatorioGastosDoMesResponse;
-  despesasPorMembros: DespesaPorMembroResponse[];
+  despesasPorMembro: DespesaPorMembroResponse[];
 }

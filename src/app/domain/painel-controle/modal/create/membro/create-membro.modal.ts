@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,13 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { PainelControleService } from '../../../services/painel-controle.service';
 
@@ -75,12 +70,17 @@ export class ModalMembroComponent {
           Validators.maxLength(25),
         ],
       ],
+      telefone: [
+        '',
+        [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)],
+      ],
     });
   }
 
   resetForm(): void {
     this.membroForm.reset({
       nome: '',
+      telefone: '',
     });
   }
 

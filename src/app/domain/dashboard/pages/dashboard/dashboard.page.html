@@ -1,4 +1,4 @@
-<div  dashboard>
+<div dashboard>
   <div card-container>
     <div class="card">
       <div class="card-head">
@@ -11,7 +11,10 @@
         <div *ngFor="let item of despesasPorMembros" class="expense-item">
           <div class="expense-title">{{ item.nome }}</div>
           <div class="expense-value">
-            {{ item.valorDespesasCasa | currency:'BRL' }}
+            {{ item.valorDespesaCasa | currency:'BRL' }}
+            <button mat-flat-button color="primary" (click)="enviarMensagem(item.nome)">
+              <span options-title>Enviar (WhatsApp)</span>
+            </button>
           </div>
         </div>
       </div>
@@ -29,13 +32,10 @@
       </div>
       <div class="card-body">
         <ng-container *ngFor="let item of despesasPorMembros">
-          <div
-            *ngIf="item.valorCondominioAluguelContaDeLuz != 0"
-            class="expense-item"
-          >
+          <div *ngIf="item.valorDespesaHabitacional != 0" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
             <div class="expense-value">
-              {{ item.valorCondominioAluguelContaDeLuz | currency:'BRL' }}
+              {{ item.valorDespesaHabitacional | currency:'BRL' }}
             </div>
           </div>
         </ng-container>
@@ -83,13 +83,13 @@
         <div class="expense-item">
           <div class="expense-title">Total do Aluguel com Condomínio</div>
           <div class="expense-value">
-            {{ relatorioGastosDoMes.totalAluguelCondominio | currency:'BRL' }}
+            {{ relatorioGastosDoMes.totalGastosHabitacional | currency:'BRL' }}
           </div>
         </div>
         <div class="expense-item">
           <div class="expense-title">Total gastos gerais</div>
           <div class="expense-value">
-            {{ relatorioGastosDoMes.totalGastosGerais | currency:'BRL' }}
+            {{ relatorioGastosDoMes.totalGastosCasa | currency:'BRL' }}
           </div>
         </div>
         <div class="expense-item">

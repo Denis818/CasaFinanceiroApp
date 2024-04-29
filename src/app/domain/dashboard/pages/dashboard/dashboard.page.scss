@@ -3,6 +3,29 @@
     width: 100%;
     margin-right: 30px;
 
+    [icon-bg] {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: -4px;
+      top: 50%;
+      transition: transform 0.3s ease;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 40px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      transition: box-shadow 0.3s ease;
+
+      & .icon-position {
+        height: 20px;
+        z-index: 1;
+      }
+    }
+
+    /* ----------------- */
+
     [card-container] {
       display: flex;
       flex-wrap: wrap;

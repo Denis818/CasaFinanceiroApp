@@ -1,0 +1,67 @@
+:host {
+  [header-model] {
+    background-color: #673ab7;
+    text-align: center;
+    color: #fff;
+
+    h2 {
+      padding-top: 10px;
+      font-size: 24px;
+    }
+  }
+
+  [modal-content] {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    [form-custom] {
+      width: 100%;
+
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      ::ng-deep {
+        mat-form-field {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+        .mdc-text-field--filled {
+          height: 52px;
+        }
+
+        .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+          border-radius: 8px;
+          max-width: 100%;
+        }
+
+        .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
+          background-color: #673ab7;
+        }
+        .mdc-switch:enabled .mdc-switch__track::after {
+          background-color: #673ab787;
+        }
+
+      }
+
+      mat-icon.icon-help-isHabitacional {
+        color: #673ab7;
+        cursor: help;
+        font-size: 17px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    [header-model] {
+      h2 {
+        padding: 10px;
+        font-size: 24px;
+      }
+    }
+  }
+}
