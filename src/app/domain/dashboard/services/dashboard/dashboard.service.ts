@@ -37,7 +37,7 @@ export class DashboardService extends BaseService {
 
   public downloadRelatorioDespesasHabitacional() {
     this.sendHttpRequestForDownload(
-      this.url + '/pdf-despesas-habitacional'
+      this.url + '/pdf-despesas-moradia'
     ).subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);
