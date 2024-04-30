@@ -47,3 +47,44 @@
 
   <app-view-despesa-modal></app-view-despesa-modal>
 </div>
+
+<!-- <button mat-raised-button color="primary" (click)="abrirModal(modalForm)">
+  Conferir Fatura
+</button>
+
+<ng-template #modalForm let-dialogRef>
+  <div class="mat-dialog-content">
+    <h2>Fatura do Cartão</h2>
+    <mat-form-field>
+      <mat-label>Fatura do Cartão:</mat-label>
+      <input matInput type="number" id="fatura" [(ngModel)]="faturaCartao" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="calcular()"
+      class="button-calcular"
+    >
+      Calcular
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="dialogRef.close()"
+      class="button-cancelar"
+    >
+      Cancelar
+    </button>
+    <div
+      class="resultado-card"
+      [ngClass]="{'vermelho': valorSubtraido < 0, 'verde': valorSubtraido == 0, 'azul': valorSubtraido > 0}"
+    >
+      <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
+      <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
+      <p *ngIf="valorSubtraido < 0">A despesa é menor que a fatura.</p>
+      <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
+      <p *ngIf="valorSubtraido > 0">Está sobrando.</p>
+    </div>
+  </div>
+</ng-template>
+ -->

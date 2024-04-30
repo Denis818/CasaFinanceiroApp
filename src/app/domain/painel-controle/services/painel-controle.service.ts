@@ -51,6 +51,20 @@ export class PainelControleService extends BaseService {
     return this.sendHttpRequest('DELETE', url);
   }
 
+  public conferirFaturaDoCartao(faturaCartao: number): Observable<string> {
+    const params = new HttpParams().set(
+      'faturaCartao',
+      faturaCartao.toString()
+    );
+
+    return this.sendHttpRequest(
+      'GET',
+      `${this.url}/Despesa/calcular-fatura`,
+      null,
+      params
+    ).pipe(map((response: any) => response.dados));
+  }
+
   public enviarMensagemWhatsApp(
     nome: string,
     pix: string,
