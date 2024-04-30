@@ -179,6 +179,13 @@
               box-shadow: none;
             }
           }
+          .card-body {
+            .expense-item {
+              .expense-value {
+                right: 38%;
+              }
+            }
+          }
         }
       }
     }
