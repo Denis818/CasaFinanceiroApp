@@ -2,7 +2,19 @@
 
 //texto de ajuda para tooltip.
 .mat-mdc-tooltip .mdc-tooltip__surface {
-  background-color: #673ab7c9 !important;
+  background-color: #7b7b7b;
+  padding: 5px;
+}
+
+/* cor do texto
+ .mat-mdc-tooltip .mdc-tooltip__surface {
+  color: #673ab7 !important;
+} */
+
+mat-icon.icon-help {
+  color: #673ab7;
+  cursor: help;
+  font-size: 17px;
 }
 //end
 

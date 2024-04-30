@@ -50,7 +50,6 @@ export class WhatsappModal {
 
   enviarMensagem(): void {
     if (this.valoresForm.valid) {
-      console.log(this.data.isHabitacional);
       this.painelService
         .enviarMensagemWhatsApp(
           this.data.nome,

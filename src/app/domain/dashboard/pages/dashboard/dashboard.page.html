@@ -5,6 +5,11 @@
         <div card-title>Gastos gerais da casa por membro</div>
         <button download-button (click)="downloadRelatorioDespesasCasa()">
           Download do Relatório
+          <mat-icon
+            class="icon-help"
+            matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
+            >help_outline</mat-icon
+          >
         </button>
       </div>
       <div class="card-body">
@@ -29,6 +34,11 @@
           (click)="downloadRelatorioDespesasHabitacional()"
         >
           Download do Relatório
+          <mat-icon
+            class="icon-help"
+            matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados."
+            >help_outline</mat-icon
+          >
         </button>
       </div>
       <div class="card-body">
