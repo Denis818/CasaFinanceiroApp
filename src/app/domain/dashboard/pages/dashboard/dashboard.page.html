@@ -2,16 +2,14 @@
   <div card-container>
     <div class="card">
       <div class="card-head">
-        <div card-title>Gastos gerais da casa por membro</div>
-        
+        <div card-title>Despesa de casa por membro</div>
+
         <button download-button (click)="downloadRelatorioDespesasCasa()">
           Download do Relatório
-          <mat-icon
-  class="icon-help"
-  matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
-  matTooltipShowDelay="0"
-  matTooltipHideDelay="0"
->help_outline</mat-icon>
+          <mat-icon class="icon-help"
+                    matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
+                    matTooltipShowDelay="0"
+                    matTooltipHideDelay="0">help_outline</mat-icon>
         </button>
       </div>
       <div class="card-body">
@@ -30,27 +28,22 @@
 
     <div class="card">
       <div class="card-head">
-        <div card-title>Gastos moradia por membro</div>
-        <button
-          download-button
-          (click)="downloadRelatorioDespesasHabitacional()"
-        >
+        <div card-title>Despesa de moradia por membro</div>
+        <button download-button
+                (click)="downloadRelatorioDespesasHabitacional()">
           Download do Relatório
-          <mat-icon
-            matTooltipShowDelay="0"
-  matTooltipHideDelay="0"
-            class="icon-help"
-            matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados."
-            >help_outline</mat-icon
-          >
+          <mat-icon matTooltipShowDelay="0"
+                    matTooltipHideDelay="0"
+                    class="icon-help"
+                    matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados.">help_outline</mat-icon>
         </button>
       </div>
       <div class="card-body">
         <ng-container *ngFor="let item of despesasPorMembros">
-          <div *ngIf="item.valorDespesaHabitacional != 0" class="expense-item">
+          <div *ngIf="item.valorDespesaMoradia != 0" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
             <div class="expense-value">
-              {{ item.valorDespesaHabitacional | currency:'BRL' }}
+              {{ item.valorDespesaMoradia | currency:'BRL' }}
             </div>
             <div share-whatsapp (click)="enviarMensagem(item.nome, true)">
               <mat-icon>share</mat-icon>
@@ -66,10 +59,8 @@
         <div card-title>Análise de Compras Mensal de 2024</div>
       </div>
       <div class="card-body centralizar-graphic">
-        <app-graphic
-          [graphicConfig]="graphicConfig"
-          [graphicMobile]="graphicMobile"
-        >
+        <app-graphic [graphicConfig]="graphicConfig"
+                     [graphicMobile]="graphicMobile">
         </app-graphic>
       </div>
     </div>
@@ -102,7 +93,7 @@
         <div class="expense-item">
           <div class="expense-title">Total do Aluguel com Condomínio</div>
           <div class="expense-value">
-            {{ relatorioGastosDoMes.totalGastosHabitacional | currency:'BRL' }}
+            {{ relatorioGastosDoMes.totalGastosMoradia | currency:'BRL' }}
           </div>
         </div>
         <div class="expense-item">

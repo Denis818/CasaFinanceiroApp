@@ -37,7 +37,7 @@ export class DashboardPage implements OnInit {
 
   relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
     mesAtual: '',
-    totalGastosHabitacional: 0,
+    totalGastosMoradia: 0,
     totalGastosCasa: 0,
     totalGeral: 0,
   };

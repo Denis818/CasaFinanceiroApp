@@ -1,6 +1,6 @@
 export interface RelatorioGastosDoMesResponse {
   mesAtual: string;
-  totalGastosHabitacional: number;
+  totalGastosMoradia: number;
   totalGastosCasa: number;
   totalGeral: number;
 }

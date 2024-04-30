@@ -1,5 +1,5 @@
-﻿export interface DespesaPorMembroResponse {
+export interface DespesaPorMembroResponse {
   nome: string;
   valorDespesaCasa: number;
-  valorDespesaHabitacional: number;
+  valorDespesaMoradia: number;
 }
