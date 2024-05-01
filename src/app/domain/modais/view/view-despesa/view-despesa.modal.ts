@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { Component, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +18,7 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+registerLocaleData(localePt);
 
 @Component({
   selector: 'view-despesas',
@@ -32,7 +34,10 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
     MatDialogModule,
     MatInputModule,
   ],
-  providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: CustomPaginator },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+  ],
 })
 export class ViewDespesaModal {
   despesas: Despesa[];

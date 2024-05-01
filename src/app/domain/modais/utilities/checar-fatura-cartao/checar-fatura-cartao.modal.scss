@@ -50,31 +50,51 @@
         text-align: left !important;
       }
 
-      [fatura-descricao] {
-        background-color: #ff000030;
-        border: solid 2px red;
-        padding: 25px;
-        text-align: center;
-
-        p {
-          margin: 0px;
-          padding: 0px;
-        }
-      }
-
       .ocultar-card {
         display: none;
       }
-      .mat-card-content span {
-        color: #0fe400;
-      }
+      [card-content] {
+        .fatura {
+          font-weight: 500;
+          font-size: 15px;
 
-      .fatura-positiva {
-        color: #0fe400;
-      }
+          &.fatura-positiva {
+            color: #0fe400;
+          }
 
-      .fatura-negativa {
-        color: red;
+          &.fatura-negativa {
+            color: red;
+          }
+
+          &.fatura-neutra {
+            color: #673ab7;
+          }
+        }
+
+        [fatura-descricao] {
+          background-color: #673ab71f;
+          border: solid 2px #673ab7;
+          border-radius: 6px;
+          padding: 10px;
+          text-align: start;
+
+          p {
+            margin: 0px;
+          }
+          b {
+            font-weight: 500;
+          }
+
+          &.descricao-negativa {
+            background-color: rgb(255 0 0 / 6%);
+            border: solid 2px red;
+          }
+
+          &.descricao-positiva {
+            background-color: rgb(15 228 0 / 6%);
+            border: solid 2px #0fe400;
+          }
+        }
       }
     }
   }

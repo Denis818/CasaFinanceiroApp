@@ -76,7 +76,7 @@ export class PainelControlePage {
 
   openChecarFaturaCartaoModal(): void {
     this.dialog.open(ChecarFaturaCartaoModal, {
-      width: '400px',
+      width: '450px',
     });
   }
 }

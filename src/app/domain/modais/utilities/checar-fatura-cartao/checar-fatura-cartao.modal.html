@@ -19,11 +19,11 @@
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Fatura do cartão</mat-label>
       <input
-      placeholder="R$ 0.00"
+        placeholder="R$ 0.00"
         matInput
         currencyMask
-        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         formControlName="faturaCartao"
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         [ngClass]="{
           'is-invalid':
             faturaValidator.faturaCartao.errors && faturaValidator.faturaCartao.touched
@@ -37,25 +37,67 @@
 
     <mat-card [ngClass]="{'ocultar-card': !isValueCalculed}">
       <mat-card-content>
-        <p>
-          Fatura do Cartão: {{ faturaForm?.value?.faturaCartao | currency:'BRL'
-          }}
-        </p>
+        <div card-content>
+          <div>
+            <h3>
+              Fatura do Cartão:
+              <b
+                class="fatura fatura-neutra"
+                [ngClass]="{'fatura-negativa': faturaCartao > 1100}"
+              >
+                {{ faturaCartao | currency:'BRL' }}
+              </b>
+            </h3>
 
-        <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
+            <h3>
+              Total de Despesas:
+              <b
+                class="fatura fatura-neutra"
+                [ngClass]="{'fatura-negativa': totalDespesa > 1100}"
+              >
+                {{ totalDespesa | currency:'BRL' }}
+              </b>
+            </h3>
+          </div>
 
-        <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
+          <div
+            fatura-descricao
+            [ngClass]="{
+              'descricao-negativa': faturaCartao > totalDespesa,
+              'descricao-positiva': faturaCartao < totalDespesa
+            }"
+          >
+            <p *ngIf="totalDespesa == faturaCartao">
+              Não há divergência nos valores.
 
-        <div fatura-descricao>
-          <p *ngIf="valorSubtraido < 0">
-            A despesa é menor que a fatura do cartão.
-          </p>
+              <b class="fatura fatura-neutra"
+                >{{ valorSubtraido | currency:'BRL'}}</b
+              >.
+            </p>
 
-          <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
+            <p *ngIf="faturaCartao < totalDespesa">
+              Total das despesa é <b>MAIOR</b> que a fatura do cartão. <br />
+              Com uma diferenca de
 
-          <p *ngIf="valorSubtraido > 0">
-            A fatura do cartão é maior que as despesas.
-          </p>
+              <b class="fatura fatura-positiva"
+                >{{ valorSubtraido | currency:'BRL'}}</b
+              >.<br />
+              <br />
+
+              Possivelmente alguém fez compras <b>SEM</b> o cartão da casa e
+              <b>deixou a notinha no porta notas</b>
+            </p>
+
+            <p *ngIf="faturaCartao > totalDespesa">
+              Total das despesa é <b>MENOR</b> que a fatura do cartão. <br />
+
+              Voce deve <b>ADICONAR</b> uma compra no valor de
+              <b class="fatura fatura-negativa"
+                >{{ valorSubtraido | currency:'BRL'}}</b
+              >
+              para que os valores fechem.
+            </p>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>

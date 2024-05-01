@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { Component, LOCALE_ID } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+
+registerLocaleData(localePt);
 
 @Component({
   selector: 'app-checar-fatura-cartao.modal',
@@ -35,9 +38,11 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatIconModule,
     CurrencyMaskModule,
   ],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
 export class ChecarFaturaCartaoModal {
   valorSubtraido: number = 0;
+  faturaCartao: number = 0;
   totalDespesa: number = 0;
   isValueCalculed: boolean = false;
 
@@ -57,15 +62,15 @@ export class ChecarFaturaCartaoModal {
 
   onSubmit(): void {
     if (this.faturaForm.valid) {
-      this.painelService
-        .conferirFaturaDoCartao(this.faturaForm.value.faturaCartao)
-        .subscribe({
-          next: (valores: any) => {
-            this.valorSubtraido = valores.valorSubtraido;
-            this.totalDespesa = valores.totalDespesa;
-            this.isValueCalculed = true;
-          },
-        });
+      this.faturaCartao = this.faturaForm.value.faturaCartao;
+
+      this.painelService.conferirFaturaDoCartao(this.faturaCartao).subscribe({
+        next: (valores: any) => {
+          this.valorSubtraido = valores.valorSubtraido;
+          this.totalDespesa = valores.totalDespesa;
+          this.isValueCalculed = true;
+        },
+      });
     }
   }
   public validation(): void {
