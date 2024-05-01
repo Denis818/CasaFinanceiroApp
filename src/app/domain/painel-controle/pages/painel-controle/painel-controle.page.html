@@ -44,43 +44,10 @@
       Ver Membros
     </button>
 
-    <button mat-raised-button color="primary" (click)="abrirModal(modalForm)">
+    <button mat-raised-button color="primary" (click)="openModalChecarFaturaCartao()">
       Conferir Fatura
     </button>
   </div>
 
   <app-view-despesa-modal></app-view-despesa-modal>
-
-  <ng-template #modalForm let-dialogRef>
-    <div mini-modal>
-      <div header-model>
-        <h2>Fatura do Cartão</h2>
-      </div>
-      <div modal-content>
-        <mat-form-field>
-          <mat-label>Fatura do Cartão:</mat-label>
-          <input matInput type="number" [(ngModel)]="faturaCartao" />
-        </mat-form-field>
-
-        <mat-card class="example-card">
-          <mat-card-content>
-            <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
-            <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
-            <p *ngIf="valorSubtraido < 0">A despesa é menor que a fatura.</p>
-            <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
-            <p *ngIf="valorSubtraido > 0">Está sobrando.</p>
-          </mat-card-content>
-        </mat-card>
-
-        <div custom-buttons>
-          <button mat-raised-button color="primary" (click)="calcular()">
-            Calcular
-          </button>
-          <button mat-raised-button color="warn" (click)="dialogRef.close()">
-            Cancelar
-          </button>
-        </div>
-      </div>
-    </div>
-  </ng-template>
 </div>

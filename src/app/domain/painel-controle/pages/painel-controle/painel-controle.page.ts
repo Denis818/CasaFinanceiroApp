@@ -13,11 +13,11 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { ModalCategoriaComponent } from '../../modal/create/categoria/create-categoria.modal';
 import { ModalDespesaComponent } from '../../modal/create/despesa/create-despesa.modal';
 import { ModalMembroComponent } from '../../modal/create/membro/create-membro.modal';
+import { ChecarFaturaCartaoModal } from '../../modal/util/checar-fatura-cartao.modal/checar-fatura-cartao.modal';
 import { WhatsappModal } from '../../modal/util/envio-mensagem/whatsapp/whatsapp.modal';
 import { ViewCategoriaModal } from '../../modal/view/view-categoria-modal/view-categoria.modal';
 import { ViewDespesaModal } from '../../modal/view/view-despesa-modal/view-despesa.modal';
 import { ViewMembroModal } from '../../modal/view/view-membro-modal/view-membro.modal';
-import { PainelControleService } from '../../services/painel-controle.service';
 
 @Component({
   selector: 'app-painel-controle-page',
@@ -47,36 +47,17 @@ export class PainelControlePage {
   valorSubtraido: number = 0;
   totalDespesa: number = 0;
 
-  constructor(
-    private dialog: MatDialog,
-    private painelService: PainelControleService
-  ) {}
-
-  abrirModal(template: TemplateRef<any>) {
-    const dialogRef = this.dialog.open(template, {
-      width: '600px',
-      autoFocus: false,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {});
-  }
-
-  calcular() {
-    this.conferirFaturaDoCartao(this.faturaCartao);
-  }
-
-  conferirFaturaDoCartao(faturaCartao: number) {
-    this.painelService.conferirFaturaDoCartao(faturaCartao).subscribe({
-      next: (valores: any) => {
-        this.valorSubtraido = valores.valorSubtraido;
-        this.totalDespesa = valores.totalDespesa;
-      },
-    });
-  }
+  constructor(private dialog: MatDialog) {}
 
   enviarMensagem(): void {
     this.dialog.open(WhatsappModal, {
       width: '600px',
+    });
+  }
+
+  openModalChecarFaturaCartao(): void {
+    this.dialog.open(ChecarFaturaCartaoModal, {
+      width: '400px',
     });
   }
 

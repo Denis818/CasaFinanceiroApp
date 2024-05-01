@@ -1,0 +1,46 @@
+<div header-model>
+  <h2>Conferir Fatura do Cartão</h2>
+</div>
+
+<div modal-content>
+  <form
+    [formGroup]="faturaForm"
+    (ngSubmit)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    form-custom
+  >
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Fatura do cartão</mat-label>
+      <input
+        matInput
+        formControlName="faturaCartao"
+        [ngClass]="{
+          'is-invalid':
+            faturaValidator.faturaCartao.errors && faturaValidator.faturaCartao.touched
+        }"
+      />
+
+      <mat-error *ngIf="faturaValidator['faturaCartao'].hasError('required')">
+        Fatura do cartão é obrigatória.
+      </mat-error>
+    </mat-form-field>
+    <mat-card class="example-card">
+      <mat-card-content>
+        <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
+        <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
+        <p *ngIf="valorSubtraido < 0">A despesa é menor que a fatura.</p>
+        <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
+        <p *ngIf="valorSubtraido > 0">Está sobrando.</p>
+      </mat-card-content>
+    </mat-card>
+    <div class="form-actions">
+      <button mat-raised-button color="warn" (click)="onClose()">
+        Cancelar
+      </button>
+
+      <button mat-raised-button color="primary" [disabled]="!faturaForm.valid">
+        Calcular
+      </button>
+    </div>
+  </form>
+</div>

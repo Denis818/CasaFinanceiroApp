@@ -112,7 +112,7 @@
   }
 }
 
-[mini-modal] {
+::ng-deep {
   [header-model] {
     background-color: #673ab7;
     width: 100%;
@@ -131,19 +131,17 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    ::ng-deep {
-      mat-form-field {
-        width: 100%;
-        margin-bottom: 5px;
-      }
-      .mdc-text-field--filled {
-        height: 52px;
-      }
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    .mdc-text-field--filled {
+      height: 52px;
+    }
 
-      .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-        border-radius: 8px;
-        max-width: 100%;
-      }
+    .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+      border-radius: 8px;
+      max-width: 100%;
     }
 
     [custom-buttons] {
@@ -151,11 +149,5 @@
       justify-content: space-between;
       margin-top: 20px;
     }
-  }
-}
-
-::ng-deep {
-  .mat-mdc-dialog-container .mdc-dialog__surface {
-    width: 75% !important;
   }
 }
