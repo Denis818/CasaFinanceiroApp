@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MensagemWhatsAppModal } from 'src/app/domain/modais/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
@@ -12,7 +13,6 @@ import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-m
 import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
-import { MensagemWhatsAppModal } from 'src/app/domain/modal/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
 
 registerLocaleData(localePt);
 
