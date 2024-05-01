@@ -43,48 +43,44 @@
     <button mat-flat-button color="primary" (click)="viewMembros()">
       Ver Membros
     </button>
+
+    <button mat-raised-button color="primary" (click)="abrirModal(modalForm)">
+      Conferir Fatura
+    </button>
   </div>
 
   <app-view-despesa-modal></app-view-despesa-modal>
-</div>
 
-<!-- <button mat-raised-button color="primary" (click)="abrirModal(modalForm)">
-  Conferir Fatura
-</button>
+  <ng-template #modalForm let-dialogRef>
+    <div mini-modal>
+      <div header-model>
+        <h2>Fatura do Cartão</h2>
+      </div>
+      <div modal-content>
+        <mat-form-field>
+          <mat-label>Fatura do Cartão:</mat-label>
+          <input matInput type="number" [(ngModel)]="faturaCartao" />
+        </mat-form-field>
 
-<ng-template #modalForm let-dialogRef>
-  <div class="mat-dialog-content">
-    <h2>Fatura do Cartão</h2>
-    <mat-form-field>
-      <mat-label>Fatura do Cartão:</mat-label>
-      <input matInput type="number" id="fatura" [(ngModel)]="faturaCartao" />
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="calcular()"
-      class="button-calcular"
-    >
-      Calcular
-    </button>
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="dialogRef.close()"
-      class="button-cancelar"
-    >
-      Cancelar
-    </button>
-    <div
-      class="resultado-card"
-      [ngClass]="{'vermelho': valorSubtraido < 0, 'verde': valorSubtraido == 0, 'azul': valorSubtraido > 0}"
-    >
-      <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
-      <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
-      <p *ngIf="valorSubtraido < 0">A despesa é menor que a fatura.</p>
-      <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
-      <p *ngIf="valorSubtraido > 0">Está sobrando.</p>
+        <mat-card class="example-card">
+          <mat-card-content>
+            <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
+            <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
+            <p *ngIf="valorSubtraido < 0">A despesa é menor que a fatura.</p>
+            <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
+            <p *ngIf="valorSubtraido > 0">Está sobrando.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <div custom-buttons>
+          <button mat-raised-button color="primary" (click)="calcular()">
+            Calcular
+          </button>
+          <button mat-raised-button color="warn" (click)="dialogRef.close()">
+            Cancelar
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</ng-template>
- -->
+  </ng-template>
+</div>
