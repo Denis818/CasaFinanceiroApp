@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
-import { environment } from 'src/app/environments/enviroment';
+import { environment } from 'src/app/environments/environment';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { ResumoMensalResponse } from '../../interfaces/financy/resumo-mensal-response.interface';

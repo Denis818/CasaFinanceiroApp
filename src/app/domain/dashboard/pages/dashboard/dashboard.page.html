@@ -49,7 +49,7 @@
       </div>
       <div class="card-body">
         <ng-container *ngFor="let item of despesasPorMembros">
-          <div *ngIf="item.valorDespesaMoradia != 0" class="expense-item">
+          <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
             <div class="expense-value">
               {{ item.valorDespesaMoradia | currency:'BRL' }}

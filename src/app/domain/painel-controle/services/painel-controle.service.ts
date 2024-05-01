@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
-import { environment } from 'src/app/environments/enviroment';
+import { environment } from 'src/app/environments/environment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../interfaces/despesa.interface';

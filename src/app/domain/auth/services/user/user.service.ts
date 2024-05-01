@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
-import { environment } from 'src/app/environments/enviroment';
+import { environment } from 'src/app/environments/environment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { UserRequest } from '../../interfaces/user/user-info-request.interface';
 import { UserInfoResponse } from '../../interfaces/user/user-info-response.interface';
