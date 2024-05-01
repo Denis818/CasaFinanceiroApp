@@ -50,7 +50,7 @@ export class CreateDespesaModal {
     private toastr: ToastrService
   ) {
     this.validation();
-
+this.resetForm();
     this.getAllCategorias();
   }
 
@@ -70,7 +70,7 @@ export class CreateDespesaModal {
             ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,
             'Finalizado!'
           );
-
+            this.resetForm();
           this.despesaInserida.emit();
         },
       });
@@ -113,7 +113,7 @@ export class CreateDespesaModal {
         ],
       ],
       fornecedor: [
-        'Epa',
+        '',
         [
           Validators.required,
           Validators.minLength(3),
@@ -123,6 +123,17 @@ export class CreateDespesaModal {
     });
   }
 
+  resetForm(): void {
+    this.despesaForm.reset({
+      item: 'Compra',
+      quantidade: 1,
+      fornecedor: this.despesaForm.value.fornecedor || 'Epa',
+      preco: 0,
+      categoriaId: this.despesaForm.value.categoriaId || 0,
+    });
+  }
+
+  
   onClose(): void {
     this.dialogRef.close();
   }
