@@ -27,7 +27,7 @@ import { PainelControleService } from '../../../services/painel-controle.service
     MatInputModule,
   ],
 })
-export class ModalCategoriaComponent {
+export class CreateCategoriaModal {
   categoriaForm: FormGroup;
 
   get categoriaValidator(): any {
@@ -36,7 +36,7 @@ export class ModalCategoriaComponent {
 
   constructor(
     private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<ModalCategoriaComponent>,
+    public dialogRef: MatDialogRef<CreateCategoriaModal>,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {

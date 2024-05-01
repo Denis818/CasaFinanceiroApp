@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { WhatsappModal } from 'src/app/domain/painel-controle/modal/util/envio-mensagem/whatsapp/whatsapp.modal';
+import { MensagemWhatsAppModal } from 'src/app/domain/dashboard/modal/mensagem-whatsapp/mensagem-whatsapp.modal';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
@@ -89,8 +89,8 @@ export class DashboardPage implements OnInit {
     this.dashboardService.downloadRelatorioDespesasCasa();
   }
 
-  enviarMensagem(nome: string, isHabitacional: boolean): void {
-    this.dialog.open(WhatsappModal, {
+  openMensagemWhatsAppModal(nome: string, isHabitacional: boolean): void {
+    this.dialog.open(MensagemWhatsAppModal, {
       width: '500px',
       data: { nome: nome, isHabitacional: isHabitacional },
     });

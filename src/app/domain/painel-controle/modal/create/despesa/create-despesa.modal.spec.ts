@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalDespesaComponent } from './create-despesa.modal';
+import { CreateDespesaModal } from './create-despesa.modal';
 
 describe('ModalComponent', () => {
-  let component: ModalDespesaComponent;
-  let fixture: ComponentFixture<ModalDespesaComponent>;
+  let component: CreateDespesaModal;
+  let fixture: ComponentFixture<CreateDespesaModal>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalDespesaComponent],
+      declarations: [CreateDespesaModal],
     });
-    fixture = TestBed.createComponent(ModalDespesaComponent);
+    fixture = TestBed.createComponent(CreateDespesaModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

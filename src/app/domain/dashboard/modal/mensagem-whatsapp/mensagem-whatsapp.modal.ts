@@ -16,9 +16,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
 @Component({
-  selector: 'app-whatsapp',
-  templateUrl: './whatsapp.modal.html',
-  styleUrls: ['./whatsapp.modal.scss'],
+  selector: 'app-mensagem-whatsapp',
+  templateUrl: './mensagem-whatsapp.modal.html',
+  styleUrls: ['./mensagem-whatsapp.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -31,7 +31,7 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatTooltipModule,
   ],
 })
-export class WhatsappModal {
+export class MensagemWhatsAppModal {
   valoresForm: FormGroup;
 
   get valoresValidator(): any {
@@ -41,7 +41,7 @@ export class WhatsappModal {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<WhatsappModal>,
+    public dialogRef: MatDialogRef<MensagemWhatsAppModal>,
     private fb: FormBuilder
   ) {
     this.validation();

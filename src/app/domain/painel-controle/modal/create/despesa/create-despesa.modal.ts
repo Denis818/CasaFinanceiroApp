@@ -16,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
-
 @Component({
   selector: 'app-modal-despesa',
   templateUrl: './create-despesa.modal.html',
@@ -33,7 +32,7 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
     MatSelectModule,
   ],
 })
-export class ModalDespesaComponent {
+export class CreateDespesaModal {
   despesaForm: FormGroup;
 
   get dsespesaValidator(): any {
@@ -46,7 +45,7 @@ export class ModalDespesaComponent {
 
   constructor(
     private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<ModalDespesaComponent>,
+    public dialogRef: MatDialogRef<CreateDespesaModal>,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {
@@ -132,9 +131,10 @@ export class ModalDespesaComponent {
 
   resetForm(): void {
     this.despesaForm.reset({
-      item: 'item',
+      item: 'Compra',
       quantidade: 1,
       fornecedor: 'Epa',
+      preco: 0,
       categoriaId: this.despesaForm.value.categoriaId || 0,
     });
   }

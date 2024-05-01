@@ -10,11 +10,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ToastrService } from 'ngx-toastr';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PainelControleService } from '../../../services/painel-controle.service';
 
 @Component({
@@ -31,11 +31,15 @@ import { PainelControleService } from '../../../services/painel-controle.service
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatTooltipModule,
+    MatIconModule,
+    CurrencyMaskModule,
   ],
 })
 export class ChecarFaturaCartaoModal {
   valorSubtraido: number = 0;
   totalDespesa: number = 0;
+  isValueCalculed: boolean = false;
 
   faturaForm: FormGroup;
 
@@ -59,6 +63,7 @@ export class ChecarFaturaCartaoModal {
           next: (valores: any) => {
             this.valorSubtraido = valores.valorSubtraido;
             this.totalDespesa = valores.totalDespesa;
+            this.isValueCalculed = true;
           },
         });
     }

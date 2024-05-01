@@ -10,13 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'confirm-delete',
-  templateUrl: './confirm-delete.component.html',
+  templateUrl: './confirm-delete.modal.html',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatDividerModule, MatIconModule],
 })
-export class ConfirmDeleteComponent {
+export class ConfirmDeleteModal {
   constructor(
-    public dialogRef: MatDialogRef<ConfirmDeleteComponent>,
+    public dialogRef: MatDialogRef<ConfirmDeleteModal>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 }

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalMembroComponent } from './create-membro.modal';
+import { CreateMembroModal } from './create-membro.modal';
 
 describe('ModalMembroComponent', () => {
-  let component: ModalMembroComponent;
-  let fixture: ComponentFixture<ModalMembroComponent>;
+  let component: CreateMembroModal;
+  let fixture: ComponentFixture<CreateMembroModal>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalMembroComponent],
+      declarations: [CreateMembroModal],
     });
-    fixture = TestBed.createComponent(ModalMembroComponent);
+    fixture = TestBed.createComponent(CreateMembroModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

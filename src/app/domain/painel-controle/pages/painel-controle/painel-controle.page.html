@@ -1,6 +1,6 @@
 <div painel-controle>
   <div options-header>
-    <button button-action (click)="openModalInsertCategoria()">
+    <button button-action (click)="openCreateCategoriaModal()">
       <div icon-bg>
         <img
           class="icon-position"
@@ -12,7 +12,7 @@
       <span options-title>Nova Categoria</span>
     </button>
 
-    <button button-action (click)="openModalInsertDespesa()">
+    <button button-action (click)="openCreateDespesaModal()">
       <div icon-bg>
         <img
           class="icon-position"
@@ -24,7 +24,7 @@
       <span options-title>Nova Despesa</span>
     </button>
 
-    <button button-action (click)="openModalInserirMembro()">
+    <button button-action (click)="openCreateMembroModal()">
       <div icon-bg>
         <img
           class="icon-position membro-position"
@@ -36,15 +36,19 @@
       <span options-title>Novo Membro</span>
     </button>
 
-    <button mat-flat-button color="primary" (click)="viewCategorias()">
+    <button mat-flat-button color="primary" (click)="openViewCategoriaModal()">
       Ver Categorias
     </button>
 
-    <button mat-flat-button color="primary" (click)="viewMembros()">
+    <button mat-flat-button color="primary" (click)="openViewMembroModal()">
       Ver Membros
     </button>
 
-    <button mat-raised-button color="primary" (click)="openModalChecarFaturaCartao()">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openChecarFaturaCartaoModal()"
+    >
       Conferir Fatura
     </button>
   </div>

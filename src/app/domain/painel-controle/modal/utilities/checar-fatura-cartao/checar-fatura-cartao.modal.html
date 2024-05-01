@@ -1,0 +1,80 @@
+<div header-model>
+  <h2>
+    Conferir Fatura do Cartão
+    <mat-icon
+      class="icon-help"
+      matTooltip="Aqui você poderá entrar com o valor da fatura do cartão e será conferido com o total de despesas da casa e assim saber se há divergências."
+      >help_outline</mat-icon
+    >
+  </h2>
+</div>
+
+<div modal-content>
+  <form
+    [formGroup]="faturaForm"
+    (ngSubmit)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    form-custom
+  >
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Fatura do cartão</mat-label>
+      <input
+        matInput
+           currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        formControlName="faturaCartao"
+        [ngClass]="{
+          'is-invalid':
+            faturaValidator.faturaCartao.errors && faturaValidator.faturaCartao.touched
+        }"
+      />
+
+      <mat-error *ngIf="faturaValidator['faturaCartao'].hasError('required')">
+        Fatura do cartão é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-card [ngClass]="{'ocultar-card': !isValueCalculed}">
+      <mat-card-content>
+        <p>
+          <span>
+            Fatura do Cartão: {{ faturaForm?.value?.faturaCartao |
+            currency:'BRL' }}</span
+          >
+        </p>
+
+        <p>
+          <span>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</span>
+        </p>
+
+        <p>
+          <span>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</span>
+        </p>
+
+        <p *ngIf="valorSubtraido < 0">
+          <span> A despesa é menor que a fatura do cartão.</span>
+        </p>
+
+        <p *ngIf="valorSubtraido == 0">
+          <span>Está tudo certo.</span>
+        </p>
+
+        <p *ngIf="valorSubtraido > 0">
+          <span>A fatura do cartão é maior que as despesas.</span>
+        </p>
+
+
+      </mat-card-content>
+    </mat-card>
+
+    <div class="form-actions">
+      <button mat-raised-button color="warn" (click)="onClose()">
+        Cancelar
+      </button>
+
+      <button mat-raised-button color="primary" [disabled]="!faturaForm.valid">
+        Calcular
+      </button>
+    </div>
+  </form>
+</div>

@@ -3,84 +3,84 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { Categoria } from '../../../interfaces/categoria.interface';
+import { Membro } from '../../../interfaces/membro.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
-import { ConfirmDeleteComponent } from '../../util/delete/confirm-delete.component';
+import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
-  selector: 'modal-view-categoria',
-  templateUrl: './view-categoria.modal.html',
-  styleUrls: ['./view-categoria.modal.scss'],
+  selector: 'modal-view-membro',
+  templateUrl: './view-membro.modal.html',
+  styleUrls: ['./view-membro.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
     MatPaginatorModule,
+    MatInputModule,
     FormsModule,
     MatSlideToggleModule,
     MatIconModule,
     MatTableModule,
     MatDialogModule,
-    ConfirmDeleteComponent,
+    ConfirmDeleteModal,
   ],
 })
-export class ViewCategoriaModal {
-  categorias: Categoria[];
+export class ViewMembroModal {
+  membros: Membro[];
   constructor(
     private painelService: PainelControleService,
     private toastr: ToastrService,
     private dialog: MatDialog
   ) {
-    this.getAllCategorias();
+    this.getAllMembros();
   }
 
-  getAllCategorias() {
-    this.painelService.getAll<Categoria>('categoria').subscribe({
-      next: (categorias) => {
-        this.categorias = categorias;
-      },
-    });
+  getAllMembros() {
+    this.painelService
+      .getAll<Membro>('Membro')
+      .subscribe((membros) => (this.membros = membros));
   }
 
   //#region Update
-  openEdit(categoria: Categoria): void {
-    categoria.isEditing = !categoria.isEditing;
+  openEdit(membro: Membro): void {
+    membro.isEditing = !membro.isEditing;
   }
 
-  updateCategoria(id: number, categoria: Categoria): void {
-    this.painelService.update(id, categoria, 'Categoria').subscribe({
+  updateMembro(id: number, membro: Membro): void {
+    this.painelService.update(id, membro, 'Membro').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllCategorias();
+        this.getAllMembros();
       },
-      error: () => this.getAllCategorias(),
+      error: () => this.getAllMembros(),
     });
 
-    categoria.isEditing = false;
+    membro.isEditing = false;
   }
   //#endregion
 
   //#region Delete
-  confirmDelete(idCategoria: number): void {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+  confirmDelete(idMembro: number): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteModal, {
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteCategoria(idCategoria);
+        this.deleteMembro(idMembro);
       }
     });
   }
 
-  deleteCategoria(categoriaId: number): void {
-    this.painelService.delete(categoriaId, 'Categoria').subscribe({
+  deleteMembro(membroId: number): void {
+    this.painelService.delete(membroId, 'Membro').subscribe({
       next: () => {
         this.toastr.success('Deletado com sucesso!', 'Finalizado!');
-        this.getAllCategorias();
+        this.getAllMembros();
       },
     });
   }

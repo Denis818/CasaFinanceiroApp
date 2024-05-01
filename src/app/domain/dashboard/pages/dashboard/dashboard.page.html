@@ -6,10 +6,13 @@
 
         <button download-button (click)="downloadRelatorioDespesasCasa()">
           Download do Relatório
-          <mat-icon class="icon-help"
-                    matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
-                    matTooltipShowDelay="0"
-                    matTooltipHideDelay="0">help_outline</mat-icon>
+          <mat-icon
+            class="icon-help"
+            matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
+            matTooltipShowDelay="0"
+            matTooltipHideDelay="0"
+            >help_outline
+          </mat-icon>
         </button>
       </div>
       <div class="card-body">
@@ -18,7 +21,10 @@
           <div class="expense-value">
             {{ item.valorDespesaCasa | currency:'BRL' }}
           </div>
-          <div share-whatsapp (click)="enviarMensagem(item.nome, false)">
+          <div
+            share-whatsapp
+            (click)="openMensagemWhatsAppModal(item.nome, false)"
+          >
             <mat-icon>share</mat-icon>
             <span>WhatsApp</span>
           </div>
@@ -29,13 +35,16 @@
     <div class="card">
       <div class="card-head">
         <div card-title>Despesa de moradia por membro</div>
-        <button download-button
-                (click)="downloadRelatorioDespesasHabitacional()">
+        <button
+          download-button
+          (click)="downloadRelatorioDespesasHabitacional()"
+        >
           Download do Relatório
-          <mat-icon matTooltipShowDelay="0"
-                    matTooltipHideDelay="0"
-                    class="icon-help"
-                    matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados.">help_outline</mat-icon>
+          <mat-icon
+            class="icon-help"
+            matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados."
+            >help_outline</mat-icon
+          >
         </button>
       </div>
       <div class="card-body">
@@ -45,7 +54,10 @@
             <div class="expense-value">
               {{ item.valorDespesaMoradia | currency:'BRL' }}
             </div>
-            <div share-whatsapp (click)="enviarMensagem(item.nome, true)">
+            <div
+              share-whatsapp
+              (click)="openMensagemWhatsAppModal(item.nome, true)"
+            >
               <mat-icon>share</mat-icon>
               <span>WhatsApp</span>
             </div>
@@ -59,8 +71,10 @@
         <div card-title>Análise de Compras Mensal de 2024</div>
       </div>
       <div class="card-body centralizar-graphic">
-        <app-graphic [graphicConfig]="graphicConfig"
-                     [graphicMobile]="graphicMobile">
+        <app-graphic
+          [graphicConfig]="graphicConfig"
+          [graphicMobile]="graphicMobile"
+        >
         </app-graphic>
       </div>
     </div>

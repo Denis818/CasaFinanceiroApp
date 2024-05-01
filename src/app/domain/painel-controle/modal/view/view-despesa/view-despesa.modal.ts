@@ -15,7 +15,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from '../../../interfaces/despesa.interface';
 import { PainelControleService } from '../../../services/painel-controle.service';
-import { ConfirmDeleteComponent } from '../../util/delete/confirm-delete.component';
+import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
   selector: 'app-view-despesa-modal',
@@ -109,7 +109,7 @@ export class ViewDespesaModal {
 
   //#region Delete
   confirmDelete(idDespesa: number): void {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+    const dialogRef = this.dialog.open(ConfirmDeleteModal, {
       width: '400px',
     });
 

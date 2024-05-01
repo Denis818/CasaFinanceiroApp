@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalCategoriaComponent } from './create-categoria.modal';
+import { CreateCategoriaModal } from './create-categoria.modal';
 
 describe('CategoriaComponent', () => {
-  let component: ModalCategoriaComponent;
-  let fixture: ComponentFixture<ModalCategoriaComponent>;
+  let component: CreateCategoriaModal;
+  let fixture: ComponentFixture<CreateCategoriaModal>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalCategoriaComponent],
+      declarations: [CreateCategoriaModal],
     });
-    fixture = TestBed.createComponent(ModalCategoriaComponent);
+    fixture = TestBed.createComponent(CreateCategoriaModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
