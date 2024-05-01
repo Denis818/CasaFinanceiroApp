@@ -70,7 +70,7 @@ export class ChecarFaturaCartaoModal {
   }
   public validation(): void {
     this.faturaForm = this.fb.group({
-      faturaCartao: ['', [Validators.required]],
+      faturaCartao: [0, [Validators.required]],
     });
   }
 

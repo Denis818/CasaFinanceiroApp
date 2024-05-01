@@ -50,7 +50,7 @@ export class CreateDespesaModal {
     private toastr: ToastrService
   ) {
     this.validation();
-    this.resetForm();
+
     this.getAllCategorias();
   }
 
@@ -71,7 +71,6 @@ export class CreateDespesaModal {
             'Finalizado!'
           );
 
-          this.resetForm();
           this.despesaInserida.emit();
         },
       });
@@ -88,12 +87,12 @@ export class CreateDespesaModal {
   public validation(): void {
     this.despesaForm = this.fb.group({
       categoriaId: [
-        '',
+        1,
         [Validators.required, Validators.pattern('^[1-9][0-9]*$')],
       ],
 
       item: [
-        '',
+        'Compra',
         [
           Validators.required,
           Validators.minLength(3),
@@ -101,16 +100,11 @@ export class CreateDespesaModal {
         ],
       ],
       preco: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[0-9,.]+$'),
-          Validators.min(0.01),
-          Validators.max(999999.99),
-        ],
+        0,
+        [Validators.required, Validators.min(0.01), Validators.max(999999.99)],
       ],
       quantidade: [
-        '',
+        1,
         [
           Validators.required,
           Validators.pattern('^[0-9]+$'),
@@ -119,23 +113,13 @@ export class CreateDespesaModal {
         ],
       ],
       fornecedor: [
-        '',
+        'Epa',
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(80),
         ],
       ],
-    });
-  }
-
-  resetForm(): void {
-    this.despesaForm.reset({
-      item: 'Compra',
-      quantidade: 1,
-      fornecedor: 'Epa',
-      preco: 0,
-      categoriaId: this.despesaForm.value.categoriaId || 0,
     });
   }
 

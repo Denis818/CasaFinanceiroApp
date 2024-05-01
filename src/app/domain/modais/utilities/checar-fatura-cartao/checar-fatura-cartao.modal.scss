@@ -45,8 +45,21 @@
           max-width: 100%;
         }
       }
+
       input {
         text-align: left !important;
+      }
+
+      [fatura-descricao] {
+        background-color: #ff000030;
+        border: solid 2px red;
+        padding: 25px;
+        text-align: center;
+
+        p {
+          margin: 0px;
+          padding: 0px;
+        }
       }
 
       .ocultar-card {

@@ -11,16 +11,17 @@
 
 <div modal-content>
   <form
+    form-custom
     [formGroup]="faturaForm"
     (ngSubmit)="onSubmit()"
     (keyup.enter)="onSubmit()"
-    form-custom
   >
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Fatura do cartão</mat-label>
       <input
+      placeholder="R$ 0.00"
         matInput
-           currencyMask
+        currencyMask
         [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
         formControlName="faturaCartao"
         [ngClass]="{
@@ -37,33 +38,25 @@
     <mat-card [ngClass]="{'ocultar-card': !isValueCalculed}">
       <mat-card-content>
         <p>
-          <span>
-            Fatura do Cartão: {{ faturaForm?.value?.faturaCartao |
-            currency:'BRL' }}</span
-          >
+          Fatura do Cartão: {{ faturaForm?.value?.faturaCartao | currency:'BRL'
+          }}
         </p>
 
-        <p>
-          <span>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</span>
-        </p>
+        <p>Total de Despesas: {{ totalDespesa | currency:'BRL' }}</p>
 
-        <p>
-          <span>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</span>
-        </p>
+        <p>Valor Subtraído: {{ valorSubtraido | currency:'BRL' }}</p>
 
-        <p *ngIf="valorSubtraido < 0">
-          <span> A despesa é menor que a fatura do cartão.</span>
-        </p>
+        <div fatura-descricao>
+          <p *ngIf="valorSubtraido < 0">
+            A despesa é menor que a fatura do cartão.
+          </p>
 
-        <p *ngIf="valorSubtraido == 0">
-          <span>Está tudo certo.</span>
-        </p>
+          <p *ngIf="valorSubtraido == 0">Está tudo certo.</p>
 
-        <p *ngIf="valorSubtraido > 0">
-          <span>A fatura do cartão é maior que as despesas.</span>
-        </p>
-
-
+          <p *ngIf="valorSubtraido > 0">
+            A fatura do cartão é maior que as despesas.
+          </p>
+        </div>
       </mat-card-content>
     </mat-card>
 

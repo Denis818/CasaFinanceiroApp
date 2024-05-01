@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,13 +15,14 @@ import { ViewMembroModal } from 'src/app/domain/modais/view/view-membro/view-mem
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 
 @Component({
-  selector: 'app-painel-controle-page',
+  selector: 'painel-controle-page',
   templateUrl: './painel-controle.page.html',
   styleUrls: ['./painel-controle.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
     ViewDespesaModal,
+    CreateDespesaModal,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
@@ -31,6 +32,8 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 })
 export class PainelControlePage {
   constructor(private dialog: MatDialog) {}
+
+  @ViewChild(ViewDespesaModal) viewDespesaModal: ViewDespesaModal;
 
   //#region  Views
   openViewCategoriaModal() {
@@ -50,8 +53,11 @@ export class PainelControlePage {
 
   //#region Create
   openCreateDespesaModal(): void {
-    this.dialog.open(CreateDespesaModal, {
+    const dialogRef = this.dialog.open(CreateDespesaModal, {
       width: '400px',
+    });
+    dialogRef.componentInstance.despesaInserida.subscribe(() => {
+      this.viewDespesaModal.getAllDespesas();
     });
   }
 

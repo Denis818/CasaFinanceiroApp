@@ -19,7 +19,7 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
-  selector: 'app-view-despesa-modal',
+  selector: 'view-despesas',
   templateUrl: './view-despesa.modal.html',
   styleUrls: ['./view-despesa.modal.scss'],
   standalone: true,
