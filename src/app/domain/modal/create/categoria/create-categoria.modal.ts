@@ -11,12 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
-import { PainelControleService } from '../../../services/painel-controle.service';
+import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
 @Component({
-  selector: 'app-membro',
-  templateUrl: './create-membro.modal.html',
-  styleUrls: ['./create-membro.modal.scss'],
+  selector: 'app-categoria',
+  templateUrl: './create-categoria.modal.html',
+  styleUrls: ['./create-categoria.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -27,16 +27,16 @@ import { PainelControleService } from '../../../services/painel-controle.service
     MatInputModule,
   ],
 })
-export class CreateMembroModal {
-  membroForm: FormGroup;
+export class CreateCategoriaModal {
+  categoriaForm: FormGroup;
 
-  get membroValidator(): any {
-    return this.membroForm.controls;
+  get categoriaValidator(): any {
+    return this.categoriaForm.controls;
   }
 
   constructor(
     private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<CreateMembroModal>,
+    public dialogRef: MatDialogRef<CreateCategoriaModal>,
     private fb: FormBuilder,
     private toastr: ToastrService
   ) {
@@ -45,24 +45,26 @@ export class CreateMembroModal {
   }
 
   onSubmit(): void {
-    if (this.membroForm.valid) {
-      this.painelService.insert(this.membroForm.value, 'Membro').subscribe({
-        next: () => {
-          this.toastr.success(
-            ` Membro ${this.membroForm.value.nome} criado com sucesso!`,
-            'Finalizado!'
-          );
+    if (this.categoriaForm.valid) {
+      this.painelService
+        .insert(this.categoriaForm.value, 'Categoria')
+        .subscribe({
+          next: () => {
+            this.toastr.success(
+              ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
+              'Finalizado!'
+            );
 
-          this.onClose();
-          this.resetForm();
-        },
-      });
+            this.onClose();
+            this.resetForm();
+          },
+        });
     }
   }
 
   public validation(): void {
-    this.membroForm = this.fb.group({
-      nome: [
+    this.categoriaForm = this.fb.group({
+      descricao: [
         '',
         [
           Validators.required,
@@ -70,17 +72,12 @@ export class CreateMembroModal {
           Validators.maxLength(25),
         ],
       ],
-      telefone: [
-        '',
-        [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)],
-      ],
     });
   }
 
   resetForm(): void {
-    this.membroForm.reset({
-      nome: '',
-      telefone: '',
+    this.categoriaForm.reset({
+      descricao: '',
     });
   }
 

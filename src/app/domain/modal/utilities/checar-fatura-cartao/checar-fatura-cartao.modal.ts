@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { PainelControleService } from '../../../services/painel-controle.service';
+import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
 @Component({
   selector: 'app-checar-fatura-cartao.modal',
