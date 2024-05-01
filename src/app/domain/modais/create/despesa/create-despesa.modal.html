@@ -3,12 +3,7 @@
 </div>
 
 <div modal-content>
-  <form
-    [formGroup]="despesaForm"
-    (ngSubmit)="onSubmit()"
-    (keyup.enter)="onSubmit()"
-    form-custom
-  >
+  <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
     <mat-form-field appearance="fill">
       <mat-label>Selecione uma categoria</mat-label>
       <mat-select formControlName="categoriaId" required>
@@ -120,16 +115,16 @@
     </mat-form-field>
 
     <div class="form-actions">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onClose()"
-      >
+      <button mat-raised-button color="warn" (click)="onClose()">
         Cancelar
       </button>
 
-      <button mat-flat-button color="primary" [disabled]="!despesaForm.valid">
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="!despesaForm.valid"
+      >
         Salvar
       </button>
     </div>

@@ -12,12 +12,12 @@ import {
 } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
+import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+
 registerLocaleData(localePt);
 
 @Component({
@@ -97,6 +97,10 @@ export class ViewDespesaModal {
   //#region Update
   openEdit(despesa: Despesa): void {
     despesa.isEditing = !despesa.isEditing;
+  }
+
+  columEdit(despesa: Despesa) {
+    this.updateDespesa(despesa.id, despesa);
   }
 
   updateDespesa(id: number, despesa: Despesa): void {

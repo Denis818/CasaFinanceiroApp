@@ -1,6 +1,6 @@
 <div class="screen">
   <div class="screen-content">
-    <form class="login" [formGroup]="form">
+    <form class="login" [formGroup]="form" (ngSubmit)="login()">
       <mat-form-field>
         <mat-label>Usuário / Email</mat-label>
         <mat-icon matPrefix>person</mat-icon>
@@ -25,12 +25,7 @@
         </mat-icon>
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        class="login-submit"
-        (click)="login()"
-        (keyup.enter)="login()"
-      >
+      <button type="submit" mat-raised-button class="login-submit">
         Conecte-se agora
         <mat-icon>chevron_right</mat-icon>
       </button>

@@ -3,12 +3,7 @@
 </div>
 
 <div modal-content>
-  <form
-    [formGroup]="membroForm"
-    (ngSubmit)="onSubmit()"
-    (keyup.enter)="onSubmit()"
-    form-custom
-  >
+  <form [formGroup]="membroForm" (ngSubmit)="onSubmit()" form-custom>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nome</mat-label>
       <input
@@ -46,21 +41,27 @@
         Telefone é obrigatório.
       </mat-error>
       <mat-error *ngIf="membroValidator['telefone'].hasError('pattern')">
-        O formato do telefone deve ser (XX) XXXXX-XXXX.
+        Por favor, insira um número de telefone válido.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['maxLength'].hasError('pattern')">
+        Permitido no maxímo 11 caracteres.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['minLength'].hasError('pattern')">
+        Permitido no minímo 11 caracteres.
       </mat-error>
     </mat-form-field>
 
     <div class="form-actions">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onClose()"
-      >
+      <button mat-raised-button color="warn" (click)="onClose()">
         Cancelar
       </button>
 
-      <button mat-flat-button color="primary" [disabled]="!membroForm.valid">
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="!membroForm.valid"
+      >
         Salvar
       </button>
     </div>

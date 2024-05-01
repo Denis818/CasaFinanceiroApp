@@ -1,14 +1,5 @@
-<div header-model>
-  <h2>Adicionar Categoria</h2>
-</div>
-
 <div modal-content>
-  <form
-    [formGroup]="categoriaForm"
-    (ngSubmit)="onSubmit()"
-    (keyup.enter)="onSubmit()"
-    form-custom
-  >
+  <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" form-custom>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Descricao</mat-label>
       <input
@@ -19,7 +10,6 @@
             categoriaValidator.descricao.errors && categoriaValidator.descricao.touched
         }"
       />
-
       <mat-error *ngIf="categoriaValidator['descricao'].hasError('required')">
         Descricao é obrigatório.
       </mat-error>
@@ -32,16 +22,16 @@
     </mat-form-field>
 
     <div class="form-actions">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onClose()"
-      >
+      <button mat-raised-button color="warn" (click)="onClose()">
         Cancelar
       </button>
 
-      <button mat-flat-button color="primary" [disabled]="!categoriaForm.valid">
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="!categoriaForm.valid"
+        type="submit"
+      >
         Salvar
       </button>
     </div>

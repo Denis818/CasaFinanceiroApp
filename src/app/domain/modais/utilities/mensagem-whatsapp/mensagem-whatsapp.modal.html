@@ -4,12 +4,7 @@
 </div>
 
 <div modal-content>
-  <form
-    [formGroup]="valoresForm"
-    (ngSubmit)="enviarMensagem()"
-    (keyup.enter)="enviarMensagem()"
-    form-custom
-  >
+  <form [formGroup]="valoresForm" (ngSubmit)="enviarMensagem()" form-custom>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Pix</mat-label>
       <input
@@ -31,28 +26,17 @@
       <input matInput formControlName="titleMessage" />
     </mat-form-field>
 
-    <!--     <div>
-      <mat-slide-toggle formControlName="isHabitacional">
-        Enviar somente despesas de moradia?
-      </mat-slide-toggle>
-      <mat-icon
-        class="icon-help-isHabitacional"
-        matTooltip="Marque esta opção se deseja enviar somente as despesas de aluguel, condomínio e conta de luz."
-        >help_outline</mat-icon
-      >
-    </div>
- -->
     <div class="form-actions">
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="onClose()"
-      >
+      <button mat-raised-button color="warn" (click)="onClose()">
         Cancelar
       </button>
 
-      <button mat-flat-button color="primary" [disabled]="! valoresForm.valid">
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="! valoresForm.valid"
+      >
         Enviar
       </button>
     </div>

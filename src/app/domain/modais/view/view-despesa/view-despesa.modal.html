@@ -43,7 +43,7 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.item"
-                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                (keyup.enter)="columEdit(despesa)"
               />
             </div>
             <ng-template #viewItem>{{ despesa.item }}</ng-template>
@@ -54,7 +54,7 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.fornecedor"
-                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                (keyup.enter)="columEdit( despesa)"
               />
             </div>
             <ng-template #viewFornecedor>{{ despesa.fornecedor }}</ng-template>
@@ -64,7 +64,7 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.preco"
-                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                (keyup.enter)="columEdit( despesa)"
               />
             </div>
             <ng-template #viewPreco
@@ -76,7 +76,7 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.quantidade"
-                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                (keyup.enter)="columEdit(despesa)"
               />
             </div>
             <ng-template #viewQuantidade>{{ despesa.quantidade }}</ng-template>

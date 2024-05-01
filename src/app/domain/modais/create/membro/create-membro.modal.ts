@@ -72,7 +72,9 @@ export class CreateMembroModal {
       ],
       telefone: [
         '',
-        [Validators.required, Validators.pattern(/^\(\d{2}\) \d{5}-\d{4}$/)],
+        Validators.minLength(11),
+        Validators.maxLength(16),
+        [Validators.required, Validators.pattern(/^[\d\s()+-]*$/)],
       ],
     });
   }

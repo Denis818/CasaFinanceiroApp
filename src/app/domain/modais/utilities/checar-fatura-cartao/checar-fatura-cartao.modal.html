@@ -10,12 +10,7 @@
 </div>
 
 <div modal-content>
-  <form
-    form-custom
-    [formGroup]="faturaForm"
-    (ngSubmit)="onSubmit()"
-    (keyup.enter)="onSubmit()"
-  >
+  <form form-custom [formGroup]="faturaForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Fatura do cartão</mat-label>
       <input
@@ -107,7 +102,12 @@
         Cancelar
       </button>
 
-      <button mat-raised-button color="primary" [disabled]="!faturaForm.valid">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!faturaForm.valid"
+      >
         Calcular
       </button>
     </div>
