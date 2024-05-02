@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url_financy: 'https://casa-financeiro-api.up.railway.app/api',
+  base_url_financy: 'https://casa-financeiro-api.up.railway.app/api/v1',
 };
