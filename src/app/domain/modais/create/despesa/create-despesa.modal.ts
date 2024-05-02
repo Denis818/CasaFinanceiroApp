@@ -50,7 +50,7 @@ export class CreateDespesaModal {
     private toastr: ToastrService
   ) {
     this.validation();
-this.resetForm();
+    this.resetForm();
     this.getAllCategorias();
   }
 
@@ -70,7 +70,7 @@ this.resetForm();
             ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,
             'Finalizado!'
           );
-            this.resetForm();
+          this.resetForm();
           this.despesaInserida.emit();
         },
       });
@@ -133,7 +133,6 @@ this.resetForm();
     });
   }
 
-  
   onClose(): void {
     this.dialogRef.close();
   }
