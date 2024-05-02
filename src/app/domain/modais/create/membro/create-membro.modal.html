@@ -40,13 +40,12 @@
       <mat-error *ngIf="membroValidator['telefone'].hasError('required')">
         Telefone é obrigatório.
       </mat-error>
-      <mat-error *ngIf="membroValidator['telefone'].hasError('pattern')">
-        Por favor, insira um número de telefone válido.
+
+      <mat-error *ngIf="membroValidator['telefone'].hasError('minlength')">
+        Permitido no minímo 11 caracteres.
       </mat-error>
-      <mat-error *ngIf="membroValidator['maxLength'].hasError('pattern')">
-        Permitido no maxímo 11 caracteres.
-      </mat-error>
-      <mat-error *ngIf="membroValidator['minLength'].hasError('pattern')">
+
+      <mat-error *ngIf="membroValidator['telefone'].hasError('maxlength')">
         Permitido no minímo 11 caracteres.
       </mat-error>
     </mat-form-field>

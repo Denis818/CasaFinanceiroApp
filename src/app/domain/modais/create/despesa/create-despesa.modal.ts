@@ -100,7 +100,6 @@ export class CreateDespesaModal {
         ],
       ],
       preco: [
-        0,
         [Validators.required, Validators.min(0.01), Validators.max(9999.99)],
       ],
       quantidade: [
@@ -128,7 +127,6 @@ export class CreateDespesaModal {
       item: 'Compra',
       quantidade: 1,
       fornecedor: this.despesaForm.value.fornecedor || 'Epa',
-      preco: 0,
       categoriaId: this.despesaForm.value.categoriaId || 0,
     });
   }
