@@ -41,7 +41,6 @@ export class CreateCategoriaModal {
     private toastr: ToastrService
   ) {
     this.validation();
-    this.resetForm();
   }
 
   onSubmit(): void {
@@ -56,7 +55,6 @@ export class CreateCategoriaModal {
             );
 
             this.onClose();
-            this.resetForm();
           },
         });
     }
@@ -72,12 +70,6 @@ export class CreateCategoriaModal {
           Validators.maxLength(25),
         ],
       ],
-    });
-  }
-
-  resetForm(): void {
-    this.categoriaForm.reset({
-      descricao: '',
     });
   }
 

@@ -41,7 +41,6 @@ export class CreateMembroModal {
     private toastr: ToastrService
   ) {
     this.validation();
-    this.resetForm();
   }
 
   onSubmit(): void {
@@ -54,7 +53,6 @@ export class CreateMembroModal {
           );
 
           this.onClose();
-          this.resetForm();
         },
       });
     }
@@ -79,13 +77,6 @@ export class CreateMembroModal {
           Validators.pattern(/^[\d\s()+-]*$/),
         ],
       ],
-    });
-  }
-
-  resetForm(): void {
-    this.membroForm.reset({
-      nome: '',
-      telefone: '',
     });
   }
 
