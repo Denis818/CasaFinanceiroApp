@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "HouseFinancesApp": {
+    "CasaFinanceiroApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -33,7 +33,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/house-finances-app",
+            "outputPath": "dist/casa-financeiro-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -95,10 +95,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "HouseFinancesApp:build:production"
+              "browserTarget": "CasaFinanceiroApp:build:production"
             },
             "development": {
-              "browserTarget": "HouseFinancesApp:build:development"
+              "browserTarget": "CasaFinanceiroApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "HouseFinancesApp:build"
+            "browserTarget": "CasaFinanceiroApp:build"
           }
         },
         "test": {
