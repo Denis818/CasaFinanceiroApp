@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewDespesaModal } from './view-despesa.modal';
+import { ListDespesasComponent } from './list-despesas.component';
 
 describe('ViewDespesaModal', () => {
-  let component: ViewDespesaModal;
-  let fixture: ComponentFixture<ViewDespesaModal>;
+  let component: ListDespesasComponent;
+  let fixture: ComponentFixture<ListDespesasComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewDespesaModal],
+      declarations: [ListDespesasComponent],
     });
-    fixture = TestBed.createComponent(ViewDespesaModal);
+    fixture = TestBed.createComponent(ListDespesasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

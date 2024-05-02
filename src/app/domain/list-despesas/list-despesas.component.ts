@@ -16,14 +16,14 @@ import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.inter
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
 
 registerLocaleData(localePt);
 
 @Component({
-  selector: 'view-despesas',
-  templateUrl: './view-despesa.modal.html',
-  styleUrls: ['./view-despesa.modal.scss'],
+  selector: 'list-despesas',
+  templateUrl: './list-despesas.component.html',
+  styleUrls: ['./list-despesas.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -39,7 +39,7 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ViewDespesaModal {
+export class ListDespesasComponent {
   despesas: Despesa[];
   despesasFiltradas: Despesa[];
   filtroTexto: string = '';

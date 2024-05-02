@@ -5,12 +5,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ListDespesasComponent } from 'src/app/domain/list-despesas/list-despesas.component';
 import { CreateCategoriaModal } from 'src/app/domain/modais/create/categoria/create-categoria.modal';
 import { CreateDespesaModal } from 'src/app/domain/modais/create/despesa/create-despesa.modal';
 import { CreateMembroModal } from 'src/app/domain/modais/create/membro/create-membro.modal';
 import { ChecarFaturaCartaoModal } from 'src/app/domain/modais/utilities/checar-fatura-cartao/checar-fatura-cartao.modal';
 import { ViewCategoriaModal } from 'src/app/domain/modais/view/view-categoria/view-categoria.modal';
-import { ViewDespesaModal } from 'src/app/domain/modais/view/view-despesa/view-despesa.modal';
 import { ViewMembroModal } from 'src/app/domain/modais/view/view-membro/view-membro.modal';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 
@@ -21,7 +21,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
   standalone: true,
   imports: [
     CommonModule,
-    ViewDespesaModal,
+    ListDespesasComponent,
     CreateDespesaModal,
     MatDialogModule,
     MatButtonModule,
@@ -33,7 +33,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 export class PainelControlePage {
   constructor(private dialog: MatDialog) {}
 
-  @ViewChild(ViewDespesaModal) viewDespesaModal: ViewDespesaModal;
+  @ViewChild(ListDespesasComponent) viewDespesaModal: ListDespesasComponent;
 
   //#region  Views
   openViewCategoriaModal() {
