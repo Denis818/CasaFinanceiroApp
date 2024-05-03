@@ -36,20 +36,20 @@
       <span options-title>Novo Membro</span>
     </button>
 
+    <button button-action (click)="openChecarFaturaCartaoModal()">
+      <div icon-bg>
+        <mat-icon>credit_card</mat-icon>
+      </div>
+
+      <span options-title>Conferir Fatura</span>
+    </button>
+
     <button mat-flat-button color="primary" (click)="openViewCategoriaModal()">
       Ver Categorias
     </button>
 
     <button mat-flat-button color="primary" (click)="openViewMembroModal()">
       Ver Membros
-    </button>
-
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="openChecarFaturaCartaoModal()"
-    >
-      Conferir Fatura
     </button>
   </div>
 

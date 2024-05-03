@@ -53,6 +53,10 @@
             height: 20px;
             z-index: 1;
           }
+
+          & mat-icon {
+            color: black;
+          }
         }
 
         & [options-title] {
