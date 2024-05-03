@@ -41,7 +41,7 @@ export class ViewMembroModal {
 
   getAllMembros() {
     this.painelService
-      .getAll<Membro>('Membro')
+      .getAll<Membro>('membro')
       .subscribe((membros) => (this.membros = membros));
   }
 
@@ -51,7 +51,7 @@ export class ViewMembroModal {
   }
 
   updateMembro(id: number, membro: Membro): void {
-    this.painelService.update(id, membro, 'Membro').subscribe({
+    this.painelService.update(id, membro, 'membro').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllMembros();
@@ -77,7 +77,7 @@ export class ViewMembroModal {
   }
 
   deleteMembro(membroId: number): void {
-    this.painelService.delete(membroId, 'Membro').subscribe({
+    this.painelService.delete(membroId, 'membro').subscribe({
       next: () => {
         this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         this.getAllMembros();

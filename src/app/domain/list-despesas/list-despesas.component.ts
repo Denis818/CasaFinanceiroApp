@@ -105,7 +105,7 @@ export class ListDespesasComponent {
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
-    this.painelService.update(id, despesa, 'Despesa').subscribe({
+    this.painelService.update(id, despesa, 'despesa').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllDespesas();
@@ -131,7 +131,7 @@ export class ListDespesasComponent {
   }
 
   deleteDespesa(despesaId: number): void {
-    this.painelService.delete(despesaId, 'Despesa').subscribe({
+    this.painelService.delete(despesaId, 'despesa').subscribe({
       next: () => {
         this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         this.getAllDespesas();

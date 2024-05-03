@@ -13,7 +13,7 @@ import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-resp
 export class DashboardService extends BaseService {
   public readonly router = inject(Router);
 
-  public url: string = `${environment.base_url_financy}/Despesa`;
+  public url: string = `${environment.base_url_financy}/despesa`;
 
   public getResumoDespesasMensal(): Observable<ResumoMensalResponse> {
     return this.sendHttpRequest<ApiResponse<ResumoMensalResponse>>(

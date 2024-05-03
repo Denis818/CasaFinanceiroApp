@@ -23,7 +23,7 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
-      `${this.url}/Despesa`,
+      `${this.url}/despesa`,
       null,
       params
     ).pipe(map((response) => response.dados));
@@ -59,7 +59,7 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest(
       'GET',
-      `${this.url}/Despesa/calcular-fatura`,
+      `${this.url}/despesa/calcular-fatura`,
       null,
       params
     ).pipe(map((response: any) => response.dados));
@@ -79,7 +79,7 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest(
       'GET',
-      `${this.url}/Membro/enviar-mensagem`,
+      `${this.url}/membro/enviar-mensagem`,
       null,
       params
     ).pipe(map((response: any) => response.dados.redirectToWhatsApp));

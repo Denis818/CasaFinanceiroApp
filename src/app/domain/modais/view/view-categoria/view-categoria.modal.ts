@@ -52,7 +52,7 @@ export class ViewCategoriaModal {
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    this.painelService.update(id, categoria, 'Categoria').subscribe({
+    this.painelService.update(id, categoria, 'categoria').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
         this.getAllCategorias();
@@ -78,7 +78,7 @@ export class ViewCategoriaModal {
   }
 
   deleteCategoria(categoriaId: number): void {
-    this.painelService.delete(categoriaId, 'Categoria').subscribe({
+    this.painelService.delete(categoriaId, 'categoria').subscribe({
       next: () => {
         this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         this.getAllCategorias();

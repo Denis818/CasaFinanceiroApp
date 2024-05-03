@@ -55,7 +55,7 @@ export class CreateDespesaModal {
   }
 
   getAllCategorias() {
-    this.painelService.getAll<Categoria>('Categoria').subscribe({
+    this.painelService.getAll<Categoria>('categoria').subscribe({
       next: (categorias) => {
         this.categorias = categorias;
       },
@@ -64,7 +64,7 @@ export class CreateDespesaModal {
 
   onSubmit(): void {
     if (this.despesaForm.valid) {
-      this.painelService.insert(this.despesaForm.value, 'Despesa').subscribe({
+      this.painelService.insert(this.despesaForm.value, 'despesa').subscribe({
         next: () => {
           this.toastr.success(
             ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,

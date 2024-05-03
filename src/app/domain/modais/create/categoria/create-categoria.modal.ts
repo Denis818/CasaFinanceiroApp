@@ -46,7 +46,7 @@ export class CreateCategoriaModal {
   onSubmit(): void {
     if (this.categoriaForm.valid) {
       this.painelService
-        .insert(this.categoriaForm.value, 'Categoria')
+        .insert(this.categoriaForm.value, 'categoria')
         .subscribe({
           next: () => {
             this.toastr.success(
