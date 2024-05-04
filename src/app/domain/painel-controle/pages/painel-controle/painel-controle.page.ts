@@ -66,7 +66,6 @@ export class PainelControlePage {
       width: '400px',
     });
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      console.log('Ola teste');
       this.viewDespesaModal.getAllDespesas();
     });
   }

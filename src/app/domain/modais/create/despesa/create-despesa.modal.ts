@@ -15,6 +15,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
@@ -35,22 +36,15 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
   ],
 })
 export class CreateDespesaModal {
-  despesaForm: FormGroup;
-
-  get despesaValidator(): any {
-    return this.despesaForm.controls;
-  }
-
   @Output() despesaInserida = new EventEmitter<void>();
 
-  categorias: Categoria[] = [];
-  grupoDespesas: GrupoDespesa[];
   constructor(
     private painelService: PainelControleService,
     private homeService: HomeService,
     public dialogRef: MatDialogRef<CreateDespesaModal>,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private readonly storageService: StorageService
   ) {
     this.validation();
     this.resetForm();
@@ -58,10 +52,22 @@ export class CreateDespesaModal {
     this.getAllGrupoDespesas();
   }
 
+  categorias: Categoria[] = [];
+  grupoDespesas: GrupoDespesa[];
+  grupoDefault: number;
+  grupoId = this.storageService.getItem('grupoDespesasId');
+
+  despesaForm: FormGroup;
+  get despesaValidator(): any {
+    return this.despesaForm.controls;
+  }
+
   getAllGrupoDespesas() {
-    this.homeService
-      .getAll()
-      .subscribe((grupoDespesa) => (this.grupoDespesas = grupoDespesa));
+    this.homeService.getAll().subscribe({
+      next: (grupoDespesas) => {
+        this.grupoDespesas = grupoDespesas;
+      },
+    });
   }
 
   getAllCategorias() {
@@ -96,7 +102,7 @@ export class CreateDespesaModal {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      grupoDespesaId: [1, [Validators.required]],
+      grupoDespesaId: ['', [Validators.required]],
       categoriaId: [1, [Validators.required]],
 
       item: [
@@ -131,12 +137,14 @@ export class CreateDespesaModal {
   }
 
   resetForm(): void {
+    console.log(this.grupoDefault);
     this.despesaForm.reset({
       item: 'Compra',
       quantidade: 1,
       fornecedor: this.despesaForm.value.fornecedor || 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 1,
-      grupoDespesaId: this.despesaForm.value.grupoDespesaId || 1,
+      grupoDespesaId:
+        this.despesaForm.value.grupoDespesaId || parseInt(this.grupoId),
     });
   }
 
