@@ -74,6 +74,18 @@
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
         }
       }
+
+      [list-itens] {
+        button {
+          margin-left: 10px;
+        }
+      }
+
+      [insert-itens] {
+        button {
+          margin-left: 15px;
+        }
+      }
     }
 
     @media screen and (max-width: 600px) {
@@ -83,7 +95,7 @@
         padding: 10px;
         margin-bottom: 10px;
         transition: none;
-
+        margin-top: 20px;
         &:hover {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           transform: none;
@@ -110,6 +122,21 @@
           display: flex;
           justify-content: flex-start;
           margin-top: 10px;
+        }
+
+        [list-itens] {
+          button {
+            width: 100%;
+            margin-bottom: 10px;
+            margin-left: 0px;
+          }
+        }
+
+        [insert-itens] {
+          button {
+            margin-bottom: 10px;
+            margin-left: 0px;
+          }
         }
       }
     }

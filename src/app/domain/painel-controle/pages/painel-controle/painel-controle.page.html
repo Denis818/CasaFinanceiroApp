@@ -1,64 +1,72 @@
 <div painel-controle>
   <div options-header>
-    <button button-action (click)="openCreateCategoriaModal()">
-      <div icon-bg>
-        <img
-          class="icon-position"
-          src="../../../../../assets/icons/nova-categoria.svg"
-          alt="Ícone de nova-categoria"
-        />
-      </div>
+    <div insert-itens>
+      <button button-action (click)="openCreateCategoriaModal()">
+        <div icon-bg>
+          <img
+            class="icon-position"
+            src="../../../../../assets/icons/nova-categoria.svg"
+            alt="Ícone de nova-categoria"
+          />
+        </div>
 
-      <span options-title>Nova Categoria</span>
-    </button>
+        <span options-title>Nova Categoria</span>
+      </button>
 
-    <button button-action (click)="openCreateDespesaModal()">
-      <div icon-bg>
-        <mat-icon>add_shopping_cart</mat-icon>
-      </div>
+      <button button-action (click)="openCreateDespesaModal()">
+        <div icon-bg>
+          <mat-icon>add_shopping_cart</mat-icon>
+        </div>
 
-      <span options-title>Nova Despesa</span>
-    </button>
+        <span options-title>Nova Despesa</span>
+      </button>
 
-    <button button-action (click)="openCreateMembroModal()">
-      <div icon-bg>
-        <mat-icon>group_add</mat-icon>
-      </div>
+      <button button-action (click)="openCreateMembroModal()">
+        <div icon-bg>
+          <mat-icon>group_add</mat-icon>
+        </div>
 
-      <span options-title>Novo Membro</span>
-    </button>
+        <span options-title>Novo Membro</span>
+      </button>
 
-    <button button-action (click)="openCreateGrupoDespesaModal()">
-      <div icon-bg>
-        <mat-icon>note_add</mat-icon>
-      </div>
+      <button button-action (click)="openCreateGrupoDespesaModal()">
+        <div icon-bg>
+          <mat-icon>note_add</mat-icon>
+        </div>
 
-      <span options-title>Novo Grupo</span>
-    </button>
+        <span options-title>Novo Grupo</span>
+      </button>
 
-    <button button-action (click)="openChecarFaturaCartaoModal()">
-      <div icon-bg>
-        <mat-icon>credit_card</mat-icon>
-      </div>
+      <button button-action (click)="openChecarFaturaCartaoModal()">
+        <div icon-bg>
+          <mat-icon>credit_card</mat-icon>
+        </div>
 
-      <span options-title>Conferir Fatura</span>
-    </button>
+        <span options-title>Conferir Fatura</span>
+      </button>
+    </div>
 
-    <button mat-flat-button color="primary" (click)="openViewCategoriaModal()">
-      Ver Categorias
-    </button>
+    <div list-itens>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openViewCategoriaModal()"
+      >
+        Ver Categorias
+      </button>
 
-    <button mat-flat-button color="primary" (click)="openViewMembroModal()">
-      Ver Membros
-    </button>
+      <button mat-flat-button color="primary" (click)="openViewMembroModal()">
+        Ver Membros
+      </button>
 
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="openViewGrupoDespesasModal()"
-    >
-      Editar Grupos
-    </button>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openViewGrupoDespesasModal()"
+      >
+        Ver Grupos
+      </button>
+    </div>
   </div>
 
   <list-despesas></list-despesas>
