@@ -1,0 +1,30 @@
+<div grupoDespesa-view>
+  <table>
+    <thead>
+      <th>Grupo de Despesa</th>
+      <th>Opções</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let grupoDespesa of grupoDespesas">
+        <td>
+          <div *ngIf="grupoDespesa.isEditing; else viewNome">
+            <input
+              type="text"
+              [(ngModel)]="grupoDespesa.nome"
+              (keyup.enter)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+            />
+          </div>
+          <ng-template #viewNome>{{ grupoDespesa.nome }}</ng-template>
+        </td>
+        <td>
+          <i>
+            <mat-icon (click)="openEdit(grupoDespesa)">edit</mat-icon>
+          </i>
+          <i space>
+            <mat-icon (click)="confirmDelete(grupoDespesa.id)">delete</mat-icon>
+          </i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { GrupoDespesa } from '../../interfaces/grupo-despesa.interface';
@@ -14,14 +15,18 @@ export class HomePage {
   sidenavExpanded = false;
   isDesktop: boolean = true;
 
+  grupoDefault: number;
   grupoDespesas: GrupoDespesa[] = [];
+  grupoDespesasForm: FormGroup = new FormGroup({
+    grupoDespesaId: new FormControl(),
+  });
 
   constructor(
     private readonly homeService: HomeService,
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
-    this.getAllGrupoDespesa();
+    this.getAllGrupoDespesas();
   }
 
   abrirSidenav() {
@@ -43,11 +48,21 @@ export class HomePage {
     this.user.logout();
   }
 
-  getAllGrupoDespesa() {
+  getAllGrupoDespesas() {
     this.homeService.getAll().subscribe({
       next: (grupoDespesas) => {
         this.grupoDespesas = grupoDespesas;
+        this.grupoDefault = grupoDespesas.length > 0 ? grupoDespesas[0].id : 0;
+
+        this.inicializeForm();
       },
+    });
+  }
+
+  inicializeForm(): void {
+    this.grupoDespesasForm.reset({
+      grupoDespesaId:
+        this.grupoDespesasForm.value.grupoDespesaId || this.grupoDefault,
     });
   }
 }

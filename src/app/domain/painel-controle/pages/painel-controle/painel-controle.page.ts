@@ -8,9 +8,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListDespesasComponent } from 'src/app/domain/list-despesas/list-despesas.component';
 import { CreateCategoriaModal } from 'src/app/domain/modais/create/categoria/create-categoria.modal';
 import { CreateDespesaModal } from 'src/app/domain/modais/create/despesa/create-despesa.modal';
+import { CreateGrupoDespesaModal } from 'src/app/domain/modais/create/grupo-despesa/grupo-despesa.modal';
 import { CreateMembroModal } from 'src/app/domain/modais/create/membro/create-membro.modal';
 import { ChecarFaturaCartaoModal } from 'src/app/domain/modais/utilities/checar-fatura-cartao/checar-fatura-cartao.modal';
 import { ViewCategoriaModal } from 'src/app/domain/modais/view/view-categoria/view-categoria.modal';
+import { ViewGrupoDespesaModal } from 'src/app/domain/modais/view/view-grupo-despesa/view-grupo-despesa.modal';
 import { ViewMembroModal } from 'src/app/domain/modais/view/view-membro/view-membro.modal';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 
@@ -49,6 +51,13 @@ export class PainelControlePage {
     });
     dialogRef.afterClosed();
   }
+
+  openViewGrupoDespesasModal() {
+    const dialogRef = this.dialog.open(ViewGrupoDespesaModal, {
+      width: '400px',
+    });
+    dialogRef.afterClosed();
+  }
   //#endregion
 
   //#region Create
@@ -57,7 +66,14 @@ export class PainelControlePage {
       width: '400px',
     });
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
+      console.log('Ola teste');
       this.viewDespesaModal.getAllDespesas();
+    });
+  }
+
+  openCreateGrupoDespesaModal(): void {
+    this.dialog.open(CreateGrupoDespesaModal, {
+      width: '400px',
     });
   }
 

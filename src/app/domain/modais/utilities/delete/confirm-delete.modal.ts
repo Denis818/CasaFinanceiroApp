@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'confirm-delete',
   templateUrl: './confirm-delete.modal.html',
+  styleUrls: ['./confirm-delete.modal.scss'],
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatDividerModule, MatIconModule],
 })

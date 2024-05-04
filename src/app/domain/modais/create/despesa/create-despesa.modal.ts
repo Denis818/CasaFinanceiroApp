@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
+import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { HomeService } from 'src/app/core/services/home/home-service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 
@@ -35,16 +37,17 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 export class CreateDespesaModal {
   despesaForm: FormGroup;
 
-  get dsespesaValidator(): any {
+  get despesaValidator(): any {
     return this.despesaForm.controls;
   }
 
   @Output() despesaInserida = new EventEmitter<void>();
 
   categorias: Categoria[] = [];
-
+  grupoDespesas: GrupoDespesa[];
   constructor(
     private painelService: PainelControleService,
+    private homeService: HomeService,
     public dialogRef: MatDialogRef<CreateDespesaModal>,
     private fb: FormBuilder,
     private toastr: ToastrService
@@ -52,6 +55,13 @@ export class CreateDespesaModal {
     this.validation();
     this.resetForm();
     this.getAllCategorias();
+    this.getAllGrupoDespesas();
+  }
+
+  getAllGrupoDespesas() {
+    this.homeService
+      .getAll()
+      .subscribe((grupoDespesa) => (this.grupoDespesas = grupoDespesa));
   }
 
   getAllCategorias() {
@@ -86,10 +96,8 @@ export class CreateDespesaModal {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      categoriaId: [
-        1,
-        [Validators.required, Validators.pattern('^[1-9][0-9]*$')],
-      ],
+      grupoDespesaId: [1, [Validators.required]],
+      categoriaId: [1, [Validators.required]],
 
       item: [
         'Compra',
@@ -127,7 +135,8 @@ export class CreateDespesaModal {
       item: 'Compra',
       quantidade: 1,
       fornecedor: this.despesaForm.value.fornecedor || 'Epa',
-      categoriaId: this.despesaForm.value.categoriaId || 0,
+      categoriaId: this.despesaForm.value.categoriaId || 1,
+      grupoDespesaId: this.despesaForm.value.grupoDespesaId || 1,
     });
   }
 

@@ -14,11 +14,7 @@
 
     <button button-action (click)="openCreateDespesaModal()">
       <div icon-bg>
-        <img
-          class="icon-position"
-          src="../../../../../assets/icons/nova-compra.svg"
-          alt="Ícone de nova compra"
-        />
+        <mat-icon>add_shopping_cart</mat-icon>
       </div>
 
       <span options-title>Nova Despesa</span>
@@ -26,14 +22,18 @@
 
     <button button-action (click)="openCreateMembroModal()">
       <div icon-bg>
-        <img
-          class="icon-position membro-position"
-          src="../../../../../assets/icons/novo-membro.svg"
-          alt="Ícone de novo-membro"
-        />
+        <mat-icon>group_add</mat-icon>
       </div>
 
       <span options-title>Novo Membro</span>
+    </button>
+
+    <button button-action (click)="openCreateGrupoDespesaModal()">
+      <div icon-bg>
+        <mat-icon>note_add</mat-icon>
+      </div>
+
+      <span options-title>Novo Grupo</span>
     </button>
 
     <button button-action (click)="openChecarFaturaCartaoModal()">
@@ -51,7 +51,15 @@
     <button mat-flat-button color="primary" (click)="openViewMembroModal()">
       Ver Membros
     </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="openViewGrupoDespesasModal()"
+    >
+      Editar Grupos
+    </button>
   </div>
 
-  <list-despesas #viewDespesaModal></list-despesas>
+  <list-despesas></list-despesas>
 </div>
