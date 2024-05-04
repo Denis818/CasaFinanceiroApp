@@ -20,13 +20,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { HomePage } from './core/pages/home/home.page';
 import { LoginComponent } from './domain/auth/pages/login/login.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage],
@@ -45,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgxPaginationModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    MatTooltipModule,
     MatDialogModule,
     MatSelectModule,
     IonicModule.forRoot(),
