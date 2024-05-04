@@ -25,6 +25,8 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { HomePage } from './core/pages/home/home.page';
 import { LoginComponent } from './domain/auth/pages/login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomePage],
@@ -39,11 +41,12 @@ import { LoginComponent } from './domain/auth/pages/login/login.component';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    MatDialogModule,
+    MatSelectModule,
     IonicModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,

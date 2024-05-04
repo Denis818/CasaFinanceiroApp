@@ -1,5 +1,17 @@
 <nav class="navbar">
   <h1 title>{{ titleService.getTitle() }}</h1>
+
+  <mat-form-field appearance="fill">
+    <mat-select formControlName="categoriaId" required>
+      <mat-option
+        *ngFor="let grupoDespesa of grupoDespesas"
+        [value]="grupoDespesa.id"
+      >
+        {{ grupoDespesa.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <button mat-icon-button class="logout-icon" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
