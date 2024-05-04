@@ -3,15 +3,16 @@
     <div class="card">
       <div class="card-head">
         <div card-title>Despesa de casa</div>
-
-        <button download-button (click)="downloadRelatorioDespesasCasa()">
-          Download do Relatório
+        <div>
+          <button download-button (click)="downloadRelatorioDespesasCasa()">
+            Download do Relatório
+          </button>
           <mat-icon
             class="icon-help"
             matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
             >help_outline
           </mat-icon>
-        </button>
+        </div>
       </div>
       <div class="card-body">
         <div *ngFor="let item of despesasPorMembros" class="expense-item">
@@ -33,17 +34,19 @@
     <div class="card">
       <div class="card-head">
         <div card-title>Despesa de moradia</div>
-        <button
-          download-button
-          (click)="downloadRelatorioDespesasHabitacional()"
-        >
-          Download do Relatório
+        <div>
+          <button
+            download-button
+            (click)="downloadRelatorioDespesasHabitacional()"
+          >
+            Download do Relatório
+          </button>
           <mat-icon
             class="icon-help"
             matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados."
             >help_outline</mat-icon
           >
-        </button>
+        </div>
       </div>
       <div class="card-body">
         <ng-container *ngFor="let item of despesasPorMembros">
