@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,8 @@ import {
 } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { HomeService } from 'src/app/core/services/home/home-service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
@@ -39,7 +41,9 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ListDespesasComponent {
+export class ListDespesasComponent implements OnDestroy {
+  private reloadPageSubscriber: Subscription;
+
   despesas: Despesa[];
   despesasFiltradas: Despesa[];
   filtroTexto: string = '';
@@ -54,9 +58,28 @@ export class ListDespesasComponent {
   constructor(
     private painelService: PainelControleService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private homeService: HomeService
   ) {
     this.getAllDespesas();
+    this.reloadPage();
+  }
+
+  ngOnDestroy() {
+    if (this.reloadPageSubscriber) {
+      this.reloadPageSubscriber.unsubscribe();
+    }
+  }
+
+  reloadPage() {
+    this.reloadPageSubscriber =
+      this.homeService.reloadPageWithNewGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.getAllDespesas();
+          }
+        },
+      });
   }
 
   //#region Filters

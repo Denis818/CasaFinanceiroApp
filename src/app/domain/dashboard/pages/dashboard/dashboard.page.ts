@@ -1,10 +1,12 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Subscription } from 'rxjs';
+import { HomeService } from 'src/app/core/services/home/home-service';
 import { MensagemWhatsAppModal } from 'src/app/domain/modais/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
@@ -31,7 +33,9 @@ registerLocaleData(localePt);
     MatTooltipModule,
   ],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, OnDestroy {
+  private reloadPageSubscriber: Subscription;
+
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
 
@@ -51,10 +55,33 @@ export class DashboardPage implements OnInit {
 
   constructor(
     private readonly dashboardService: DashboardService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private homeService: HomeService
   ) {}
 
   ngOnInit() {
+    this.inicializeDashboard();
+    this.reloadPage();
+  }
+
+  ngOnDestroy() {
+    if (this.reloadPageSubscriber) {
+      this.reloadPageSubscriber.unsubscribe();
+    }
+  }
+
+  reloadPage() {
+    this.reloadPageSubscriber =
+      this.homeService.reloadPageWithNewGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.inicializeDashboard();
+          }
+        },
+      });
+  }
+
+  inicializeDashboard() {
     this.getGraficoTotaisComprasPorMes();
     this.getTotalPorCategoria();
     this.getResumoDespesasMensal();

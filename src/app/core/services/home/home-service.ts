@@ -9,9 +9,18 @@ import { BaseService } from '../base/base.service';
 export abstract class HomeService extends BaseService {
   public url: string = `${environment.base_url_financy}/grupo-despesa`;
 
-  private reloadGruposDespesasInHomPage = new BehaviorSubject<boolean>(false);
+  private reloadSelectedGrupoDespesaId = new BehaviorSubject<boolean>(false);
   get realoadGrupoDespesas() {
-    return this.reloadGruposDespesasInHomPage.asObservable();
+    return this.reloadSelectedGrupoDespesaId.asObservable();
+  }
+
+  private notificarGrupoIdMudou = new BehaviorSubject<boolean>(false);
+  get reloadPageWithNewGrupoId() {
+    return this.notificarGrupoIdMudou.asObservable();
+  }
+
+  notificarComponentesGrupoIdMudou() {
+    this.notificarGrupoIdMudou.next(true);
   }
 
   public getAll(): Observable<GrupoDespesa[]> {
@@ -25,7 +34,7 @@ export abstract class HomeService extends BaseService {
     return this.sendHttpRequest('POST', this.url, entity).pipe(
       tap({
         next: () => {
-          this.reloadGruposDespesasInHomPage.next(true);
+          this.reloadSelectedGrupoDespesaId.next(true);
         },
       })
     );
@@ -35,7 +44,7 @@ export abstract class HomeService extends BaseService {
     return this.sendHttpRequest('PUT', `${this.url}?id=${id}`, entity).pipe(
       tap({
         next: () => {
-          this.reloadGruposDespesasInHomPage.next(true);
+          this.reloadSelectedGrupoDespesaId.next(true);
         },
       })
     );
@@ -45,7 +54,7 @@ export abstract class HomeService extends BaseService {
     return this.sendHttpRequest('DELETE', `${this.url}?id=${id}`).pipe(
       tap({
         next: () => {
-          this.reloadGruposDespesasInHomPage.next(true);
+          this.reloadSelectedGrupoDespesaId.next(true);
         },
       })
     );

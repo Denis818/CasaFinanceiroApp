@@ -1,11 +1,10 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { GrupoDespesa } from '../../interfaces/grupo-despesa.interface';
 import { HomeService } from '../../services/home/home-service';
-import { ListDespesasComponent } from 'src/app/domain/list-despesas/list-despesas.component';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +17,9 @@ export class HomePage implements OnDestroy {
   isDesktop: boolean = true;
 
   grupoDefault: number;
-  realoadGrupoDespesas: Subscription;
+  private grupoDespesasSubscriber: Subscription;
   grupoDespesas: GrupoDespesa[] = [];
+
   grupoDespesasForm: FormGroup = new FormGroup({
     grupoDespesaId: new FormControl(),
   });
@@ -30,15 +30,14 @@ export class HomePage implements OnDestroy {
     public readonly titleService: Title
   ) {
     this.getAllGrupoDespesas();
-    this.realoadGrupoDespesas = this.homeService.realoadGrupoDespesas.subscribe(
-      {
+    this.grupoDespesasSubscriber =
+      this.homeService.realoadGrupoDespesas.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getAllGrupoDespesas();
           }
         },
-      }
-    );
+      });
 
     this.grupoDespesasForm
       .get('grupoDespesaId')
@@ -48,7 +47,9 @@ export class HomePage implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.realoadGrupoDespesas.unsubscribe();
+    if (this.grupoDespesasSubscriber) {
+      this.grupoDespesasSubscriber.unsubscribe();
+    }
   }
 
   abrirSidenav() {
@@ -90,5 +91,6 @@ export class HomePage implements OnDestroy {
 
   setGrupoId(grupoDespesasId: number): void {
     localStorage.setItem('grupoDespesasId', grupoDespesasId.toString());
+    this.homeService.notificarComponentesGrupoIdMudou();
   }
 }
