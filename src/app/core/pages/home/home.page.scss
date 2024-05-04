@@ -212,9 +212,11 @@
       }
     }
 
-    .navbar [title] {
-      margin-left: 2%;
-      flex-grow: 1;
+    .navbar {
+      [title] {
+        margin-left: 2%;
+        flex-grow: 1;
+      }
     }
   }
 }
