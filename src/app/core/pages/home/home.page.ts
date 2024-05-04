@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { GrupoDespesa } from '../../interfaces/grupo-despesa.interface';
 import { HomeService } from '../../services/home/home-service';
@@ -16,6 +17,7 @@ export class HomePage {
   isDesktop: boolean = true;
 
   grupoDefault: number;
+  realoadGrupoDespesas: Subscription;
   grupoDespesas: GrupoDespesa[] = [];
   grupoDespesasForm: FormGroup = new FormGroup({
     grupoDespesaId: new FormControl(),
@@ -27,6 +29,15 @@ export class HomePage {
     public readonly titleService: Title
   ) {
     this.getAllGrupoDespesas();
+    this.realoadGrupoDespesas = this.homeService.realoadGrupoDespesas.subscribe(
+      {
+        next: (isReload) => {
+          if (isReload) {
+            this.getAllGrupoDespesas();
+          }
+        },
+      }
+    );
   }
 
   abrirSidenav() {
