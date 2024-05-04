@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { HomeService } from '../../services/home/home-service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnDestroy {
+export class HomePage implements OnDestroy, OnInit {
   selectedButton: string = 'dashboard';
   sidenavExpanded = false;
   isDesktop: boolean = true;
@@ -30,26 +30,23 @@ export class HomePage implements OnDestroy {
     public readonly titleService: Title
   ) {
     this.getAllGrupoDespesas();
-    this.grupoDespesasSubscriber =
-      this.homeService.realoadGrupoDespesas.subscribe({
-        next: (isReload) => {
-          if (isReload) {
-            this.getAllGrupoDespesas();
-          }
-        },
-      });
+    this.reloadGrupoDespesas();
+    this.setGrupoId();
+  }
 
-    this.grupoDespesasForm
-      .get('grupoDespesaId')
-      .valueChanges.subscribe((grupoDespesaId) => {
-        this.setGrupoId(grupoDespesaId);
-      });
+  ngOnInit() {
+    this.selectedButton = localStorage.getItem('selectedButton') || 'dashboard';
   }
 
   ngOnDestroy(): void {
     if (this.grupoDespesasSubscriber) {
       this.grupoDespesasSubscriber.unsubscribe();
     }
+  }
+
+  setSelectedButton(button: string) {
+    this.selectedButton = button;
+    localStorage.setItem('selectedButton', button);
   }
 
   abrirSidenav() {
@@ -82,6 +79,17 @@ export class HomePage implements OnDestroy {
     });
   }
 
+  reloadGrupoDespesas() {
+    this.grupoDespesasSubscriber =
+      this.homeService.realoadGrupoDespesas.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.getAllGrupoDespesas();
+          }
+        },
+      });
+  }
+
   inicializeForm(): void {
     this.grupoDespesasForm.reset({
       grupoDespesaId:
@@ -89,8 +97,12 @@ export class HomePage implements OnDestroy {
     });
   }
 
-  setGrupoId(grupoDespesasId: number): void {
-    localStorage.setItem('grupoDespesasId', grupoDespesasId.toString());
-    this.homeService.notificarComponentesGrupoIdMudou();
+  setGrupoId(): void {
+    this.grupoDespesasForm
+      .get('grupoDespesaId')
+      .valueChanges.subscribe((grupoDespesasId) => {
+        localStorage.setItem('grupoDespesasId', grupoDespesasId.toString());
+        this.homeService.notificarComponentesGrupoIdMudou();
+      });
   }
 }

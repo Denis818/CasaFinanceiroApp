@@ -41,7 +41,7 @@
 
     <a
       [routerLink]="'dashboard'"
-      (click)="selectedButton = 'dashboard'"
+      (click)="setSelectedButton('dashboard')"
       [ngClass]="{'selected': selectedButton === 'dashboard'}"
       class="nav-link"
     >
@@ -50,7 +50,7 @@
     </a>
     <a
       [routerLink]="'painel'"
-      (click)="selectedButton = 'attach_money'"
+      (click)="setSelectedButton('attach_money')"
       [ngClass]="{'selected': selectedButton === 'attach_money'}"
       class="nav-link"
     >
