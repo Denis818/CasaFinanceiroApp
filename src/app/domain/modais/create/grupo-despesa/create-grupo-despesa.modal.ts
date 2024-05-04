@@ -15,8 +15,8 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 
 @Component({
   selector: 'app-membro',
-  templateUrl: './grupo-despesa.modal.html',
-  styleUrls: ['./grupo-despesa.modal.scss'],
+  templateUrl: './create-grupo-despesa.modal.html',
+  styleUrls: ['./create-grupo-despesa.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,

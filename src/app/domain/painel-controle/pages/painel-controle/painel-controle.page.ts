@@ -8,7 +8,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListDespesasComponent } from 'src/app/domain/list-despesas/list-despesas.component';
 import { CreateCategoriaModal } from 'src/app/domain/modais/create/categoria/create-categoria.modal';
 import { CreateDespesaModal } from 'src/app/domain/modais/create/despesa/create-despesa.modal';
-import { CreateGrupoDespesaModal } from 'src/app/domain/modais/create/grupo-despesa/grupo-despesa.modal';
+import { CreateGrupoDespesaModal } from 'src/app/domain/modais/create/grupo-despesa/create-grupo-despesa.modal';
 import { CreateMembroModal } from 'src/app/domain/modais/create/membro/create-membro.modal';
 import { ChecarFaturaCartaoModal } from 'src/app/domain/modais/utilities/checar-fatura-cartao/checar-fatura-cartao.modal';
 import { ViewCategoriaModal } from 'src/app/domain/modais/view/view-categoria/view-categoria.modal';
