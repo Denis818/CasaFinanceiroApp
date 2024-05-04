@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let headers = req.headers.set('Authorization', `Bearer ${token}`);
 
     if (grupoId) {
-      headers = headers.set('Grupo-Despesas-ID', grupoId);
+      headers = headers.set('Grupo-Despesas-Id', grupoId);
     }
 
     const authReq = req.clone({ headers });
