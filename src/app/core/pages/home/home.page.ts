@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { GrupoDespesa } from '../../interfaces/grupo-despesa.interface';
 import { HomeService } from '../../services/home/home-service';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class HomePage implements OnDestroy, OnInit {
 
   constructor(
     private readonly homeService: HomeService,
+    private readonly storageService: StorageService,
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
@@ -35,7 +37,8 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.selectedButton = localStorage.getItem('selectedButton') || 'dashboard';
+    this.selectedButton =
+      this.storageService.getItem('selectedButton') || 'dashboard';
   }
 
   ngOnDestroy(): void {
@@ -46,7 +49,7 @@ export class HomePage implements OnDestroy, OnInit {
 
   setSelectedButton(button: string) {
     this.selectedButton = button;
-    localStorage.setItem('selectedButton', button);
+    this.storageService.setItem('selectedButton', button);
   }
 
   abrirSidenav() {
@@ -91,9 +94,12 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   inicializeForm(): void {
+    let grupoId =
+      parseInt(this.storageService.getItem('grupoDespesasId')) ||
+      this.grupoDefault;
+
     this.grupoDespesasForm.reset({
-      grupoDespesaId:
-        this.grupoDespesasForm.value.grupoDespesaId || this.grupoDefault,
+      grupoDespesaId: grupoId,
     });
   }
 
@@ -101,7 +107,10 @@ export class HomePage implements OnDestroy, OnInit {
     this.grupoDespesasForm
       .get('grupoDespesaId')
       .valueChanges.subscribe((grupoDespesasId) => {
-        localStorage.setItem('grupoDespesasId', grupoDespesasId.toString());
+        this.storageService.setItem(
+          'grupoDespesasId',
+          grupoDespesasId.toString()
+        );
         this.homeService.notificarComponentesGrupoIdMudou();
       });
   }
