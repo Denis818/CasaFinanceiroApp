@@ -15,7 +15,7 @@ export class DashboardService extends BaseService {
 
   public url: string = `${environment.base_url_financy}/despesa`;
 
-  public getResumoDespesasMensal(): Observable<ResumoMensalResponse> {
+  public getAnaliseDesesasPorGrupo(): Observable<ResumoMensalResponse> {
     return this.sendHttpRequest<ApiResponse<ResumoMensalResponse>>(
       'GET',
       this.url + '/analise-despesa-por-grupo'
@@ -27,12 +27,6 @@ export class DashboardService extends BaseService {
       'GET',
       `${this.url}/total-por-categoria`
     ).pipe(map((response) => response.dados));
-  }
-
-  public getTotaisComprasPorMes(): Observable<any[]> {
-    return this.sendHttpRequest('GET', `${this.url}/total-por-mes`).pipe(
-      map((response: any) => response.dados)
-    );
   }
 
   public downloadRelatorioDespesasHabitacional() {
@@ -66,7 +60,7 @@ export class DashboardService extends BaseService {
     });
   }
 
-  getGrraficoTotaisComprasPorMes(): Observable<GraphicConfiguration> {
+  getGraficoTotaisComprasPorGrupo(): Observable<GraphicConfiguration> {
     return this.sendHttpRequest<ApiResponse<TotalPorMesResponse[]>>(
       'GET',
       `${this.url}/total-por-grupo`

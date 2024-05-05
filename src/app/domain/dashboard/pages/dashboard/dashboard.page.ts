@@ -84,19 +84,19 @@ export class DashboardPage implements OnInit, OnDestroy {
   inicializeDashboard() {
     this.getGraficoTotaisComprasPorMes();
     this.getTotalPorCategoria();
-    this.getResumoDespesasMensal();
+    this.getAnaliseDesesasPorGrupo();
   }
 
   getGraficoTotaisComprasPorMes() {
-    this.dashboardService.getGrraficoTotaisComprasPorMes().subscribe({
+    this.dashboardService.getGraficoTotaisComprasPorGrupo().subscribe({
       next: (graphicConfig) => {
         this.graphicConfig = graphicConfig;
       },
     });
   }
 
-  getResumoDespesasMensal() {
-    this.dashboardService.getResumoDespesasMensal().subscribe((dados) => {
+  getAnaliseDesesasPorGrupo() {
+    this.dashboardService.getAnaliseDesesasPorGrupo().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembro;
       this.relatorioGastosDoMes = dados.relatorioGastosDoMes;
     });
