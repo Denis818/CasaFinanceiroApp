@@ -6,7 +6,7 @@
   padding: 5px;
 }
 
-/* cor do texto
+/* cor do texto tooltip-help
  .mat-mdc-tooltip .mdc-tooltip__surface {
   color: #673ab7 !important;
 } */
@@ -63,10 +63,23 @@ mat-form-field {
 }
 //end
 
+//check input select
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: #673ab7;
+}
+
+.cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
+  width: 12% !important;
+}
+
 @media screen and (max-width: 600px) {
   mat-icon.icon-help {
     &:hover {
       transform: none;
     }
+  }
+
+  .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
+    width: 40% !important;
   }
 }

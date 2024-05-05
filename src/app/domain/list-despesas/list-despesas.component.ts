@@ -10,6 +10,7 @@ import {
   MatPaginatorModule,
   PageEvent,
 } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -37,6 +38,7 @@ registerLocaleData(localePt);
     MatTableModule,
     MatDialogModule,
     MatInputModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },

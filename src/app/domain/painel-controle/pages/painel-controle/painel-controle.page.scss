@@ -92,10 +92,9 @@
       [options-header] {
         flex-direction: column;
         align-items: stretch;
-        padding: 10px;
-        margin-bottom: 10px;
+        width: 100%;
+        margin: 15px 5px 15px 5px;
         transition: none;
-        margin-top: 20px;
         &:hover {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           transform: none;

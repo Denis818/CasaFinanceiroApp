@@ -50,15 +50,14 @@
 
           <td>
             <div *ngIf="despesa.isEditing; else viewCategoria">
-              <select [(ngModel)]="despesa.categoria.id">
-                <option
+              <mat-select [(ngModel)]="despesa.categoria.id">
+                <mat-option
                   *ngFor="let categoria of categorias"
                   [value]="categoria.id"
-                  [selected]="categoria.id === despesa.categoria.id"
                 >
                   {{ categoria.descricao }}
-                </option>
-              </select>
+                </mat-option>
+              </mat-select>
             </div>
             <ng-template #viewCategoria>{{
               despesa.categoria.descricao
