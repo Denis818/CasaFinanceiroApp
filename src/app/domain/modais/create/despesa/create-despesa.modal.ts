@@ -53,6 +53,8 @@ export class CreateDespesaModal {
   }
 
   categorias: Categoria[] = [];
+  categoriaSelecionada: string;
+
   grupoDespesas: GrupoDespesa[];
   grupoDefault: number;
   grupoId = this.storageService.getItem('grupoDespesasId');
@@ -60,6 +62,11 @@ export class CreateDespesaModal {
   despesaForm: FormGroup;
   get despesaValidator(): any {
     return this.despesaForm.controls;
+  }
+
+  getCategoriaSelected(categoriaId: any) {
+    const categoria = this.categorias.find((c) => c.id === categoriaId);
+    this.categoriaSelecionada = categoria?.descricao;
   }
 
   getAllGrupoDespesas() {
