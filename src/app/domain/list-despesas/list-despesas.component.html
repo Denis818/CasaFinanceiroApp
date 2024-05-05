@@ -48,13 +48,32 @@
             </div>
             <ng-template #viewItem>{{ despesa.item }}</ng-template>
           </td>
-          <td>{{ despesa.categoria.descricao }}</td>
+
+          <td>
+            <div *ngIf="despesa.isEditing; else viewCategoria">
+              <select
+                [(ngModel)]="despesa.categoria.id"
+                (change)="columEdit(despesa)"
+              >
+                <option
+                  *ngFor="let categoria of categorias"
+                  [value]="categoria.id"
+                >
+                  {{ categoria.descricao }}
+                </option>
+              </select>
+            </div>
+            <ng-template #viewCategoria>{{
+              despesa.categoria.descricao
+            }}</ng-template>
+          </td>
+
           <td>
             <div *ngIf="despesa.isEditing; else viewFornecedor">
               <input
                 type="text"
                 [(ngModel)]="despesa.fornecedor"
-                (keyup.enter)="columEdit( despesa)"
+                (keyup.enter)="columEdit(despesa)"
               />
             </div>
             <ng-template #viewFornecedor>{{ despesa.fornecedor }}</ng-template>
@@ -64,12 +83,12 @@
               <input
                 type="text"
                 [(ngModel)]="despesa.preco"
-                (keyup.enter)="columEdit( despesa)"
+                (keyup.enter)="columEdit(despesa)"
               />
             </div>
-            <ng-template #viewPreco
-              >{{ despesa.preco | currency:'BRL' }}</ng-template
-            >
+            <ng-template #viewPreco>{{
+              despesa.preco | currency : "BRL"
+            }}</ng-template>
           </td>
           <td>
             <div *ngIf="despesa.isEditing; else viewQuantidade">
@@ -81,7 +100,7 @@
             </div>
             <ng-template #viewQuantidade>{{ despesa.quantidade }}</ng-template>
           </td>
-          <td>{{ despesa.total | currency:'BRL' }}</td>
+          <td>{{ despesa.total | currency : "BRL" }}</td>
           <td>{{ despesa.dataCompra }}</td>
           <td>
             <i>

@@ -75,7 +75,8 @@
           padding: 3px;
         }
 
-        & input[type="text"] {
+        & input[type="text"],
+        select {
           border: none;
           outline: none;
           width: 90%;

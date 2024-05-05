@@ -13,12 +13,14 @@ import {
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
+import { Categoria } from '../painel-controle/interfaces/categoria.interface';
 
 registerLocaleData(localePt);
 
@@ -44,6 +46,9 @@ registerLocaleData(localePt);
 export class ListDespesasComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
+  categorias: Categoria[] = [];
+  grupoDespesas: GrupoDespesa[];
+
   despesas: Despesa[];
   despesasFiltradas: Despesa[];
   filtroTexto: string = '';
@@ -61,25 +66,20 @@ export class ListDespesasComponent implements OnDestroy {
     private dialog: MatDialog,
     private homeService: HomeService
   ) {
+    this.inicializeTable();
+    this.reloadDespesas();
+  }
+
+  inicializeTable() {
     this.getAllDespesas();
-    this.reloadPage();
+    this.getAllCategorias();
+    this.getAllGrupoDespesas();
   }
 
   ngOnDestroy() {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
     }
-  }
-
-  reloadPage() {
-    this.reloadPageSubscriber =
-      this.homeService.reloadPageWithNewGrupoId.subscribe({
-        next: (isReload) => {
-          if (isReload) {
-            this.getAllDespesas();
-          }
-        },
-      });
   }
 
   //#region Filters
@@ -99,6 +99,23 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region Gets
+
+  getAllGrupoDespesas() {
+    this.homeService.getAll().subscribe({
+      next: (grupoDespesas) => {
+        this.grupoDespesas = grupoDespesas;
+      },
+    });
+  }
+
+  getAllCategorias() {
+    this.painelService.getAll<Categoria>('categoria').subscribe({
+      next: (categorias) => {
+        this.categorias = categorias;
+      },
+    });
+  }
+
   getAllDespesas() {
     this.painelService
       .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
@@ -107,6 +124,17 @@ export class ListDespesasComponent implements OnDestroy {
         this.despesasFiltradas = data.itens;
         this.page.totalItens = data.totalItens;
         this.page.paginaAtual = data.paginaAtual;
+      });
+  }
+
+  reloadDespesas() {
+    this.reloadPageSubscriber =
+      this.homeService.reloadPageWithNewGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.inicializeTable();
+          }
+        },
       });
   }
 
