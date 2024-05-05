@@ -46,19 +46,24 @@ export class ViewMembroModal {
   }
 
   //#region Update
+  originalMembro = new Map<number, Membro>();
   openEdit(membro: Membro): void {
     membro.isEditing = !membro.isEditing;
+    this.originalMembro.set(membro.id, { ...membro });
   }
 
   updateMembro(id: number, membro: Membro): void {
-    this.painelService.update(id, membro, 'membro').subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllMembros();
-      },
-      error: () => this.getAllMembros(),
-    });
-
+    if (
+      this.painelService.teveAlteracoes(this.originalMembro.get(id), membro)
+    ) {
+      this.painelService.update(id, membro, 'membro').subscribe({
+        next: () => {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          this.getAllMembros();
+        },
+        error: () => this.getAllMembros(),
+      });
+    }
     membro.isEditing = false;
   }
   //#endregion

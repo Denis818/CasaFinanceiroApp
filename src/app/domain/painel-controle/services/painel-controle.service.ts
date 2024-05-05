@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { isEqual } from 'lodash';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
@@ -85,7 +86,7 @@ export class PainelControleService extends BaseService {
     ).pipe(map((response: any) => response.dados.redirectToWhatsApp));
   }
 
-  teveAlteracoes<TEntity>(original: TEntity, editadada: TEntity): boolean {
+  teveAlteracoes<TEntity>(original: TEntity, editada: TEntity): boolean {
     return !isEqual(original, editada);
   }
 }

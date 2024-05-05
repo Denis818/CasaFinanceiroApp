@@ -15,6 +15,10 @@ mat-icon.icon-help {
   color: #673ab7;
   cursor: help;
   font-size: 17px;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
 }
 //end
 
@@ -58,3 +62,11 @@ mat-form-field {
   margin: 0;
 }
 //end
+
+@media screen and (max-width: 600px) {
+  mat-icon.icon-help {
+    &:hover {
+      transform: none;
+    }
+  }
+}

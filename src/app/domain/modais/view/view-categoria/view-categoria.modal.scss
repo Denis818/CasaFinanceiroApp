@@ -14,6 +14,12 @@
       th {
         background-color: #f7f7f7;
         padding: 12px;
+
+        mat-icon.icon-help {
+          height: 16px;
+          width: 14px;
+          font-size: 14px;
+        }
       }
 
       td {
@@ -34,6 +40,10 @@
 
       [space] {
         margin-left: 40px;
+      }
+      .disable-options {
+        pointer-events: none;
+        opacity: 0.5;
       }
     }
   }

@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
+import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
@@ -34,6 +35,7 @@ export class ViewGrupoDespesaModal {
 
   constructor(
     private homeService: HomeService,
+    private painelService: PainelControleService,
     private toastr: ToastrService,
     private dialog: MatDialog
   ) {
@@ -47,19 +49,29 @@ export class ViewGrupoDespesaModal {
   }
 
   //#region Update
+
+  originalGrupoDespesa = new Map<number, GrupoDespesa>();
+
   openEdit(grupoDespesa: GrupoDespesa): void {
     grupoDespesa.isEditing = !grupoDespesa.isEditing;
+    this.originalGrupoDespesa.set(grupoDespesa.id, { ...grupoDespesa });
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
-    this.homeService.update(id, grupoDespesa).subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllGrupoDespesas();
-      },
-      error: () => this.getAllGrupoDespesas(),
-    });
-
+    if (
+      this.painelService.teveAlteracoes(
+        this.originalGrupoDespesa.get(id),
+        grupoDespesa
+      )
+    ) {
+      this.homeService.update(id, grupoDespesa).subscribe({
+        next: () => {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          this.getAllGrupoDespesas();
+        },
+        error: () => this.getAllGrupoDespesas(),
+      });
+    }
     grupoDespesa.isEditing = false;
   }
   //#endregion

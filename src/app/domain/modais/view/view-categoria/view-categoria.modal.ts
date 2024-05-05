@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
@@ -26,6 +27,7 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
     MatTableModule,
     MatDialogModule,
     ConfirmDeleteModal,
+    MatTooltipModule,
   ],
 })
 export class ViewCategoriaModal {
@@ -47,20 +49,38 @@ export class ViewCategoriaModal {
   }
 
   //#region Update
+  originalCategoria = new Map<number, Categoria>();
   openEdit(categoria: Categoria): void {
     categoria.isEditing = !categoria.isEditing;
+    this.originalCategoria.set(categoria.id, { ...categoria });
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    this.painelService.update(id, categoria, 'categoria').subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllCategorias();
-      },
-      error: () => this.getAllCategorias(),
-    });
+    if (
+      this.painelService.teveAlteracoes(
+        this.originalCategoria.get(id),
+        categoria
+      )
+    ) {
+      this.painelService.update(id, categoria, 'categoria').subscribe({
+        next: () => {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          this.getAllCategorias();
+        },
+        error: () => this.getAllCategorias(),
+      });
+    }
 
     categoria.isEditing = false;
+  }
+
+  isEditable(descricao: string): boolean {
+    return (
+      descricao !== 'Almoço/Janta' &&
+      descricao !== 'Aluguel' &&
+      descricao !== 'Condomínio' &&
+      descricao !== 'Conta de Luz'
+    );
   }
   //#endregion
 

@@ -3,7 +3,14 @@
     <thead>
       <tr>
         <th>Categoria</th>
-        <th>Opções</th>
+        <th>
+          Opções
+          <mat-icon
+            class="icon-help"
+            matTooltip="Edição e exclusão desativadas devido a políticas internas."
+            >help_outline</mat-icon
+          >
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +24,7 @@
           </div>
           <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
         </td>
-        <td>
+        <td [ngClass]="{'disable-options': !isEditable(categoria.descricao)}">
           <i *ngIf="!categoria.isEditing; else saveEdicao">
             <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
           </i>
