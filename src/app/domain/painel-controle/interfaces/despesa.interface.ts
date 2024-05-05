@@ -1,3 +1,4 @@
+import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { Categoria } from './categoria.interface';
 
 export class Despesa {
@@ -9,6 +10,8 @@ export class Despesa {
   fornecedor: string;
   total: number;
   categoria: Categoria;
+  grupoDespesa: GrupoDespesa;
   categoriaId: number;
+  grupoDespesaId: number;
   isEditing?: boolean = false;
 }

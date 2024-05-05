@@ -128,6 +128,7 @@ export class ListDespesasComponent implements OnDestroy {
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
+    despesa.grupoDespesaId = despesa.grupoDespesa.id;
     this.painelService.update(id, despesa, 'despesa').subscribe({
       next: () => {
         this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
