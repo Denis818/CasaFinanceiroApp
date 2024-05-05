@@ -6,10 +6,9 @@
   padding: 5px;
 }
 
-/* cor do texto tooltip-help
- .mat-mdc-tooltip .mdc-tooltip__surface {
-  color: #673ab7 !important;
-} */
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  text-align: start;
+}
 
 mat-icon.icon-help {
   color: #673ab7;
@@ -68,8 +67,15 @@ mat-form-field {
   color: #673ab7;
 }
 
+//input select
 .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
   width: 12% !important;
+}
+
+//desablitar opções de edit e delete das tables
+.disable-options {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 600px) {

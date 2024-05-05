@@ -27,7 +27,7 @@
             >
           </ng-template>
 
-          <i space>
+          <i space [ngClass]="{'disable-options': grupoDespesas.length == 1}">
             <mat-icon (click)="confirmDelete(grupoDespesa.id)">delete</mat-icon>
           </i>
         </td>

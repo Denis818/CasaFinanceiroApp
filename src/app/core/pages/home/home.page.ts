@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-import { GrupoDespesa } from '../../interfaces/grupo-despesa.interface';
 import { HomeService } from '../../services/home/home-service';
 import { StorageService } from '../../services/storage/storage.service';
 
@@ -75,7 +75,7 @@ export class HomePage implements OnDestroy, OnInit {
     this.homeService.getAll().subscribe({
       next: (grupoDespesas) => {
         this.grupoDespesas = grupoDespesas;
-        this.grupoDefault = grupoDespesas.length > 0 ? grupoDespesas[0].id : 0;
+        this.grupoDefault = grupoDespesas[0].id;
 
         this.inicializeForm();
       },
@@ -94,13 +94,24 @@ export class HomePage implements OnDestroy, OnInit {
   }
 
   inicializeForm(): void {
+    this.grupoDespesasForm.reset({
+      grupoDespesaId: this.getGrupoId(),
+    });
+  }
+
+  getGrupoId(): number {
     let grupoId =
       parseInt(this.storageService.getItem('grupoDespesasId')) ||
       this.grupoDefault;
 
-    this.grupoDespesasForm.reset({
-      grupoDespesaId: grupoId,
-    });
+    let grupo = this.grupoDespesas.find(
+      (grupoDespesa) => grupoDespesa.id === grupoId
+    );
+
+    if (grupo == null) {
+      return this.grupoDefault;
+    }
+    return grupoId;
   }
 
   setGrupoId(): void {
