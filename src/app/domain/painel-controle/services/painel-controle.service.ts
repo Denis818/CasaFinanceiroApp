@@ -84,4 +84,8 @@ export class PainelControleService extends BaseService {
       params
     ).pipe(map((response: any) => response.dados.redirectToWhatsApp));
   }
+
+  teveAlteracoes<TEntity>(original: TEntity, editadada: TEntity): boolean {
+    return !isEqual(original, editada);
+  }
 }

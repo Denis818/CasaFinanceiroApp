@@ -7,21 +7,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let categoria of categorias">
+      <tr
+        *ngFor="let categoria of categorias"
+        (keyup.enter)="updateCategoria(categoria.id, categoria)"
+      >
         <td>
           <div *ngIf="categoria.isEditing; else viewDescricao">
-            <input
-              type="text"
-              [(ngModel)]="categoria.descricao"
-              (keyup.enter)="updateCategoria(categoria.id, categoria)"
-            />
+            <input type="text" [(ngModel)]="categoria.descricao" />
           </div>
           <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
         </td>
         <td>
-          <i>
+          <i *ngIf="!categoria.isEditing; else saveEdicao">
             <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
           </i>
+
+          <ng-template #saveEdicao>
+            <mat-icon (click)="updateCategoria(categoria.id, categoria)"
+              >save</mat-icon
+            >
+          </ng-template>
+
           <i space>
             <mat-icon (click)="confirmDelete(categoria.id)">delete</mat-icon>
           </i>

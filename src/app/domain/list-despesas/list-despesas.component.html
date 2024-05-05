@@ -36,28 +36,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let despesa of despesasFiltradas">
+        <tr
+          *ngFor="let despesa of despesasFiltradas"
+          (keyup.enter)="updateDespesa(despesa.id, despesa)"
+        >
           <td>{{ despesa.id }}</td>
           <td>
             <div *ngIf="despesa.isEditing; else viewItem">
-              <input
-                type="text"
-                [(ngModel)]="despesa.item"
-                (keyup.enter)="columEdit(despesa)"
-              />
+              <input type="text" [(ngModel)]="despesa.item" />
             </div>
             <ng-template #viewItem>{{ despesa.item }}</ng-template>
           </td>
 
           <td>
             <div *ngIf="despesa.isEditing; else viewCategoria">
-              <select
-                [(ngModel)]="despesa.categoria.id"
-                (change)="columEdit(despesa)"
-              >
+              <select [(ngModel)]="despesa.categoria.id">
                 <option
                   *ngFor="let categoria of categorias"
                   [value]="categoria.id"
+                  [selected]="categoria.id === despesa.categoria.id"
                 >
                   {{ categoria.descricao }}
                 </option>
@@ -70,21 +67,13 @@
 
           <td>
             <div *ngIf="despesa.isEditing; else viewFornecedor">
-              <input
-                type="text"
-                [(ngModel)]="despesa.fornecedor"
-                (keyup.enter)="columEdit(despesa)"
-              />
+              <input type="text" [(ngModel)]="despesa.fornecedor" />
             </div>
             <ng-template #viewFornecedor>{{ despesa.fornecedor }}</ng-template>
           </td>
           <td>
             <div *ngIf="despesa.isEditing; else viewPreco">
-              <input
-                type="text"
-                [(ngModel)]="despesa.preco"
-                (keyup.enter)="columEdit(despesa)"
-              />
+              <input type="text" [(ngModel)]="despesa.preco" />
             </div>
             <ng-template #viewPreco>{{
               despesa.preco | currency : "BRL"
@@ -92,20 +81,23 @@
           </td>
           <td>
             <div *ngIf="despesa.isEditing; else viewQuantidade">
-              <input
-                type="text"
-                [(ngModel)]="despesa.quantidade"
-                (keyup.enter)="columEdit(despesa)"
-              />
+              <input type="text" [(ngModel)]="despesa.quantidade" />
             </div>
             <ng-template #viewQuantidade>{{ despesa.quantidade }}</ng-template>
           </td>
           <td>{{ despesa.total | currency : "BRL" }}</td>
           <td>{{ despesa.dataCompra }}</td>
           <td>
-            <i>
+            <i *ngIf="!despesa.isEditing; else saveEdicao">
               <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
             </i>
+
+            <ng-template #saveEdicao>
+              <mat-icon (click)="updateDespesa(despesa.id, despesa)"
+                >save</mat-icon
+              >
+            </ng-template>
+
             <i space>
               <mat-icon (click)="confirmDelete(despesa.id)">delete</mat-icon>
             </i>

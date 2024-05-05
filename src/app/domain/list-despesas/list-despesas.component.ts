@@ -70,12 +70,6 @@ export class ListDespesasComponent implements OnDestroy {
     this.reloadDespesas();
   }
 
-  inicializeTable() {
-    this.getAllDespesas();
-    this.getAllCategorias();
-    this.getAllGrupoDespesas();
-  }
-
   ngOnDestroy() {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
@@ -99,6 +93,22 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region Gets
+  inicializeTable() {
+    this.getAllDespesas();
+    this.getAllCategorias();
+    this.getAllGrupoDespesas();
+  }
+
+  getAllDespesas() {
+    this.painelService
+      .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
+      .subscribe((data) => {
+        this.despesas = data.itens;
+        this.despesasFiltradas = data.itens;
+        this.page.totalItens = data.totalItens;
+        this.page.paginaAtual = data.paginaAtual;
+      });
+  }
 
   getAllGrupoDespesas() {
     this.homeService.getAll().subscribe({
@@ -116,17 +126,6 @@ export class ListDespesasComponent implements OnDestroy {
     });
   }
 
-  getAllDespesas() {
-    this.painelService
-      .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
-      .subscribe((data) => {
-        this.despesas = data.itens;
-        this.despesasFiltradas = data.itens;
-        this.page.totalItens = data.totalItens;
-        this.page.paginaAtual = data.paginaAtual;
-      });
-  }
-
   reloadDespesas() {
     this.reloadPageSubscriber =
       this.homeService.reloadPageWithNewGrupoId.subscribe({
@@ -137,33 +136,23 @@ export class ListDespesasComponent implements OnDestroy {
         },
       });
   }
-
-  mudarPagina(event: PageEvent): void {
-    this.page.paginaAtual = event.pageIndex + 1;
-    this.page.itensPorPagina = event.pageSize;
-    this.getAllDespesas();
-  }
   //#endregion
 
   //#region Update
-  openEdit(despesa: Despesa): void {
-    despesa.isEditing = !despesa.isEditing;
-  }
-
-  columEdit(despesa: Despesa) {
-    this.updateDespesa(despesa.id, despesa);
-  }
-
   updateDespesa(id: number, despesa: Despesa): void {
-    despesa.categoriaId = despesa.categoria.id;
-    despesa.grupoDespesaId = despesa.grupoDespesa.id;
-    this.painelService.update(id, despesa, 'despesa').subscribe({
-      next: () => {
-        this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-        this.getAllDespesas();
-      },
-      error: () => this.getAllDespesas(),
-    });
+    const originalDespesaId = this.originalDespesas.get(id);
+
+    if (originalDespesaId && !this.teveAlteracoes(originalDespesaId, despesa)) {
+      despesa.categoriaId = despesa.categoria.id;
+      despesa.grupoDespesaId = despesa.grupoDespesa.id;
+      this.painelService.update(id, despesa, 'despesa').subscribe({
+        next: () => {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          this.getAllDespesas();
+        },
+        error: () => this.getAllDespesas(),
+      });
+    }
 
     despesa.isEditing = false;
   }
@@ -189,6 +178,31 @@ export class ListDespesasComponent implements OnDestroy {
         this.getAllDespesas();
       },
     });
+  }
+  //#endregion
+
+  //#region metodos de suporte
+
+  mudarPagina(event: PageEvent): void {
+    this.page.paginaAtual = event.pageIndex + 1;
+    this.page.itensPorPagina = event.pageSize;
+    this.getAllDespesas();
+  }
+
+  originalDespesas = new Map<number, Despesa>();
+  openEdit(despesa: Despesa): void {
+    despesa.isEditing = !despesa.isEditing;
+    this.originalDespesas.set(despesa.id, { ...despesa });
+  }
+
+  teveAlteracoes(original: Despesa, editadada: Despesa): boolean {
+    return (
+      original.item !== editadada.item ||
+      original.categoriaId !== editadada.categoria.id ||
+      original.fornecedor !== editadada.fornecedor ||
+      original.preco !== editadada.preco ||
+      original.quantidade !== editadada.quantidade
+    );
   }
   //#endregion
 }

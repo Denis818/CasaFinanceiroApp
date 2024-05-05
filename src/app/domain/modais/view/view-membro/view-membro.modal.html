@@ -6,31 +6,31 @@
       <th>Opções</th>
     </thead>
     <tbody>
-      <tr *ngFor="let membro of membros">
+      <tr
+        *ngFor="let membro of membros"
+        (keyup.enter)="updateMembro(membro.id, membro)"
+      >
         <td>
           <div *ngIf="membro.isEditing; else viewNome">
-            <input
-              type="text"
-              [(ngModel)]="membro.nome"
-              (keyup.enter)="updateMembro(membro.id, membro)"
-            />
+            <input type="text" [(ngModel)]="membro.nome" />
           </div>
           <ng-template #viewNome>{{ membro.nome }}</ng-template>
         </td>
         <td>
           <div *ngIf="membro.isEditing; else viewTelefone">
-            <input
-              type="text"
-              [(ngModel)]="membro.telefone"
-              (keyup.enter)="updateMembro(membro.id, membro)"
-            />
+            <input type="text" [(ngModel)]="membro.telefone" />
           </div>
           <ng-template #viewTelefone>{{ membro.telefone }}</ng-template>
         </td>
         <td>
-          <i>
+          <i *ngIf="!membro.isEditing; else saveEdicao">
             <mat-icon (click)="openEdit(membro)">edit</mat-icon>
           </i>
+
+          <ng-template #saveEdicao>
+            <mat-icon (click)="updateMembro(membro.id, membro)">save</mat-icon>
+          </ng-template>
+
           <i space>
             <mat-icon (click)="confirmDelete(membro.id)">delete</mat-icon>
           </i>
