@@ -18,7 +18,7 @@ export class DashboardService extends BaseService {
   public getResumoDespesasMensal(): Observable<ResumoMensalResponse> {
     return this.sendHttpRequest<ApiResponse<ResumoMensalResponse>>(
       'GET',
-      this.url + '/resumo-despesas-mensal'
+      this.url + '/analise-despesa-por-grupo'
     ).pipe(map((response) => response.dados));
   }
 
@@ -69,7 +69,7 @@ export class DashboardService extends BaseService {
   getGrraficoTotaisComprasPorMes(): Observable<GraphicConfiguration> {
     return this.sendHttpRequest<ApiResponse<TotalPorMesResponse[]>>(
       'GET',
-      `${this.url}/total-por-mes`
+      `${this.url}/total-por-grupo`
     ).pipe(
       map(
         (response): GraphicConfiguration => ({
