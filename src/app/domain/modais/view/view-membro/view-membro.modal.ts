@@ -53,9 +53,7 @@ export class ViewMembroModal {
   }
 
   updateMembro(id: number, membro: Membro): void {
-    if (
-      this.painelService.teveAlteracoes(this.originalMembro.get(id), membro)
-    ) {
+    if (this.originalMembro.get(id).nome !== membro.nome) {
       this.painelService.update(id, membro, 'membro').subscribe({
         next: () => {
           this.toastr.success('Atualizado com sucesso!', 'Finalizado!');

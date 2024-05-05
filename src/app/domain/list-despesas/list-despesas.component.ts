@@ -141,19 +141,17 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region Update
-  originalDespesas = new Map<number, Despesa>();
+  originalDespesas: Despesa;
   openEdit(despesa: Despesa): void {
     despesa.isEditing = !despesa.isEditing;
-    this.originalDespesas.set(despesa.id, { ...despesa });
+    this.originalDespesas = JSON.parse(JSON.stringify(despesa));
   }
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
     despesa.grupoDespesaId = despesa.grupoDespesa.id;
 
-    if (
-      this.painelService.teveAlteracoes(this.originalDespesas.get(id), despesa)
-    ) {
+    if (!this.teveAlteracoes(this.originalDespesas, despesa)) {
       this.painelService.update(id, despesa, 'despesa').subscribe({
         next: () => {
           this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -197,5 +195,16 @@ export class ListDespesasComponent implements OnDestroy {
     this.page.itensPorPagina = event.pageSize;
     this.getAllDespesas();
   }
+
+  teveAlteracoes(despesa: Despesa, newDespesa: Despesa) {
+    return (
+      despesa.item === newDespesa.item &&
+      despesa.preco === newDespesa.preco &&
+      despesa.quantidade === newDespesa.quantidade &&
+      despesa.fornecedor === newDespesa.fornecedor &&
+      despesa.categoria.id === newDespesa.categoriaId
+    );
+  }
+
   //#endregion
 }

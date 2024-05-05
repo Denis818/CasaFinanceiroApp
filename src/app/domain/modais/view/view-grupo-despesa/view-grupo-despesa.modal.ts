@@ -58,12 +58,7 @@ export class ViewGrupoDespesaModal {
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
-    if (
-      this.painelService.teveAlteracoes(
-        this.originalGrupoDespesa.get(id),
-        grupoDespesa
-      )
-    ) {
+    if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {
       this.homeService.update(id, grupoDespesa).subscribe({
         next: () => {
           this.toastr.success('Atualizado com sucesso!', 'Finalizado!');

@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { omit } from 'lodash';
+import { deepEqual } from 'lodash';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
@@ -84,24 +84,5 @@ export class PainelControleService extends BaseService {
       null,
       params
     ).pipe(map((response: any) => response.dados.redirectToWhatsApp));
-  }
-
-  teveAlteracoes<TEntity>(original: TEntity, editada: TEntity): boolean {
-    const propsToIgnore = ['isEditing'];
-
-    const originalOmitted = omit(original, propsToIgnore);
-    const editadaOmitted = omit(editada, propsToIgnore);
-
-    let isEqual = false;
-
-    Object.keys(originalOmitted).forEach((key) => {
-      if (
-        JSON.stringify(originalOmitted[key]) !==
-        JSON.stringify(editadaOmitted[key])
-      ) {
-        isEqual = true;
-      }
-    });
-    return isEqual;
   }
 }

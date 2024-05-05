@@ -56,12 +56,7 @@ export class ViewCategoriaModal {
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    if (
-      this.painelService.teveAlteracoes(
-        this.originalCategoria.get(id),
-        categoria
-      )
-    ) {
+    if (this.originalCategoria.get(id).descricao !== categoria.descricao) {
       this.painelService.update(id, categoria, 'categoria').subscribe({
         next: () => {
           this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -105,6 +100,5 @@ export class ViewCategoriaModal {
       },
     });
   }
-
   //#endregion
 }
