@@ -52,6 +52,10 @@ export class ViewMembroModal {
     this.originalMembro.set(membro.id, { ...membro });
   }
 
+  cancelEdit(membro: Membro) {
+    membro.isEditing = false;
+  }
+
   updateMembro(id: number, membro: Membro): void {
     if (this.originalMembro.get(id).nome !== membro.nome) {
       this.painelService.update(id, membro, 'membro').subscribe({

@@ -56,6 +56,9 @@ export class ViewGrupoDespesaModal {
     grupoDespesa.isEditing = !grupoDespesa.isEditing;
     this.originalGrupoDespesa.set(grupoDespesa.id, { ...grupoDespesa });
   }
+  cancelEdit(grupoDespesa: GrupoDespesa) {
+    grupoDespesa.isEditing = false;
+  }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
     if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {

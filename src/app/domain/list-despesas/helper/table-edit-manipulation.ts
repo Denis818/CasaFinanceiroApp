@@ -4,8 +4,8 @@ import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TableEditManipulation {
-  private readonly ALUGUEL = 'Aluguel';
-  private readonly CONDOMINIO = 'Condomínio';
+  private readonly aluguel = 'Aluguel';
+  private readonly condominio = 'Condomínio';
 
   onCategoriaChange(
     categorias: Categoria[],
@@ -15,7 +15,6 @@ export class TableEditManipulation {
     const categoria = categorias.find((c) => c.id === categoriaId);
     const novaCategoria = categoria?.descricao;
 
-    // Atualiza a descrição da categoria na despesa
     this.atualizarItemDespesa(
       despesa,
       novaCategoria,
@@ -29,17 +28,15 @@ export class TableEditManipulation {
     novaCategoria: string,
     categoriaAnterior: string
   ) {
-    if (novaCategoria === this.ALUGUEL) {
+    if (novaCategoria === this.aluguel) {
       this.salvarValorAnteriorEAtualizar(despesa, 'Parcela Ap Ponto');
-    } else if (novaCategoria === this.CONDOMINIO) {
+    } else if (novaCategoria === this.condominio) {
       this.salvarValorAnteriorEAtualizar(despesa, 'Condomínio');
     } else {
-      // Para outras categorias, configura o item como 'Compra'
       this.salvarValorAnteriorEAtualizar(despesa, 'Compra');
-      // Se estava em 'Aluguel' ou 'Condomínio' e mudou para outra categoria, restaura o valor anterior apenas se necessário
       if (
-        categoriaAnterior === this.ALUGUEL ||
-        categoriaAnterior === this.CONDOMINIO
+        categoriaAnterior === this.aluguel ||
+        categoriaAnterior === this.condominio
       ) {
         this.restaurarValorAnterior(despesa);
       }

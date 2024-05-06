@@ -73,7 +73,13 @@
             <div *ngIf="despesa.isEditing; else viewCategoria">
               <mat-select
                 [(ngModel)]="despesa.categoria.id"
-                (ngModelChange)="tableEditManipulation.onCategoriaChange(categorias, despesa, $event)"
+                (ngModelChange)="
+                  tableEditManipulation.onCategoriaChange(
+                    categorias,
+                    despesa,
+                    $event
+                  )
+                "
               >
                 <mat-option
                   *ngFor="let categoria of categorias"
@@ -119,9 +125,11 @@
               <mat-icon (click)="updateDespesa(despesa.id, despesa)"
                 >save</mat-icon
               >
+              <mat-icon space (click)="cancelEdit(despesa)">cancel</mat-icon>
+              <!-- Ícone de cancelar -->
             </ng-template>
 
-            <i space>
+            <i space *ngIf="!despesa.isEditing">
               <mat-icon (click)="confirmDelete(despesa.id)">delete</mat-icon>
             </i>
           </td>

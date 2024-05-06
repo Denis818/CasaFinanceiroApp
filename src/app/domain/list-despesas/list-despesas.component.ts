@@ -149,6 +149,11 @@ export class ListDespesasComponent implements OnDestroy {
     this.originalDespesas = JSON.parse(JSON.stringify(despesa));
   }
 
+
+  cancelEdit(despesa: Despesa) {
+    despesa.isEditing = false;
+  }
+
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
     despesa.grupoDespesaId = despesa.grupoDespesa.id;

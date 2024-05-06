@@ -33,9 +33,11 @@
             <mat-icon (click)="updateCategoria(categoria.id, categoria)"
               >save</mat-icon
             >
+            <mat-icon space (click)="cancelEdit(categoria)">cancel</mat-icon>
+            <!-- Ícone de cancelar -->
           </ng-template>
 
-          <i space>
+          <i space *ngIf="!categoria.isEditing">
             <mat-icon (click)="confirmDelete(categoria.id)">delete</mat-icon>
           </i>
         </td>

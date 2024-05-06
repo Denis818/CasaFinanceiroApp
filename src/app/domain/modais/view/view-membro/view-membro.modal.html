@@ -23,17 +23,21 @@
           <ng-template #viewTelefone>{{ membro.telefone }}</ng-template>
         </td>
         <td>
-          <i *ngIf="!membro.isEditing; else saveEdicao">
-            <mat-icon (click)="openEdit(membro)">edit</mat-icon>
-          </i>
+    <i *ngIf="!membro.isEditing; else saveEdicao">
+              <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+            </i>
 
-          <ng-template #saveEdicao>
-            <mat-icon (click)="updateMembro(membro.id, membro)">save</mat-icon>
-          </ng-template>
+            <ng-template #saveEdicao>
+              <mat-icon (click)="updateMembro(membro.id, membro)"
+                >save</mat-icon
+              >
+              <mat-icon space (click)="cancelEdit(membro)">cancel</mat-icon>
+              <!-- Ícone de cancelar -->
+            </ng-template>
 
-          <i space>
-            <mat-icon (click)="confirmDelete(membro.id)">delete</mat-icon>
-          </i>
+            <i space *ngIf="!membro.isEditing">
+              <mat-icon (click)="confirmDelete(membro.id)">delete</mat-icon>
+            </i>
         </td>
       </tr>
     </tbody>
