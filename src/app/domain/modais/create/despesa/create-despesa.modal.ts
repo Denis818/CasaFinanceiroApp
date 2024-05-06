@@ -162,7 +162,7 @@ export class CreateDespesaModal {
     let inputName = 'Compra';
 
     if (this.categoriaSelecionada === 'Aluguel') {
-      inputName = 'Ap Ponto';
+      inputName = 'Parcela Ap Ponto';
     }
 
     if (this.categoriaSelecionada === 'Condomínio') {
