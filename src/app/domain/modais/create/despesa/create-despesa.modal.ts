@@ -67,6 +67,16 @@ export class CreateDespesaModal {
   getCategoriaSelected(categoriaId: any) {
     const categoria = this.categorias.find((c) => c.id === categoriaId);
     this.categoriaSelecionada = categoria?.descricao;
+
+    if (this.categoriaSelecionada === 'Aluguel') {
+      this.despesaForm.patchValue({
+        item: 'Ap Ponto',
+      });
+    } else {
+      this.despesaForm.patchValue({
+        item: 'Compra',
+      });
+    }
   }
 
   getAllGrupoDespesas() {
