@@ -45,13 +45,15 @@ export class CreateGrupoDespesaModal {
   onSubmit(): void {
     if (this.grupoDespesaForm.valid) {
       this.homeService.insert(this.grupoDespesaForm.value).subscribe({
-        next: () => {
-          this.toastr.success(
-            `Grupo ${this.grupoDespesaForm.value.nome} criado com sucesso!`,
-            'Finalizado!'
-          );
+        next: (grupoInserido) => {
+          if (grupoInserido) {
+            this.toastr.success(
+              `Grupo ${this.grupoDespesaForm.value.nome} criado com sucesso!`,
+              'Finalizado!'
+            );
 
-          this.onClose();
+            this.onClose();
+          }
         },
       });
     }

@@ -68,15 +68,9 @@ export class CreateDespesaModal {
     const categoria = this.categorias.find((c) => c.id === categoriaId);
     this.categoriaSelecionada = categoria?.descricao;
 
-    if (this.categoriaSelecionada === 'Aluguel') {
-      this.despesaForm.patchValue({
-        item: 'Ap Ponto',
-      });
-    } else {
-      this.despesaForm.patchValue({
-        item: 'Compra',
-      });
-    }
+    this.despesaForm.patchValue({
+      item: this.setNameInputItem(),
+    });
   }
 
   getAllGrupoDespesas() {
@@ -98,23 +92,18 @@ export class CreateDespesaModal {
   onSubmit(): void {
     if (this.despesaForm.valid) {
       this.painelService.insert(this.despesaForm.value, 'despesa').subscribe({
-        next: () => {
-          this.toastr.success(
-            ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,
-            'Finalizado!'
-          );
-          this.resetForm();
-          this.despesaInserida.emit();
+        next: (despesaInserida) => {
+          if (despesaInserida) {
+            this.toastr.success(
+              ` Despesa ${this.despesaForm.value.item} criada com sucesso!`,
+              'Finalizado!'
+            );
+            this.resetForm();
+            this.despesaInserida.emit();
+          }
         },
       });
     }
-  }
-
-  formatDate(date: Date): string {
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
   }
 
   public validation(): void {
@@ -131,6 +120,7 @@ export class CreateDespesaModal {
         ],
       ],
       preco: [
+        '',
         [Validators.required, Validators.min(0.01), Validators.max(9999.99)],
       ],
       quantidade: [
@@ -154,9 +144,8 @@ export class CreateDespesaModal {
   }
 
   resetForm(): void {
-    console.log(this.grupoDefault);
     this.despesaForm.reset({
-      item: 'Compra',
+      item: this.setNameInputItem(),
       quantidade: 1,
       fornecedor: this.despesaForm.value.fornecedor || 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 1,
@@ -167,5 +156,19 @@ export class CreateDespesaModal {
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  setNameInputItem(): string {
+    let inputName = 'Compra';
+
+    if (this.categoriaSelecionada === 'Aluguel') {
+      inputName = 'Ap Ponto';
+    }
+
+    if (this.categoriaSelecionada === 'Condomínio') {
+      inputName = 'Condomínio Ap Ponto';
+    }
+
+    return inputName;
   }
 }

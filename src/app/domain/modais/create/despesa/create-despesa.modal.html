@@ -35,7 +35,7 @@
     </mat-form-field>
 
     <ng-container
-      *ngIf="categoriaSelecionada === 'Aluguel'; else condominioCategoria"
+      *ngIf="categoriaSelecionada === 'Aluguel'; else selectedCondominio"
     >
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Item</mat-label>
@@ -46,27 +46,15 @@
       </mat-form-field>
     </ng-container>
 
-    <ng-template #condominioCategoria>
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Item</mat-label>
-        <input
-          matInput
-          id="item"
-          formControlName="item"
-          [attr.disabled]="categoriaSelecionada === 'Condomínio' ? true : null"
-          [value]="categoriaSelecionada === 'Condomínio' ? 'Condomínio' : null"
-          [ngClass]="{'is-invalid': despesaValidator.item.errors && despesaValidator.item.touched}"
-        />
-        <mat-error *ngIf="despesaValidator['item'].hasError('required')">
-          Item é obrigatório.
-        </mat-error>
-        <mat-error *ngIf="despesaValidator['item'].hasError('minlength')">
-          Item deve ter no mínimo 4 caracteres.
-        </mat-error>
-        <mat-error *ngIf="despesaValidator['item'].hasError('maxlength')">
-          Item deve ter no máximo 80 caracteres.
-        </mat-error>
-      </mat-form-field>
+    <ng-template #selectedCondominio>
+      <ng-container
+        *ngIf="categoriaSelecionada === 'Condomínio'; else inputItem"
+      >
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Item</mat-label>
+          <input matInput id="item" formControlName="item" readonly />
+        </mat-form-field>
+      </ng-container>
     </ng-template>
 
     <ng-template #inputItem>

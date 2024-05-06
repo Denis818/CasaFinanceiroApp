@@ -1,7 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { deepEqual } from 'lodash';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
@@ -39,12 +38,16 @@ export class PainelControleService extends BaseService {
 
   public insert<TEntity>(entity: TEntity, uri: string) {
     const url = `${this.url}/${uri}`;
-    return this.sendHttpRequest('POST', url, entity);
+    return this.sendHttpRequest('POST', url, entity).pipe(
+      map((response: any) => response.dados)
+    );
   }
 
   public update<TEntity>(id: number, entity: TEntity, uri: string) {
     const url = `${this.url}/${uri}/?id=${id}`;
-    return this.sendHttpRequest('PUT', url, entity);
+    return this.sendHttpRequest('PUT', url, entity).pipe(
+      map((response: any) => response.dados)
+    );
   }
 
   public delete(id: number, uri: string) {

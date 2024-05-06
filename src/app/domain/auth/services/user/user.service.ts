@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { map, tap } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
@@ -14,6 +15,10 @@ export class UserService extends BaseService {
 
   public url: string = `${environment.base_url_financy}/user`;
 
+  constructor(private toastr: ToastrService) {
+    super();
+  }
+
   login(user: UserRequest): void {
     this.sendHttpRequest<ApiResponse<TokenResponse>>(
       'POST',
@@ -24,17 +29,21 @@ export class UserService extends BaseService {
         tap((response) => {
           this.guardarToken(response.dados);
           this.getUserInfo();
-        })
+        }),
+        map((response: any) => response.dados)
       )
       .subscribe({
-        next: () => {
-          this.router.navigateByUrl('/home');
+        next: (success) => {
+          if (success?.authenticated) {
+            this.toastr.success(`Bem vindo de volta!`);
+            this.router.navigateByUrl('/home');
+          }
         },
       });
   }
 
   logout(): void {
-    this.storageService.clear();
+    this.removeAuthLocalStorage();
     this.router.navigateByUrl('/login');
   }
 
@@ -62,6 +71,10 @@ export class UserService extends BaseService {
         response.expiration.toString()
       );
     }
+  }
+
+  removeAuthLocalStorage() {
+    this.storageService.cleanAndPreserverItem(['grupoDespesasId']);
   }
   //
 }

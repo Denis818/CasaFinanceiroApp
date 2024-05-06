@@ -48,13 +48,15 @@ export class CreateCategoriaModal {
       this.painelService
         .insert(this.categoriaForm.value, 'categoria')
         .subscribe({
-          next: () => {
-            this.toastr.success(
-              ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
-              'Finalizado!'
-            );
+          next: (categoriaInserida) => {
+            if (categoriaInserida) {
+              this.toastr.success(
+                ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
+                'Finalizado!'
+              );
 
-            this.onClose();
+              this.onClose();
+            }
           },
         });
     }

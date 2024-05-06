@@ -46,13 +46,15 @@ export class CreateMembroModal {
   onSubmit(): void {
     if (this.membroForm.valid) {
       this.painelService.insert(this.membroForm.value, 'membro').subscribe({
-        next: () => {
-          this.toastr.success(
-            ` Membro ${this.membroForm.value.nome} criado com sucesso!`,
-            'Finalizado!'
-          );
+        next: (membroInserido) => {
+          if (membroInserido) {
+            this.toastr.success(
+              ` Membro ${this.membroForm.value.nome} criado com sucesso!`,
+              'Finalizado!'
+            );
 
-          this.onClose();
+            this.onClose();
+          }
         },
       });
     }

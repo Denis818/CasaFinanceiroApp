@@ -45,6 +45,6 @@ export class AuthGuard {
   }
 
   private resetLocalStorage(): void {
-    this.storageService.clear();
+    this.storageService.cleanAndPreserverItem(['grupoDespesasId']);
   }
 }
