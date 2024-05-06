@@ -58,8 +58,10 @@ export class ViewCategoriaModal {
   updateCategoria(id: number, categoria: Categoria): void {
     if (this.originalCategoria.get(id).descricao !== categoria.descricao) {
       this.painelService.update(id, categoria, 'categoria').subscribe({
-        next: () => {
-          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        next: (categoriaAtualizada) => {
+          if (categoriaAtualizada) {
+            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          }
           this.getAllCategorias();
         },
         error: () => this.getAllCategorias(),

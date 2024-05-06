@@ -33,6 +33,7 @@ export class HomePage implements OnDestroy {
   ) {
     this.selectedButton =
       this.storageService.getItem('selectedButton') || 'dashboard';
+
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
@@ -115,8 +116,14 @@ export class HomePage implements OnDestroy {
     this.grupoDespesasForm
       .get('grupoDespesaId')
       .valueChanges.subscribe((grupoDespesasId) => {
-        let grupoId = parseInt(this.storageService.getItem('grupoDespesasId'));
-        if (grupoId == 0) {
+
+        const grupoId = parseInt(
+          this.storageService.getItem('grupoDespesasId')
+        );
+        
+        const grupoExiste = this.grupoDespesas.some((g) => g.id === grupoId);
+
+        if (grupoId == 0 || !grupoExiste) {
           this.storageService.setItem(
             'grupoDespesasId',
             grupoDespesasId.toString()

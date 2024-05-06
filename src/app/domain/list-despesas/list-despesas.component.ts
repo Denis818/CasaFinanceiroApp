@@ -22,6 +22,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
 import { Categoria } from '../painel-controle/interfaces/categoria.interface';
+import { TableEditManipulation } from './helper/table-edit-manipulation';
 
 registerLocaleData(localePt);
 
@@ -66,7 +67,8 @@ export class ListDespesasComponent implements OnDestroy {
     private painelService: PainelControleService,
     private toastr: ToastrService,
     private dialog: MatDialog,
-    private homeService: HomeService
+    private homeService: HomeService,
+    protected tableEditManipulation: TableEditManipulation
   ) {
     this.inicializeTable();
     this.reloadDespesas();
@@ -153,8 +155,10 @@ export class ListDespesasComponent implements OnDestroy {
 
     if (!this.teveAlteracoes(this.originalDespesas, despesa)) {
       this.painelService.update(id, despesa, 'despesa').subscribe({
-        next: () => {
-          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        next: (despesaAtualizada) => {
+          if (despesaAtualizada) {
+            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          }
           this.getAllDespesas();
         },
         error: () => this.getAllDespesas(),

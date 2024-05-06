@@ -43,14 +43,38 @@
           <td>{{ despesa.id }}</td>
           <td>
             <div *ngIf="despesa.isEditing; else viewItem">
-              <input type="text" [(ngModel)]="despesa.item" />
+              <ng-container
+                *ngIf="
+                  despesa.categoria.descricao === 'Aluguel';
+                  else inputCondominio
+                "
+              >
+                <mat-select [(ngModel)]="despesa.item">
+                  <mat-option [value]="'Parcela Caixa'"
+                    >Parcela Caixa</mat-option
+                  >
+                  <mat-option [value]="'Parcela Ap Ponto'"
+                    >Parcela Ap Ponto</mat-option
+                  >
+                </mat-select>
+              </ng-container>
+              <ng-template #inputCondominio>
+                <input
+                  type="text"
+                  [(ngModel)]="despesa.item"
+                  [readonly]="despesa.categoria.descricao === 'Condomínio'"
+                />
+              </ng-template>
             </div>
+
             <ng-template #viewItem>{{ despesa.item }}</ng-template>
           </td>
-
           <td>
             <div *ngIf="despesa.isEditing; else viewCategoria">
-              <mat-select [(ngModel)]="despesa.categoria.id">
+              <mat-select
+                [(ngModel)]="despesa.categoria.id"
+                (ngModelChange)="tableEditManipulation.onCategoriaChange(categorias, despesa, $event)"
+              >
                 <mat-option
                   *ngFor="let categoria of categorias"
                   [value]="categoria.id"

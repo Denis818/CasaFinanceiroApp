@@ -69,7 +69,7 @@ export class CreateDespesaModal {
     this.categoriaSelecionada = categoria?.descricao;
 
     this.despesaForm.patchValue({
-      item: this.setNameInputItem(),
+      item: this.setValueInputItem(),
     });
   }
 
@@ -145,7 +145,7 @@ export class CreateDespesaModal {
 
   resetForm(): void {
     this.despesaForm.reset({
-      item: this.setNameInputItem(),
+      item: this.setValueInputItem(),
       quantidade: 1,
       fornecedor: this.despesaForm.value.fornecedor || 'Epa',
       categoriaId: this.despesaForm.value.categoriaId || 1,
@@ -157,11 +157,13 @@ export class CreateDespesaModal {
   onClose(): void {
     this.dialogRef.close();
   }
+  selected = 'Ola';
 
-  setNameInputItem(): string {
+  setValueInputItem(): string {
     let inputName = 'Compra';
 
     if (this.categoriaSelecionada === 'Aluguel') {
+      console.log(this.despesaForm.value.item);
       inputName = 'Parcela Ap Ponto';
     }
 

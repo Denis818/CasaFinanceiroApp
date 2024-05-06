@@ -55,8 +55,10 @@ export class ViewMembroModal {
   updateMembro(id: number, membro: Membro): void {
     if (this.originalMembro.get(id).nome !== membro.nome) {
       this.painelService.update(id, membro, 'membro').subscribe({
-        next: () => {
-          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        next: (membroAtualizado) => {
+          if (membroAtualizado) {
+            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          }
           this.getAllMembros();
         },
         error: () => this.getAllMembros(),

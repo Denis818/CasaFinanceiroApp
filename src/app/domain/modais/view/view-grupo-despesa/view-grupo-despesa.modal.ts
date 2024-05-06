@@ -60,8 +60,10 @@ export class ViewGrupoDespesaModal {
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
     if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {
       this.homeService.update(id, grupoDespesa).subscribe({
-        next: () => {
-          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        next: (grupoDespesaAtualizado) => {
+          if (grupoDespesaAtualizado) {
+            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          }
           this.getAllGrupoDespesas();
         },
         error: () => this.getAllGrupoDespesas(),
