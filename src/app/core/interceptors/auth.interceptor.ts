@@ -44,9 +44,9 @@ export class AuthInterceptor implements HttpInterceptor {
     this.spinner.show();
 
     return next.handle(authReq).pipe(
-      tap((event) => this.haveMessages(event)),
+      tap((event) => this.haveMessagesNotification(event)),
       catchError((error: HttpErrorResponse) => {
-        this.error(error?.error?.mensagens);
+        this.errorNotification(error?.error?.mensagens);
         this.checkTokenExpired(error);
         return throwError(() => of(error));
       }),
@@ -57,10 +57,16 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 
-  public error(arrayMessages: any): void {
+  public errorNotification(arrayMessages: any): void {
     if (arrayMessages?.length > 0) {
       arrayMessages.forEach((mensagem: any) => {
-        this.toastr.error(mensagem.descricao, 'Erro');
+        if (mensagem.statusCode === 401 && mensagem.descricao) {
+          this.toastr.warning(mensagem.descricao, 'Acesso Negado');
+        } else if (mensagem.statusCode === 404 && mensagem.descricao) {
+          this.toastr.error(mensagem.descricao, 'Não Encontrado');
+        } else {
+          this.toastr.error(mensagem.descricao, 'Erro');
+        }
       });
     } else {
       this.toastr.error('Ocorreu um erro, tente novamente.', 'Erro');
@@ -80,7 +86,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
   }
 
-  public haveMessages(event: any) {
+  public haveMessagesNotification(event: any) {
     if (event?.body?.mensagens) {
       event.body.mensagens.forEach((mensagem: any) => {
         if (mensagem.statusCode === 200 && mensagem.descricao) {

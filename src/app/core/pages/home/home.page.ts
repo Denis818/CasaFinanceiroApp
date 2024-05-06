@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { StorageService } from '../../services/storage/storage.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnDestroy, OnInit {
+export class HomePage implements OnDestroy {
   selectedButton: string = 'dashboard';
   sidenavExpanded = false;
   isDesktop: boolean = true;
@@ -31,14 +31,11 @@ export class HomePage implements OnDestroy, OnInit {
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
+    this.selectedButton =
+      this.storageService.getItem('selectedButton') || 'dashboard';
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
-  }
-
-  ngOnInit() {
-    this.selectedButton =
-      this.storageService.getItem('selectedButton') || 'dashboard';
   }
 
   ngOnDestroy(): void {
@@ -118,11 +115,14 @@ export class HomePage implements OnDestroy, OnInit {
     this.grupoDespesasForm
       .get('grupoDespesaId')
       .valueChanges.subscribe((grupoDespesasId) => {
-        this.storageService.setItem(
-          'grupoDespesasId',
-          grupoDespesasId.toString()
-        );
-        this.homeService.notificarComponentesGrupoIdMudou();
+        let grupoId = parseInt(this.storageService.getItem('grupoDespesasId'));
+        if (grupoId == 0) {
+          this.storageService.setItem(
+            'grupoDespesasId',
+            grupoDespesasId.toString()
+          );
+          this.homeService.notificarComponentesGrupoIdMudou();
+        }
       });
   }
 }
