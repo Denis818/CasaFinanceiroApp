@@ -31,9 +31,6 @@ export class HomePage implements OnDestroy {
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
-    this.selectedButton =
-      this.storageService.getItem('selectedButton') || 'dashboard';
-
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
@@ -47,7 +44,6 @@ export class HomePage implements OnDestroy {
 
   setSelectedButton(button: string) {
     this.selectedButton = button;
-    this.storageService.setItem('selectedButton', button);
   }
 
   abrirSidenav() {
@@ -116,11 +112,10 @@ export class HomePage implements OnDestroy {
     this.grupoDespesasForm
       .get('grupoDespesaId')
       .valueChanges.subscribe((grupoDespesasId) => {
-
         const grupoId = parseInt(
           this.storageService.getItem('grupoDespesasId')
         );
-        
+
         const grupoExiste = this.grupoDespesas.some((g) => g.id === grupoId);
 
         if (grupoId != 0 || grupoExiste) {
