@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnDestroy {
+export class HomePage implements OnInit, OnDestroy {
   selectedButton: string = 'dashboard';
   sidenavExpanded = false;
   isDesktop: boolean = true;
@@ -34,17 +34,22 @@ export class HomePage implements OnDestroy {
   ) {
     this.selectedButton =
     this.storageService.getItem('selectedButton') || 'dashboard';
-    if(this.selectedButton  == 'dashboard')
-    {
-      this.router.navigateByUrl('/home');
-    }else{
-    this.router.navigateByUrl('/painel');
-    }
+ 
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
   }
+ ngOnInit() {
 
+   if(this.selectedButton === 'dashboard')
+    {
+      this.router.navigateByUrl('/home');
+      
+    }else{
+      this.router.navigateByUrl('/painel');
+    }
+
+ }
   ngOnDestroy(): void {
     if (this.grupoDespesasSubscriber) {
       this.grupoDespesasSubscriber.unsubscribe();
