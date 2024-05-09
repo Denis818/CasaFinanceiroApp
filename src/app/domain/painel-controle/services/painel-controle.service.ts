@@ -52,7 +52,9 @@ export class PainelControleService extends BaseService {
 
   public delete(id: number, uri: string) {
     const url = `${this.url}/${uri}/?id=${id}`;
-    return this.sendHttpRequest('DELETE', url);
+    return this.sendHttpRequest('DELETE', url).pipe(
+      map((response: any) => response.dados)
+    );
   }
 
   public conferirFaturaDoCartao(faturaCartao: number): Observable<string> {

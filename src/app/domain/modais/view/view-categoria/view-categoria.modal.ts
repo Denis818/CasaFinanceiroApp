@@ -80,7 +80,7 @@ export class ViewCategoriaModal {
       descricao !== 'Almoço/Janta' &&
       descricao !== 'Aluguel' &&
       descricao !== 'Condomínio' &&
-      descricao !== 'Conta de Luz'&&
+      descricao !== 'Conta de Luz' &&
       descricao !== 'Internet'
     );
   }
@@ -101,8 +101,10 @@ export class ViewCategoriaModal {
 
   deleteCategoria(categoriaId: number): void {
     this.painelService.delete(categoriaId, 'categoria').subscribe({
-      next: () => {
-        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+      next: (hasDeleted) => {
+        if (hasDeleted) {
+          this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        }
         this.getAllCategorias();
       },
     });

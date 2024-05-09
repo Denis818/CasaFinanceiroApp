@@ -149,7 +149,6 @@ export class ListDespesasComponent implements OnDestroy {
     this.originalDespesas = JSON.parse(JSON.stringify(despesa));
   }
 
-
   cancelEdit(despesa: Despesa) {
     despesa.isEditing = false;
   }
@@ -189,8 +188,10 @@ export class ListDespesasComponent implements OnDestroy {
 
   deleteDespesa(despesaId: number): void {
     this.painelService.delete(despesaId, 'despesa').subscribe({
-      next: () => {
-        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+      next: (hasDeleted) => {
+        if (hasDeleted) {
+          this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        }
         this.getAllDespesas();
       },
     });

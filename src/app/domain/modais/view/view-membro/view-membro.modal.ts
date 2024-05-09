@@ -87,8 +87,10 @@ export class ViewMembroModal {
 
   deleteMembro(membroId: number): void {
     this.painelService.delete(membroId, 'membro').subscribe({
-      next: () => {
-        this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+      next: (hasDeleted) => {
+        if (hasDeleted) {
+          this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+        }
         this.getAllMembros();
       },
     });
