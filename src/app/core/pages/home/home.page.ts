@@ -123,7 +123,7 @@ export class HomePage implements OnDestroy {
         
         const grupoExiste = this.grupoDespesas.some((g) => g.id === grupoId);
 
-        if (grupoId == 0 || !grupoExiste) {
+        if (grupoId != 0 || grupoExiste) {
           this.storageService.setItem(
             'grupoDespesasId',
             grupoDespesasId.toString()
