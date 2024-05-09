@@ -6,7 +6,7 @@ import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { HomeService } from '../../services/home/home-service';
 import { StorageService } from '../../services/storage/storage.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -29,11 +29,17 @@ export class HomePage implements OnDestroy {
     private readonly homeService: HomeService,
     private readonly storageService: StorageService,
     private readonly user: UserService,
-    public readonly titleService: Title
+    public readonly titleService: Title,
+    private readonly router: Router
   ) {
     this.selectedButton =
-      this.storageService.getItem('selectedButton') || 'dashboard';
-
+    this.storageService.getItem('selectedButton') || 'dashboard';
+    if(this.selectedButton  == 'dashboard')
+    {
+      this.router.navigateByUrl('/home');
+    }else{
+    this.router.navigateByUrl('/painel');
+    }
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
