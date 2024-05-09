@@ -36,6 +36,17 @@ export class HomePage implements OnInit, OnDestroy {
   }
   
  ngOnInit() {
+
+    this.selectedButton =
+      this.storageService.getItem('selectedButton') || 'dashboard';
+   
+      if(this.selectedButton  == 'dashboard')
+    {
+      this.router.navigateByUrl('/home');
+    }else{
+    this.router.navigateByUrl('/painel');
+    }
+   
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
