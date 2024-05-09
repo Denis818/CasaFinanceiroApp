@@ -77,7 +77,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (error.status === 401) {
       this.unauthorizedErrorCount++;
 
-      if (this.unauthorizedErrorCount >= 2) {
+      if (this.unauthorizedErrorCount >= 3) {
         this.router.navigate(['/login']);
         this.unauthorizedErrorCount = 0;
       }
