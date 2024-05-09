@@ -32,24 +32,15 @@ export class HomePage implements OnInit, OnDestroy {
     public readonly titleService: Title,
     private readonly router: Router
   ) {
-    this.selectedButton =
-    this.storageService.getItem('selectedButton') || 'dashboard';
- 
+    
+  }
+  
+ ngOnInit() {
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
-  }
- ngOnInit() {
-
-   if(this.selectedButton === 'dashboard')
-    {
-      this.router.navigateByUrl('/home');
-      
-    }else{
-      this.router.navigateByUrl('/painel');
-    }
-
  }
+  
   ngOnDestroy(): void {
     if (this.grupoDespesasSubscriber) {
       this.grupoDespesasSubscriber.unsubscribe();
