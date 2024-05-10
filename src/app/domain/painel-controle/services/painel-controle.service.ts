@@ -74,13 +74,13 @@ export class PainelControleService extends BaseService {
   public enviarMensagemWhatsApp(
     nome: string,
     pix: string,
-    isHabitacional: boolean,
+    isMoradia: boolean,
     titleMessage: string
   ): Observable<string> {
     const params = new HttpParams()
       .set('nome', nome)
       .set('pix', pix)
-      .set('isHabitacional', isHabitacional.toString())
+      .set('isMoradia', isMoradia.toString())
       .set('titleMessage', titleMessage);
 
     return this.sendHttpRequest(
