@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -28,6 +28,8 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
   ],
 })
 export class CreateCategoriaModal {
+    @Output() categoriaInserida = new EventEmitter<void>();
+
   categoriaForm: FormGroup;
 
   get categoriaValidator(): any {
@@ -54,7 +56,8 @@ export class CreateCategoriaModal {
                 ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
                 'Finalizado!'
               );
-
+              
+              this.categoriaInserida.emit();
               this.onClose();
             }
           },
