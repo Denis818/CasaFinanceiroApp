@@ -36,7 +36,6 @@ export class PainelControlePage {
   constructor(private dialog: MatDialog) {}
 
   @ViewChild(ListDespesasComponent) viewDespesaModal: ListDespesasComponent;
-  @ViewChild(ViewCategoriaModal) viewCategoriaModal: ViewCategoriaModal;
 
   //#region  Views
   openViewCategoriaModal() {
@@ -66,9 +65,9 @@ export class PainelControlePage {
     const dialogRef = this.dialog.open(CreateDespesaModal, {
       width: '400px',
     });
+    
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
       this.viewDespesaModal.getAllDespesas();
-      this.viewCategoriaModal.getAllCategorias();
     });
   }
 
@@ -85,9 +84,13 @@ export class PainelControlePage {
   }
 
   openCreateCategoriaModal(): void {
-    this.dialog.open(CreateCategoriaModal, {
+     const dialogRef = this.dialog.open(CreateCategoriaModal, {
       width: '400px',
     });
+    
+    dialogRef.componentInstance.categoriaInserida.subscribe(() => {
+      this.viewDespesaModal.inicializeTable();
+   });
   }
   //#endregion
 
