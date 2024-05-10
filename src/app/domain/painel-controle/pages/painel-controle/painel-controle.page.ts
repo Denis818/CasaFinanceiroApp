@@ -42,6 +42,10 @@ export class PainelControlePage {
     const dialogRef = this.dialog.open(ViewCategoriaModal, {
       width: '400px',
     });
+
+     dialogRef.componentInstance.notificarAlteracao.subscribe(() => {
+       this.viewDespesaModal.inicializeTable();
+     });
     dialogRef.afterClosed();
   }
 
@@ -65,9 +69,9 @@ export class PainelControlePage {
     const dialogRef = this.dialog.open(CreateDespesaModal, {
       width: '400px',
     });
-    
+
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.viewDespesaModal.getAllDespesas();
+      this.viewDespesaModal.inicializeTable();
     });
   }
 
@@ -87,7 +91,7 @@ export class PainelControlePage {
      const dialogRef = this.dialog.open(CreateCategoriaModal, {
       width: '400px',
     });
-    
+
     dialogRef.componentInstance.categoriaInserida.subscribe(() => {
       this.viewDespesaModal.inicializeTable();
    });

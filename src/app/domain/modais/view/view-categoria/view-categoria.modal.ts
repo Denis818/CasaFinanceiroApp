@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +31,8 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
   ],
 })
 export class ViewCategoriaModal {
+  @Output() notificarAlteracao = new EventEmitter<void>();
+
   categorias: Categoria[];
   constructor(
     private painelService: PainelControleService,
@@ -65,7 +67,9 @@ export class ViewCategoriaModal {
         next: (categoriaAtualizada) => {
           if (categoriaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+            this.notificarAlteracao.emit();
           }
+
           this.getAllCategorias();
         },
         error: () => this.getAllCategorias(),
@@ -90,6 +94,10 @@ export class ViewCategoriaModal {
   confirmDelete(idCategoria: number): void {
     const dialogRef = this.dialog.open(ConfirmDeleteModal, {
       width: '400px',
+      data: {
+        descricao:
+          'Apagar a categoria irá deletar todas as despesas relacionadas a ela, deseja continuar?',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -104,6 +112,7 @@ export class ViewCategoriaModal {
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
+           this.notificarAlteracao.emit();
         }
         this.getAllCategorias();
       },
