@@ -71,7 +71,7 @@ export class PainelControlePage {
     });
 
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.viewDespesaModal.inicializeTable();
+      this.viewDespesaModal.getAllDespesas();
     });
   }
 
@@ -93,7 +93,7 @@ export class PainelControlePage {
     });
 
     dialogRef.componentInstance.categoriaInserida.subscribe(() => {
-      this.viewDespesaModal.inicializeTable();
+      this.viewDespesaModal.getAllCategorias();
    });
   }
   //#endregion
