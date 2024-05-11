@@ -5,9 +5,9 @@ import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
-import { ResumoMensalResponse } from '../../interfaces/financy/resumo-mensal-response.interface';
+import { ResumoGrupoResponse } from '../../interfaces/financy/resumo-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
-import { TotalPorMesResponse } from '../../interfaces/financy/total-por-mes-response.interface';
+import { TotalPorGrupoResponse } from '../../interfaces/financy/total-por-grupo-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService extends BaseService {
@@ -15,8 +15,8 @@ export class DashboardService extends BaseService {
 
   public url: string = `${environment.base_url_financy}/despesa`;
 
-  public getAnaliseDesesasPorGrupo(): Observable<ResumoMensalResponse> {
-    return this.sendHttpRequest<ApiResponse<ResumoMensalResponse>>(
+  public getAnaliseDesesasPorGrupo(): Observable<ResumoGrupoResponse> {
+    return this.sendHttpRequest<ApiResponse<ResumoGrupoResponse>>(
       'GET',
       this.url + '/analise-despesa-por-grupo'
     ).pipe(map((response) => response.dados));
@@ -61,17 +61,17 @@ export class DashboardService extends BaseService {
   }
 
   getGraficoTotaisComprasPorGrupo(): Observable<GraphicConfiguration> {
-    return this.sendHttpRequest<ApiResponse<TotalPorMesResponse[]>>(
+    return this.sendHttpRequest<ApiResponse<TotalPorGrupoResponse[]>>(
       'GET',
       `${this.url}/total-por-grupo`
     ).pipe(
       map(
         (response): GraphicConfiguration => ({
           chartData: {
-            labels: response.dados.map((item) => item.mes),
+            labels: response.dados.map((item) => item.grupoNome),
             datasets: [
               {
-                data: response.dados.map((item) => item.totalDespesas),
+                data: response.dados.map((item) => item.total),
                 borderColor: '#673ab7',
                 backgroundColor: '#6b18ffd4',
                 label: 'Total',

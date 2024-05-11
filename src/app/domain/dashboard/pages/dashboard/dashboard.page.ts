@@ -1,6 +1,13 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +19,7 @@ import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-comp
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
 import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
-import { RelatorioGastosDoMesResponse } from '../../interfaces/financy/relatorio-gastos-mes-response.interface';
+import { RelatorioGastosDoGrupoResponse } from '../../interfaces/financy/relatorio-gastos-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 
@@ -35,12 +42,13 @@ registerLocaleData(localePt);
 })
 export class DashboardPage implements OnInit, OnDestroy {
   private reloadPageSubscriber: Subscription;
+  @ViewChild('nextSection') nextSection: ElementRef;
 
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
 
-  relatorioGastosDoMes: RelatorioGastosDoMesResponse = {
-    mesAtual: '',
+  relatorioGastosDoGrupo: RelatorioGastosDoGrupoResponse = {
+    grupoDespesaNome: '',
     totalGastosMoradia: 0,
     totalGastosCasa: 0,
     totalGeral: 0,
@@ -98,7 +106,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   getAnaliseDesesasPorGrupo() {
     this.dashboardService.getAnaliseDesesasPorGrupo().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembro;
-      this.relatorioGastosDoMes = dados.relatorioGastosDoMes;
+      this.relatorioGastosDoGrupo = dados.relatorioGastosDoGrupo;
     });
   }
 
@@ -120,6 +128,13 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.dialog.open(MensagemWhatsAppModal, {
       width: '500px',
       data: { nome: nome, isHabitacional: isHabitacional },
+    });
+  }
+
+  scrollToNextSection() {
+    this.nextSection.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
     });
   }
 }

@@ -119,6 +119,10 @@
               font-size: 18px;
               font-weight: bold;
               color: #673ab7;
+
+              &.no-button-whats {
+                right: 0px;
+              }
             }
 
             [share-whatsapp] {
