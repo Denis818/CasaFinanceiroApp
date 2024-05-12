@@ -22,7 +22,7 @@
     [selected-group] {
       display: flex;
       align-items: center;
-          width: 275px;
+      width: 275px;
 
       ::ng-deep {
         .mat-mdc-form-field .mat-mdc-text-field-wrapper {
@@ -222,7 +222,6 @@
     .navbar {
       display: flex;
       justify-content: space-between;
-      padding: 5px;
       position: relative;
       margin-bottom: -46px;
 
@@ -241,6 +240,10 @@
         ::ng-deep {
           .mat-mdc-form-field .mat-mdc-text-field-wrapper {
             width: 60vw;
+          }
+
+          .mat-mdc-form-field {
+            padding: 5px;
           }
 
           mat-icon.icon-help {
