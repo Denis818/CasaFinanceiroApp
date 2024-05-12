@@ -1,51 +1,13 @@
 :host {
   [header-model] {
-    background-color: #673ab7;
-    width: 100%;
-    height: 10%;
-    text-align: center;
-
-    h2 {
-      color: #fff;
-      padding: 10px;
-      font-size: 24px;
-    }
     mat-icon.icon-help {
       color: #fff;
       pointer-events: auto;
     }
   }
 
-  [modal-content] {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+  [modal-create-content] {
     [form-custom] {
-      width: 100%;
-
-      .form-actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-      }
-
-      ::ng-deep {
-        mat-form-field {
-          width: 100%;
-          margin-bottom: 5px;
-        }
-        .mdc-text-field--filled {
-          height: 52px;
-        }
-
-        .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-          border-radius: 8px;
-          max-width: 100%;
-        }
-      }
-
       input {
         text-align: left !important;
       }
@@ -53,6 +15,7 @@
       .ocultar-card {
         display: none;
       }
+
       [card-content] {
         .fatura {
           font-weight: 500;

@@ -3,9 +3,9 @@
   <p>Você sera redirecionado para o WhatsApp.</p>
 </div>
 
-<div modal-content>
+<div modal-create-content>
   <form [formGroup]="valoresForm" (ngSubmit)="enviarMensagem()" form-custom>
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Pix</mat-label>
       <input
         matInput
@@ -21,7 +21,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Titulo para mensagem (Opcional)</mat-label>
       <input matInput formControlName="titleMessage" />
     </mat-form-field>
