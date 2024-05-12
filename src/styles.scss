@@ -48,8 +48,6 @@
   }
 }
 
-/* -------------------------------------------------------- */
-
 //texto de ajuda para tooltip.
 [tooltip-custom] {
   .mat-mdc-tooltip .mdc-tooltip__surface {
@@ -119,6 +117,19 @@
 .cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
   width: 14% !important;
 }
+
+//select-grupo
+//input select grupo exibir nome todo
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+  .mdc-list-item__primary-text {
+  white-space: nowrap;
+}
+
+//largura das options do select
+div.mat-mdc-select-panel {
+  min-width: 15.53vw;
+}
+//end select grupo
 
 //title navbar
 .mat-typography h1 {

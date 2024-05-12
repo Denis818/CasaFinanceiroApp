@@ -1,7 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { HomeService } from '../../services/home/home-service';
@@ -13,7 +15,7 @@ import { StorageService } from '../../services/storage/storage.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnDestroy {
-  selectedButton: string = 'dashboard';
+  selectedButton: string = '';
   sidenavExpanded = false;
   isDesktop: boolean = true;
 
@@ -29,8 +31,10 @@ export class HomePage implements OnDestroy {
     private readonly homeService: HomeService,
     private readonly storageService: StorageService,
     private readonly user: UserService,
+    private router: Router,
     public readonly titleService: Title
   ) {
+    this.updateSelectedButtonFromRoute();
     this.getAllGrupoDespesas();
     this.reloadGrupoDespesas();
     this.setGrupoId();
@@ -44,6 +48,18 @@ export class HomePage implements OnDestroy {
 
   setSelectedButton(button: string) {
     this.selectedButton = button;
+  }
+
+  updateSelectedButtonFromRoute() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects.includes('dashboard')) {
+          this.setSelectedButton('dashboard');
+        } else if (event.urlAfterRedirects.includes('painel')) {
+          this.setSelectedButton('painel');
+        }
+      });
   }
 
   abrirSidenav() {

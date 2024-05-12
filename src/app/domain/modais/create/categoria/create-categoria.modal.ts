@@ -28,7 +28,7 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
   ],
 })
 export class CreateCategoriaModal {
-    @Output() categoriaInserida = new EventEmitter<void>();
+  @Output() categoriaInserida = new EventEmitter<void>();
 
   categoriaForm: FormGroup;
 
@@ -56,7 +56,7 @@ export class CreateCategoriaModal {
                 ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
                 'Finalizado!'
               );
-              
+
               this.categoriaInserida.emit();
               this.onClose();
             }
@@ -72,7 +72,7 @@ export class CreateCategoriaModal {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(25),
+          Validators.maxLength(50),
         ],
       ],
     });
