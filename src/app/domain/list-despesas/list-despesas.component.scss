@@ -146,7 +146,6 @@
               align-items: center;
               justify-content: center;
               padding: 0px;
-              flex-wrap: nowrap;
               width: 100%;
             }
 
@@ -166,6 +165,7 @@
               border: solid 1px #ccc;
               border-radius: 5px;
               padding: 0px 6px 0px;
+              margin: 10px;
             }
           }
         }
