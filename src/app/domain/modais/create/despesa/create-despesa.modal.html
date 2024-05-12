@@ -95,10 +95,6 @@
         }"
         placeholder="R$ 1,00"
       />
-
-      <mat-error *ngIf="despesaValidator['preco'].hasError('required')">
-        Preço é obrigatório.
-      </mat-error>
       <mat-error *ngIf="despesaValidator['preco'].hasError('min')">
         Preço não pode ser menor que R$ 0,01.
       </mat-error>

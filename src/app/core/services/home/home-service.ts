@@ -47,7 +47,8 @@ export abstract class HomeService extends BaseService {
         next: () => {
           this.reloadSelectedGrupoDespesaId.next(true);
         },
-      })
+      }),
+      map((response: any) => response.dados)
     );
   }
 
@@ -57,7 +58,8 @@ export abstract class HomeService extends BaseService {
         next: () => {
           this.reloadSelectedGrupoDespesaId.next(true);
         },
-      })
+      }),
+      map((response: any) => response.dados)
     );
   }
 }

@@ -11,26 +11,29 @@
       >
         <td>
           <div *ngIf="grupoDespesa.isEditing; else viewNome">
-            <input type="text" [(ngModel)]="grupoDespesa.nome" />
+            <span matPrefix>Fatura de&nbsp;</span>
+            <input type="text" [(ngModel)]="grupoDespesa.nomeEditavel" />
           </div>
           <ng-template #viewNome>{{ grupoDespesa.nome }}</ng-template>
         </td>
+
         <td>
           <i *ngIf="!grupoDespesa.isEditing; else saveEdicao">
-              <mat-icon (click)="openEdit(grupoDespesa)">edit</mat-icon>
-            </i>
+            <mat-icon (click)="openEdit(grupoDespesa)">edit</mat-icon>
+          </i>
 
-            <ng-template #saveEdicao>
-              <mat-icon (click)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
-                >save</mat-icon
-              >
-              <mat-icon space (click)="cancelEdit(grupoDespesa)">cancel</mat-icon>
-              <!-- Ícone de cancelar -->
-            </ng-template>
+          <ng-template #saveEdicao>
+            <mat-icon
+              (click)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+              >save</mat-icon
+            >
+            <mat-icon space (click)="cancelEdit(grupoDespesa)">cancel</mat-icon>
+            <!-- Ícone de cancelar -->
+          </ng-template>
 
-            <i space *ngIf="!grupoDespesa.isEditing">
-              <mat-icon (click)="confirmDelete(grupoDespesa.id)">delete</mat-icon>
-            </i>
+          <i space *ngIf="!grupoDespesa.isEditing">
+            <mat-icon (click)="confirmDelete(grupoDespesa.id)">delete</mat-icon>
+          </i>
         </td>
       </tr>
     </tbody>

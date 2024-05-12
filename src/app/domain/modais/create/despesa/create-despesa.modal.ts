@@ -119,10 +119,7 @@ export class CreateDespesaModal {
           Validators.maxLength(80),
         ],
       ],
-      preco: [
-        1,
-        [Validators.required, Validators.min(0.01), Validators.max(9999.99)],
-      ],
+      preco: [1, [Validators.min(0.01), Validators.max(9999.99)]],
       quantidade: [
         1,
         [
@@ -163,7 +160,6 @@ export class CreateDespesaModal {
     let inputName = 'Compra';
 
     if (this.categoriaSelecionada === 'Aluguel') {
-      console.log(this.despesaForm.value.item);
       inputName = 'Parcela Ap Ponto';
     }
 

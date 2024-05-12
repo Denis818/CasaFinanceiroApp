@@ -10,7 +10,6 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
@@ -32,10 +31,10 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
 })
 export class ViewGrupoDespesaModal {
   grupoDespesas: GrupoDespesa[];
+  nomeMes: string;
 
   constructor(
     private homeService: HomeService,
-    private painelService: PainelControleService,
     private toastr: ToastrService,
     private dialog: MatDialog
   ) {
@@ -43,11 +42,15 @@ export class ViewGrupoDespesaModal {
   }
 
   getAllGrupoDespesas() {
-    this.homeService
-      .getAll()
-      .subscribe((grupoDespesa) => (this.grupoDespesas = grupoDespesa));
+    this.homeService.getAll().subscribe((grupoDespesas) => {
+      this.grupoDespesas = grupoDespesas.map((despesa) => {
+        return {
+          ...despesa,
+          nomeEditavel: this.extrairMesDoNome(despesa.nome),
+        };
+      });
+    });
   }
-
   //#region Update
 
   originalGrupoDespesa = new Map<number, GrupoDespesa>();
@@ -61,6 +64,7 @@ export class ViewGrupoDespesaModal {
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
+    grupoDespesa.nome = `Fatura de ${grupoDespesa.nomeEditavel}`;
     if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {
       this.homeService.update(id, grupoDespesa).subscribe({
         next: (grupoDespesaAtualizado) => {
@@ -105,4 +109,10 @@ export class ViewGrupoDespesaModal {
   }
 
   //#endregion
+
+  extrairMesDoNome(nome: string): string {
+    const regex = /Fatura de ([\wÀ-ú]+) \d{4}/;
+    const match = nome.match(regex);
+    return match ? match[1] : nome;
+  }
 }
