@@ -64,7 +64,7 @@ export class ViewGrupoDespesaModal {
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
-    grupoDespesa.nome = `Fatura de ${grupoDespesa.nomeEditavel}`;
+    grupoDespesa.nome = grupoDespesa.nomeEditavel;
     if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {
       this.homeService.update(id, grupoDespesa).subscribe({
         next: (grupoDespesaAtualizado) => {
@@ -111,7 +111,7 @@ export class ViewGrupoDespesaModal {
   //#endregion
 
   extrairMesDoNome(nome: string): string {
-    const regex = /Fatura de ([\wÀ-ú]+) \d{4}/;
+    const regex = /Fatura de ([\wÀ-ú]+) \d{4}/i;
     const match = nome.match(regex);
     return match ? match[1] : nome;
   }
