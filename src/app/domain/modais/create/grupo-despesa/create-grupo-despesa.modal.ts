@@ -29,6 +29,7 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 })
 export class CreateGrupoDespesaModal {
   grupoDespesaForm: FormGroup;
+  userInput: string = '';
 
   get grupoDespesaValidator(): any {
     return this.grupoDespesaForm.controls;
@@ -44,6 +45,8 @@ export class CreateGrupoDespesaModal {
 
   onSubmit(): void {
     if (this.grupoDespesaForm.valid) {
+      this.grupoDespesaForm.value.nome = `Fatura de ${this.grupoDespesaForm.value.nome}`;
+      
       this.homeService.insert(this.grupoDespesaForm.value).subscribe({
         next: (grupoInserido) => {
           if (grupoInserido) {

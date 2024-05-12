@@ -2,9 +2,9 @@
   <h2>Adicionar Membro</h2>
 </div>
 
-<div modal-content>
+<div modal-content input-create>
   <form [formGroup]="membroForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Nome</mat-label>
       <input
         matInput
@@ -26,7 +26,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Telefone</mat-label>
       <input
         matInput

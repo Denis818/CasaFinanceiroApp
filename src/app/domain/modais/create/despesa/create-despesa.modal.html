@@ -2,9 +2,9 @@
   <h2>Adicionar Despesa</h2>
 </div>
 
-<div modal-content>
+<div modal-content input-create>
   <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Selecione um Grupo</mat-label>
       <mat-select formControlName="grupoDespesaId">
         <mat-option
@@ -19,7 +19,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
       <mat-label>Selecione uma categoria</mat-label>
       <mat-select
         formControlName="categoriaId"
@@ -37,7 +37,7 @@
     <ng-container
       *ngIf="categoriaSelecionada === 'Aluguel'; else selectedCondominio"
     >
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Item</mat-label>
         <mat-select formControlName="item">
           <mat-option [value]="'Parcela Caixa'">Parcela Caixa</mat-option>
@@ -50,7 +50,7 @@
       <ng-container
         *ngIf="categoriaSelecionada === 'Condomínio'; else inputItem"
       >
-        <mat-form-field appearance="fill" class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Item</mat-label>
           <input matInput id="item" formControlName="item" readonly />
         </mat-form-field>
@@ -58,7 +58,7 @@
     </ng-template>
 
     <ng-template #inputItem>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Item</mat-label>
         <input
           matInput
@@ -81,7 +81,7 @@
       </mat-form-field>
     </ng-template>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Preço</mat-label>
       <input
         matInput
@@ -107,7 +107,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Quantidade</mat-label>
       <input
         matInput
@@ -134,7 +134,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Fornecedor</mat-label>
       <input
         matInput

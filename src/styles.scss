@@ -1,5 +1,17 @@
 @import "reset";
 
+//inputs
+[input-create] {
+  .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+    background-color: #f5f5f5;
+  }
+
+  .mat-mdc-form-field-hint-wrapper,
+  .mat-mdc-form-field-error-wrapper {
+    padding: 0px;
+  }
+}
+
 //texto de ajuda para tooltip.
 .mat-mdc-tooltip .mdc-tooltip__surface {
   background-color: #7b7b7b;

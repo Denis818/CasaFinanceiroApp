@@ -29,7 +29,6 @@
       ::ng-deep {
         mat-form-field {
           width: 100%;
-          margin-bottom: 5px;
         }
         .mdc-text-field--filled {
           height: 52px;
@@ -38,6 +37,11 @@
         .mat-mdc-form-field .mat-mdc-text-field-wrapper {
           border-radius: 8px;
           max-width: 100%;
+        }
+
+        .mat-mdc-form-field-icon-prefix,
+        [dir="rtl"] .mat-mdc-form-field-icon-suffix {
+          padding: 0px 4px 0px 10px;
         }
       }
     }

@@ -2,17 +2,15 @@
   <h2>Adicionar Grupo de Despesas</h2>
 </div>
 
-<div modal-content>
+<div modal-content input-create>
   <form [formGroup]="grupoDespesaForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Nome</mat-label>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mês</mat-label>
+      <span matPrefix>Fatura de&nbsp;</span>
       <input
         matInput
         formControlName="nome"
-        [ngClass]="{
-          'is-invalid':
-            grupoDespesaValidator.nome.errors && grupoDespesaValidator.nome.touched
-        }"
+        [ngClass]="{'is-invalid': grupoDespesaValidator.nome.errors && grupoDespesaValidator.nome.touched}"
       />
 
       <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('required')">

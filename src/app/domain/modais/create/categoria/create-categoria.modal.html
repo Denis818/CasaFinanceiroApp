@@ -1,6 +1,10 @@
-<div modal-content>
+<div header-model>
+  <h2>Adicionar Categoria</h2>
+</div>
+
+<div modal-content input-create>
   <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descricao</mat-label>
       <input
         matInput

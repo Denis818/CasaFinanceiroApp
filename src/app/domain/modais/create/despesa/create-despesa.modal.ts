@@ -120,7 +120,7 @@ export class CreateDespesaModal {
         ],
       ],
       preco: [
-        '',
+        1,
         [Validators.required, Validators.min(0.01), Validators.max(9999.99)],
       ],
       quantidade: [
