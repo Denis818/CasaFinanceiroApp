@@ -1,8 +1,5 @@
 <div table-custom tooltip-custom dashboard>
   <div card-container>
-    <!--  <button class="scroll-down-button" (click)="scrollToNextSection()">
-      <mat-icon>expand_more</mat-icon>
-    </button> -->
     <div class="card">
       <div class="card-head">
         <div card-title>Despesa de casa</div>
@@ -72,7 +69,7 @@
 
     <div class="card">
       <div class="card-head">
-        <div card-title>Análise de Compras Mensal de 2024</div>
+        <div card-title>Análise de Compras por Grupo</div>
       </div>
       <div class="card-body centralizar-graphic">
         <app-graphic
@@ -128,5 +125,13 @@
         </div>
       </div>
     </div>
+
+    <button
+      id="scrollToggle"
+      class="scroll-toggle-button"
+      (click)="toggleScroll()"
+    >
+      <mat-icon>{{ scrollIcon }}</mat-icon>
+    </button>
   </div>
 </div>

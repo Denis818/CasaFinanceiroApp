@@ -1,13 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import {
-  Component,
-  ElementRef,
-  LOCALE_ID,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -41,8 +34,9 @@ registerLocaleData(localePt);
   ],
 })
 export class DashboardPage implements OnInit, OnDestroy {
+  scrollIcon = 'expand_more';
+
   private reloadPageSubscriber: Subscription;
-  @ViewChild('nextSection') nextSection: ElementRef;
 
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
@@ -131,10 +125,12 @@ export class DashboardPage implements OnInit, OnDestroy {
     });
   }
 
-  scrollToNextSection() {
-    this.nextSection.nativeElement.scrollIntoView({
+  toggleScroll(): void {
+    const isScrollingDown = this.scrollIcon === 'expand_more';
+    window.scrollTo({
+      top: isScrollingDown ? document.body.scrollHeight : 0,
       behavior: 'smooth',
-      block: 'start',
     });
+    this.scrollIcon = isScrollingDown ? 'expand_less' : 'expand_more';
   }
 }
