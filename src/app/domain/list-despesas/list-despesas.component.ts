@@ -84,20 +84,20 @@ export class ListDespesasComponent implements OnDestroy {
   filtrarDespesas() {
     if (!this.filtroPorItem || this.filtroPorItem.trim() == '') {
       this.getAllDespesas();
+    } else {
+      this.painelService
+        .filtrarDespesaPorItem(this.filtroPorItem.toLocaleLowerCase())
+        .subscribe((despesas: Despesa[]) => {
+          if (despesas.length === 0) {
+            this.toastr.warning(
+              `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
+              'Aviso'
+            );
+          }
+          this.despesasFiltradas = despesas;
+          this.page.totalItens = this.despesasFiltradas.length;
+        });
     }
-
-    this.painelService
-      .filtrarDespesaPorItem(this.filtroPorItem.toLocaleLowerCase())
-      .subscribe((despesas: Despesa[]) => {
-        if (despesas.length === 0) {
-          this.toastr.warning(
-            `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
-            'Aviso'
-          );
-        }
-        this.despesasFiltradas = despesas;
-        this.page.totalItens = this.despesasFiltradas.length;
-      });
   }
 
   //#endregion
