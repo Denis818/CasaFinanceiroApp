@@ -82,25 +82,27 @@ export class ListDespesasComponent implements OnDestroy {
 
   //#region Filters
   filtrarDespesas() {
-    if (!this.filtroPorItem || this.filtroPorItem.trim() == '') {
+    if (!this.filtroPorItem || this.filtroPorItem.trim() === '') {
+      this.page.paginaAtual = 1;
       this.getAllDespesas();
     } else {
+      this.page.paginaAtual = 1;
       this.painelService
         .filtrarDespesaPorItem(
           this.filtroPorItem.toLocaleLowerCase(),
           this.page.paginaAtual,
           this.page.itensPorPagina
         )
-        .subscribe((data) => {
-          if (data.itens.length === 0) {
+        .subscribe((listPaginada) => {
+          if (listPaginada.itens.length === 0) {
             this.toastr.warning(
               `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
               'Aviso'
             );
           }
-          this.despesasFiltradas = data.itens;
-          this.page.totalItens = data.totalItens;
-          this.page.paginaAtual = data.paginaAtual;
+          this.despesasFiltradas = listPaginada.itens;
+          this.page.totalItens = listPaginada.totalItens;
+          this.page.paginaAtual = listPaginada.paginaAtual;
         });
     }
   }
@@ -117,11 +119,11 @@ export class ListDespesasComponent implements OnDestroy {
   getAllDespesas() {
     this.painelService
       .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
-      .subscribe((data) => {
-        this.despesas = data.itens;
-        this.despesasFiltradas = data.itens;
-        this.page.totalItens = data.totalItens;
-        this.page.paginaAtual = data.paginaAtual;
+      .subscribe((listPaginada) => {
+        this.despesas = listPaginada.itens;
+        this.despesasFiltradas = listPaginada.itens;
+        this.page.totalItens = listPaginada.totalItens;
+        this.page.paginaAtual = listPaginada.paginaAtual;
       });
   }
 
@@ -150,6 +152,12 @@ export class ListDespesasComponent implements OnDestroy {
           }
         },
       });
+  }
+
+  mudarPagina(event: PageEvent): void {
+    this.page.paginaAtual = event.pageIndex + 1;
+    this.page.itensPorPagina = event.pageSize;
+    this.filtrarDespesas();
   }
   //#endregion
 
@@ -210,12 +218,6 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region metodos de suporte
-
-  mudarPagina(event: PageEvent): void {
-    this.page.paginaAtual = event.pageIndex + 1;
-    this.page.itensPorPagina = event.pageSize;
-    this.filtrarDespesas();
-  }
 
   teveAlteracoes(despesa: Despesa, newDespesa: Despesa) {
     return (
