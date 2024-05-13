@@ -54,7 +54,7 @@ export class ListDespesasComponent implements OnDestroy {
 
   despesas: Despesa[];
   despesasFiltradas: Despesa[];
-  filtroTexto: string = '';
+  filtroPorItem: string = '';
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -81,19 +81,25 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   //#region Filters
-  filterDespesas() {
-    if (this.filtroTexto.trim() === '') {
-      this.despesasFiltradas = this.despesas;
-    } else {
-      this.despesasFiltradas = this.despesas.filter((despesa) =>
-        despesa.item.toLowerCase().includes(this.filtroTexto.toLowerCase())
-      );
+  filtrarDespesas() {
+    if (!this.filtroPorItem || this.filtroPorItem.trim() == '') {
+      this.getAllDespesas();
     }
+
+    this.painelService
+      .filtrarDespesaPorItem(this.filtroPorItem.toLocaleLowerCase())
+      .subscribe((despesas: Despesa[]) => {
+        if (despesas.length === 0) {
+          this.toastr.warning(
+            `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
+            'Aviso'
+          );
+        }
+        this.despesasFiltradas = despesas;
+        this.page.totalItens = this.despesasFiltradas.length;
+      });
   }
 
-  filtrarDespesas() {
-    this.filterDespesas();
-  }
   //#endregion
 
   //#region Gets

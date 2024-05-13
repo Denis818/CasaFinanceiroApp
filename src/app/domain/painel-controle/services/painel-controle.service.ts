@@ -29,6 +29,13 @@ export class PainelControleService extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
+  public filtrarDespesaPorItem(filterItem: string): Observable<Despesa[]> {
+    return this.sendHttpRequest<ApiResponse<Despesa[]>>(
+      'GET',
+      `${this.url}/despesa/filter-by-item?filterItem=${filterItem}`
+    ).pipe(map((response) => response.dados));
+  }
+
   public getAll<TEntity>(uri: string): Observable<TEntity[]> {
     const url = `${this.url}/${uri}`;
     return this.sendHttpRequest<ApiResponse<TEntity[]>>('GET', url).pipe(
