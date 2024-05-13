@@ -113,6 +113,6 @@ export class ViewGrupoDespesaModal {
   extrairMesDoNome(nome: string): string {
     const regex = /Fatura de ([\wÀ-ú]+) \d{4}/i;
     const match = nome.match(regex);
-    return match ? match[1] : nome;
+    return match ? match[1] : match[1];
   }
 }
