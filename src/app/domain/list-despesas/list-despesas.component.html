@@ -102,7 +102,13 @@
           </td>
           <td>
             <div *ngIf="despesa.isEditing; else viewPreco">
-              <input type="text" [(ngModel)]="despesa.preco" />
+              <input
+                class="preco"
+                type="text"
+                currencyMask
+                [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                [(ngModel)]="despesa.preco"
+              />
             </div>
             <ng-template #viewPreco>{{
               despesa.preco | currency : "BRL"

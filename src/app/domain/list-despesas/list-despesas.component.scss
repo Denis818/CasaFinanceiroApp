@@ -87,6 +87,10 @@
           border-bottom: 1px solid #d3d3d3;
         }
 
+        input.preco {
+          text-align: center !important;
+        }
+
         ::ng-deep {
           .mat-mdc-select-value {
             border: none;

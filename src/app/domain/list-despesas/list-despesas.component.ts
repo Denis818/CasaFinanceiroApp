@@ -13,6 +13,7 @@ import {
 } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
@@ -41,6 +42,7 @@ registerLocaleData(localePt);
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
+    CurrencyMaskModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },
@@ -90,7 +92,7 @@ export class ListDespesasComponent implements OnDestroy {
     }
     this.getListDespesas();
   }
-  
+
   getListDespesas() {
     this.painelService
       .filtrarDespesaPorItem(
