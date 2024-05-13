@@ -110,6 +110,8 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   getAllDespesas() {
+    console.log(this.page.itensPorPagina);
+    console.log(this.page.itensPorPagina);
     this.painelService
       .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
       .subscribe((data) => {
