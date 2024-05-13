@@ -129,6 +129,11 @@
 div.mat-mdc-select-panel {
   min-width: 17vw;
 }
+
+//cor do input ao ser selecionado
+.mat-mdc-form-field-focus-overlay {
+  background-color: rgb(0 0 0 / 0%);
+}
 //end select grupo
 
 //title navbar
