@@ -29,10 +29,21 @@ export class PainelControleService extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
-  public filtrarDespesaPorItem(filterItem: string): Observable<Despesa[]> {
-    return this.sendHttpRequest<ApiResponse<Despesa[]>>(
+  public filtrarDespesaPorItem(
+    filterItem: string,
+    paginaAtual: number,
+    itensPorPagina: number
+  ): Observable<PaginationResponse<Despesa>> {
+    const params = new HttpParams()
+      .set('paginaAtual', paginaAtual.toString())
+      .set('itensPorPagina', itensPorPagina.toString())
+      .set('filterItem', filterItem);
+
+    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
-      `${this.url}/despesa/filter-by-item?filterItem=${filterItem}`
+      `${this.url}/despesa/filter-by-item`,
+      null,
+      params
     ).pipe(map((response) => response.dados));
   }
 

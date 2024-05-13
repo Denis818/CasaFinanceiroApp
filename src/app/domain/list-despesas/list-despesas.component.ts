@@ -86,16 +86,21 @@ export class ListDespesasComponent implements OnDestroy {
       this.getAllDespesas();
     } else {
       this.painelService
-        .filtrarDespesaPorItem(this.filtroPorItem.toLocaleLowerCase())
-        .subscribe((despesas: Despesa[]) => {
-          if (despesas.length === 0) {
+        .filtrarDespesaPorItem(
+          this.filtroPorItem.toLocaleLowerCase(),
+          this.page.paginaAtual,
+          this.page.itensPorPagina
+        )
+        .subscribe((data) => {
+          if (data.itens.length === 0) {
             this.toastr.warning(
               `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
               'Aviso'
             );
           }
-          this.despesasFiltradas = despesas;
-          this.page.totalItens = this.despesasFiltradas.length;
+          this.despesasFiltradas = data.itens;
+          this.page.totalItens = data.totalItens;
+          this.page.paginaAtual = data.paginaAtual;
         });
     }
   }
@@ -169,7 +174,7 @@ export class ListDespesasComponent implements OnDestroy {
           if (despesaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
-          this.getAllDespesas();
+          this.filtrarDespesas();
         },
         error: () => this.getAllDespesas(),
       });
@@ -198,7 +203,7 @@ export class ListDespesasComponent implements OnDestroy {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
-        this.getAllDespesas();
+        this.filtrarDespesas();
       },
     });
   }
@@ -209,7 +214,7 @@ export class ListDespesasComponent implements OnDestroy {
   mudarPagina(event: PageEvent): void {
     this.page.paginaAtual = event.pageIndex + 1;
     this.page.itensPorPagina = event.pageSize;
-    this.getAllDespesas();
+    this.filtrarDespesas();
   }
 
   teveAlteracoes(despesa: Despesa, newDespesa: Despesa) {
