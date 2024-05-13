@@ -111,8 +111,13 @@ export class ViewGrupoDespesaModal {
   //#endregion
 
   extrairMesDoNome(nome: string): string {
+    console.log(nome);
     const regex = /Fatura de ([\wÀ-ú]+) \d{4}/i;
     const match = nome.match(regex);
-    return 'teste';
+
+    console.log('regex');
+    console.log(match);
+    console.log(match[1]);
+    return match ? match[1] : nome;
   }
 }
