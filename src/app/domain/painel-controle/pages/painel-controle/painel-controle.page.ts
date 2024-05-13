@@ -43,9 +43,9 @@ export class PainelControlePage {
       width: '400px',
     });
 
-     dialogRef.componentInstance.notificarAlteracao.subscribe(() => {
-       this.viewDespesaModal.inicializeTable();
-     });
+    dialogRef.componentInstance.notificarAlteracao.subscribe(() => {
+      this.viewDespesaModal.inicializeTable();
+    });
     dialogRef.afterClosed();
   }
 
@@ -71,7 +71,7 @@ export class PainelControlePage {
     });
 
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.viewDespesaModal.getAllDespesas();
+      this.viewDespesaModal.getListDespesas();
     });
   }
 
@@ -88,13 +88,13 @@ export class PainelControlePage {
   }
 
   openCreateCategoriaModal(): void {
-     const dialogRef = this.dialog.open(CreateCategoriaModal, {
+    const dialogRef = this.dialog.open(CreateCategoriaModal, {
       width: '400px',
     });
 
     dialogRef.componentInstance.categoriaInserida.subscribe(() => {
       this.viewDespesaModal.getAllCategorias();
-   });
+    });
   }
   //#endregion
 

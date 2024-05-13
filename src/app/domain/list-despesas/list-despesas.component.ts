@@ -1,11 +1,12 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import {
+  MatPaginator,
   MatPaginatorIntl,
   MatPaginatorModule,
   PageEvent,
@@ -47,12 +48,13 @@ registerLocaleData(localePt);
   ],
 })
 export class ListDespesasComponent implements OnDestroy {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   private reloadPageSubscriber: Subscription;
 
   categorias: Categoria[] = [];
   grupoDespesas: GrupoDespesa[];
 
-  despesas: Despesa[];
   despesasFiltradas: Despesa[];
   filtroPorItem: string = '';
 
@@ -80,49 +82,40 @@ export class ListDespesasComponent implements OnDestroy {
     }
   }
 
-  //#region Filters
-  filtrarDespesas() {
-    if (!this.filtroPorItem || this.filtroPorItem.trim() === '') {
-      this.getAllDespesas();
-    } else {
-      this.painelService
-        .filtrarDespesaPorItem(
-          this.filtroPorItem.toLocaleLowerCase(),
-          this.page.paginaAtual,
-          this.page.itensPorPagina
-        )
-        .subscribe((listPaginada) => {
-          if (listPaginada.itens.length === 0) {
-            this.toastr.warning(
-              `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
-              'Aviso'
-            );
-          }
-          this.despesasFiltradas = listPaginada.itens;
-          this.page.totalItens = listPaginada.totalItens;
-          this.page.paginaAtual = listPaginada.paginaAtual;
-        });
-    }
-  }
-
-  //#endregion
-
   //#region Gets
-  inicializeTable() {
-    this.getAllDespesas();
-    this.getAllCategorias();
-    this.getAllGrupoDespesas();
+  aplicarFiltro() {
+    this.page.paginaAtual = 1;
+    if (this.paginator) {
+      this.paginator.pageIndex = 0;
+    }
+    this.getListDespesas();
   }
-
-  getAllDespesas() {
+  
+  getListDespesas() {
     this.painelService
-      .getAllDespesas(this.page.paginaAtual, this.page.itensPorPagina)
+      .filtrarDespesaPorItem(
+        this.filtroPorItem.toLocaleLowerCase(),
+        this.page.paginaAtual,
+        this.page.itensPorPagina
+      )
       .subscribe((listPaginada) => {
-        this.despesas = listPaginada.itens;
         this.despesasFiltradas = listPaginada.itens;
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
+
+        if (listPaginada.itens.length === 0) {
+          this.toastr.warning(
+            `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
+            'Aviso'
+          );
+        }
       });
+  }
+
+  inicializeTable() {
+    this.getListDespesas();
+    this.getAllCategorias();
+    this.getAllGrupoDespesas();
   }
 
   getAllGrupoDespesas() {
@@ -155,7 +148,7 @@ export class ListDespesasComponent implements OnDestroy {
   mudarPagina(event: PageEvent): void {
     this.page.paginaAtual = event.pageIndex + 1;
     this.page.itensPorPagina = event.pageSize;
-    this.filtrarDespesas();
+    this.getListDespesas();
   }
   //#endregion
 
@@ -180,9 +173,9 @@ export class ListDespesasComponent implements OnDestroy {
           if (despesaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
-          this.filtrarDespesas();
+          this.getListDespesas();
         },
-        error: () => this.getAllDespesas(),
+        error: () => this.getListDespesas(),
       });
     }
 
@@ -209,7 +202,7 @@ export class ListDespesasComponent implements OnDestroy {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
-        this.filtrarDespesas();
+        this.getListDespesas();
       },
     });
   }

@@ -13,22 +13,6 @@ export class PainelControleService extends BaseService {
   public readonly router = inject(Router);
   public url: string = `${environment.base_url_financy}`;
 
-  public getAllDespesas(
-    paginaAtual: number,
-    itensPorPagina: number
-  ): Observable<PaginationResponse<Despesa>> {
-    const params = new HttpParams()
-      .set('paginaAtual', paginaAtual.toString())
-      .set('itensPorPagina', itensPorPagina.toString());
-
-    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
-      'GET',
-      `${this.url}/despesa`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
-  }
-
   public filtrarDespesaPorItem(
     filterItem: string,
     paginaAtual: number,
@@ -41,7 +25,7 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
-      `${this.url}/despesa/filter-by-item`,
+      `${this.url}/despesa`,
       null,
       params
     ).pipe(map((response) => response.dados));
