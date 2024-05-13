@@ -83,10 +83,8 @@ export class ListDespesasComponent implements OnDestroy {
   //#region Filters
   filtrarDespesas() {
     if (!this.filtroPorItem || this.filtroPorItem.trim() === '') {
-      this.page.paginaAtual = 1;
       this.getAllDespesas();
     } else {
-      this.page.paginaAtual = 1;
       this.painelService
         .filtrarDespesaPorItem(
           this.filtroPorItem.toLocaleLowerCase(),
