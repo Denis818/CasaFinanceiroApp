@@ -85,6 +85,13 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   //#region Gets
+
+  inicializeTable() {
+    this.getListDespesas();
+    this.getAllCategorias();
+    this.getAllGrupoDespesas();
+  }
+
   aplicarFiltro() {
     this.page.paginaAtual = 1;
     if (this.paginator) {
@@ -105,19 +112,16 @@ export class ListDespesasComponent implements OnDestroy {
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
 
-        if (listPaginada.itens.length === 0) {
+        if (
+          listPaginada.itens.length === 0 &&
+          this.filtroPorItem.trim() != ''
+        ) {
           this.toastr.warning(
             `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
             'Aviso'
           );
         }
       });
-  }
-
-  inicializeTable() {
-    this.getListDespesas();
-    this.getAllCategorias();
-    this.getAllGrupoDespesas();
   }
 
   getAllGrupoDespesas() {
