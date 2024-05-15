@@ -97,7 +97,7 @@ export class ListDespesasComponent implements OnDestroy {
   //#region Filtro
   tempoParaFiltrar() {
     this.gerenciarTempoDeFiltro
-      .pipe(debounceTime(600))
+      .pipe(debounceTime(700))
       .subscribe((filtroPorItem) => {
         this.filtroPorItem = filtroPorItem;
 
