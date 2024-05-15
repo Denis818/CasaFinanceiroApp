@@ -15,7 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
@@ -52,6 +53,7 @@ registerLocaleData(localePt);
 export class ListDespesasComponent implements OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  private gerenciarTempoDeFiltro = new Subject<string>();
   private reloadPageSubscriber: Subscription;
 
   categorias: Categoria[] = [];
@@ -76,15 +78,8 @@ export class ListDespesasComponent implements OnDestroy {
   ) {
     this.inicializeTable();
     this.reloadDespesas();
+    this.tempoParaFiltrar();
   }
-
-  ngOnDestroy() {
-    if (this.reloadPageSubscriber) {
-      this.reloadPageSubscriber.unsubscribe();
-    }
-  }
-
-  //#region Gets
 
   inicializeTable() {
     this.getListDespesas();
@@ -92,14 +87,35 @@ export class ListDespesasComponent implements OnDestroy {
     this.getAllGrupoDespesas();
   }
 
-  aplicarFiltro() {
-    this.page.paginaAtual = 1;
-    if (this.paginator) {
-      this.paginator.pageIndex = 0;
+  ngOnDestroy() {
+    if (this.reloadPageSubscriber) {
+      this.reloadPageSubscriber.unsubscribe();
     }
-    this.getListDespesas();
+    this.gerenciarTempoDeFiltro.unsubscribe();
   }
 
+  //#region Filtro
+  tempoParaFiltrar() {
+    this.gerenciarTempoDeFiltro
+      .pipe(debounceTime(600))
+      .subscribe((filtroPorItem) => {
+        this.filtroPorItem = filtroPorItem;
+
+        this.page.paginaAtual = 1;
+        if (this.paginator) {
+          this.paginator.pageIndex = 0;
+        }
+        this.getListDespesas();
+      });
+  }
+
+  aplicarFiltro(filtroPorItem: string): void {
+    this.gerenciarTempoDeFiltro.next(filtroPorItem);
+  }
+
+  //#endregion
+
+  //#region Gets
   getListDespesas() {
     this.painelService
       .filtrarDespesaPorItem(
@@ -215,7 +231,6 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region metodos de suporte
-
   teveAlteracoes(despesa: Despesa, newDespesa: Despesa) {
     return (
       despesa.item === newDespesa.item &&
