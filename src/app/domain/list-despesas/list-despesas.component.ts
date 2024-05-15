@@ -118,7 +118,7 @@ export class ListDespesasComponent implements OnDestroy {
   //#region Gets
   getListDespesas() {
     this.painelService
-      .filtrarDespesaPorItem(
+      .getListDespesas(
         this.filtroPorItem.toLocaleLowerCase(),
         this.page.paginaAtual,
         this.page.itensPorPagina

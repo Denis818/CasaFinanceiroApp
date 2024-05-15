@@ -13,7 +13,7 @@ export class PainelControleService extends BaseService {
   public readonly router = inject(Router);
   public url: string = `${environment.base_url_financy}`;
 
-  public filtrarDespesaPorItem(
+  public getListDespesas(
     filterItem: string,
     paginaAtual: number,
     itensPorPagina: number
