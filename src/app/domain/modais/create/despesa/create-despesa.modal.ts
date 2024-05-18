@@ -1,3 +1,4 @@
+import { BooleanInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
@@ -18,6 +19,11 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import {
+  CategoriasMensais,
+  ValorInputFornecedor,
+  ValorInputItem,
+} from '../../../../shared/enums/inputEnumValues';
 
 @Component({
   selector: 'app-modal-despesa',
@@ -38,19 +44,9 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 export class CreateDespesaModal {
   @Output() despesaInserida = new EventEmitter<void>();
 
-  constructor(
-    private painelService: PainelControleService,
-    private homeService: HomeService,
-    public dialogRef: MatDialogRef<CreateDespesaModal>,
-    private fb: FormBuilder,
-    private toastr: ToastrService,
-    private readonly storageService: StorageService
-  ) {
-    this.validation();
-    this.resetForm();
-    this.getAllCategorias();
-    this.getAllGrupoDespesas();
-  }
+  inputItem: string;
+  inputFornecedor: string;
+  valorInputItem = ValorInputItem;
 
   categorias: Categoria[] = [];
   categoriaSelecionada: string;
@@ -64,12 +60,42 @@ export class CreateDespesaModal {
     return this.despesaForm.controls;
   }
 
+  constructor(
+    private painelService: PainelControleService,
+    private homeService: HomeService,
+    public dialogRef: MatDialogRef<CreateDespesaModal>,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private readonly storageService: StorageService
+  ) {
+    this.validation();
+    this.resetForm();
+    this.getAllCategorias();
+    this.getAllGrupoDespesas();
+    this.definirValoresMensaisNoInput();
+  }
+
   getCategoriaSelected(categoriaId: any) {
     const categoria = this.categorias.find((c) => c.id === categoriaId);
     this.categoriaSelecionada = categoria?.descricao;
 
     this.despesaForm.patchValue({
       item: this.setValueInputItem(),
+      fornecedor: this.setValueInputFornecedor(),
+    });
+  }
+
+  definirValoresMensaisNoInput() {
+    this.despesaForm.get('categoriaId').valueChanges.subscribe((value) => {
+      this.getCategoriaSelected(value);
+    });
+
+    this.despesaForm.get('item').valueChanges.subscribe((value) => {
+      this.inputItem = value;
+      this.setValueInputFornecedor();
+      this.despesaForm.patchValue({
+        fornecedor: this.inputFornecedor,
+      });
     });
   }
 
@@ -112,16 +138,19 @@ export class CreateDespesaModal {
       categoriaId: [1, [Validators.required]],
 
       item: [
-        'Compra',
+        '',
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(80),
         ],
       ],
-      preco: [1, [Validators.min(0.01), Validators.max(9999.99)]],
+      preco: [
+        '',
+        [Validators.required, Validators.min(0), Validators.max(9999.99)],
+      ],
       quantidade: [
-        1,
+        '',
         [
           Validators.required,
           Validators.pattern('^[0-9]+$'),
@@ -143,8 +172,9 @@ export class CreateDespesaModal {
   resetForm(): void {
     this.despesaForm.reset({
       item: this.setValueInputItem(),
+      preco: 0,
       quantidade: 1,
-      fornecedor: this.despesaForm.value.fornecedor || 'Epa',
+      fornecedor: this.setValueInputFornecedor(),
       categoriaId: this.despesaForm.value.categoriaId || 1,
       grupoDespesaId:
         this.despesaForm.value.grupoDespesaId || parseInt(this.grupoId),
@@ -154,19 +184,47 @@ export class CreateDespesaModal {
   onClose(): void {
     this.dialogRef.close();
   }
-  selected = 'Ola';
 
   setValueInputItem(): string {
-    let inputName = 'Compra';
-
-    if (this.categoriaSelecionada === 'Aluguel') {
-      inputName = 'Parcela Ap Ponto';
+    switch (this.categoriaSelecionada) {
+      case CategoriasMensais.aluguel:
+        this.inputItem = ValorInputItem.parcelaApPonto;
+        break;
+      case CategoriasMensais.condominio:
+        this.inputItem = ValorInputItem.condominio;
+        break;
+      case CategoriasMensais.contaDeLuz:
+        this.inputItem = ValorInputItem.contaDeLuz;
+        break;
+      default:
+        this.inputItem = 'Compra';
     }
+    return this.inputItem;
+  }
 
-    if (this.categoriaSelecionada === 'Condomínio') {
-      inputName = 'Condomínio Ap Ponto';
+  setValueInputFornecedor(): string {
+    switch (this.inputItem) {
+      case ValorInputItem.parcelaCaixa:
+        this.inputFornecedor = ValorInputFornecedor.caixa;
+        break;
+      case ValorInputItem.parcelaApPonto:
+      case ValorInputItem.condominio:
+        this.inputFornecedor = ValorInputFornecedor.apPonto;
+        break;
+      case ValorInputItem.contaDeLuz:
+        this.inputFornecedor = ValorInputFornecedor.cemig;
+        break;
+      default:
+        this.inputFornecedor = 'Epa';
     }
+    return this.inputFornecedor;
+  }
 
-    return inputName;
+  inputSomenteLeitura(): BooleanInput {
+    return (
+      this.categoriaSelecionada == CategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada == CategoriasMensais.condominio ||
+      this.categoriaSelecionada == CategoriasMensais.aluguel
+    );
   }
 }

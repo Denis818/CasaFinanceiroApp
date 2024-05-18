@@ -42,14 +42,19 @@
         >
           <td>{{ despesa.id }}</td>
           <td>
-            <div *ngIf="despesa.isEditing; else viewItem">
+            <div *ngIf="despesa.isDespesaEditing; else viewItem">
               <ng-container
                 *ngIf="
                   despesa.categoria.descricao === 'Aluguel';
-                  else inputCondominio
+                  else inputItem
                 "
               >
-                <mat-select [(ngModel)]="despesa.item">
+                <mat-select
+                  [(ngModel)]="despesa.item"
+                  (selectionChange)="
+                    tableEditManipulation.aoAlterarItem(despesa)
+                  "
+                >
                   <mat-option [value]="'Parcela Caixa'"
                     >Parcela Caixa</mat-option
                   >
@@ -58,23 +63,22 @@
                   >
                 </mat-select>
               </ng-container>
-              <ng-template #inputCondominio>
+              <ng-template #inputItem>
                 <input
                   type="text"
                   [(ngModel)]="despesa.item"
-                  [readonly]="despesa.categoria.descricao === 'Condomínio'"
+                  [readonly]="tableEditManipulation.inputSomenteLeitura()"
                 />
               </ng-template>
             </div>
-
             <ng-template #viewItem>{{ despesa.item }}</ng-template>
           </td>
           <td>
-            <div *ngIf="despesa.isEditing; else viewCategoria">
+            <div *ngIf="despesa.isDespesaEditing; else viewCategoria">
               <mat-select
                 [(ngModel)]="despesa.categoria.id"
                 (ngModelChange)="
-                  tableEditManipulation.onCategoriaChange(
+                  tableEditManipulation.aoAlterarCategoria(
                     categorias,
                     despesa,
                     $event
@@ -93,15 +97,18 @@
               despesa.categoria.descricao
             }}</ng-template>
           </td>
-
           <td>
-            <div *ngIf="despesa.isEditing; else viewFornecedor">
-              <input type="text" [(ngModel)]="despesa.fornecedor" />
+            <div *ngIf="despesa.isDespesaEditing; else viewFornecedor">
+              <input
+                type="text"
+                [(ngModel)]="despesa.fornecedor"
+                [readonly]="tableEditManipulation.inputSomenteLeitura()"
+              />
             </div>
             <ng-template #viewFornecedor>{{ despesa.fornecedor }}</ng-template>
           </td>
           <td>
-            <div *ngIf="despesa.isEditing; else viewPreco">
+            <div *ngIf="despesa.isDespesaEditing; else viewPreco">
               <input
                 class="preco"
                 type="text"
@@ -115,28 +122,37 @@
             }}</ng-template>
           </td>
           <td>
-            <div *ngIf="despesa.isEditing; else viewQuantidade">
-              <input type="text" [(ngModel)]="despesa.quantidade" />
+            <div *ngIf="despesa.isDespesaEditing; else viewQuantidade">
+              <input
+                type="text"
+                [(ngModel)]="despesa.quantidade"
+                [readonly]="tableEditManipulation.inputSomenteLeitura()"
+              />
             </div>
             <ng-template #viewQuantidade>{{ despesa.quantidade }}</ng-template>
           </td>
           <td>{{ despesa.total | currency : "BRL" }}</td>
           <td>{{ despesa.dataCompra }}</td>
           <td>
-            <i *ngIf="!despesa.isEditing; else saveEdicao">
-              <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
+            <i *ngIf="!despesa.isDespesaEditing; else saveEdicao">
+              <mat-icon
+                (click)="openEdit(despesa)"
+                [class.disable-options]="isDespesaEditing"
+                >edit</mat-icon
+              >
             </i>
-
             <ng-template #saveEdicao>
               <mat-icon (click)="updateDespesa(despesa.id, despesa)"
                 >save</mat-icon
               >
               <mat-icon space (click)="cancelEdit(despesa)">cancel</mat-icon>
-              <!-- Ícone de cancelar -->
             </ng-template>
-
-            <i space *ngIf="!despesa.isEditing">
-              <mat-icon (click)="confirmDelete(despesa.id)">delete</mat-icon>
+            <i space *ngIf="!despesa.isDespesaEditing">
+              <mat-icon
+                (click)="confirmDelete(despesa.id)"
+                [class.disable-options]="isDespesaEditing"
+                >delete</mat-icon
+              >
             </i>
           </td>
         </tr>

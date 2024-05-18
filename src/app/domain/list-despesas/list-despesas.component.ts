@@ -53,11 +53,14 @@ registerLocaleData(localePt);
 export class ListDespesasComponent implements OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  private gerenciarTempoDeFiltro = new Subject<string>();
+  private tempoParaAplicarFiltroPorItem = new Subject<string>();
   private reloadPageSubscriber: Subscription;
 
   categorias: Categoria[] = [];
   grupoDespesas: GrupoDespesa[];
+
+  originalDespesa: Despesa;
+  isDespesaEditing: boolean = false;
 
   despesasFiltradas: Despesa[];
   filtroPorItem: string = '';
@@ -76,27 +79,22 @@ export class ListDespesasComponent implements OnDestroy {
     private homeService: HomeService,
     protected tableEditManipulation: TableEditManipulation
   ) {
-    this.inicializeTable();
+    this.getListDespesas();
     this.reloadDespesas();
     this.tempoParaFiltrar();
-  }
-
-  inicializeTable() {
-    this.getListDespesas();
-    this.getAllCategorias();
-    this.getAllGrupoDespesas();
   }
 
   ngOnDestroy() {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
     }
-    this.gerenciarTempoDeFiltro.unsubscribe();
+
+    this.tempoParaAplicarFiltroPorItem.unsubscribe();
   }
 
   //#region Filtro
   tempoParaFiltrar() {
-    this.gerenciarTempoDeFiltro
+    this.tempoParaAplicarFiltroPorItem
       .pipe(debounceTime(700))
       .subscribe((filtroPorItem) => {
         this.filtroPorItem = filtroPorItem;
@@ -110,7 +108,7 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   aplicarFiltro(filtroPorItem: string): void {
-    this.gerenciarTempoDeFiltro.next(filtroPorItem);
+    this.tempoParaAplicarFiltroPorItem.next(filtroPorItem);
   }
 
   //#endregion
@@ -140,14 +138,6 @@ export class ListDespesasComponent implements OnDestroy {
       });
   }
 
-  getAllGrupoDespesas() {
-    this.homeService.getAll().subscribe({
-      next: (grupoDespesas) => {
-        this.grupoDespesas = grupoDespesas;
-      },
-    });
-  }
-
   getAllCategorias() {
     this.painelService.getAll<Categoria>('categoria').subscribe({
       next: (categorias) => {
@@ -161,7 +151,7 @@ export class ListDespesasComponent implements OnDestroy {
       this.homeService.reloadPageWithNewGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.inicializeTable();
+            this.getListDespesas();
           }
         },
       });
@@ -172,24 +162,31 @@ export class ListDespesasComponent implements OnDestroy {
     this.page.itensPorPagina = event.pageSize;
     this.getListDespesas();
   }
+
   //#endregion
 
   //#region Update
-  originalDespesas: Despesa;
+
   openEdit(despesa: Despesa): void {
-    despesa.isEditing = !despesa.isEditing;
-    this.originalDespesas = JSON.parse(JSON.stringify(despesa));
+    if (!this.isDespesaEditing) {
+      this.isDespesaEditing = true;
+      despesa.isDespesaEditing = !despesa.isDespesaEditing;
+      this.originalDespesa = JSON.parse(JSON.stringify(despesa));
+
+      this.getAllCategorias();
+    }
   }
 
   cancelEdit(despesa: Despesa) {
-    despesa.isEditing = false;
+    despesa.isDespesaEditing = false;
+    this.isDespesaEditing = false;
   }
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
     despesa.grupoDespesaId = despesa.grupoDespesa.id;
 
-    if (!this.teveAlteracoes(this.originalDespesas, despesa)) {
+    if (!this.teveAlteracoes(this.originalDespesa, despesa)) {
       this.painelService.update(id, despesa, 'despesa').subscribe({
         next: (despesaAtualizada) => {
           if (despesaAtualizada) {
@@ -201,7 +198,8 @@ export class ListDespesasComponent implements OnDestroy {
       });
     }
 
-    despesa.isEditing = false;
+    despesa.isDespesaEditing = false;
+    this.isDespesaEditing = false;
   }
   //#endregion
 

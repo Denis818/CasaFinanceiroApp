@@ -24,9 +24,9 @@
           </div>
           <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
         </td>
-        <td [ngClass]="{'disable-options': !isEditable(categoria.descricao)}">
+        <td [class.disable-options]="!isEditable(categoria.descricao)">
           <i *ngIf="!categoria.isEditing; else saveEdicao">
-            <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
+            <mat-icon (click)="openEdit(categoria)" [class.disable-options]="isEditing">edit</mat-icon>
           </i>
 
           <ng-template #saveEdicao>
@@ -37,7 +37,7 @@
           </ng-template>
 
           <i space *ngIf="!categoria.isEditing">
-            <mat-icon (click)="confirmDelete(categoria.id)">delete</mat-icon>
+            <mat-icon (click)="confirmDelete(categoria.id)" [class.disable-options]="isEditing">delete</mat-icon>
           </i>
         </td>
       </tr>

@@ -33,6 +33,9 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
 export class ViewCategoriaModal {
   @Output() notificarAlteracao = new EventEmitter<void>();
 
+  originalCategoria = new Map<number, Categoria>();
+  isEditing: boolean = false;
+
   categorias: Categoria[];
   constructor(
     private painelService: PainelControleService,
@@ -51,14 +54,17 @@ export class ViewCategoriaModal {
   }
 
   //#region Update
-  originalCategoria = new Map<number, Categoria>();
   openEdit(categoria: Categoria): void {
-    categoria.isEditing = !categoria.isEditing;
-    this.originalCategoria.set(categoria.id, { ...categoria });
+    if (!this.isEditing) {
+      this.isEditing = true;
+      categoria.isEditing = !categoria.isEditing;
+      this.originalCategoria.set(categoria.id, { ...categoria });
+    }
   }
 
   cancelEdit(categoria: Categoria) {
     categoria.isEditing = false;
+    this.isEditing = false;
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
@@ -77,6 +83,7 @@ export class ViewCategoriaModal {
     }
 
     categoria.isEditing = false;
+    this.isEditing = false;
   }
 
   isEditable(descricao: string): boolean {
@@ -112,7 +119,7 @@ export class ViewCategoriaModal {
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
-           this.notificarAlteracao.emit();
+          this.notificarAlteracao.emit();
         }
         this.getAllCategorias();
       },

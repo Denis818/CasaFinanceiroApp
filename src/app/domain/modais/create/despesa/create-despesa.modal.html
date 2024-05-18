@@ -14,9 +14,6 @@
           {{ grupoDespesa.nome }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="despesaValidator['categoriaId'].hasError('required')">
-        Por favor, escolha uma categoria.
-      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -29,33 +26,21 @@
           {{ categoria.descricao }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="despesaValidator['categoriaId'].hasError('required')">
-        Por favor, escolha uma categoria.
-      </mat-error>
     </mat-form-field>
 
-    <ng-container
-      *ngIf="categoriaSelecionada === 'Aluguel'; else selectedCondominio"
-    >
+    <ng-container *ngIf="categoriaSelecionada === 'Aluguel'; else inputItem">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Item</mat-label>
         <mat-select formControlName="item">
-          <mat-option [value]="'Parcela Caixa'">Parcela Caixa</mat-option>
-          <mat-option [value]="'Parcela Ap Ponto'">Parcela Ap Ponto</mat-option>
+          <mat-option [value]="valorInputItem.parcelaCaixa"
+            >Parcela Caixa</mat-option
+          >
+          <mat-option [value]="valorInputItem.parcelaApPonto"
+            >Parcela Ap Ponto</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </ng-container>
-
-    <ng-template #selectedCondominio>
-      <ng-container
-        *ngIf="categoriaSelecionada === 'Condomínio'; else inputItem"
-      >
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Item</mat-label>
-          <input matInput id="item" formControlName="item" readonly />
-        </mat-form-field>
-      </ng-container>
-    </ng-template>
 
     <ng-template #inputItem>
       <mat-form-field appearance="outline" class="full-width">
@@ -64,6 +49,7 @@
           matInput
           id="item"
           formControlName="item"
+          [readonly]="inputSomenteLeitura()"
           [ngClass]="{
         'is-invalid': despesaValidator.item.errors && despesaValidator.item.touched
       }"
@@ -95,6 +81,9 @@
         }"
         placeholder="R$ 1,00"
       />
+      <mat-error *ngIf="despesaValidator['preco'].hasError('required')">
+        O preço é obrigatório.
+      </mat-error>
       <mat-error *ngIf="despesaValidator['preco'].hasError('min')">
         Preço não pode ser menor que R$ 0,01.
       </mat-error>
@@ -109,6 +98,7 @@
         matInput
         type="number"
         formControlName="quantidade"
+        [readonly]="inputSomenteLeitura()"
         [ngClass]="{
           'is-invalid':
             despesaValidator.quantidade.errors &&
@@ -117,16 +107,16 @@
       />
 
       <mat-error *ngIf="despesaValidator['quantidade'].hasError('required')">
-        Quantidade é obrigatória.
+        A quantidade é obrigatória.
       </mat-error>
       <mat-error *ngIf="despesaValidator['quantidade'].hasError('pattern')">
-        Quantidade não é válida.
+        A quantidade não é válida.
       </mat-error>
       <mat-error *ngIf="despesaValidator['quantidade'].hasError('min')">
-        Quantidade não pode ser menor que 1.
+        A quantidade não pode ser menor que 1.
       </mat-error>
       <mat-error *ngIf="despesaValidator['quantidade'].hasError('max')">
-        Quantidade não pode ser maior que 99999.
+        A quantidade não pode ser maior que 99999.
       </mat-error>
     </mat-form-field>
 
@@ -135,19 +125,15 @@
       <input
         matInput
         formControlName="fornecedor"
-        [ngClass]="{
-          'is-invalid':
-            despesaValidator.fornecedor.errors &&
-            despesaValidator.fornecedor.touched
-        }"
+        [readonly]="inputSomenteLeitura()"
       />
-      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('required')">
+      <mat-error *ngIf="despesaForm.get('fornecedor').hasError('required')">
         Fornecedor é obrigatório.
       </mat-error>
-      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('minlength')">
+      <mat-error *ngIf="despesaForm.get('fornecedor').hasError('minlength')">
         Fornecedor deve ter no mínimo 4 caracteres.
       </mat-error>
-      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('maxlength')">
+      <mat-error *ngIf="despesaForm.get('fornecedor').hasError('maxlength')">
         Fornecedor deve ter no máximo 80 caracteres.
       </mat-error>
     </mat-form-field>

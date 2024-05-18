@@ -24,7 +24,7 @@
         </td>
         <td>
     <i *ngIf="!membro.isEditing; else saveEdicao">
-              <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+              <mat-icon (click)="openEdit(membro)" [class.disable-options]="isEditing">edit</mat-icon>
             </i>
 
             <ng-template #saveEdicao>
@@ -36,7 +36,7 @@
             </ng-template>
 
             <i space *ngIf="!membro.isEditing">
-              <mat-icon (click)="confirmDelete(membro.id)">delete</mat-icon>
+              <mat-icon (click)="confirmDelete(membro.id)" [class.disable-options]="isEditing">delete</mat-icon>
             </i>
         </td>
       </tr>

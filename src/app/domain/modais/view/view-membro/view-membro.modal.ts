@@ -31,6 +31,10 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
 })
 export class ViewMembroModal {
   membros: Membro[];
+
+  originalMembro = new Map<number, Membro>();
+  isEditing: boolean = false;
+
   constructor(
     private painelService: PainelControleService,
     private toastr: ToastrService,
@@ -46,14 +50,18 @@ export class ViewMembroModal {
   }
 
   //#region Update
-  originalMembro = new Map<number, Membro>();
+
   openEdit(membro: Membro): void {
-    membro.isEditing = !membro.isEditing;
-    this.originalMembro.set(membro.id, { ...membro });
+    if (!this.isEditing) {
+      this.isEditing = true;
+      membro.isEditing = !membro.isEditing;
+      this.originalMembro.set(membro.id, { ...membro });
+    }
   }
 
   cancelEdit(membro: Membro) {
     membro.isEditing = false;
+    this.isEditing = false;
   }
 
   updateMembro(id: number, membro: Membro): void {
@@ -69,6 +77,7 @@ export class ViewMembroModal {
       });
     }
     membro.isEditing = false;
+    this.isEditing = false;
   }
   //#endregion
 

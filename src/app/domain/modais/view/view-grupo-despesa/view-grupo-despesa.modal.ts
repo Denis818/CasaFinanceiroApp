@@ -33,6 +33,9 @@ export class ViewGrupoDespesaModal {
   grupoDespesas: GrupoDespesa[];
   nomeMes: string;
 
+  originalGrupoDespesa = new Map<number, GrupoDespesa>();
+  isEditing: boolean = false;
+
   constructor(
     private homeService: HomeService,
     private toastr: ToastrService,
@@ -53,14 +56,16 @@ export class ViewGrupoDespesaModal {
   }
   //#region Update
 
-  originalGrupoDespesa = new Map<number, GrupoDespesa>();
-
   openEdit(grupoDespesa: GrupoDespesa): void {
-    grupoDespesa.isEditing = !grupoDespesa.isEditing;
-    this.originalGrupoDespesa.set(grupoDespesa.id, { ...grupoDespesa });
+    if (!this.isEditing) {
+      this.isEditing = true;
+      grupoDespesa.isEditing = !grupoDespesa.isEditing;
+      this.originalGrupoDespesa.set(grupoDespesa.id, { ...grupoDespesa });
+    }
   }
   cancelEdit(grupoDespesa: GrupoDespesa) {
     grupoDespesa.isEditing = false;
+    this.isEditing = false;
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
@@ -77,6 +82,7 @@ export class ViewGrupoDespesaModal {
       });
     }
     grupoDespesa.isEditing = false;
+    this.isEditing = false;
   }
   //#endregion
 

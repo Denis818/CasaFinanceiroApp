@@ -13,5 +13,5 @@ export class Despesa {
   grupoDespesa: GrupoDespesa;
   categoriaId: number;
   grupoDespesaId: number;
-  isEditing?: boolean = false;
+  isDespesaEditing?: boolean = false;
 }
