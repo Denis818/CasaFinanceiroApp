@@ -2,22 +2,21 @@
   <div class="card">
     <div class="card-header">
       <div filtro>
-        <div tipo-filtro>
+        <mat-form-field appearance="outline">
           <mat-label class="filter-label">Filtrar por:</mat-label>
           <mat-select
             [(ngModel)]="tipoFiltro"
             [disabled]="isDespesaEditing"
             (selectionChange)="aoSelecionarFiltro()"
-            placeholder="Selecionar filtro"
           >
             <mat-option *ngFor="let tipo of tiposFiltro" [value]="tipo.value">
               {{ tipo.value }}
             </mat-option>
           </mat-select>
-        </div>
+        </mat-form-field>
 
         <div input-filtrar>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Buscar</mat-label>
             <input
               matInput
