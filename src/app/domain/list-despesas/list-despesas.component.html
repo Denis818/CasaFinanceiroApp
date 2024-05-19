@@ -25,7 +25,7 @@
     <table>
       <thead>
         <tr>
-          <th>Id</th>
+
           <th>Item</th>
           <th>Categoria</th>
           <th>Fornecedor</th>
@@ -42,7 +42,7 @@
           (keyup.enter)="updateDespesa(despesa.id, despesa)"
           [class.disabled]="isDespesaEditing && !despesa.isDespesaEditing"
         >
-          <td>{{ despesa.id }}</td>
+
           <td>
             <div *ngIf="despesa.isDespesaEditing; else viewItem">
               <ng-container
@@ -155,7 +155,7 @@
       </tbody>
       <tfoot *ngIf="despesasFiltradas.length == 0">
         <tr>
-          <td colspan="9">
+          <td colspan="8">
             <h2>Nenhuma despesa encontrada</h2>
           </td>
         </tr>
