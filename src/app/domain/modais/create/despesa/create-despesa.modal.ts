@@ -220,11 +220,24 @@ export class CreateDespesaModal {
     return this.inputFornecedor;
   }
 
-  inputSomenteLeitura(): BooleanInput {
-    return (
+  inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
+    if (
+      (this.categoriaSelecionada == CategoriasMensais.internet &&
+        inputCampo == 'fornecedor') ||
+      inputCampo == 'item'
+    ) {
+      return false;
+    }
+
+    if (
       this.categoriaSelecionada == CategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada == CategoriasMensais.condominio ||
+      this.categoriaSelecionada == CategoriasMensais.internet ||
       this.categoriaSelecionada == CategoriasMensais.aluguel
-    );
+    ) {
+      return true;
+    }
+
+    return false;
   }
 }

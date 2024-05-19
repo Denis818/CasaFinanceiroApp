@@ -15,4 +15,5 @@ export enum CategoriasMensais {
   condominio = 'Condomínio',
   aluguel = 'Aluguel',
   contaDeLuz = 'Conta de Luz',
+  internet = 'Internet',
 }

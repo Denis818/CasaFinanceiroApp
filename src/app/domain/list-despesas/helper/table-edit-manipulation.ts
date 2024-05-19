@@ -10,7 +10,7 @@ import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TableEditManipulation {
-  private categorialAtual: string;
+  private categoriaSelecionada: string;
 
   aoAlterarCategoria(
     categorias: Categoria[],
@@ -27,18 +27,31 @@ export class TableEditManipulation {
     );
 
     despesa.categoria.descricao = novaCategoria;
-    this.categorialAtual = novaCategoria;
+    this.categoriaSelecionada = novaCategoria;
   }
   aoAlterarItem(despesa: Despesa) {
     this.atualizarFornecedor(despesa);
   }
 
-  inputSomenteLeitura(): BooleanInput {
-    return (
-      this.categorialAtual == CategoriasMensais.contaDeLuz ||
-      this.categorialAtual == CategoriasMensais.condominio ||
-      this.categorialAtual == CategoriasMensais.aluguel
-    );
+  inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
+    if (
+      (this.categoriaSelecionada == CategoriasMensais.internet &&
+        inputCampo == 'fornecedor') ||
+      inputCampo == 'item'
+    ) {
+      return false;
+    }
+
+    if (
+      this.categoriaSelecionada == CategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada == CategoriasMensais.condominio ||
+      this.categoriaSelecionada == CategoriasMensais.internet ||
+      this.categoriaSelecionada == CategoriasMensais.aluguel
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   private atualizarInputItemEhFornecedor(
