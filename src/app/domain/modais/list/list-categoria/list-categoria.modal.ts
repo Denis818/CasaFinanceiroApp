@@ -7,16 +7,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { Categoria } from './../../../painel-controle/interfaces/categoria.interface';
+import { Categoria } from '../../../painel-controle/interfaces/categoria.interface';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
-  selector: 'modal-view-categoria',
-  templateUrl: './view-categoria.modal.html',
-  styleUrls: ['./view-categoria.modal.scss'],
+  selector: 'modal-listcategoria',
+  templateUrl: './list-categoria.modal.html',
+  styleUrls: ['./list-categoria.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -30,7 +30,7 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
     MatTooltipModule,
   ],
 })
-export class ViewCategoriaModal {
+export class ListCategoriaModal {
   @Output() notificarAlteracao = new EventEmitter<void>();
 
   originalCategoria = new Map<number, Categoria>();

@@ -13,9 +13,9 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
-  selector: 'modal-view-membro',
-  templateUrl: './view-membro.modal.html',
-  styleUrls: ['./view-membro.modal.scss'],
+  selector: 'modal-list-membro',
+  templateUrl: './list-membro.modal.html',
+  styleUrls: ['./list-membro.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
     ConfirmDeleteModal,
   ],
 })
-export class ViewMembroModal {
+export class ListMembroModal {
   membros: Membro[];
 
   originalMembro = new Map<number, Membro>();

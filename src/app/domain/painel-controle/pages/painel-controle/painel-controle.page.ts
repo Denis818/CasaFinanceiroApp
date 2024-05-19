@@ -10,10 +10,10 @@ import { CreateCategoriaModal } from 'src/app/domain/modais/create/categoria/cre
 import { CreateDespesaModal } from 'src/app/domain/modais/create/despesa/create-despesa.modal';
 import { CreateGrupoDespesaModal } from 'src/app/domain/modais/create/grupo-despesa/create-grupo-despesa.modal';
 import { CreateMembroModal } from 'src/app/domain/modais/create/membro/create-membro.modal';
+import { ListCategoriaModal } from 'src/app/domain/modais/list/list-categoria/list-categoria.modal';
+import { ListGrupoDespesaModal } from 'src/app/domain/modais/list/list-grupo-despesa/list-grupo-despesa.modal';
+import { ListMembroModal } from 'src/app/domain/modais/list/list-membro/list-membro.modal';
 import { ChecarFaturaCartaoModal } from 'src/app/domain/modais/utilities/checar-fatura-cartao/checar-fatura-cartao.modal';
-import { ViewCategoriaModal } from 'src/app/domain/modais/view/view-categoria/view-categoria.modal';
-import { ViewGrupoDespesaModal } from 'src/app/domain/modais/view/view-grupo-despesa/view-grupo-despesa.modal';
-import { ViewMembroModal } from 'src/app/domain/modais/view/view-membro/view-membro.modal';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 
 @Component({
@@ -35,26 +35,26 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 export class PainelControlePage {
   constructor(private dialog: MatDialog) {}
 
-  @ViewChild(ListDespesasComponent) viewDespesaModal: ListDespesasComponent;
+  @ViewChild(ListDespesasComponent) ListDespesaModal: ListDespesasComponent;
 
-  //#region  Views
-  openViewCategoriaModal() {
-    const dialogRef = this.dialog.open(ViewCategoriaModal, {
+  //#region  Lists
+  openListCategoriaModal() {
+    const dialogRef = this.dialog.open(ListCategoriaModal, {
       width: '400px',
     });
 
     dialogRef.afterClosed();
   }
 
-  openViewMembroModal() {
-    const dialogRef = this.dialog.open(ViewMembroModal, {
+  openListMembroModal() {
+    const dialogRef = this.dialog.open(ListMembroModal, {
       width: '400px',
     });
     dialogRef.afterClosed();
   }
 
-  openViewGrupoDespesasModal() {
-    const dialogRef = this.dialog.open(ViewGrupoDespesaModal, {
+  openListGrupoDespesasModal() {
+    const dialogRef = this.dialog.open(ListGrupoDespesaModal, {
       width: '400px',
     });
     dialogRef.afterClosed();
@@ -68,7 +68,7 @@ export class PainelControlePage {
     });
 
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.viewDespesaModal.getListDespesas();
+      this.ListDespesaModal.getListDespesas();
     });
   }
 

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListDespesasComponent } from './list-despesas.component';
 
-describe('ViewDespesaModal', () => {
+describe('ListDespesaModal', () => {
   let component: ListDespesasComponent;
   let fixture: ComponentFixture<ListDespesasComponent>;
 

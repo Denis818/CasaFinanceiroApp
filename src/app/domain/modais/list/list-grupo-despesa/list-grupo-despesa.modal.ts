@@ -13,9 +13,9 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
-  selector: 'modal-view-GrupoDespesa',
-  templateUrl: './view-grupo-despesa.modal.html',
-  styleUrls: ['./view-grupo-despesa.modal.scss'],
+  selector: 'modal-listGrupoDespesa',
+  templateUrl: './list-grupo-despesa.modal.html',
+  styleUrls: ['./list-grupo-despesa.modal.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
     ConfirmDeleteModal,
   ],
 })
-export class ViewGrupoDespesaModal {
+export class ListGrupoDespesaModal {
   grupoDespesas: GrupoDespesa[];
   nomeMes: string;
 

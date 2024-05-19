@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewCategoriaModal } from './view-categoria.modal';
+import { ListCategoriaModal } from './list-categoria.modal';
 
-describe('ViewCategoriaModal', () => {
-  let component: ViewCategoriaModal;
-  let fixture: ComponentFixture<ViewCategoriaModal>;
+describe('ListCategoriaModal', () => {
+  let component: ListCategoriaModal;
+  let fixture: ComponentFixture<ListCategoriaModal>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewCategoriaModal],
+      declarations: [ListCategoriaModal],
     });
-    fixture = TestBed.createComponent(ViewCategoriaModal);
+    fixture = TestBed.createComponent(ListCategoriaModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
