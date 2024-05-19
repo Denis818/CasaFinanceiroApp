@@ -1,4 +1,4 @@
-<div despesa-view table-custom input-select-custom>
+<div despesa-list table-custom input-select-custom>
   <div class="card">
     <div class="card-header">
       <div input-buscar>
@@ -9,6 +9,7 @@
             placeholder="Buscar por item..."
             [(ngModel)]="filtroPorItem"
             (input)="aplicarFiltro(filtroPorItem)"
+            [disabled]="isDespesaEditing"
           />
           <i
             style="border: none; background-color: transparent"
@@ -39,6 +40,7 @@
         <tr
           *ngFor="let despesa of despesasFiltradas"
           (keyup.enter)="updateDespesa(despesa.id, despesa)"
+          [class.disabled]="isDespesaEditing && !despesa.isDespesaEditing"
         >
           <td>{{ despesa.id }}</td>
           <td>
@@ -137,11 +139,7 @@
           <td>{{ despesa.dataCompra }}</td>
           <td>
             <i *ngIf="!despesa.isDespesaEditing; else saveEdicao">
-              <mat-icon
-                (click)="openEdit(despesa)"
-                [class.disable-options]="isDespesaEditing"
-                >edit</mat-icon
-              >
+              <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
             </i>
             <ng-template #saveEdicao>
               <mat-icon (click)="updateDespesa(despesa.id, despesa)"
@@ -150,11 +148,7 @@
               <mat-icon space (click)="cancelEdit(despesa)">cancel</mat-icon>
             </ng-template>
             <i space *ngIf="!despesa.isDespesaEditing">
-              <mat-icon
-                (click)="confirmDelete(despesa.id)"
-                [class.disable-options]="isDespesaEditing"
-                >delete</mat-icon
-              >
+              <mat-icon (click)="confirmDelete(despesa.id)">delete</mat-icon>
             </i>
           </td>
         </tr>
@@ -177,6 +171,7 @@
         [pageSize]="page.itensPorPagina"
         [pageSizeOptions]="tamanhosDePagina"
         aria-label="Select page"
+        [disabled]="isDespesaEditing"
       >
       </mat-paginator>
     </div>

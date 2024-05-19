@@ -1,5 +1,5 @@
 :host {
-  [despesa-view] {
+  [despesa-list] {
     .card {
       width: 100%;
       background-color: #ffffff;
@@ -116,17 +116,22 @@
         [space] {
           margin-left: 20px;
         }
-        
+
         tfoot td {
           text-align: center;
           padding-top: 20px;
         }
       }
+
+      .disabled {
+        pointer-events: none;
+        opacity: 0.8;
+      }
     }
   }
 
   @media screen and (max-width: 600px) {
-    [despesa-view] {
+    [despesa-list] {
       .card {
         table {
           width: 100%;

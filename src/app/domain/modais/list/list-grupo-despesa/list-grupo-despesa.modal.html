@@ -1,4 +1,4 @@
-<div table-custom grupoDespesa-view>
+<div table-custom grupoDespesa-list>
   <table>
     <thead>
       <th>Grupo de Despesa</th>
@@ -19,7 +19,11 @@
 
         <td>
           <i *ngIf="!grupoDespesa.isEditing; else saveEdicao">
-            <mat-icon (click)="openEdit(grupoDespesa)" [class.disable-options]="isEditing">edit</mat-icon>
+            <mat-icon
+              (click)="openEdit(grupoDespesa)"
+              [class.disable-options]="isEditing"
+              >edit</mat-icon
+            >
           </i>
 
           <ng-template #saveEdicao>
@@ -32,7 +36,11 @@
           </ng-template>
 
           <i space *ngIf="!grupoDespesa.isEditing">
-            <mat-icon (click)="confirmDelete(grupoDespesa.id)" [class.disable-options]="isEditing">delete</mat-icon>
+            <mat-icon
+              (click)="confirmDelete(grupoDespesa.id)"
+              [class.disable-options]="isEditing"
+              >delete</mat-icon
+            >
           </i>
         </td>
       </tr>

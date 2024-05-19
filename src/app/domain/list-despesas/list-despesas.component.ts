@@ -126,6 +126,8 @@ export class ListDespesasComponent implements OnDestroy {
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
       });
+
+      this.isDespesaEditing = false
   }
 
   getAllCategorias() {
