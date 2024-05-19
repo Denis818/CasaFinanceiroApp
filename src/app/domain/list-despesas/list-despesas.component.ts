@@ -21,6 +21,7 @@ import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { HomeService } from 'src/app/core/services/home/home-service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
@@ -63,7 +64,13 @@ export class ListDespesasComponent implements OnDestroy {
   isDespesaEditing: boolean = false;
 
   despesasFiltradas: Despesa[];
-  filtroPorItem: string = '';
+  filtro: string = '';
+  tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
+  tiposFiltro = [
+    { value: EnumFiltroDespesa.Item },
+    { value: EnumFiltroDespesa.Categoria },
+    { value: EnumFiltroDespesa.Fornecedor },
+  ];
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -79,7 +86,6 @@ export class ListDespesasComponent implements OnDestroy {
     private homeService: HomeService,
     protected tableEditManipulation: TableEditManipulation
   ) {
-    this.getListDespesas();
     this.reloadDespesas();
     this.tempoParaFiltrar();
   }
@@ -96,8 +102,8 @@ export class ListDespesasComponent implements OnDestroy {
   tempoParaFiltrar() {
     this.tempoParaAplicarFiltroPorItem
       .pipe(debounceTime(700))
-      .subscribe((filtroPorItem) => {
-        this.filtroPorItem = filtroPorItem;
+      .subscribe((filtro) => {
+        this.filtro = filtro;
 
         this.page.paginaAtual = 1;
         if (this.paginator) {
@@ -107,8 +113,14 @@ export class ListDespesasComponent implements OnDestroy {
       });
   }
 
-  aplicarFiltro(filtroPorItem: string): void {
-    this.tempoParaAplicarFiltroPorItem.next(filtroPorItem);
+  aoSelecionarFiltro() {
+    if (this.filtro) {
+      this.getListDespesas();
+    }
+  }
+
+  aplicarFiltro(filtro: string): void {
+    this.tempoParaAplicarFiltroPorItem.next(filtro);
   }
 
   //#endregion
@@ -117,7 +129,8 @@ export class ListDespesasComponent implements OnDestroy {
   getListDespesas() {
     this.painelService
       .getListDespesas(
-        this.filtroPorItem.toLocaleLowerCase(),
+        this.filtro.toLocaleLowerCase(),
+        this.tipoFiltro,
         this.page.paginaAtual,
         this.page.itensPorPagina
       )
@@ -127,7 +140,7 @@ export class ListDespesasComponent implements OnDestroy {
         this.page.paginaAtual = listPaginada.paginaAtual;
       });
 
-      this.isDespesaEditing = false
+    this.isDespesaEditing = false;
   }
 
   getAllCategorias() {

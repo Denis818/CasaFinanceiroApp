@@ -1,31 +1,46 @@
 <div despesa-list table-custom input-select-custom>
   <div class="card">
     <div class="card-header">
-      <div input-buscar>
-        <mat-form-field appearance="fill">
-          <mat-label>Buscar</mat-label>
-          <input
-            matInput
-            placeholder="Buscar por item..."
-            [(ngModel)]="filtroPorItem"
-            (input)="aplicarFiltro(filtroPorItem)"
+      <div filtro>
+        <div tipo-filtro>
+          <mat-label class="filter-label">Filtrar por:</mat-label>
+          <mat-select
+            [(ngModel)]="tipoFiltro"
             [disabled]="isDespesaEditing"
-          />
-          <i
-            style="border: none; background-color: transparent"
-            mat-icon-button
-            matSuffix
-            aria-label="Search button for search input"
+            (selectionChange)="aoSelecionarFiltro()"
+            placeholder="Selecionar filtro"
           >
-            <mat-icon>search</mat-icon>
-          </i>
-        </mat-form-field>
+            <mat-option *ngFor="let tipo of tiposFiltro" [value]="tipo.value">
+              {{ tipo.value }}
+            </mat-option>
+          </mat-select>
+        </div>
+
+        <div input-filtrar>
+          <mat-form-field appearance="fill">
+            <mat-label>Buscar</mat-label>
+            <input
+              matInput
+              placeholder="Buscar por {{ tipoFiltro }}..."
+              [(ngModel)]="filtro"
+              (input)="aplicarFiltro(filtro)"
+              [disabled]="isDespesaEditing"
+            />
+            <i
+              style="border: none; background-color: transparent"
+              mat-icon-button
+              matSuffix
+              aria-label="Search button for search input"
+            >
+              <mat-icon>search</mat-icon>
+            </i>
+          </mat-form-field>
+        </div>
       </div>
     </div>
     <table>
       <thead>
         <tr>
-
           <th>Item</th>
           <th>Categoria</th>
           <th>Fornecedor</th>
@@ -42,7 +57,6 @@
           (keyup.enter)="updateDespesa(despesa.id, despesa)"
           [class.disabled]="isDespesaEditing && !despesa.isDespesaEditing"
         >
-
           <td>
             <div *ngIf="despesa.isDespesaEditing; else viewItem">
               <ng-container

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../interfaces/despesa.interface';
@@ -15,13 +16,15 @@ export class PainelControleService extends BaseService {
 
   public getListDespesas(
     filterItem: string,
+    tipoFilter: EnumFiltroDespesa,
     paginaAtual: number,
     itensPorPagina: number
   ): Observable<PaginationResponse<Despesa>> {
     const params = new HttpParams()
       .set('paginaAtual', paginaAtual.toString())
       .set('itensPorPagina', itensPorPagina.toString())
-      .set('filterItem', filterItem);
+      .set('filter', filterItem)
+      .set('tipoFiltro', tipoFilter);
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',

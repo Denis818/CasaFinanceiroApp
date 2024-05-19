@@ -4,7 +4,7 @@ import {
   CategoriasMensais,
   ValorInputFornecedor,
   ValorInputItem,
-} from 'src/app/shared/enums/inputEnumValues';
+} from 'src/app/shared/enums/enumInputValues';
 import { Categoria } from '../../painel-controle/interfaces/categoria.interface';
 import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
 

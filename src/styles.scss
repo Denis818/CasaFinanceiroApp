@@ -1,4 +1,13 @@
 @import "reset";
+:root {
+  --mdc-outlined-text-field-focus-outline-color: #673ab7;
+  --mdc-outlined-text-field-outline-color: rgb(0 0 0 / 38%);
+  --mdc-outlined-text-field-hover-outline-color: rgb(0 0 0 / 87%);
+
+  --mdc-outlined-text-field-outline-width: 2px !important;
+  --mdc-outlined-text-field-container-shape: 10px !important;
+}
+
 [header-model] {
   background-color: #673ab7;
   width: 100%;
@@ -139,6 +148,10 @@ div.mat-mdc-select-panel {
 //title navbar
 .mat-typography h1 {
   margin: 0;
+}
+//option selecionada em um select
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: #673ab7;
 }
 
 @media screen and (max-width: 600px) {

@@ -23,7 +23,7 @@ import {
   CategoriasMensais,
   ValorInputFornecedor,
   ValorInputItem,
-} from '../../../../shared/enums/inputEnumValues';
+} from '../../../../shared/enums/enumInputValues';
 
 @Component({
   selector: 'app-modal-despesa',
