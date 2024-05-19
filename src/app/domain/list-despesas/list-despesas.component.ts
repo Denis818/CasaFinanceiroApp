@@ -125,16 +125,6 @@ export class ListDespesasComponent implements OnDestroy {
         this.despesasFiltradas = listPaginada.itens;
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
-
-        if (
-          listPaginada.itens.length === 0 &&
-          this.filtroPorItem.trim() != ''
-        ) {
-          this.toastr.warning(
-            `Não foi encontrada uma despesa com filtro: ${this.filtroPorItem}.`,
-            'Aviso'
-          );
-        }
       });
   }
 

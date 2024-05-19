@@ -96,6 +96,13 @@
               <td>{{ item.total| currency:'BRL' }}</td>
             </tr>
           </tbody>
+          <tfoot *ngIf="listDespesasPorCategoria.length == 0">
+            <tr>
+              <td colspan="2">
+                <h2>Nenhuma despesa encontrada</h2>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

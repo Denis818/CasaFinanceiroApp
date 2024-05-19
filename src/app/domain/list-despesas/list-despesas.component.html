@@ -157,7 +157,15 @@
           </td>
         </tr>
       </tbody>
+      <tfoot *ngIf="despesasFiltradas.length == 0">
+        <tr>
+          <td colspan="9">
+            <h2>Nenhuma despesa encontrada</h2>
+          </td>
+        </tr>
+      </tfoot>
     </table>
+
     <div pagination>
       <mat-paginator
         #paginator

@@ -167,6 +167,12 @@
             td {
               color: #708090;
             }
+
+            tfoot td {
+              text-align: center;
+              padding-top: 20px;
+              border: none;
+            }
           }
         }
       }
