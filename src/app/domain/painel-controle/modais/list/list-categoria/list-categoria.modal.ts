@@ -7,11 +7,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { Categoria } from '../../../painel-controle/interfaces/categoria.interface';
-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+import { Categoria } from '../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'modal-listcategoria',

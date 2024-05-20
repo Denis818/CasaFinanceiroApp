@@ -25,8 +25,8 @@ import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
-import { Categoria } from '../painel-controle/interfaces/categoria.interface';
 import { TableEditManipulation } from './helper/table-edit-manipulation';
+import { Categoria } from '../interfaces/categoria.interface';
 
 registerLocaleData(localePt);
 

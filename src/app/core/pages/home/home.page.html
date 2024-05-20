@@ -57,6 +57,16 @@
       <mat-icon>settings_applications</mat-icon>
       <span *ngIf="sidenavExpanded">Painel de Controle</span>
     </a>
+
+    <a
+      [routerLink]="'conferencia-compras'"
+      (click)="setSelectedButton('conferencia-compras')"
+      [ngClass]="{'selected': selectedButton === 'conferencia-compras'}"
+      class="nav-link"
+    >
+      <mat-icon>attach_money</mat-icon>
+      <span *ngIf="sidenavExpanded">Conferência de Compras</span>
+    </a>
   </div>
 
   <div class="content-app" [ngClass]="{'expanded': sidenavExpanded}">

@@ -19,11 +19,7 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
-import {
-  CategoriasMensais,
-  ValorInputFornecedor,
-  ValorInputItem,
-} from '../../../../shared/enums/enumInputValues';
+import { ValorInputItem, CategoriasMensais, ValorInputFornecedor } from 'src/app/shared/enums/enumInputValues';
 
 @Component({
   selector: 'app-modal-despesa',
