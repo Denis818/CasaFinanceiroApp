@@ -67,9 +67,9 @@ export class ListDespesasComponent implements OnDestroy {
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
   tiposFiltro = [
-    { value: EnumFiltroDespesa.Item },
-    { value: EnumFiltroDespesa.Categoria },
-    { value: EnumFiltroDespesa.Fornecedor },
+    { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
+    { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
+    { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
   ];
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
@@ -129,7 +129,7 @@ export class ListDespesasComponent implements OnDestroy {
   getListDespesas() {
     this.painelService
       .getListDespesas(
-        this.filtro.toLocaleLowerCase(),
+        this.filtro,
         this.tipoFiltro,
         this.page.paginaAtual,
         this.page.itensPorPagina

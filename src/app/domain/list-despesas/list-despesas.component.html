@@ -10,7 +10,7 @@
             (selectionChange)="aoSelecionarFiltro()"
           >
             <mat-option *ngFor="let tipo of tiposFiltro" [value]="tipo.value">
-              {{ tipo.value }}
+              {{ tipo.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>
