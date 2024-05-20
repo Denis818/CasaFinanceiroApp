@@ -14,7 +14,7 @@ export class PainelControleService extends BaseService {
   public readonly router = inject(Router);
   public url: string = `${environment.base_url_financy}`;
 
-  public getListDespesas(
+  public getListDespesasPorGrupo(
     filterItem: string,
     tipoFilter: EnumFiltroDespesa,
     paginaAtual: number,
@@ -28,7 +28,7 @@ export class PainelControleService extends BaseService {
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
-      `${this.url}/despesa`,
+      `${this.url}/despesa/por-grupo`,
       null,
       params
     ).pipe(map((response) => response.dados));

@@ -1,7 +1,11 @@
 <nav tooltip-custom class="navbar">
   <h1 title>{{ titleService.getTitle() }}</h1>
 
-  <div selected-group [formGroup]="grupoDespesasForm">
+  <div
+    selected-group
+    [ngClass]="{'selected-group-hiden' : selectedButton == 'conferencia-compras'} "
+    [formGroup]="grupoDespesasForm"
+  >
     <mat-icon
       class="icon-help"
       matTooltip="Selecione um grupo para visualizar e gerenciar as despesas associadas a ele. Cada grupo representa um conjunto específico de despesas."

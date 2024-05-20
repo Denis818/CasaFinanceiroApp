@@ -64,6 +64,10 @@
         pointer-events: auto;
       }
     }
+
+    .selected-group-hiden{
+      display: none;
+    }
   }
 
   .nav-link {

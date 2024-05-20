@@ -1,0 +1,128 @@
+<div despesa-list-all-group>
+  <div class="card">
+    <div class="card-header">
+      <div filtro>
+        <mat-form-field appearance="outline">
+          <mat-label class="filter-label">Filtrar por:</mat-label>
+          <mat-select
+            [(ngModel)]="tipoFiltro"
+            (selectionChange)="aoSelecionarFiltro()"
+          >
+            <mat-option
+              *ngFor="let tipo of listTipoFiltro"
+              [value]="tipo.value"
+            >
+              {{ tipo.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div input-filtrar>
+          <mat-form-field appearance="outline">
+            <mat-label>Buscar</mat-label>
+            <input
+              matInput
+              placeholder="Buscar por {{ tipoFiltro }}..."
+              [(ngModel)]="filtro"
+              (input)="aplicarFiltro(filtro)"
+            />
+            <i
+              style="border: none; background-color: transparent"
+              mat-icon-button
+              matSuffix
+              aria-label="Search button for search input"
+            >
+              <mat-icon>search</mat-icon>
+            </i>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <mat-table [dataSource]="despesasFiltradas" class="mat-elevation-z8">
+      <!-- Grupo de Fatura Column -->
+      <ng-container matColumnDef="grupoDespesa">
+        <mat-header-cell *matHeaderCellDef> Grupo de Fatura </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.grupoDespesa.nome }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Item Column -->
+      <ng-container matColumnDef="item">
+        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+        <mat-cell *matCellDef="let despesa"> {{ despesa.item }} </mat-cell>
+      </ng-container>
+
+      <!-- Categoria Column -->
+      <ng-container matColumnDef="categoria">
+        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.categoria.descricao }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Fornecedor Column -->
+      <ng-container matColumnDef="fornecedor">
+        <mat-header-cell *matHeaderCellDef> Fornecedor </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.fornecedor }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Preço Column -->
+      <ng-container matColumnDef="preco">
+        <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.preco | currency : "BRL" }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Quantidade Column -->
+      <ng-container matColumnDef="quantidade">
+        <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.quantidade }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Total Column -->
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.total | currency : "BRL" }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Data da Compra Column -->
+      <ng-container matColumnDef="dataCompra">
+        <mat-header-cell *matHeaderCellDef> Data da compra </mat-header-cell>
+        <mat-cell *matCellDef="let despesa">
+          {{ despesa.dataCompra }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!-- Footer for no data -->
+    <ng-container *ngIf="despesasFiltradas?.length === 0">
+      <div style="text-align: center; padding: 20px">
+        <h2>Nenhuma despesa encontrada</h2>
+      </div>
+    </ng-container>
+
+    <div pagination>
+      <mat-paginator
+        #paginator
+        class="demo-paginator"
+        (page)="mudarPagina($event)"
+        [length]="page.totalItens"
+        [pageSize]="page.itensPorPagina"
+        [pageSizeOptions]="tamanhosDePagina"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

@@ -35,6 +35,16 @@ const routes: Routes = [
             )
           ).PainelControlePage,
       },
+      {
+        path: 'conferencia-compras',
+        title: 'Conferência de Compras',
+        loadComponent: async () =>
+          (
+            await import(
+              'src/app/domain/conferencia-compras/pages/conferencia-compras/conferencia-compras.page'
+            )
+          ).ConferenciaComprasPage,
+      },
     ],
     canMatch: [AuthGuard],
   },

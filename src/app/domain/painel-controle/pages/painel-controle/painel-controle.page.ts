@@ -68,7 +68,7 @@ export class PainelControlePage {
     });
 
     dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.ListDespesaModal.getListDespesas();
+      this.ListDespesaModal.getListDespesasPorGrupo();
     });
   }
 

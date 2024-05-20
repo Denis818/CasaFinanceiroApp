@@ -24,9 +24,9 @@ import { PainelControleService } from 'src/app/domain/painel-controle/services/p
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
-import { TableEditManipulation } from './helper/table-edit-manipulation';
+import { TableEditManipulation } from '../helper/table-edit-manipulation';
 import { Categoria } from '../interfaces/categoria.interface';
+import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
 
 registerLocaleData(localePt);
 
@@ -109,13 +109,13 @@ export class ListDespesasComponent implements OnDestroy {
         if (this.paginator) {
           this.paginator.pageIndex = 0;
         }
-        this.getListDespesas();
+        this.getListDespesasPorGrupo();
       });
   }
 
   aoSelecionarFiltro() {
     if (this.filtro) {
-      this.getListDespesas();
+      this.getListDespesasPorGrupo();
     }
   }
 
@@ -126,9 +126,9 @@ export class ListDespesasComponent implements OnDestroy {
   //#endregion
 
   //#region Gets
-  getListDespesas() {
+  getListDespesasPorGrupo() {
     this.painelService
-      .getListDespesas(
+      .getListDespesasPorGrupo(
         this.filtro,
         this.tipoFiltro,
         this.page.paginaAtual,
@@ -156,7 +156,7 @@ export class ListDespesasComponent implements OnDestroy {
       this.homeService.reloadPageWithNewGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.getListDespesas();
+            this.getListDespesasPorGrupo();
           }
         },
       });
@@ -165,7 +165,7 @@ export class ListDespesasComponent implements OnDestroy {
   mudarPagina(event: PageEvent): void {
     this.page.paginaAtual = event.pageIndex + 1;
     this.page.itensPorPagina = event.pageSize;
-    this.getListDespesas();
+    this.getListDespesasPorGrupo();
   }
 
   //#endregion
@@ -197,9 +197,9 @@ export class ListDespesasComponent implements OnDestroy {
           if (despesaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
-          this.getListDespesas();
+          this.getListDespesasPorGrupo();
         },
-        error: () => this.getListDespesas(),
+        error: () => this.getListDespesasPorGrupo(),
       });
     }
 
@@ -227,7 +227,7 @@ export class ListDespesasComponent implements OnDestroy {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
-        this.getListDespesas();
+        this.getListDespesasPorGrupo();
       },
     });
   }

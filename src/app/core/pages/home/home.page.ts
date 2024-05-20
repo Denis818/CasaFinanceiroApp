@@ -58,6 +58,8 @@ export class HomePage implements OnDestroy {
           this.setSelectedButton('dashboard');
         } else if (event.urlAfterRedirects.includes('painel')) {
           this.setSelectedButton('painel');
+        } else if (event.urlAfterRedirects.includes('conferencia-compras')) {
+          this.setSelectedButton('conferencia-compras');
         }
       });
   }
