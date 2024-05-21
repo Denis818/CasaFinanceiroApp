@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
-import { ToastrService } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ToastrService } from 'ngx-toastr';
+import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
-import { Categoria } from '../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'modal-listcategoria',
@@ -32,7 +32,7 @@ import { Categoria } from '../../../interfaces/categoria.interface';
 export class ListCategoriaModal {
   @Output() notificarAlteracao = new EventEmitter<void>();
 
-  originalCategoria = new Map<number, Categoria>();
+  categoriaAtual: Categoria;
   isEditing: boolean = false;
 
   categorias: Categoria[];
@@ -57,17 +57,17 @@ export class ListCategoriaModal {
     if (!this.isEditing) {
       this.isEditing = true;
       categoria.isEditing = !categoria.isEditing;
-      this.originalCategoria.set(categoria.id, { ...categoria });
+      this.categoriaAtual = JSON.parse(JSON.stringify(categoria));
     }
   }
 
   cancelEdit(categoria: Categoria) {
-    categoria.isEditing = false;
-    this.isEditing = false;
+    Object.assign(categoria, this.categoriaAtual);
+    this.resetPropertys(categoria);
   }
 
   updateCategoria(id: number, categoria: Categoria): void {
-    if (this.originalCategoria.get(id).descricao !== categoria.descricao) {
+    if (!this.categoriaAlterada(categoria)) {
       this.painelService.update(id, categoria, 'categoria').subscribe({
         next: (categoriaAtualizada) => {
           if (categoriaAtualizada) {
@@ -81,8 +81,7 @@ export class ListCategoriaModal {
       });
     }
 
-    categoria.isEditing = false;
-    this.isEditing = false;
+    this.resetPropertys(categoria);
   }
 
   isEditable(descricao: string): boolean {
@@ -124,5 +123,15 @@ export class ListCategoriaModal {
       },
     });
   }
+
   //#endregion
+
+  categoriaAlterada(categoria: Categoria) {
+    return this.categoriaAtual.descricao === categoria.descricao;
+  }
+  resetPropertys(categoria: Categoria) {
+    categoria.isEditing = false;
+    this.isEditing = false;
+    this.categoriaAtual = null;
+  }
 }

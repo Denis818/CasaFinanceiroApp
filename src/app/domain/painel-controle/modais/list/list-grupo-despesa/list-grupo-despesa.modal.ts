@@ -33,7 +33,7 @@ export class ListGrupoDespesaModal {
   grupoDespesas: GrupoDespesa[];
   nomeMes: string;
 
-  originalGrupoDespesa = new Map<number, GrupoDespesa>();
+  grupoDespesaAtual: GrupoDespesa;
   isEditing: boolean = false;
 
   constructor(
@@ -60,17 +60,18 @@ export class ListGrupoDespesaModal {
     if (!this.isEditing) {
       this.isEditing = true;
       grupoDespesa.isEditing = !grupoDespesa.isEditing;
-      this.originalGrupoDespesa.set(grupoDespesa.id, { ...grupoDespesa });
+      this.grupoDespesaAtual = JSON.parse(JSON.stringify(grupoDespesa));
     }
   }
   cancelEdit(grupoDespesa: GrupoDespesa) {
-    grupoDespesa.isEditing = false;
-    this.isEditing = false;
+    Object.assign(grupoDespesa, this.grupoDespesaAtual);
+    this.resetPropertys(grupoDespesa);
   }
 
   updateGrupoDespesa(id: number, grupoDespesa: GrupoDespesa): void {
-    grupoDespesa.nome = grupoDespesa.nomeEditavel;
-    if (this.originalGrupoDespesa.get(id).nome !== grupoDespesa.nome) {
+    if (!this.grupoDespesaAlterado(grupoDespesa)) {
+      grupoDespesa.nome = grupoDespesa.nomeEditavel;
+
       this.homeService.update(id, grupoDespesa).subscribe({
         next: (grupoDespesaAtualizado) => {
           if (grupoDespesaAtualizado) {
@@ -81,8 +82,7 @@ export class ListGrupoDespesaModal {
         error: () => this.getAllGrupoDespesas(),
       });
     }
-    grupoDespesa.isEditing = false;
-    this.isEditing = false;
+    this.resetPropertys(grupoDespesa);
   }
   //#endregion
 
@@ -120,5 +120,15 @@ export class ListGrupoDespesaModal {
     const regex = /Fatura de ([\wÀ-ú]+) \d{4}/i;
     const match = nome.match(regex);
     return match ? match[1] : nome;
+  }
+
+  grupoDespesaAlterado(grupoDespesa: GrupoDespesa): boolean {
+    return this.grupoDespesaAtual.nomeEditavel === grupoDespesa.nomeEditavel;
+  }
+
+  resetPropertys(grupoDespesa: GrupoDespesa) {
+    grupoDespesa.isEditing = false;
+    this.isEditing = false;
+    this.grupoDespesaAtual = null;
   }
 }

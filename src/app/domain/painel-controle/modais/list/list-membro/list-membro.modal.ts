@@ -32,7 +32,7 @@ import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal'
 export class ListMembroModal {
   membros: Membro[];
 
-  originalMembro = new Map<number, Membro>();
+  membroAtual: Membro;
   isEditing: boolean = false;
 
   constructor(
@@ -55,17 +55,17 @@ export class ListMembroModal {
     if (!this.isEditing) {
       this.isEditing = true;
       membro.isEditing = !membro.isEditing;
-      this.originalMembro.set(membro.id, { ...membro });
+      this.membroAtual = JSON.parse(JSON.stringify(membro));
     }
   }
 
   cancelEdit(membro: Membro) {
-    membro.isEditing = false;
-    this.isEditing = false;
+    Object.assign(membro, this.membroAtual);
+    this.resetPropertys(membro);
   }
 
   updateMembro(id: number, membro: Membro): void {
-    if (this.originalMembro.get(id).nome !== membro.nome) {
+    if (!this.membroAlterado(membro)) {
       this.painelService.update(id, membro, 'membro').subscribe({
         next: (membroAtualizado) => {
           if (membroAtualizado) {
@@ -76,8 +76,7 @@ export class ListMembroModal {
         error: () => this.getAllMembros(),
       });
     }
-    membro.isEditing = false;
-    this.isEditing = false;
+    this.resetPropertys(membro);
   }
   //#endregion
 
@@ -104,6 +103,15 @@ export class ListMembroModal {
       },
     });
   }
-
   //#endregion
+
+  membroAlterado(membro: Membro) {
+    return this.membroAtual.nome === membro.nome;
+  }
+
+  resetPropertys(membro: Membro) {
+    membro.isEditing = false;
+    this.isEditing = false;
+    this.membroAtual = null;
+  }
 }

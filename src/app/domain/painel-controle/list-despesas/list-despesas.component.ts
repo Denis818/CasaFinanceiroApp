@@ -60,8 +60,8 @@ export class ListDespesasComponent implements OnDestroy {
   categorias: Categoria[] = [];
   grupoDespesas: GrupoDespesa[];
 
-  originalDespesa: Despesa;
   isDespesaEditing: boolean = false;
+  despesaAtual: Despesa;
 
   despesasFiltradas: Despesa[];
   filtro: string = '';
@@ -176,22 +176,23 @@ export class ListDespesasComponent implements OnDestroy {
     if (!this.isDespesaEditing) {
       this.isDespesaEditing = true;
       despesa.isDespesaEditing = !despesa.isDespesaEditing;
-      this.originalDespesa = JSON.parse(JSON.stringify(despesa));
+      
+      this.despesaAtual = JSON.parse(JSON.stringify(despesa));
 
       this.getAllCategorias();
     }
   }
 
   cancelEdit(despesa: Despesa) {
-    despesa.isDespesaEditing = false;
-    this.isDespesaEditing = false;
+    Object.assign(despesa, this.despesaAtual);
+    this.resetPropertys(despesa);
   }
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
     despesa.grupoDespesaId = despesa.grupoDespesa.id;
 
-    if (!this.teveAlteracoes(this.originalDespesa, despesa)) {
+    if (!this.despesaAlterada(despesa)) {
       this.painelService.update(id, despesa, 'despesa').subscribe({
         next: (despesaAtualizada) => {
           if (despesaAtualizada) {
@@ -203,8 +204,7 @@ export class ListDespesasComponent implements OnDestroy {
       });
     }
 
-    despesa.isDespesaEditing = false;
-    this.isDespesaEditing = false;
+    this.resetPropertys(despesa);
   }
   //#endregion
 
@@ -233,16 +233,22 @@ export class ListDespesasComponent implements OnDestroy {
   }
   //#endregion
 
-  //#region metodos de suporte
-  teveAlteracoes(despesa: Despesa, newDespesa: Despesa) {
+  //#region Metodos de suporte
+
+  despesaAlterada(despesa: Despesa): boolean {
     return (
-      despesa.item === newDespesa.item &&
-      despesa.preco === newDespesa.preco &&
-      despesa.quantidade === newDespesa.quantidade &&
-      despesa.fornecedor === newDespesa.fornecedor &&
-      despesa.categoria.id === newDespesa.categoriaId
+      this.despesaAtual.item === despesa.item &&
+      this.despesaAtual.preco === despesa.preco &&
+      this.despesaAtual.quantidade === despesa.quantidade &&
+      this.despesaAtual.fornecedor === despesa.fornecedor &&
+      this.despesaAtual.categoria.id === despesa.categoriaId
     );
   }
 
+  resetPropertys(despesa: Despesa) {
+    despesa.isDespesaEditing = false;
+    this.isDespesaEditing = false;
+    this.despesaAtual = null;
+  }
   //#endregion
 }
