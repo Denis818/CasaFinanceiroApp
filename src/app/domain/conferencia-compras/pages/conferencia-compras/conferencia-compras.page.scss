@@ -14,19 +14,6 @@
         align-items: center;
         margin-bottom: 10px;
 
-        & input[type="text"] {
-          width: 100%;
-          padding: 12px 20px;
-          border: 1px solid #ccc;
-          border-radius: 7px;
-          box-sizing: border-box;
-
-          &:focus {
-            outline: none;
-            border: 1px solid #ddd;
-          }
-        }
-
         [filtro] {
           display: flex;
           justify-content: space-between;
@@ -69,14 +56,37 @@
         }
       }
 
-      ::ng-deep {
-        .mat-elevation-z8 {
-          box-shadow: none;
-        }
-      }
+      table {
+        width: 100%;
+        table-layout: fixed;
 
-      .align-bottom {
-        vertical-align: bottom;
+        th,
+        td {
+          text-align: left;
+          vertical-align: middle;
+          border: 1px solid #e0e0e0;
+        }
+
+        th {
+          background-color: #f7f7f7;
+          padding: 15px;
+        }
+
+        td {
+          color: #708090;
+          padding: 8px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+        tr {
+          transition: transform 0.3s, box-shadow 0.3s;
+          cursor: pointer;
+        }
+
+        tr:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
       }
     }
   }
@@ -101,6 +111,10 @@
             padding: 4px 4px;
             font-size: 14px;
             min-width: 100px;
+          }
+
+          [space] {
+            margin: 20;
           }
         }
 

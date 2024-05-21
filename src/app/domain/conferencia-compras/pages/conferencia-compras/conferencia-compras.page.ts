@@ -1,12 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import {
-  Component,
-  LOCALE_ID,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -49,34 +43,12 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ConferenciaComprasPage implements OnInit, OnDestroy {
-  constructor(
-    private comprasService: ConferenciaComprasService,
-    private painelService: PainelControleService,
-    private listFiltroDespesa: ListFiltroDespesa
-  ) {}
-
-  ngOnInit(): void {
-    this.getListDespesasAllGrupos();
-    this.tempoParaFiltrar();
-  }
-
+export class ConferenciaComprasPage implements OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
 
   categorias: Categoria[] = [];
-
-  displayedColumns: string[] = [
-    'grupoDespesa',
-    'item',
-    'categoria',
-    'fornecedor',
-    'preco',
-    'quantidade',
-    'total',
-    'dataCompra',
-  ];
 
   despesasFiltradas: Despesa[];
   filtro: string = '';
@@ -90,6 +62,15 @@ export class ConferenciaComprasPage implements OnInit, OnDestroy {
     paginaAtual: 1,
     itensPorPagina: this.tamanhosDePagina[1],
   };
+
+  constructor(
+    private comprasService: ConferenciaComprasService,
+    private painelService: PainelControleService,
+    private listFiltroDespesa: ListFiltroDespesa
+  ) {
+    this.getListDespesasAllGrupos();
+    this.tempoParaFiltrar();
+  }
 
   ngOnDestroy() {
     this.tempoParaAplicarFiltroPorItem.unsubscribe();

@@ -1,4 +1,4 @@
-<div despesa-list-all-group>
+<div despesa-list-all-group table-custom input-select-custom>
   <div class="card">
     <div class="card-header">
       <div filtro>
@@ -38,79 +38,39 @@
         </div>
       </div>
     </div>
-    <mat-table [dataSource]="despesasFiltradas" class="mat-elevation-z8">
-      <!-- Grupo de Fatura Column -->
-      <ng-container matColumnDef="grupoDespesa">
-        <mat-header-cell *matHeaderCellDef> Grupo de Fatura </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.grupoDespesa.nome }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Item Column -->
-      <ng-container matColumnDef="item">
-        <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
-        <mat-cell *matCellDef="let despesa"> {{ despesa.item }} </mat-cell>
-      </ng-container>
-
-      <!-- Categoria Column -->
-      <ng-container matColumnDef="categoria">
-        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.categoria.descricao }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Fornecedor Column -->
-      <ng-container matColumnDef="fornecedor">
-        <mat-header-cell *matHeaderCellDef> Fornecedor </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.fornecedor }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Preço Column -->
-      <ng-container matColumnDef="preco">
-        <mat-header-cell *matHeaderCellDef> Preço </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.preco | currency : "BRL" }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Quantidade Column -->
-      <ng-container matColumnDef="quantidade">
-        <mat-header-cell *matHeaderCellDef> Quantidade </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.quantidade }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Total Column -->
-      <ng-container matColumnDef="total">
-        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.total | currency : "BRL" }}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Data da Compra Column -->
-      <ng-container matColumnDef="dataCompra">
-        <mat-header-cell *matHeaderCellDef> Data da compra </mat-header-cell>
-        <mat-cell *matCellDef="let despesa">
-          {{ despesa.dataCompra }}
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
-    <!-- Footer for no data -->
-    <ng-container *ngIf="despesasFiltradas?.length === 0">
-      <div style="text-align: center; padding: 20px">
-        <h2>Nenhuma despesa encontrada</h2>
-      </div>
-    </ng-container>
+    <table>
+      <thead>
+        <tr>
+          <th>Grupo de Despesa</th>
+          <th>Item</th>
+          <th>Categoria</th>
+          <th>Fornecedor</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Total</th>
+          <th>Data da compra</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let despesa of despesasFiltradas">
+          <td>{{ despesa.grupoDespesa.nome }}</td>
+          <td>{{ despesa.item }}</td>
+          <td>{{ despesa.categoria.descricao }}</td>
+          <td>{{ despesa.fornecedor }}</td>
+          <td>{{ despesa.preco | currency : "BRL" }}</td>
+          <td>{{ despesa.quantidade }}</td>
+          <td>{{ despesa.total | currency : "BRL" }}</td>
+          <td>{{ despesa.dataCompra }}</td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="despesasFiltradas?.length == 0">
+        <tr>
+          <td colspan="8">
+            <h2>Nenhuma despesa encontrada</h2>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
 
     <div pagination>
       <mat-paginator

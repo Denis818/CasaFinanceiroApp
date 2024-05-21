@@ -22,6 +22,7 @@ import { HomeService } from 'src/app/core/services/home/home-service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
+import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { TableEditManipulation } from '../helper/table-edit-manipulation';
@@ -66,11 +67,7 @@ export class ListDespesasComponent implements OnDestroy {
   despesasFiltradas: Despesa[];
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
-  tiposFiltro = [
-    { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
-    { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
-    { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
-  ];
+  listTipoFiltro = this.listFiltroDespesa.listTipoFiltro;
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -84,7 +81,8 @@ export class ListDespesasComponent implements OnDestroy {
     private toastr: ToastrService,
     private dialog: MatDialog,
     private homeService: HomeService,
-    protected tableEditManipulation: TableEditManipulation
+    protected tableEditManipulation: TableEditManipulation,
+    private listFiltroDespesa: ListFiltroDespesa
   ) {
     this.reloadDespesas();
     this.tempoParaFiltrar();
@@ -176,7 +174,7 @@ export class ListDespesasComponent implements OnDestroy {
     if (!this.isDespesaEditing) {
       this.isDespesaEditing = true;
       despesa.isDespesaEditing = !despesa.isDespesaEditing;
-      
+
       this.despesaAtual = JSON.parse(JSON.stringify(despesa));
 
       this.getAllCategorias();

@@ -13,19 +13,6 @@
         align-items: center;
         margin-bottom: 10px;
 
-        & input[type="text"] {
-          width: 100%;
-          padding: 12px 20px;
-          border: 1px solid #ccc;
-          border-radius: 7px;
-          box-sizing: border-box;
-
-          &:focus {
-            outline: none;
-            border: 1px solid #ddd;
-          }
-        }
-
         [filtro] {
           display: flex;
           justify-content: space-between;
