@@ -53,7 +53,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let despesa of despesasFiltradas">
-          <td>{{ despesa.grupoDespesa.nome }}</td>
+          <td>{{ removerPrefixoFatura(despesa.grupoDespesa.nome) }}</td>
           <td>{{ despesa.item }}</td>
           <td>{{ despesa.categoria.descricao }}</td>
           <td>{{ despesa.fornecedor }}</td>

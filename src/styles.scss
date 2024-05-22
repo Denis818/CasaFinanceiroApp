@@ -91,6 +91,10 @@
         transform: translateY(-3px);
       }
     }
+
+    tr {
+      cursor: pointer;
+    }
   }
 
   //desablitar opções de edit e delete das tables

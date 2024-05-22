@@ -62,30 +62,29 @@
 
         th,
         td {
-          text-align: left;
+          text-align: center;
           vertical-align: middle;
           border: 1px solid #e0e0e0;
         }
 
         th {
           background-color: #f7f7f7;
-          padding: 15px;
+          padding: 12px;
         }
 
         td {
           color: #708090;
-          padding: 8px;
+          padding: 7px;
           font-size: 14px;
-          white-space: nowrap;
         }
+
         tr {
-          transition: transform 0.3s, box-shadow 0.3s;
-          cursor: pointer;
+          transition: transform 0.6s, box-shadow 0.6s;
         }
 
         tr:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+          transform: translateY(-0.1px);
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.110);
         }
       }
     }

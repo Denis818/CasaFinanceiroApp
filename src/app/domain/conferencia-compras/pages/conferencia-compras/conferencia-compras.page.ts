@@ -132,4 +132,12 @@ export class ConferenciaComprasPage implements OnDestroy {
     this.getListDespesasAllGrupos();
   }
   //#endregion
+
+  removerPrefixoFatura(nome: string): string {
+    const prefixo = 'Fatura de ';
+    if (nome.startsWith(prefixo)) {
+      return nome.slice(prefixo.length);
+    }
+    return nome;
+  }
 }
