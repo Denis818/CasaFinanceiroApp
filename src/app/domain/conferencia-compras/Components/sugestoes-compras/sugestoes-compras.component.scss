@@ -1,5 +1,5 @@
 :host {
-  [dashboard] {
+  [sugestoes-compras] {
     width: 100%;
     margin-right: 30px;
 
@@ -19,10 +19,12 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         transition: box-shadow 0.4s ease-in-out;
+        margin-top: 10px;
 
         &:hover {
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
         }
+
         .card-head {
           background-color: #673ab7;
           color: white;
@@ -37,26 +39,6 @@
             text-align: start;
           }
 
-          [download-button] {
-            background-color: #fff;
-            color: #673ab7;
-            padding: 5px 5px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            transition-duration: 0.4s;
-            white-space: nowrap;
-          }
-
-          [download-button]:hover {
-            background-color: #ffffffc4;
-            box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1),
-              0 17px 50px 0 rgba(0, 0, 0, 0.1);
-          }
-
           mat-icon.icon-help {
             color: #fff;
           }
@@ -66,6 +48,8 @@
           flex-grow: 1;
           border: 1px solid #ccc;
           border-radius: 0px 0px 8px 8px;
+          overflow-y: auto;
+          max-height: 320px;
 
           .expense-item {
             position: relative;
@@ -96,62 +80,27 @@
               font-size: 18px;
               font-weight: bold;
               color: #673ab7;
-
-              &.no-button-whats {
-                right: 0px;
-              }
-            }
-
-            [share-whatsapp] {
-              position: absolute;
-              bottom: 0;
-              right: 0;
-              background-color: #673ab7;
-              padding: 10px 4px;
-              border-radius: 0px 8px 8px 0px;
-              color: white;
-              cursor: pointer;
-              display: flex;
-              align-items: center;
-
-              & mat-icon {
-                margin-right: 8px;
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
-              }
             }
           }
 
-          table {
-            width: 100%;
+          &::-webkit-scrollbar {
+            width: 8px;
+            border-radius: 10px;
+            background-color: #f1f1f1;
+          }
 
-            th,
-            td {
-              text-align: left;
-              padding: 12px;
-              border-bottom: 1px solid #e0e0e0;
-              border-right: 1px solid #e0e0e0;
-            }
+          &::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: #f1f1f1;
+          }
 
-            th:last-child,
-            td:last-child {
-              border-right: none;
-            }
+          &::-webkit-scrollbar-thumb {
+            background-color: #683ab7d3;
+            border-radius: 10px;
+          }
 
-            th {
-              background-color: #f7f7f7;
-            }
-
-            td {
-              color: #708090;
-            }
-
-            tfoot td {
-              text-align: center;
-              padding-top: 20px;
-              border: none;
-            }
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #5c2ca3;
           }
         }
       }

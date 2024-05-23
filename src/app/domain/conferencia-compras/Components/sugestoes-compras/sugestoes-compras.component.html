@@ -1,0 +1,30 @@
+<div sugestoes-compras>
+  <div card-container>
+    <div class="card">
+      <div class="card-head">
+        <div card-title>Sugestões de Economia</div>
+        <mat-icon
+          class="icon-help"
+          matTooltip="Indica formas de economizar em compras, sugerindo alternativas mais baratas baseadas em gastos anteriores."
+          matTooltipPosition="right"
+          >help_outline</mat-icon
+        >
+      </div>
+      <div class="card-body">
+        <ng-container *ngFor="let sugestao of sugestoesDeCompras">
+          <div class="expense-item">
+            <div class="expense-title">{{ sugestao }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+      <button
+      id="scrollToggle"
+      class="scroll-toggle-button"
+      (click)="toggleScroll()"
+    >
+      <mat-icon>{{ scrollIcon }}</mat-icon>
+    </button>
+  </div>
+</div>

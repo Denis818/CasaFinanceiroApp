@@ -26,12 +26,19 @@ export class ConferenciaComprasService extends BaseService {
       .set('filter', filterItem)
       .set('tipoFiltro', tipoFilter);
 
-      console.log('disparando')
+    console.log('disparando');
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
       `${this.url}/despesa/todos-grupos`,
       null,
       params
+    ).pipe(map((response) => response.dados));
+  }
+
+  public getSugestoesDeOtimizacaoDeDespesas(): Observable<string[]> {
+    return this.sendHttpRequest<ApiResponse<string[]>>(
+      'GET',
+      `${this.url}/despesa/sugerir-otimizacao`
     ).pipe(map((response) => response.dados));
   }
 }
