@@ -8,6 +8,7 @@ import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
+import { SugestaoEconomiaDespesa } from '../interfaces/sugestao-economia-despesa';
 
 @Injectable({ providedIn: 'root' })
 export class ConferenciaComprasService extends BaseService {
@@ -35,8 +36,10 @@ export class ConferenciaComprasService extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
-  public getSugestoesDeOtimizacaoDeDespesas(): Observable<string[]> {
-    return this.sendHttpRequest<ApiResponse<string[]>>(
+  public getSugestoesDeOtimizacaoDeDespesas(): Observable<
+    SugestaoEconomiaDespesa[]
+  > {
+    return this.sendHttpRequest<ApiResponse<SugestaoEconomiaDespesa[]>>(
       'GET',
       `${this.url}/despesa/sugerir-otimizacao`
     ).pipe(map((response) => response.dados));

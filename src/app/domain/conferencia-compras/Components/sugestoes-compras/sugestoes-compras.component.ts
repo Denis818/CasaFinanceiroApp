@@ -1,9 +1,10 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SugestaoEconomiaDespesa } from '../../interfaces/sugestao-economia-despesa';
 import { ConferenciaComprasService } from '../../services/conferencia-compras.service';
 
 registerLocaleData(localePt);
@@ -15,20 +16,27 @@ registerLocaleData(localePt);
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   imports: [CommonModule, MatButtonModule, MatIconModule, MatTooltipModule],
 })
-export class SugestoesComprasComponent implements OnInit {
-  sugestoesDeCompras: string[] = [];
+export class SugestoesComprasComponent {
+  sugestaoEconomiaDespesa: SugestaoEconomiaDespesa[] = [];
   scrollIcon = 'expand_more';
 
   constructor(private comprasService: ConferenciaComprasService) {
     this.getSugestoesDeOtimizacaoDeDespesas();
   }
-
-  ngOnInit() {}
-
   getSugestoesDeOtimizacaoDeDespesas() {
     this.comprasService
       .getSugestoesDeOtimizacaoDeDespesas()
-      .subscribe((sugestoes) => (this.sugestoesDeCompras = sugestoes));
+      .subscribe((sugestoes) => {
+        this.sugestaoEconomiaDespesa = sugestoes.map((s) => ({
+          ...s,
+          expanded: false,
+        }));
+      });
+  }
+
+  toggleDetail(index: number) {
+    this.sugestaoEconomiaDespesa[index].expanded =
+      !this.sugestaoEconomiaDespesa[index].expanded;
   }
 
   toggleScroll(): void {
@@ -38,5 +46,13 @@ export class SugestoesComprasComponent implements OnInit {
       behavior: 'smooth',
     });
     this.scrollIcon = isScrollingDown ? 'expand_less' : 'expand_more';
+  }
+
+  removerPrefixoFatura(nome: string): string {
+    const prefixo = 'Fatura de ';
+    if (nome.startsWith(prefixo)) {
+      return nome.slice(prefixo.length);
+    }
+    return nome;
   }
 }

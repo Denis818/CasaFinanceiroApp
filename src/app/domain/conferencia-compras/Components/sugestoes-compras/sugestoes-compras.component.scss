@@ -1,7 +1,6 @@
 :host {
   [sugestoes-compras] {
     width: 100%;
-    margin-right: 30px;
 
     [card-container] {
       display: flex;
@@ -59,27 +58,50 @@
             margin: 10px;
             padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #708090 !important;
+            flex-direction: column;
+            align-items: start;
+            color: #708090;
+            cursor: pointer;
             transition: box-shadow 0.2s ease-in-out;
 
-            &:hover {
-              box-shadow: 1px 0 10px -6px rgba(0, 0, 0, 0.75);
-            }
-
             .expense-title {
-              font-size: 14px;
+              width: 100%;
+              font-size: 16px;
               color: #708090;
               text-align: start;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              cursor: pointer;
+              transition: box-shadow 0.2s ease-in-out;
             }
 
-            .expense-value {
-              position: relative;
-              right: 20%;
-              font-size: 18px;
-              font-weight: bold;
-              color: #673ab7;
+            .expense-details {
+              width: 100%;
+              overflow-x: auto;
+
+              table {
+                width: 100%;
+                table-layout: fixed;
+                transition: box-shadow 0.2s ease-in-out;
+
+                th,
+                td {
+                  text-align: center;
+                  vertical-align: middle;
+                  border: 1px solid #e0e0e0;
+                }
+
+                th {
+                  background-color: #f7f7f7;
+                  padding: 5px;
+                }
+
+                td {
+                  padding: 5px;
+                  font-size: 14px;
+                }
+              }
             }
           }
 
@@ -143,6 +165,7 @@
               .expense-value {
                 right: 38%;
               }
+              width: 200%;
             }
           }
         }

@@ -65,7 +65,7 @@
       }
     }
 
-    .selected-group-hiden{
+    .selected-group-hiden {
       display: none;
     }
   }
@@ -174,9 +174,8 @@
 
     .content-app {
       transition: margin-left 0.5s, width 0.5s;
-      margin-left: 50px;
-      padding: 56px 8px 56px 8px;
-      width: calc(100% - 50px);
+      padding: 56px 6px 56px 56px;
+      width: 100%;
       box-sizing: border-box;
       overflow-x: auto;
     }
@@ -220,6 +219,7 @@
         flex-shrink: 0;
         margin: 0px;
         width: 100%;
+        padding: 56px 5px 56px 5px;
       }
     }
 

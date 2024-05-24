@@ -11,15 +11,65 @@
         >
       </div>
       <div class="card-body">
-        <ng-container *ngFor="let sugestao of sugestoesDeCompras">
-          <div class="expense-item">
-            <div class="expense-title">{{ sugestao }}</div>
+        <ng-container
+          *ngFor="let sugestao of sugestaoEconomiaDespesa; let i = index"
+        >
+          <div class="expense-item" (click)="toggleDetail(i)">
+            <div class="expense-title">
+              <div>{{ sugestao.sugestaoDeFornecedor }}</div>
+              <div class="icone">
+                <mat-icon>{{
+                  sugestaoEconomiaDespesa[i].expanded
+                    ? "expand_less"
+                    : "expand_more"
+                }}</mat-icon>
+              </div>
+            </div>
+
+            <div
+              *ngIf="sugestaoEconomiaDespesa[i].expanded"
+              class="expense-details"
+            >
+              <table>
+                <thead>
+                  <tr>
+                    <th>Grupo</th>
+                    <th>Item</th>
+                    <th>Categoria</th>
+                    <th>Fornecedor</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let despesa of sugestao.itensDesteFornecedor">
+                    <td>
+                      {{ removerPrefixoFatura(despesa.grupoDespesa.nome) }}
+                    </td>
+                    <td>{{ despesa.item }}</td>
+                    <td>{{ despesa.categoria.descricao }}</td>
+                    <td>{{ despesa.fornecedor }}</td>
+                    <td>{{ despesa.preco | currency : "BRL" }}</td>
+                    <td>{{ despesa.quantidade }}</td>
+                    <td>{{ despesa.total | currency : "BRL" }}</td>
+                  </tr>
+                </tbody>
+                <tfoot *ngIf="sugestao.itensDesteFornecedor?.length === 0">
+                  <tr>
+                    <td colspan="5">
+                      Nenhuma despesa encontrada para esse fornecedor
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </ng-container>
       </div>
     </div>
 
-      <button
+    <button
       id="scrollToggle"
       class="scroll-toggle-button"
       (click)="toggleScroll()"

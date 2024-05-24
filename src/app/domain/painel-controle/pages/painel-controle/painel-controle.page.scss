@@ -1,9 +1,7 @@
 :host {
   [painel-controle] {
-    margin-right: 30px;
-
+    width: 100%;
     [options-header] {
-      width: 100%;
       flex-wrap: wrap;
       display: flex;
       justify-content: space-between;
