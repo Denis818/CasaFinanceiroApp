@@ -2,7 +2,7 @@
   <div card-container>
     <div class="card">
       <div class="card-head">
-        <div card-title>Sugestões de Economia</div>
+        <div card-title>Média de gastos por Fornecedor</div>
         <mat-icon
           class="icon-help"
           matTooltip="Indica formas de economizar em compras, sugerindo alternativas mais baratas baseadas em gastos anteriores."
@@ -12,22 +12,25 @@
       </div>
       <div class="card-body">
         <ng-container
-          *ngFor="let sugestao of sugestaoEconomiaDespesa; let i = index"
+          *ngFor="let mediaFornecedor of mediasPorFornecedor; let i = index"
         >
-          <div class="expense-item" (click)="toggleDetail(i)">
-            <div class="expense-title">
-              <div>{{ sugestao.sugestaoDeFornecedor }}</div>
+          <div class="expense-item">
+            <div class="expense-title" (click)="toggleDetail(i)">
+              <div>{{ mediaFornecedor.mediaDeFornecedor }}</div>
               <div class="icone">
-                <mat-icon>{{
-                  sugestaoEconomiaDespesa[i].expanded
-                    ? "expand_less"
-                    : "expand_more"
-                }}</mat-icon>
+                <mat-icon>
+                  {{
+                    mediasPorFornecedor[i].expanded
+                      ? "expand_less"
+                      : "expand_more"
+                  }}
+                </mat-icon>
               </div>
             </div>
-
             <div
-              *ngIf="sugestaoEconomiaDespesa[i].expanded"
+              [@slideDown]="
+                mediasPorFornecedor[i].expanded ? 'expanded' : 'collapsed'
+              "
               class="expense-details"
             >
               <table>
@@ -43,7 +46,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let despesa of sugestao.itensDesteFornecedor">
+                  <tr
+                    *ngFor="
+                      let despesa of mediaFornecedor.itensDesteFornecedor.itens
+                    "
+                  >
                     <td>
                       {{ removerPrefixoFatura(despesa.grupoDespesa.nome) }}
                     </td>
@@ -55,7 +62,11 @@
                     <td>{{ despesa.total | currency : "BRL" }}</td>
                   </tr>
                 </tbody>
-                <tfoot *ngIf="sugestao.itensDesteFornecedor?.length === 0">
+                <tfoot
+                  *ngIf="
+                    mediaFornecedor.itensDesteFornecedor.itens?.length === 0
+                  "
+                >
                   <tr>
                     <td colspan="5">
                       Nenhuma despesa encontrada para esse fornecedor
@@ -63,12 +74,23 @@
                   </tr>
                 </tfoot>
               </table>
+              <div pagination>
+                <mat-paginator
+                  #paginator
+                  class="demo-paginator"
+                  (page)="mudarPagina($event, mediaFornecedor)"
+                  [length]="mediaFornecedor.page.totalItens"
+                  [pageSize]="mediaFornecedor.page.itensPorPagina"
+                  [pageSizeOptions]="tamanhosDePagina"
+                  aria-label="Select page"
+                >
+                </mat-paginator>
+              </div>
             </div>
           </div>
         </ng-container>
       </div>
     </div>
-
     <button
       id="scrollToggle"
       class="scroll-toggle-button"

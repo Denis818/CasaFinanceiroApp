@@ -20,7 +20,7 @@ import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-import { SugestoesComprasComponent } from '../../Components/sugestoes-compras/sugestoes-compras.component';
+import { DespesasPorFornecedorComponent } from '../../Components/media-por-fornecedor/media-por-fornecedor.component';
 import { ConferenciaComprasService } from '../../services/conferencia-compras.service';
 
 registerLocaleData(localePt);
@@ -38,7 +38,7 @@ registerLocaleData(localePt);
     MatTableModule,
     MatInputModule,
     MatSelectModule,
-    SugestoesComprasComponent,
+    DespesasPorFornecedorComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },

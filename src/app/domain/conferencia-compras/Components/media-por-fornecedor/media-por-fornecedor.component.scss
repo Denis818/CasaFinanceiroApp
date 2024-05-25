@@ -78,7 +78,7 @@
 
             .expense-details {
               width: 100%;
-              overflow-x: auto;
+
 
               table {
                 width: 100%;
@@ -100,6 +100,7 @@
                 td {
                   padding: 5px;
                   font-size: 14px;
+                  word-break: break-word;
                 }
               }
             }

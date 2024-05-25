@@ -8,7 +8,7 @@ import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
-import { SugestaoEconomiaDespesa } from '../interfaces/sugestao-economia-despesa';
+import { MediaPorFornecedor } from '../interfaces/media-por-fornecedor.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ConferenciaComprasService extends BaseService {
@@ -36,12 +36,19 @@ export class ConferenciaComprasService extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
-  public getSugestoesDeOtimizacaoDeDespesas(): Observable<
-    SugestaoEconomiaDespesa[]
-  > {
-    return this.sendHttpRequest<ApiResponse<SugestaoEconomiaDespesa[]>>(
+  public getSugestoesDeOtimizacaoDeDespesas(
+    paginaAtual: number,
+    itensPorPagina: number
+  ): Observable<MediaPorFornecedor[]> {
+    const params = new HttpParams()
+      .set('paginaAtual', paginaAtual.toString())
+      .set('itensPorPagina', itensPorPagina.toString());
+
+    return this.sendHttpRequest<ApiResponse<MediaPorFornecedor[]>>(
       'GET',
-      `${this.url}/despesa/sugerir-otimizacao`
+      `${this.url}/despesa/sugerir-otimizacao`,
+      null,
+      params
     ).pipe(map((response) => response.dados));
   }
 }
