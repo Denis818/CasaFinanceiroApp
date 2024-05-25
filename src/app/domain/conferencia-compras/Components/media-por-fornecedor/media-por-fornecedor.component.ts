@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -16,6 +16,8 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Subscription } from 'rxjs';
+import { HomeService } from 'src/app/core/services/home/home-service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { MediaPorFornecedor } from '../../interfaces/media-por-fornecedor.interface';
 import { ConferenciaComprasService } from '../../services/conferencia-compras.service';
@@ -59,14 +61,27 @@ export const slideDownAnimation = trigger('slideDown', [
     MatPaginatorModule,
   ],
 })
-export class DespesasPorFornecedorComponent {
+export class DespesasPorFornecedorComponent implements OnDestroy {
+  private reloadPageSubscriber: Subscription;
+
   mediasPorFornecedor: MediaPorFornecedor[] = [];
   scrollIcon = 'expand_more';
   tamanhosDePagina: number[] = [5, 10, 50, 100];
 
-  constructor(private comprasService: ConferenciaComprasService) {
-    this.getSugestoesDeOtimizacaoDeDespesas();
+  constructor(
+    private comprasService: ConferenciaComprasService,
+    private homeService: HomeService
+  ) {
+    this.reloadDespesas();
   }
+
+  ngOnDestroy() {
+    if (this.reloadPageSubscriber) {
+      this.reloadPageSubscriber.unsubscribe();
+    }
+  }
+
+  //#region Get
   getSugestoesDeOtimizacaoDeDespesas() {
     this.comprasService
       .getSugestoesDeOtimizacaoDeDespesas(1, this.tamanhosDePagina[0])
@@ -82,6 +97,19 @@ export class DespesasPorFornecedorComponent {
       });
   }
 
+  reloadDespesas() {
+    this.reloadPageSubscriber =
+      this.homeService.reloadPageWithNewGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.getSugestoesDeOtimizacaoDeDespesas();
+          }
+        },
+      });
+  }
+  //#endregion
+
+  //#region Paginação
   mudarPagina(event: PageEvent, sugestao: MediaPorFornecedor): void {
     sugestao.page.paginaAtual = event.pageIndex + 1;
     sugestao.page.itensPorPagina = event.pageSize;
@@ -105,14 +133,12 @@ export class DespesasPorFornecedorComponent {
         }
       });
   }
+  //#endregion
 
-  teste: boolean;
-
+  //#region Metodos de suporte
   toggleDetail(index: number) {
     this.mediasPorFornecedor[index].expanded =
       !this.mediasPorFornecedor[index].expanded;
-
-    this.teste = this.mediasPorFornecedor[index].expanded;
   }
 
   toggleScroll(): void {
@@ -131,4 +157,5 @@ export class DespesasPorFornecedorComponent {
     }
     return nome;
   }
+  //#endregion
 }

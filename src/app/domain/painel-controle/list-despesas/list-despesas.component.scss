@@ -6,6 +6,13 @@
       padding: 15px;
       box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
 
+      [card-title] {
+        font-size: 20px;
+        text-align: start;
+        color: #708090;
+        padding-bottom: 20px;
+      }
+
       .card-header {
         display: flex;
         justify-content: space-between;
