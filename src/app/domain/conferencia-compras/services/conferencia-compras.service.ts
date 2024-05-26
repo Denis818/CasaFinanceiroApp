@@ -9,11 +9,13 @@ import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../../painel-controle/interfaces/despesa.interface';
 import { MediaPorFornecedor } from '../interfaces/media-por-fornecedor.interface';
+import { SugestaoEconomia } from '../interfaces/sugestao-economia.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ConferenciaComprasService extends BaseService {
   public readonly router = inject(Router);
   public url: string = `${environment.base_url_financy}`;
+  private fornecedores: string[] = [];
 
   public getListDespesasAllGrupos(
     filterItem: string,
@@ -27,7 +29,6 @@ export class ConferenciaComprasService extends BaseService {
       .set('filter', filterItem)
       .set('tipoFiltro', tipoFilter);
 
-    console.log('disparando');
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
       `${this.url}/despesa/todos-grupos`,
@@ -36,7 +37,7 @@ export class ConferenciaComprasService extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
-  public getSugestoesDeOtimizacaoDeDespesas(
+  public mediaDespesasPorFornecedor(
     paginaAtual: number,
     itensPorPagina: number
   ): Observable<MediaPorFornecedor[]> {
@@ -46,9 +47,16 @@ export class ConferenciaComprasService extends BaseService {
 
     return this.sendHttpRequest<ApiResponse<MediaPorFornecedor[]>>(
       'GET',
-      `${this.url}/despesa/sugerir-otimizacao`,
+      `${this.url}/despesa/media-por-fornecedor`,
       null,
       params
+    ).pipe(map((response) => response.dados));
+  }
+
+  getGraficoSugestoesEconomia(): Observable<SugestaoEconomia[]> {
+    return this.sendHttpRequest<ApiResponse<SugestaoEconomia[]>>(
+      'GET',
+      `${this.url}/despesa/sugestoes-economia`
     ).pipe(map((response) => response.dados));
   }
 }

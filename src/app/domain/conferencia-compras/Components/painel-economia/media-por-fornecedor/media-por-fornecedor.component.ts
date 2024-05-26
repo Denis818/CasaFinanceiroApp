@@ -19,10 +19,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { HomeService } from 'src/app/core/services/home/home-service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { MediaPorFornecedor } from '../../interfaces/media-por-fornecedor.interface';
-import { ConferenciaComprasService } from '../../services/conferencia-compras.service';
-
-registerLocaleData(localePt);
+import { MediaPorFornecedor } from '../../../interfaces/media-por-fornecedor.interface';
+import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
 
 export const slideDownAnimation = trigger('slideDown', [
   state(
@@ -43,10 +41,14 @@ export const slideDownAnimation = trigger('slideDown', [
   transition('collapsed <=> expanded', [animate('300ms ease-in-out')]),
 ]);
 
+registerLocaleData(localePt);
 @Component({
   selector: 'media-por-fornecedor',
   templateUrl: './media-por-fornecedor.component.html',
-  styleUrls: ['./media-por-fornecedor.component.scss'],
+  styleUrls: [
+    './media-por-fornecedor.component.scss',
+    '../painel-economia.component.scss',
+  ],
   animations: [slideDownAnimation],
   standalone: true,
   providers: [
@@ -65,8 +67,8 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   mediasPorFornecedor: MediaPorFornecedor[] = [];
-  scrollIcon = 'expand_more';
-  tamanhosDePagina: number[] = [5, 10, 50, 100];
+
+  tamanhosDePagina: number[] = [5, 10, 50];
 
   constructor(
     private comprasService: ConferenciaComprasService,
@@ -82,9 +84,9 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
   }
 
   //#region Get
-  getSugestoesDeOtimizacaoDeDespesas() {
+  mediaDespesasPorFornecedor() {
     this.comprasService
-      .getSugestoesDeOtimizacaoDeDespesas(1, this.tamanhosDePagina[0])
+      .mediaDespesasPorFornecedor(1, this.tamanhosDePagina[0])
       .subscribe((sugestoesDespesas) => {
         this.mediasPorFornecedor = sugestoesDespesas.map((sugestao) => ({
           ...sugestao,
@@ -102,7 +104,7 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
       this.homeService.reloadPageWithNewGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.getSugestoesDeOtimizacaoDeDespesas();
+            this.mediaDespesasPorFornecedor();
           }
         },
       });
@@ -118,7 +120,7 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
 
   atualizarItensSugestao(sugestao: MediaPorFornecedor) {
     this.comprasService
-      .getSugestoesDeOtimizacaoDeDespesas(
+      .mediaDespesasPorFornecedor(
         sugestao.page.paginaAtual,
         sugestao.page.itensPorPagina
       )
@@ -139,15 +141,6 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
   toggleDetail(index: number) {
     this.mediasPorFornecedor[index].expanded =
       !this.mediasPorFornecedor[index].expanded;
-  }
-
-  toggleScroll(): void {
-    const isScrollingDown = this.scrollIcon === 'expand_more';
-    window.scrollTo({
-      top: isScrollingDown ? document.body.scrollHeight : 0,
-      behavior: 'smooth',
-    });
-    this.scrollIcon = isScrollingDown ? 'expand_less' : 'expand_more';
   }
 
   removerPrefixoFatura(nome: string): string {

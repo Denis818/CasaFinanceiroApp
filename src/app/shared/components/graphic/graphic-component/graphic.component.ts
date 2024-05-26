@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, ChartType, registerables } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { GraphicConfiguration } from '../interfaces/graphic-configuration.interface';
 import { GraphicMobile } from '../interfaces/graphic-mobile.interface';
@@ -18,6 +18,10 @@ export class GraphicComponent implements OnChanges {
   @Input() graphicConfig: GraphicConfiguration;
   @Input() graphicMobile: GraphicMobile;
 
+  @Input() width: number = 1000;
+  @Input() height: number = 1000;
+  @Input() graphicType: ChartType = 'bar';
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['graphicConfig']) {
       const config: GraphicConfiguration =
@@ -26,11 +30,6 @@ export class GraphicComponent implements OnChanges {
       if (config == null) {
         this.graphicConfig = {
           chartData: { datasets: [], labels: [] },
-          graphicStyle: {
-            graphicType: 'line',
-            width: 700,
-            height: 400,
-          },
           chartOptions: {
             responsive: true,
             plugins: {
@@ -47,12 +46,12 @@ export class GraphicComponent implements OnChanges {
   }
 
   adjustGraphicForMobile() {
-    if (window.innerWidth < 768) {
-      this.graphicConfig.graphicStyle.graphicType =
+    if (this.graphicMobile && window.innerWidth < 768) {
+      /* this.graphicConfig.graphicStyle.graphicType =
         this.graphicMobile.graphicType;
 
       this.graphicConfig.graphicStyle.width = this.graphicMobile.width;
-      this.graphicConfig.graphicStyle.height = this.graphicMobile.height;
+      this.graphicConfig.graphicStyle.height = this.graphicMobile.height; */
     }
   }
 }

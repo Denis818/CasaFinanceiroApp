@@ -1,0 +1,83 @@
+<div class="card-head">
+  <div card-title>Média de gastos por Fornecedor</div>
+  <mat-icon
+    class="icon-help"
+    matTooltip="Apresenta a média de gastos de cada fornecedor, e seus respectiveis itens. (Por grupo de fatura) "
+    matTooltipPosition="right"
+    >help_outline</mat-icon
+  >
+</div>
+<div class="card-body">
+  <ng-container
+    *ngFor="let mediaFornecedor of mediasPorFornecedor; let i = index"
+  >
+    <div class="expense-item">
+      <div class="expense-title" (click)="toggleDetail(i)">
+        <div>{{ mediaFornecedor.mediaDeFornecedor }}</div>
+        <div class="icone">
+          <mat-icon>
+            {{
+              mediasPorFornecedor[i].expanded ? "expand_less" : "expand_more"
+            }}
+          </mat-icon>
+        </div>
+      </div>
+      <div
+        [@slideDown]="
+          mediasPorFornecedor[i].expanded ? 'expanded' : 'collapsed'
+        "
+        class="expense-details"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>Grupo de Fatura</th>
+              <th>Item</th>
+              <th>Categoria</th>
+              <th>Fornecedor</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let despesa of mediaFornecedor.itensDesteFornecedor.itens"
+            >
+              <td>
+                {{ removerPrefixoFatura(despesa.grupoDespesa.nome) }}
+              </td>
+              <td>{{ despesa.item }}</td>
+              <td>{{ despesa.categoria.descricao }}</td>
+              <td>{{ despesa.fornecedor }}</td>
+              <td>{{ despesa.preco | currency : "BRL" }}</td>
+              <td>{{ despesa.quantidade }}</td>
+              <td>{{ despesa.total | currency : "BRL" }}</td>
+            </tr>
+          </tbody>
+          <tfoot
+            *ngIf="mediaFornecedor.itensDesteFornecedor.itens?.length === 0"
+          >
+            <tr>
+              <td colspan="5">
+                Nenhuma despesa encontrada para esse fornecedor
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <div pagination>
+          <mat-paginator
+            #paginator
+            class="demo-paginator"
+            (page)="mudarPagina($event, mediaFornecedor)"
+            [length]="mediaFornecedor.page.totalItens"
+            [pageSize]="mediaFornecedor.page.itensPorPagina"
+            [pageSizeOptions]="tamanhosDePagina"
+            aria-label="Select page"
+          >
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

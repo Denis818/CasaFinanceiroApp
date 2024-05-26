@@ -1,0 +1,18 @@
+<div class="card-head">
+  <div card-title>Comparativo de Preços por Fornecedor</div>
+  <mat-icon
+    class="icon-help"
+    matTooltip="Veja aqui qual fornecedor tem o menor preço para cada produto
+          e quanto você pode economizar escolhendo o mais barato."
+    matTooltipPosition="right"
+    >help_outline</mat-icon
+  >
+</div>
+<div class="card-body">
+  <app-graphic
+    [graphicConfig]="graphicConfig"
+    [graphicType]="'bar'"
+    [width]="800"
+    [height]="300"
+  ></app-graphic>
+</div>

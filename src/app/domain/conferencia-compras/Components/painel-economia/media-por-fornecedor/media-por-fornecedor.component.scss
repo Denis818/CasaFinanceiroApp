@@ -1,0 +1,87 @@
+:host {
+  .expense-item {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    color: #708090;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+
+    .expense-title {
+      width: 100%;
+      font-size: 16px;
+      color: #708090;
+      text-align: start;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s ease-in-out;
+    }
+
+    .expense-details {
+      width: 100%;
+
+      table {
+        width: 100%;
+        table-layout: fixed;
+        transition: box-shadow 0.2s ease-in-out;
+
+        th,
+        td {
+          text-align: center;
+          vertical-align: middle;
+          border: 1px solid #e0e0e0;
+        }
+
+        th {
+          background-color: #f7f7f7;
+          padding: 5px;
+        }
+
+        td {
+          padding: 5px;
+          font-size: 14px;
+          word-break: break-word;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    [card-container] {
+      .card {
+        flex: 1 1 100%;
+
+        .card-head {
+          [download-button]:hover {
+            background-color: #fff;
+            box-shadow: none;
+          }
+
+          mat-icon.icon-help {
+            display: none;
+          }
+        }
+        .card-body {
+          .expense-item {
+            .expense-value {
+              right: 38%;
+            }
+            width: 200%;
+          }
+        }
+      }
+
+      .scroll-toggle-button {
+        right: 20px;
+      }
+    }
+  }
+}

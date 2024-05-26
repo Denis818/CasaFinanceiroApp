@@ -1,9 +1,10 @@
-<canvas style="display: inline;"
+<canvas
+  style="display: inline"
   baseChart
-  [type]="graphicConfig.graphicStyle.graphicType"
+  [type]="graphicType"
   [options]="graphicConfig.chartOptions"
   [data]="graphicConfig.chartData"
-  [style.height.px]="graphicConfig.graphicStyle.height"
-  [style.width.px]="graphicConfig.graphicStyle.width"
+  [width]="width"
+  [height]="height"
 >
 </canvas>

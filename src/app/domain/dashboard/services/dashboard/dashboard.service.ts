@@ -79,11 +79,6 @@ export class DashboardService extends BaseService {
               },
             ],
           },
-          graphicStyle: {
-            graphicType: 'line',
-            width: 700,
-            height: 404,
-          },
           chartOptions: {
             responsive: true,
             plugins: {
