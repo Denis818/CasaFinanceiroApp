@@ -15,11 +15,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
-import { ValorInputItem, CategoriasMensais, ValorInputFornecedor } from 'src/app/shared/enums/enumInputValues';
+import {
+  CategoriasMensais,
+  ValorInputFornecedor,
+  ValorInputItem,
+} from 'src/app/shared/enums/enumInputValues';
+import { CategoriaService } from '../../../services/categoria.service';
+import { DespesaService } from '../../../services/despesa.service';
 
 @Component({
   selector: 'app-modal-despesa',
@@ -57,11 +62,12 @@ export class CreateDespesaModal {
   }
 
   constructor(
-    private painelService: PainelControleService,
-    private homeService: HomeService,
-    public dialogRef: MatDialogRef<CreateDespesaModal>,
-    private fb: FormBuilder,
-    private toastr: ToastrService,
+    private readonly categoriaService: CategoriaService,
+    private readonly despesaService: DespesaService,
+    private readonly grupoDespesaService: GrupoDespesaService,
+    private readonly dialogRef: MatDialogRef<CreateDespesaModal>,
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService,
     private readonly storageService: StorageService
   ) {
     this.validation();
@@ -96,7 +102,7 @@ export class CreateDespesaModal {
   }
 
   getAllGrupoDespesas() {
-    this.homeService.getAll().subscribe({
+    this.grupoDespesaService.getAll().subscribe({
       next: (grupoDespesas) => {
         this.grupoDespesas = grupoDespesas;
       },
@@ -104,7 +110,7 @@ export class CreateDespesaModal {
   }
 
   getAllCategorias() {
-    this.painelService.getAll<Categoria>('categoria').subscribe({
+    this.categoriaService.getAll().subscribe({
       next: (categorias) => {
         this.categorias = categorias;
       },
@@ -113,7 +119,7 @@ export class CreateDespesaModal {
 
   onSubmit(): void {
     if (this.despesaForm.valid) {
-      this.painelService.insert(this.despesaForm.value, 'despesa').subscribe({
+      this.despesaService.insert(this.despesaForm.value).subscribe({
         next: (despesaInserida) => {
           if (despesaInserida) {
             this.toastr.success(

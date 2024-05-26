@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
@@ -29,8 +29,8 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
   graphicConfig: GraphicConfiguration;
 
   constructor(
-    private comprasService: ConferenciaComprasService,
-    private homeService: HomeService
+    private readonly comprasService: ConferenciaComprasService,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification
   ) {
     this.reloadDespesas();
   }
@@ -43,7 +43,7 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
 
   reloadDespesas() {
     this.reloadPageSubscriber =
-      this.homeService.reloadPageWithNewGrupoId.subscribe({
+      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getGraficoSugestoesEconomia();
@@ -72,9 +72,9 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
               },
               {
                 data: sugestaoEconomia.map((item) => item.potencialEconomia),
-                borderColor: '#FF9800',
-                backgroundColor: '#FFC107',
-                label: 'Potencial de Economia',
+                borderColor: '#0fe400',
+                backgroundColor: '#0fe400',
+                label: 'Economia',
                 fill: false,
               },
             ],

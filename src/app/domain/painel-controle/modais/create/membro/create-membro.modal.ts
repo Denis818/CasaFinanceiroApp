@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { MembroService } from '../../../services/membro.service';
 
 @Component({
   selector: 'app-membro',
@@ -35,17 +35,17 @@ export class CreateMembroModal {
   }
 
   constructor(
-    private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<CreateMembroModal>,
-    private fb: FormBuilder,
-    private toastr: ToastrService
+    private readonly membroService: MembroService,
+    private readonly dialogRef: MatDialogRef<CreateMembroModal>,
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService
   ) {
     this.validation();
   }
 
   onSubmit(): void {
     if (this.membroForm.valid) {
-      this.painelService.insert(this.membroForm.value, 'membro').subscribe({
+      this.membroService.insert(this.membroForm.value).subscribe({
         next: (membroInserido) => {
           if (membroInserido) {
             this.toastr.success(

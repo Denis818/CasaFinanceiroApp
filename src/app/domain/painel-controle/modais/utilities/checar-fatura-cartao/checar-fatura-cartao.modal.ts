@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { DespesaService } from '../../../services/despesa.service';
 
 registerLocaleData(localePt);
 
@@ -53,9 +53,9 @@ export class ChecarFaturaCartaoModal {
   }
 
   constructor(
-    private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<ChecarFaturaCartaoModal>,
-    private fb: FormBuilder
+    private readonly despesaService: DespesaService,
+    private readonly dialogRef: MatDialogRef<ChecarFaturaCartaoModal>,
+    private readonly fb: FormBuilder
   ) {
     this.validation();
   }
@@ -64,7 +64,7 @@ export class ChecarFaturaCartaoModal {
     if (this.faturaForm.valid) {
       this.faturaCartao = this.faturaForm.value.faturaCartao;
 
-      this.painelService.conferirFaturaDoCartao(this.faturaCartao).subscribe({
+      this.despesaService.conferirFaturaDoCartao(this.faturaCartao).subscribe({
         next: (valores: any) => {
           this.valorSubtraido = valores.valorSubtraido;
           this.totalDespesa = valores.totalDespesa;

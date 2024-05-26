@@ -11,7 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
+import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 
 @Component({
   selector: 'app-membro',
@@ -35,19 +36,21 @@ export class CreateGrupoDespesaModal {
     return this.grupoDespesaForm.controls;
   }
   constructor(
-    private homeService: HomeService,
-    public dialogRef: MatDialogRef<CreateGrupoDespesaModal>,
-    private fb: FormBuilder,
-    private toastr: ToastrService
+    private readonly grupoDespesaService: GrupoDespesaService,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification,
+    private readonly dialogRef: MatDialogRef<CreateGrupoDespesaModal>,
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService
   ) {
     this.validation();
   }
 
   onSubmit(): void {
     if (this.grupoDespesaForm.valid) {
-      this.homeService.insert(this.grupoDespesaForm.value).subscribe({
+      this.grupoDespesaService.insert(this.grupoDespesaForm.value).subscribe({
         next: (grupoInserido) => {
           if (grupoInserido) {
+            this.grupoDespesaNotification.recarregarListaGrupoDespesa();
             this.toastr.success(
               `Grupo ${this.grupoDespesaForm.value.nome} criado com sucesso!`,
               'Finalizado!'

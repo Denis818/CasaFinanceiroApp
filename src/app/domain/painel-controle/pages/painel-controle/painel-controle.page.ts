@@ -33,7 +33,7 @@ import { ChecarFaturaCartaoModal } from '../../modais/utilities/checar-fatura-ca
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class PainelControlePage {
-  constructor(private dialog: MatDialog) {}
+  constructor(private readonly dialog: MatDialog) {}
 
   @ViewChild(ListDespesasComponent) ListDespesaModal: ListDespesasComponent;
 

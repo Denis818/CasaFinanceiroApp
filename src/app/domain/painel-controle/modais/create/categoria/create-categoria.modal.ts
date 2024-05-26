@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { CategoriaService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-categoria',
@@ -35,30 +35,28 @@ export class CreateCategoriaModal {
   }
 
   constructor(
-    private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<CreateCategoriaModal>,
-    private fb: FormBuilder,
-    private toastr: ToastrService
+    private readonly categoriaService: CategoriaService,
+    private readonly dialogRef: MatDialogRef<CreateCategoriaModal>,
+    private readonly fb: FormBuilder,
+    private readonly toastr: ToastrService
   ) {
     this.validation();
   }
 
   onSubmit(): void {
     if (this.categoriaForm.valid) {
-      this.painelService
-        .insert(this.categoriaForm.value, 'categoria')
-        .subscribe({
-          next: (categoriaInserida) => {
-            if (categoriaInserida) {
-              this.toastr.success(
-                ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
-                'Finalizado!'
-              );
+      this.categoriaService.insert(this.categoriaForm.value).subscribe({
+        next: (categoriaInserida) => {
+          if (categoriaInserida) {
+            this.toastr.success(
+              ` Categoria ${this.categoriaForm.value.descricao} criada com sucesso!`,
+              'Finalizado!'
+            );
 
-              this.onClose();
-            }
-          },
-        });
+            this.onClose();
+          }
+        },
+      });
     }
   }
 

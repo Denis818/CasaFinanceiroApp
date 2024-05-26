@@ -15,14 +15,15 @@ import { MatTableModule } from '@angular/material/table';
 import { Subject, debounceTime } from 'rxjs';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CategoriaService } from 'src/app/domain/painel-controle/services/categoria.service';
+import { DespesaService } from 'src/app/domain/painel-controle/services/despesa.service';
 import { PainelEconomiaComponent } from '../../Components/painel-economia/painel-economia.component';
-import { ConferenciaComprasService } from '../../services/conferencia-compras.service';
 
 registerLocaleData(localePt);
 
@@ -40,6 +41,7 @@ registerLocaleData(localePt);
     MatInputModule,
     MatSelectModule,
     PainelEconomiaComponent,
+    MatTooltipModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },
@@ -67,9 +69,9 @@ export class ConferenciaComprasPage implements OnDestroy {
   };
 
   constructor(
-    private comprasService: ConferenciaComprasService,
-    private painelService: PainelControleService,
-    private listFiltroDespesa: ListFiltroDespesa
+    private readonly despesaService: DespesaService,
+    private readonly categoriaService: CategoriaService,
+    private readonly listFiltroDespesa: ListFiltroDespesa
   ) {
     this.getListDespesasAllGrupos();
     this.tempoParaFiltrar();
@@ -107,7 +109,7 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   //#region Gets
   getListDespesasAllGrupos() {
-    this.comprasService
+    this.despesaService
       .getListDespesasAllGrupos(
         this.filtro,
         this.page.paginaAtual,
@@ -122,7 +124,7 @@ export class ConferenciaComprasPage implements OnDestroy {
   }
 
   getAllCategorias() {
-    this.painelService.getAll<Categoria>('categoria').subscribe({
+    this.categoriaService.getAll().subscribe({
       next: (categorias) => {
         this.categorias = categorias;
       },

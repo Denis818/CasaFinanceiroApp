@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ConfirmDeleteModal {
   constructor(
-    public dialogRef: MatDialogRef<ConfirmDeleteModal>,
+    private dialogRef: MatDialogRef<ConfirmDeleteModal>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 }

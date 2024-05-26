@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { MembroService } from '../../../services/membro.service';
 
 @Component({
   selector: 'app-mensagem-whatsapp',
@@ -39,10 +39,10 @@ export class MensagemWhatsAppModal {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private painelService: PainelControleService,
-    public dialogRef: MatDialogRef<MensagemWhatsAppModal>,
-    private fb: FormBuilder
+    @Inject(MAT_DIALOG_DATA) private readonly data: any,
+    private readonly membroService: MembroService,
+    private readonly dialogRef: MatDialogRef<MensagemWhatsAppModal>,
+    private readonly fb: FormBuilder
   ) {
     this.validation();
     this.resetForm();
@@ -50,7 +50,7 @@ export class MensagemWhatsAppModal {
 
   enviarMensagem(): void {
     if (this.valoresForm.valid) {
-      this.painelService
+      this.membroService
         .enviarMensagemWhatsApp(
           this.data.nome,
           this.valoresForm.value.pix,

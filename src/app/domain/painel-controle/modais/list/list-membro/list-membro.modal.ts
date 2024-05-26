@@ -9,8 +9,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Membro } from 'src/app/domain/painel-controle/interfaces/membro.interface';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+import { MembroService } from './../../../services/membro.service';
 
 @Component({
   selector: 'modal-list-membro',
@@ -36,16 +36,16 @@ export class ListMembroModal {
   isEditing: boolean = false;
 
   constructor(
-    private painelService: PainelControleService,
-    private toastr: ToastrService,
-    private dialog: MatDialog
+    private readonly membroService: MembroService,
+    private readonly toastr: ToastrService,
+    private readonly dialog: MatDialog
   ) {
     this.getAllMembros();
   }
 
   getAllMembros() {
-    this.painelService
-      .getAll<Membro>('membro')
+    this.membroService
+      .getAll()
       .subscribe((membros) => (this.membros = membros));
   }
 
@@ -66,7 +66,7 @@ export class ListMembroModal {
 
   updateMembro(id: number, membro: Membro): void {
     if (!this.membroAlterado(membro)) {
-      this.painelService.update(id, membro, 'membro').subscribe({
+      this.membroService.update(id, membro).subscribe({
         next: (membroAtualizado) => {
           if (membroAtualizado) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -94,7 +94,7 @@ export class ListMembroModal {
   }
 
   deleteMembro(membroId: number): void {
-    this.painelService.delete(membroId, 'membro').subscribe({
+    this.membroService.delete(membroId).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');

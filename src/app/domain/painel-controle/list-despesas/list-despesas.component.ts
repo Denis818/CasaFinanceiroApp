@@ -18,9 +18,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
@@ -28,6 +27,8 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { TableEditManipulation } from '../helper/table-edit-manipulation';
 import { Categoria } from '../interfaces/categoria.interface';
 import { ConfirmDeleteModal } from '../modais/utilities/delete/confirm-delete.modal';
+import { CategoriaService } from '../services/categoria.service';
+import { DespesaService } from '../services/despesa.service';
 
 registerLocaleData(localePt);
 
@@ -77,12 +78,13 @@ export class ListDespesasComponent implements OnDestroy {
   };
 
   constructor(
-    private painelService: PainelControleService,
-    private toastr: ToastrService,
-    private dialog: MatDialog,
-    private homeService: HomeService,
-    protected tableEditManipulation: TableEditManipulation,
-    private listFiltroDespesa: ListFiltroDespesa
+    private readonly despesaService: DespesaService,
+    private readonly categoriaService: CategoriaService,
+    private readonly toastr: ToastrService,
+    private readonly dialog: MatDialog,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification,
+    protected readonly tableEditManipulation: TableEditManipulation,
+    private readonly listFiltroDespesa: ListFiltroDespesa
   ) {
     this.reloadDespesas();
     this.tempoParaFiltrar();
@@ -125,7 +127,7 @@ export class ListDespesasComponent implements OnDestroy {
 
   //#region Gets
   getListDespesasPorGrupo() {
-    this.painelService
+    this.despesaService
       .getListDespesasPorGrupo(
         this.filtro,
         this.tipoFiltro,
@@ -142,7 +144,7 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   getAllCategorias() {
-    this.painelService.getAll<Categoria>('categoria').subscribe({
+    this.categoriaService.getAll().subscribe({
       next: (categorias) => {
         this.categorias = categorias;
       },
@@ -151,7 +153,7 @@ export class ListDespesasComponent implements OnDestroy {
 
   reloadDespesas() {
     this.reloadPageSubscriber =
-      this.homeService.reloadPageWithNewGrupoId.subscribe({
+      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getListDespesasPorGrupo();
@@ -191,7 +193,7 @@ export class ListDespesasComponent implements OnDestroy {
     despesa.grupoDespesaId = despesa.grupoDespesa.id;
 
     if (!this.despesaAlterada(despesa)) {
-      this.painelService.update(id, despesa, 'despesa').subscribe({
+      this.despesaService.update(id, despesa).subscribe({
         next: (despesaAtualizada) => {
           if (despesaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -220,7 +222,7 @@ export class ListDespesasComponent implements OnDestroy {
   }
 
   deleteDespesa(despesaId: number): void {
-    this.painelService.delete(despesaId, 'despesa').subscribe({
+    this.despesaService.delete(despesaId).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');

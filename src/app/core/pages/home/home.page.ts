@@ -6,8 +6,9 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-import { HomeService } from '../../services/home/home-service';
+import { GrupoDespesaService } from '../../services/grupo-despesa.service';
 import { StorageService } from '../../services/storage/storage.service';
+import { GrupoDespesaNotification } from '../../utilities/grupo-despesa-notification';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ export class HomePage implements OnDestroy {
   });
 
   constructor(
-    private readonly homeService: HomeService,
+    private readonly grupoDespesa: GrupoDespesaService,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification,
     private readonly storageService: StorageService,
     private readonly user: UserService,
     private router: Router,
@@ -84,7 +86,7 @@ export class HomePage implements OnDestroy {
   }
 
   getAllGrupoDespesas() {
-    this.homeService.getAll().subscribe({
+    this.grupoDespesa.getAll().subscribe({
       next: (grupoDespesas) => {
         this.grupoDespesas = grupoDespesas;
         this.grupoDefault = grupoDespesas[0].id;
@@ -96,7 +98,7 @@ export class HomePage implements OnDestroy {
 
   reloadGrupoDespesas() {
     this.grupoDespesasSubscriber =
-      this.homeService.realoadGrupoDespesas.subscribe({
+      this.grupoDespesaNotification.realoadGrupoDespesas.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getAllGrupoDespesas();
@@ -141,7 +143,7 @@ export class HomePage implements OnDestroy {
             'grupoDespesasId',
             grupoDespesasId.toString()
           );
-          this.homeService.notificarComponentesGrupoIdMudou();
+          this.grupoDespesaNotification.notificarComponentesGrupoIdMudou();
         }
       });
   }

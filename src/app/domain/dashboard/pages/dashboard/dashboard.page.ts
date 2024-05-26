@@ -6,7 +6,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
+import { MensagemWhatsAppModal } from 'src/app/domain/painel-controle/modais/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
@@ -14,7 +15,6 @@ import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-m
 import { RelatorioGastosDoGrupoResponse } from '../../interfaces/financy/relatorio-gastos-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
-import { MensagemWhatsAppModal } from 'src/app/domain/painel-controle/modais/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
 
 registerLocaleData(localePt);
 
@@ -57,8 +57,8 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   constructor(
     private readonly dashboardService: DashboardService,
-    private dialog: MatDialog,
-    private homeService: HomeService
+    private readonly dialog: MatDialog,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification
   ) {}
 
   ngOnInit() {
@@ -74,7 +74,7 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   reloadPage() {
     this.reloadPageSubscriber =
-      this.homeService.reloadPageWithNewGrupoId.subscribe({
+      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.inicializeDashboard();

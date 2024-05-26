@@ -1,79 +1,9 @@
 :host {
   [painel-economia] {
     width: 100%;
-
-    [card-container] {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: flex-start;
-      align-items: stretch;
-      width: 100%;
-    }
   }
 
   .card {
-    flex: 0 0 calc(50% - 10px);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: box-shadow 0.4s ease-in-out;
     margin-top: 10px;
-
-    &:hover {
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
-    }
-  }
-
-  .card-head {
-    background-color: #673ab7;
-    color: white;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    [card-title] {
-      font-size: 20px;
-      text-align: start;
-    }
-
-    mat-icon.icon-help {
-      color: #fff;
-    }
-  }
-
-  .card-body {
-    flex-grow: 1;
-    border: 1px solid #ccc;
-    border-radius: 0px 0px 8px 8px;
-    overflow-y: auto;
-    overflow-x: auto;
-    max-height: 320px;
-    max-width: 717px;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #683ab7d3;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #5c2ca3;
-    }
   }
 }

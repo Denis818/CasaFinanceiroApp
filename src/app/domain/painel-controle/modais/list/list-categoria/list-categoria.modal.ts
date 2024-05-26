@@ -8,9 +8,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
-import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
-import { PainelControleService } from 'src/app/domain/painel-controle/services/painel-controle.service';
+import { CategoriaService } from '../../../services/categoria.service';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
+import { Categoria } from './../../../interfaces/categoria.interface';
 
 @Component({
   selector: 'modal-listcategoria',
@@ -37,15 +37,15 @@ export class ListCategoriaModal {
 
   categorias: Categoria[];
   constructor(
-    private painelService: PainelControleService,
-    private toastr: ToastrService,
-    private dialog: MatDialog
+    private readonly categoriaService: CategoriaService,
+    private readonly toastr: ToastrService,
+    private readonly dialog: MatDialog
   ) {
     this.getAllCategorias();
   }
 
   getAllCategorias() {
-    this.painelService.getAll<Categoria>('categoria').subscribe({
+    this.categoriaService.getAll().subscribe({
       next: (categorias) => {
         this.categorias = categorias;
       },
@@ -68,7 +68,7 @@ export class ListCategoriaModal {
 
   updateCategoria(id: number, categoria: Categoria): void {
     if (!this.categoriaAlterada(categoria)) {
-      this.painelService.update(id, categoria, 'categoria').subscribe({
+      this.categoriaService.update(id, categoria).subscribe({
         next: (categoriaAtualizada) => {
           if (categoriaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -113,7 +113,7 @@ export class ListCategoriaModal {
   }
 
   deleteCategoria(categoriaId: number): void {
-    this.painelService.delete(categoriaId, 'categoria').subscribe({
+    this.categoriaService.delete(categoriaId).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');

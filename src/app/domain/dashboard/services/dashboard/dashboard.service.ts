@@ -1,5 +1,4 @@
-import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
@@ -11,9 +10,7 @@ import { TotalPorGrupoResponse } from '../../interfaces/financy/total-por-grupo-
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService extends BaseService {
-  public readonly router = inject(Router);
-
-  public url: string = `${environment.base_url_financy}/despesa`;
+  url: string = `${environment.base_url_financy}/despesa`;
 
   public getAnaliseDesesasPorGrupo(): Observable<ResumoGrupoResponse> {
     return this.sendHttpRequest<ApiResponse<ResumoGrupoResponse>>(
@@ -45,6 +42,7 @@ export class DashboardService extends BaseService {
       },
     });
   }
+
   public downloadRelatorioDespesasCasa() {
     this.sendHttpRequestForDownload(this.url + '/pdf-despesas-casa').subscribe({
       next: (blob) => {

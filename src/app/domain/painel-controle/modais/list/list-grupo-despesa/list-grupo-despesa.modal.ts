@@ -9,7 +9,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { HomeService } from 'src/app/core/services/home/home-service';
+import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
+import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { ConfirmDeleteModal } from '../../utilities/delete/confirm-delete.modal';
 
 @Component({
@@ -37,15 +38,16 @@ export class ListGrupoDespesaModal {
   isEditing: boolean = false;
 
   constructor(
-    private homeService: HomeService,
-    private toastr: ToastrService,
-    private dialog: MatDialog
+    private readonly grupoDespesaService: GrupoDespesaService,
+    private readonly grupoDespesaNotification: GrupoDespesaNotification,
+    private readonly toastr: ToastrService,
+    private readonly dialog: MatDialog
   ) {
     this.getAllGrupoDespesas();
   }
 
   getAllGrupoDespesas() {
-    this.homeService.getAll().subscribe((grupoDespesas) => {
+    this.grupoDespesaService.getAll().subscribe((grupoDespesas) => {
       this.grupoDespesas = grupoDespesas.map((despesa) => {
         return {
           ...despesa,
@@ -72,9 +74,10 @@ export class ListGrupoDespesaModal {
     if (!this.grupoDespesaAlterado(grupoDespesa)) {
       grupoDespesa.nome = grupoDespesa.nomeEditavel;
 
-      this.homeService.update(id, grupoDespesa).subscribe({
+      this.grupoDespesaService.update(id, grupoDespesa).subscribe({
         next: (grupoDespesaAtualizado) => {
           if (grupoDespesaAtualizado) {
+            this.grupoDespesaNotification.recarregarListaGrupoDespesa();
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
           this.getAllGrupoDespesas();
@@ -104,9 +107,10 @@ export class ListGrupoDespesaModal {
   }
 
   deleteGrupoDespesa(grupoDespesaId: number): void {
-    this.homeService.delete(grupoDespesaId).subscribe({
+    this.grupoDespesaService.delete(grupoDespesaId).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
+          this.grupoDespesaNotification.recarregarListaGrupoDespesa();
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
         this.getAllGrupoDespesas();
