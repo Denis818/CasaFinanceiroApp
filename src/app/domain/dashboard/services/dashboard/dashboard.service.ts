@@ -80,7 +80,8 @@ export class DashboardService extends BaseService {
             ],
           },
           chartOptions: {
-            responsive: true,
+            responsive: false,
+            maintainAspectRatio: false,
             plugins: {
               legend: {
                 display: true,
