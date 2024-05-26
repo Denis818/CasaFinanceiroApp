@@ -66,7 +66,7 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
               {
                 data: sugestaoEconomia.map((item) => item.precoMaisBarato),
                 borderColor: '#673ab7',
-                backgroundColor: '#673ab7',
+                backgroundColor: '#8b52eff2',
                 label: 'Preço Mais Barato',
                 fill: false,
               },
