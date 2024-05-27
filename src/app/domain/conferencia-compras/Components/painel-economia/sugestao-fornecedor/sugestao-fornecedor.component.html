@@ -1,15 +1,30 @@
 <div app-multi-card-header>
-  <div app-card-title>Média de gastos por Fornecedor</div>
-  <mat-icon
-    class="icon-help"
-    matTooltip="Apresenta sugestões dos fornecedores mais baratos de cada item. "
-    matTooltipPosition="above"
-    >help_outline</mat-icon
-  >
+  <div app-card-title>Sugestão de fornecedor mais barato</div>
+  <div app-input-color>
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Buscar por sugestão"
+        [(ngModel)]="filtroSugestao"
+        (ngModelChange)="filtrarSugestoes()"
+      />
+      <i
+        style="border: none; background-color: transparent"
+        mat-icon-button
+        matSuffix
+        aria-label="Search button for search input"
+      >
+        <mat-icon>search</mat-icon>
+      </i>
+    </mat-form-field>
+  </div>
 </div>
 <div app-multi-card-body>
   <ng-container
-    *ngFor="let sugestaoDeFornecedor of sugestoesDeFornecedores; let i = index"
+    *ngFor="
+      let sugestaoDeFornecedor of sugestoesDeFornecedoresFiltradas;
+      let i = index
+    "
   >
     <div class="expense-item">
       <div class="expense-title" (click)="toggleDetail(i)">
@@ -17,7 +32,7 @@
         <div class="icone">
           <mat-icon>
             {{
-              sugestoesDeFornecedores[i].expanded
+              sugestoesDeFornecedoresFiltradas[i].expanded
                 ? "expand_less"
                 : "expand_more"
             }}
@@ -26,7 +41,9 @@
       </div>
       <div
         [@slideDown]="
-          sugestoesDeFornecedores[i].expanded ? 'expanded' : 'collapsed'
+          sugestoesDeFornecedoresFiltradas[i].expanded
+            ? 'expanded'
+            : 'collapsed'
         "
         class="expense-details"
       >

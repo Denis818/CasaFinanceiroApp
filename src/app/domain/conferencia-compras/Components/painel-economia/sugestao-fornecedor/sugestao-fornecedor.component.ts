@@ -8,8 +8,10 @@ import {
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
@@ -57,8 +59,10 @@ registerLocaleData(localePt);
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatInputModule,
     MatTooltipModule,
     MatPaginatorModule,
   ],
@@ -67,8 +71,10 @@ export class SugestaoFornecedorComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   sugestoesDeFornecedores: SugestaoDeFornecedorResponse[] = [];
+  sugestoesDeFornecedoresFiltradas: SugestaoDeFornecedorResponse[] = [];
 
   tamanhosDePagina: number[] = [5, 10, 50];
+  filtroSugestao: string = '';
 
   constructor(
     private readonly comprasService: ConferenciaComprasService,
@@ -83,7 +89,6 @@ export class SugestaoFornecedorComponent implements OnDestroy {
     }
   }
 
-  //#region Get
   mediaDespesasPorFornecedor() {
     this.comprasService
       .mediaDespesasPorFornecedor(1, this.tamanhosDePagina[0])
@@ -96,6 +101,7 @@ export class SugestaoFornecedorComponent implements OnDestroy {
             itensPorPagina: this.tamanhosDePagina[0],
           },
         }));
+        this.filtrarSugestoes();
       });
   }
 
@@ -109,9 +115,7 @@ export class SugestaoFornecedorComponent implements OnDestroy {
         },
       });
   }
-  //#endregion
 
-  //#region Paginação
   mudarPagina(event: PageEvent, sugestao: SugestaoDeFornecedorResponse): void {
     sugestao.page.paginaAtual = event.pageIndex + 1;
     sugestao.page.itensPorPagina = event.pageSize;
@@ -133,14 +137,26 @@ export class SugestaoFornecedorComponent implements OnDestroy {
             sugestoesDespesas[index].listaItens;
           this.sugestoesDeFornecedores[index].page = sugestao.page;
         }
+        this.filtrarSugestoes();
       });
   }
-  //#endregion
 
-  //#region Metodos de suporte
+  filtrarSugestoes() {
+    if (this.filtroSugestao) {
+      this.sugestoesDeFornecedoresFiltradas =
+        this.sugestoesDeFornecedores.filter((sugestao) =>
+          sugestao.sugestao
+            .toLowerCase()
+            .includes(this.filtroSugestao.toLowerCase())
+        );
+    } else {
+      this.sugestoesDeFornecedoresFiltradas = [...this.sugestoesDeFornecedores];
+    }
+  }
+
   toggleDetail(index: number) {
-    this.sugestoesDeFornecedores[index].expanded =
-      !this.sugestoesDeFornecedores[index].expanded;
+    this.sugestoesDeFornecedoresFiltradas[index].expanded =
+      !this.sugestoesDeFornecedoresFiltradas[index].expanded;
   }
 
   removerPrefixoFatura(nome: string): string {
@@ -150,5 +166,4 @@ export class SugestaoFornecedorComponent implements OnDestroy {
     }
     return nome;
   }
-  //#endregion
 }

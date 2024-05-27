@@ -1,4 +1,33 @@
 :host {
+  [app-multi-card-header] {
+    ::ng-deep {
+      .mat-mdc-form-field-bottom-align::before {
+        display: inline;
+      }
+
+      .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+        padding-right: 10px;
+        border-radius: 8px;
+      }
+
+      .mat-mdc-form-field-icon-suffix {
+        padding: 0 0 0 0px;
+        height: 52px;
+      }
+
+      .mat-mdc-text-field-wrapper {
+        height: 27px;
+        flex: auto;
+      }
+
+      .mat-mdc-form-field-infix {
+        padding-top: 2px;
+      }
+    }
+    .mat-icon {
+      color: #673ab7;
+    }
+  }
   .expense-item {
     position: relative;
     background-color: #fff;
