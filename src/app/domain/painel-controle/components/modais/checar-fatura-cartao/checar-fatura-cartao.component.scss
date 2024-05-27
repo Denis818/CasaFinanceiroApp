@@ -1,86 +1,72 @@
 :host {
-  [header-model] {
-    mat-icon.icon-help {
-      color: #fff;
-      pointer-events: auto;
-    }
-  }
-
-  [modal-create-content] {
-    [form-custom] {
-      input {
-        text-align: left !important;
-      }
-
-      [card-app] {
-        border: solid 1px #ccc;
-        margin-bottom: 20px;
-
-        [card-app-head] {
-          background-color: #ffffff;
-          color: black;
-          display: inline;
+  [app-modal] {
+    [app-modal-body] {
+      [form-custom] {
+        input {
+          text-align: left !important;
         }
 
-        [card-app-body] {
-          border: none;
-          padding-top: 0px;
+        [app-card] {
+          border: solid 1px #ccc;
+          margin-bottom: 20px;
 
-          [fatura-descricao] {
-            background-color: #673ab71f;
-            border: solid 2px #673ab7;
-            border-radius: 6px;
-            padding: 10px;
-            text-align: start;
+          [app-card-header] {
+            background-color: #ffffff;
+            color: black;
+            display: inline;
+          }
 
-            p {
-              margin: 0px;
+          [app-card-body] {
+            border: none;
+            padding-top: 0px;
+
+            [fatura-descricao] {
+              background-color: #673ab71f;
+              border: solid 2px #673ab7;
+              border-radius: 6px;
+              padding: 10px;
+              text-align: start;
+
+              p {
+                margin: 0px;
+              }
+              b {
+                font-weight: 500;
+              }
+
+              &.descricao-negativa {
+                background-color: rgb(255 0 0 / 6%);
+                border: solid 2px red;
+              }
+
+              &.descricao-positiva {
+                background-color: rgb(15 228 0 / 6%);
+                border: solid 2px #0fe400;
+              }
             }
-            b {
-              font-weight: 500;
+          }
+
+          .fatura {
+            font-weight: 500;
+            font-size: 15px;
+
+            &.fatura-positiva {
+              color: #0fe400;
             }
 
-            &.descricao-negativa {
-              background-color: rgb(255 0 0 / 6%);
-              border: solid 2px red;
+            &.fatura-negativa {
+              color: red;
             }
 
-            &.descricao-positiva {
-              background-color: rgb(15 228 0 / 6%);
-              border: solid 2px #0fe400;
+            &.fatura-neutra {
+              color: #673ab7;
             }
           }
         }
 
-        .fatura {
-          font-weight: 500;
-          font-size: 15px;
-
-          &.fatura-positiva {
-            color: #0fe400;
-          }
-
-          &.fatura-negativa {
-            color: red;
-          }
-
-          &.fatura-neutra {
-            color: #673ab7;
-          }
+        .ocultar-card {
+          display: none;
         }
-      }
-
-      .ocultar-card {
-        display: none;
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    [header-model] {
-      h2 {
-        padding: 10px;
-        font-size: 24px;
       }
     }
   }

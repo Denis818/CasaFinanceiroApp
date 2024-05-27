@@ -1,43 +1,55 @@
-<div header-model>
-  <h2>Adicionar Categoria</h2>
-</div>
+<div app-modal>
+  <div app-modal-header>
+    <h2>Adicionar Categoria</h2>
+  </div>
 
-<div modal-create-content>
-  <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Descricao</mat-label>
-      <input
-        matInput
-        formControlName="descricao"
-        [ngClass]="{
-          'is-invalid':
-            categoriaValidator.descricao.errors && categoriaValidator.descricao.touched
-        }"
-      />
-      <mat-error *ngIf="categoriaValidator['descricao'].hasError('required')">
-        Descricao é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="categoriaValidator['descricao'].hasError('minlength')">
-        Descricao deve ter no mínimo 3 caracteres.
-      </mat-error>
-      <mat-error *ngIf="categoriaValidator['descricao'].hasError('maxlength')">
-        Descricao deve ter no máximo 25 caracteres.
-      </mat-error>
-    </mat-form-field>
+  <div app-modal-body>
+    <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" form-custom>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descricao</mat-label>
+        <input
+          matInput
+          formControlName="descricao"
+          [ngClass]="{
+            'is-invalid':
+              categoriaValidator.descricao.errors &&
+              categoriaValidator.descricao.touched
+          }"
+        />
+        <mat-error *ngIf="categoriaValidator['descricao'].hasError('required')">
+          Descricao é obrigatório.
+        </mat-error>
+        <mat-error
+          *ngIf="categoriaValidator['descricao'].hasError('minlength')"
+        >
+          Descricao deve ter no mínimo 3 caracteres.
+        </mat-error>
+        <mat-error
+          *ngIf="categoriaValidator['descricao'].hasError('maxlength')"
+        >
+          Descricao deve ter no máximo 25 caracteres.
+        </mat-error>
+      </mat-form-field>
 
-    <div class="form-actions">
-      <button type="button" mat-raised-button color="warn" (click)="onClose()">
-        Cancelar
-      </button>
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
 
-      <button
-        mat-flat-button
-        color="primary"
-        [disabled]="!categoriaForm.valid"
-        type="submit"
-      >
-        Salvar
-      </button>
-    </div>
-  </form>
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!categoriaForm.valid"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

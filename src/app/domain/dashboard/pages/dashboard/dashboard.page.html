@@ -1,8 +1,8 @@
 <div dashboard>
-  <div card-container tooltip-helper>
-    <div multi-card>
-      <div multi-card-head>
-        <div card-title>Despesa de casa</div>
+  <div app-card-container app-tooltip-helper>
+    <div app-multi-card>
+      <div app-multi-card-header>
+        <div app-card-title>Despesa de casa</div>
         <div>
           <button download-button (click)="downloadRelatorioDespesasCasa()">
             Download do Relatório
@@ -14,7 +14,7 @@
           </mat-icon>
         </div>
       </div>
-      <div multi-card-body>
+      <div app-multi-card-body>
         <div *ngFor="let item of despesasPorMembros" class="expense-item">
           <div class="expense-title">{{ item.nome }}</div>
           <div class="expense-value">
@@ -31,9 +31,9 @@
       </div>
     </div>
 
-    <div multi-card>
-      <div multi-card-head>
-        <div card-title>Despesa de moradia</div>
+    <div app-multi-card>
+      <div app-multi-card-header>
+        <div app-card-title>Despesa de moradia</div>
         <div>
           <button
             download-button
@@ -48,7 +48,7 @@
           >
         </div>
       </div>
-      <div multi-card-body>
+      <div app-multi-card-body>
         <ng-container *ngFor="let item of despesasPorMembros">
           <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
@@ -67,11 +67,11 @@
       </div>
     </div>
 
-    <div multi-card>
-      <div multi-card-head>
-        <div card-title>Análise de Compras por Grupo</div>
+    <div app-multi-card>
+      <div app-multi-card-header>
+        <div app-card-title>Análise de Compras por Grupo</div>
       </div>
-      <div multi-card-body>
+      <div app-multi-card-body>
         <app-graphic
           [graphicConfig]="graphicConfig"
           [graphicMobile]="graphicMobile"
@@ -83,12 +83,12 @@
       </div>
     </div>
 
-    <div multi-card>
-      <div multi-card-head>
-        <div card-title>Total por categoria</div>
+    <div app-multi-card>
+      <div app-multi-card-header>
+        <div app-card-title>Total por categoria</div>
       </div>
-      <div multi-card-body>
-        <div table-app>
+      <div app-multi-card-body>
+        <div app-table>
           <table>
             <thead>
               <tr>
@@ -114,11 +114,11 @@
       </div>
     </div>
 
-    <div multi-card>
-      <div multi-card-head>
-        <div card-title>{{relatorioGastosDoGrupo.grupoDespesaNome}}</div>
+    <div app-multi-card>
+      <div app-multi-card-header>
+        <div app-card-title>{{relatorioGastosDoGrupo.grupoDespesaNome}}</div>
       </div>
-      <div multi-card-body>
+      <div app-multi-card-body>
         <div class="expense-item">
           <div class="expense-title">Total Moradia</div>
           <div class="expense-value no-button-whats">

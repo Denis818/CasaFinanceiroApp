@@ -2,7 +2,7 @@
   <h1 title>{{ titleService.getTitle() }}</h1>
 
   <div selected-group [formGroup]="grupoDespesasForm">
-    <div tooltip-helper>
+    <div app-tooltip-helper>
       <mat-icon
         class="icon-help"
         matTooltip="Selecione um grupo para visualizar e gerenciar as despesas associadas a ele. Cada grupo representa um conjunto específico de despesas."

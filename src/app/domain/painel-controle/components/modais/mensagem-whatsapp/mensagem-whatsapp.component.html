@@ -1,44 +1,51 @@
-<div header-model>
-  <h2>Enviar Mensagem</h2>
-  <p>Você sera redirecionado para o WhatsApp.</p>
-</div>
+<div app-modal>
+  <div app-modal-header>
+    <h2>Enviar Mensagem</h2>
+    <p>Você sera redirecionado para o WhatsApp.</p>
+  </div>
 
-<div modal-create-content>
-  <form [formGroup]="valoresForm" (ngSubmit)="enviarMensagem()" form-custom>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Pix</mat-label>
-      <input
-        matInput
-        formControlName="pix"
-        [ngClass]="{
-          'is-invalid':
-            valoresValidator.pix.errors && valoresValidator.pix.touched
-        }"
-      />
+  <div app-modal-body>
+    <form [formGroup]="valoresForm" (ngSubmit)="enviarMensagem()" form-custom>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Pix</mat-label>
+        <input
+          matInput
+          formControlName="pix"
+          [ngClass]="{
+            'is-invalid':
+              valoresValidator.pix.errors && valoresValidator.pix.touched
+          }"
+        />
 
-      <mat-error *ngIf="valoresValidator['pix'].hasError('required')">
-        Pix é obrigatório.
-      </mat-error>
-    </mat-form-field>
+        <mat-error *ngIf="valoresValidator['pix'].hasError('required')">
+          Pix é obrigatório.
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Titulo para mensagem (Opcional)</mat-label>
-      <input matInput formControlName="titleMessage" />
-    </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Titulo para mensagem (Opcional)</mat-label>
+        <input matInput formControlName="titleMessage" />
+      </mat-form-field>
 
-    <div class="form-actions">
-      <button type="button" mat-raised-button color="warn" (click)="onClose()">
-        Cancelar
-      </button>
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
 
-      <button
-        type="submit"
-        mat-flat-button
-        color="primary"
-        [disabled]="! valoresForm.valid"
-      >
-        Enviar
-      </button>
-    </div>
-  </form>
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="!valoresForm.valid"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

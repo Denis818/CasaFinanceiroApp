@@ -1,42 +1,53 @@
-<div header-model>
-  <h2>Adicionar Grupo de Despesas</h2>
-</div>
+<div app-modal>
+  <div app-modal-header>
+    <h2>Adicionar Grupo de Despesas</h2>
+  </div>
 
-<div modal-create-content>
-  <form [formGroup]="grupoDespesaForm" (ngSubmit)="onSubmit()" form-custom>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Mês</mat-label>
-      <span matPrefix>Fatura de&nbsp;</span>
-      <input
-        matInput
-        formControlName="nome"
-        [ngClass]="{'is-invalid': grupoDespesaValidator.nome.errors && grupoDespesaValidator.nome.touched}"
-      />
+  <div app-modal-body>
+    <form [formGroup]="grupoDespesaForm" (ngSubmit)="onSubmit()" form-custom>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mês</mat-label>
+        <span matPrefix>Fatura de&nbsp;</span>
+        <input
+          matInput
+          formControlName="nome"
+          [ngClass]="{
+            'is-invalid':
+              grupoDespesaValidator.nome.errors &&
+              grupoDespesaValidator.nome.touched
+          }"
+        />
 
-      <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('required')">
-        Nome é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('minlength')">
-        Nome deve ter no mínimo 3 caracteres.
-      </mat-error>
-      <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('maxlength')">
-        Nome deve ter no máximo 25 caracteres.
-      </mat-error>
-    </mat-form-field>
+        <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('required')">
+          Nome é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('minlength')">
+          Nome deve ter no mínimo 3 caracteres.
+        </mat-error>
+        <mat-error *ngIf="grupoDespesaValidator['nome'].hasError('maxlength')">
+          Nome deve ter no máximo 25 caracteres.
+        </mat-error>
+      </mat-form-field>
 
-    <div class="form-actions">
-      <button type="button" mat-raised-button color="warn" (click)="onClose()">
-        Cancelar
-      </button>
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
 
-      <button
-        type="submit"
-        mat-flat-button
-        color="primary"
-        [disabled]="!grupoDespesaForm.valid"
-      >
-        Salvar
-      </button>
-    </div>
-  </form>
+        <button
+          type="submit"
+          mat-flat-button
+          color="primary"
+          [disabled]="!grupoDespesaForm.valid"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

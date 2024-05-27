@@ -56,11 +56,11 @@
   }
 
   @media screen and (max-width: 600px) {
-    [card-container] {
-      [multi-card] {
+    [app-card-container] {
+      [app-multi-card] {
         flex: 1 1 100%;
 
-        [multi-card-head] {
+        [app-multi-card-header] {
           [download-button]:hover {
             background-color: #fff;
             box-shadow: none;
@@ -70,7 +70,7 @@
             display: none;
           }
         }
-        [multi-card-body] {
+        [app-multi-card-body] {
           .expense-item {
             .expense-value {
               right: 38%;

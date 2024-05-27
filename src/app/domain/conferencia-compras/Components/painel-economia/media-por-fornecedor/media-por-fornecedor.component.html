@@ -1,5 +1,5 @@
-<div multi-card-head>
-  <div card-title>Média de gastos por Fornecedor</div>
+<div app-multi-card-header>
+  <div app-card-title>Média de gastos por Fornecedor</div>
   <mat-icon
     class="icon-help"
     matTooltip="Apresenta a média de gastos de cada fornecedor, e seus respectiveis itens. (Por grupo de fatura) "
@@ -7,7 +7,7 @@
     >help_outline</mat-icon
   >
 </div>
-<div multi-card-body>
+<div app-multi-card-body>
   <ng-container
     *ngFor="let mediaFornecedor of mediasPorFornecedor; let i = index"
   >

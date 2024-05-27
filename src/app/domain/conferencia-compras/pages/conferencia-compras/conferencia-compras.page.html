@@ -1,9 +1,11 @@
 <div despesa-list-all-group>
   <div>
-    <div card-app>
-      <div card-app-head>
-        <div card-title>Lista de despesas de todos os Grupos de Faturas</div>
-        <div tooltip-helper>
+    <div app-card>
+      <div app-card-header>
+        <div app-card-title>
+          Lista de despesas de todos os Grupos de Faturas
+        </div>
+        <div app-tooltip-helper>
           <mat-icon
             class="icon-help"
             matTooltip="Lista das despesas de todos os grupos para realizar conferência de valores, entre faturas, fornecedores etc... "
@@ -12,8 +14,8 @@
           >
         </div>
       </div>
-      <div card-app-body>
-        <div filtro input-mat-custom>
+      <div app-card-body>
+        <div filtro app-input-color>
           <mat-form-field appearance="outline">
             <mat-label class="filter-label">Filtrar por:</mat-label>
             <mat-select
@@ -50,7 +52,7 @@
           </div>
         </div>
 
-        <div table-app>
+        <div app-table>
           <table>
             <thead>
               <tr>

@@ -1,14 +1,7 @@
 :host {
-  [header-model] {
-    color: #fff;
-  }
-
-  @media screen and (max-width: 600px) {
-    [header-model] {
-      h2 {
-        padding: 10px;
-        font-size: 24px;
-      }
+  [app-modal] {
+    [app-modal-header] {
+      padding: 10px 0px 0px 0px;
     }
   }
 }

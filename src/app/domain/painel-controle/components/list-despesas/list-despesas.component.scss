@@ -1,7 +1,7 @@
 :host {
   [despesa-list-by-group] {
-    [card-app] {
-      [card-app-body] {
+    [app-card] {
+      [app-card-body] {
         padding-top: 15px;
 
         [filtro] {
@@ -97,8 +97,8 @@
   }
 
   @media screen and (max-width: 600px) {
-    [card-app] {
-      [card-app-header] {
+    [app-card] {
+      [app-card-headerer] {
         [filtro] {
           [input-filtrar] {
             width: 60%;
@@ -106,7 +106,7 @@
         }
       }
 
-      [card-app-body] {
+      [app-card-body] {
         table {
           width: 100%;
           overflow-x: auto;

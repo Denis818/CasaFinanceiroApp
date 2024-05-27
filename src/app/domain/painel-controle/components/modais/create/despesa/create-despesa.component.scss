@@ -1,19 +1,10 @@
 :host {
-  [modal-create-content] {
-   
-
-    [form-custom] {
-      input {
-        text-align: left !important;
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    [header-model] {
-      h2 {
-        padding: 10px;
-        font-size: 24px;
+  [app-modal] {
+    [app-modal-body] {
+      [form-custom] {
+        input {
+          text-align: left !important;
+        }
       }
     }
   }

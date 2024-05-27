@@ -1,26 +1,19 @@
 :host {
-  [modal-create-content] {
-    [form-custom] {
-      width: 100%;
+  [app-modal] {
+    [app-modal-body] {
+      [form-custom] {
+        width: 100%;
 
-      & span {
-        color: rgb(0 0 0 / 87%);
-      }
-
-      ::ng-deep {
-        .mat-mdc-form-field-icon-prefix,
-        [dir="rtl"] .mat-mdc-form-field-icon-suffix {
-          padding: 0px 2px 0px 10px;
+        & span {
+          color: rgb(0 0 0 / 87%);
         }
-      }
-    }
-  }
 
-  @media screen and (max-width: 600px) {
-    [header-model] {
-      h2 {
-        padding: 10px;
-        font-size: 24px;
+        ::ng-deep {
+          .mat-mdc-form-field-icon-prefix,
+          [dir="rtl"] .mat-mdc-form-field-icon-suffix {
+            padding: 0px 2px 0px 10px;
+          }
+        }
       }
     }
   }
