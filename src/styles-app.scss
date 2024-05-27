@@ -130,6 +130,7 @@
 
   [app-multi-card] {
     flex: 0 0 calc(50% - 11px);
+    max-width: calc(50% - 11px);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -300,6 +301,7 @@
     [app-multi-card] {
       flex: 1 1 100%;
       width: 100%;
+      max-width: none;
     }
 
     .scroll-toggle-button {
@@ -311,14 +313,3 @@
     display: none;
   }
 }
-
-/* @media screen and (max-width: 1600px) {
-  [app-card-container] {
-    [app-multi-card] {
-      [app-multi-card-body] {
-        max-width: 721px;
-      }
-    }
-  }
-}
- */
