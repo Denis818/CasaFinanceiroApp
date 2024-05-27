@@ -6,15 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { ListDespesasComponent } from '../../list-despesas/list-despesas.component';
-import { CreateCategoriaModal } from '../../modais/create/categoria/create-categoria.modal';
-import { CreateDespesaModal } from '../../modais/create/despesa/create-despesa.modal';
-import { CreateGrupoDespesaModal } from '../../modais/create/grupo-despesa/create-grupo-despesa.modal';
-import { CreateMembroModal } from '../../modais/create/membro/create-membro.modal';
-import { ListCategoriaModal } from '../../modais/list/list-categoria/list-categoria.modal';
-import { ListGrupoDespesaModal } from '../../modais/list/list-grupo-despesa/list-grupo-despesa.modal';
-import { ListMembroModal } from '../../modais/list/list-membro/list-membro.modal';
-import { ChecarFaturaCartaoModal } from '../../modais/utilities/checar-fatura-cartao/checar-fatura-cartao.modal';
+import { ListDespesasComponent } from '../../components/list-despesas/list-despesas.component';
+import { ChecarFaturaCartaoComponent } from '../../components/modais/checar-fatura-cartao/checar-fatura-cartao.component';
+import { CreateCategoriaComponent } from '../../components/modais/create/categoria/create-categoria.component';
+import { CreateDespesaComponent } from '../../components/modais/create/despesa/create-despesa.component';
+import { CreateGrupoDespesaComponent } from '../../components/modais/create/grupo-despesa/create-grupo-despesa.component';
+import { CreateMembroComponent } from '../../components/modais/create/membro/create-membro.component';
+import { ListCategoriaComponent } from '../../components/modais/list/list-categoria/list-categoria.component';
+import { ListGrupoDespesaComponent } from '../../components/modais/list/list-grupo-despesa/list-grupo-despesa.component';
+import { ListMembroComponent } from '../../components/modais/list/list-membro/list-membro.component';
 
 @Component({
   selector: 'painel-controle-page',
@@ -24,7 +24,7 @@ import { ChecarFaturaCartaoModal } from '../../modais/utilities/checar-fatura-ca
   imports: [
     CommonModule,
     ListDespesasComponent,
-    CreateDespesaModal,
+    CreateDespesaComponent,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
@@ -35,26 +35,30 @@ import { ChecarFaturaCartaoModal } from '../../modais/utilities/checar-fatura-ca
 export class PainelControlePage {
   constructor(private readonly dialog: MatDialog) {}
 
-  @ViewChild(ListDespesasComponent) ListDespesaModal: ListDespesasComponent;
+  @ViewChild(ListDespesasComponent) listDespesaModal: ListDespesasComponent;
 
   //#region  Lists
   openListCategoriaModal() {
-    const dialogRef = this.dialog.open(ListCategoriaModal, {
+    const dialogRef = this.dialog.open(ListCategoriaComponent, {
       width: '400px',
+    });
+
+    dialogRef.componentInstance.notificarCategoriaAtualizada.subscribe(() => {
+      this.listDespesaModal.getListDespesasPorGrupo();
     });
 
     dialogRef.afterClosed();
   }
 
   openListMembroModal() {
-    const dialogRef = this.dialog.open(ListMembroModal, {
+    const dialogRef = this.dialog.open(ListMembroComponent, {
       width: '400px',
     });
     dialogRef.afterClosed();
   }
 
   openListGrupoDespesasModal() {
-    const dialogRef = this.dialog.open(ListGrupoDespesaModal, {
+    const dialogRef = this.dialog.open(ListGrupoDespesaComponent, {
       width: '400px',
     });
     dialogRef.afterClosed();
@@ -63,36 +67,36 @@ export class PainelControlePage {
 
   //#region Create
   openCreateDespesaModal(): void {
-    const dialogRef = this.dialog.open(CreateDespesaModal, {
+    const dialogRef = this.dialog.open(CreateDespesaComponent, {
       width: '400px',
     });
 
-    dialogRef.componentInstance.despesaInserida.subscribe(() => {
-      this.ListDespesaModal.getListDespesasPorGrupo();
+    dialogRef.componentInstance.notificarDespesaInserida.subscribe(() => {
+      this.listDespesaModal.getListDespesasPorGrupo();
     });
   }
 
   openCreateGrupoDespesaModal(): void {
-    this.dialog.open(CreateGrupoDespesaModal, {
+    this.dialog.open(CreateGrupoDespesaComponent, {
       width: '400px',
     });
   }
 
   openCreateMembroModal(): void {
-    this.dialog.open(CreateMembroModal, {
+    this.dialog.open(CreateMembroComponent, {
       width: '400px',
     });
   }
 
   openCreateCategoriaModal(): void {
-    this.dialog.open(CreateCategoriaModal, {
+    this.dialog.open(CreateCategoriaComponent, {
       width: '400px',
     });
   }
   //#endregion
 
   openChecarFaturaCartaoModal(): void {
-    this.dialog.open(ChecarFaturaCartaoModal, {
+    this.dialog.open(ChecarFaturaCartaoComponent, {
       width: '450px',
     });
   }

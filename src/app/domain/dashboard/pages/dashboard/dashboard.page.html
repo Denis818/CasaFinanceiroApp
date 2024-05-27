@@ -1,5 +1,5 @@
-<div table-custom tooltip-custom dashboard>
-  <div cards-informations>
+<div dashboard>
+  <div card-information tooltip-helper>
     <div class="card">
       <div class="card-head">
         <div card-title>Despesa de casa</div>
@@ -84,29 +84,33 @@
     </div>
 
     <div class="card">
-      <div class="card-head"><div card-title>Total por categoria</div></div>
+      <div class="card-head">
+        <div card-title>Total por categoria</div>
+      </div>
       <div class="card-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Mês</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of listDespesasPorCategoria">
-              <td>{{ item.categoria }}</td>
-              <td>{{ item.total| currency:'BRL' }}</td>
-            </tr>
-          </tbody>
-          <tfoot *ngIf="listDespesasPorCategoria.length == 0">
-            <tr>
-              <td colspan="2">
-                <h2>Nenhuma despesa encontrada</h2>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+        <div table-app>
+          <table>
+            <thead>
+              <tr>
+                <th>Mês</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listDespesasPorCategoria">
+                <td>{{ item.categoria }}</td>
+                <td>{{ item.total| currency:'BRL' }}</td>
+              </tr>
+            </tbody>
+            <tfoot *ngIf="listDespesasPorCategoria.length == 0">
+              <tr>
+                <td colspan="2">
+                  <h2>Nenhuma despesa encontrada</h2>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
 

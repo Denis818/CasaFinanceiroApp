@@ -1,12 +1,14 @@
-<nav tooltip-custom class="navbar">
+<nav class="navbar">
   <h1 title>{{ titleService.getTitle() }}</h1>
 
   <div selected-group [formGroup]="grupoDespesasForm">
-    <mat-icon
-      class="icon-help"
-      matTooltip="Selecione um grupo para visualizar e gerenciar as despesas associadas a ele. Cada grupo representa um conjunto específico de despesas."
-      >help_outline
-    </mat-icon>
+    <div tooltip-helper>
+      <mat-icon
+        class="icon-help"
+        matTooltip="Selecione um grupo para visualizar e gerenciar as despesas associadas a ele. Cada grupo representa um conjunto específico de despesas."
+        >help_outline
+      </mat-icon>
+    </div>
     <mat-form-field appearance="fill">
       <mat-select formControlName="grupoDespesaId">
         <mat-option

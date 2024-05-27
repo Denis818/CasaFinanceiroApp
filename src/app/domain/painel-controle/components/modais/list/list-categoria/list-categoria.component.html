@@ -1,0 +1,56 @@
+<div categoria-list>
+  <div table-app table-icons-options>
+    <table>
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th tooltip-helper>
+            Opções
+            <mat-icon
+              class="icon-help"
+              matTooltip="Edição e exclusão desativadas devido a políticas internas."
+              >help_outline</mat-icon
+            >
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let categoria of categorias"
+          (keyup.enter)="updateCategoria(categoria.id, categoria)"
+        >
+          <td>
+            <div *ngIf="categoria.isEditing; else viewDescricao">
+              <input type="text" [(ngModel)]="categoria.descricao" />
+            </div>
+            <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
+          </td>
+          <td [class.disable-options]="!isEditable(categoria.descricao)">
+            <i *ngIf="!categoria.isEditing; else saveEdicao">
+              <mat-icon
+                (click)="openEdit(categoria)"
+                [class.disable-options]="isEditing"
+                >edit</mat-icon
+              >
+            </i>
+
+            <ng-template #saveEdicao>
+              <mat-icon (click)="updateCategoria(categoria.id, categoria)"
+                >save</mat-icon
+              >
+              <mat-icon space (click)="cancelEdit(categoria)">cancel</mat-icon>
+            </ng-template>
+
+            <i space *ngIf="!categoria.isEditing">
+              <mat-icon
+                (click)="confirmDelete(categoria.id)"
+                [class.disable-options]="isEditing"
+                >delete</mat-icon
+              >
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
-import { MensagemWhatsAppModal } from 'src/app/domain/painel-controle/modais/utilities/mensagem-whatsapp/mensagem-whatsapp.modal';
+import { MensagemWhatsAppComponent } from 'src/app/domain/painel-controle/components/modais/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { GraphicMobile } from 'src/app/shared/components/graphic/interfaces/graphic-mobile.interface';
@@ -119,7 +119,7 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   openMensagemWhatsAppModal(nome: string, isHabitacional: boolean): void {
-    this.dialog.open(MensagemWhatsAppModal, {
+    this.dialog.open(MensagemWhatsAppComponent, {
       width: '500px',
       data: { nome: nome, isHabitacional: isHabitacional },
     });

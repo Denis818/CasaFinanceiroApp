@@ -1,0 +1,53 @@
+<div grupodespesa-list-by-group>
+  <div table-app table-icons-options>
+    <table>
+      <thead>
+        <th>Grupo de Despesa</th>
+        <th>Opções</th>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let grupoDespesa of grupoDespesas"
+          (keyup.enter)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+        >
+          <td>
+            <div *ngIf="grupoDespesa.isEditing; else viewNome">
+              <span matPrefix>Fatura de&nbsp;</span>
+              <input type="text" [(ngModel)]="grupoDespesa.nomeEditavel" />
+            </div>
+            <ng-template #viewNome>{{ grupoDespesa.nome }}</ng-template>
+          </td>
+
+          <td>
+            <i *ngIf="!grupoDespesa.isEditing; else saveEdicao">
+              <mat-icon
+                (click)="openEdit(grupoDespesa)"
+                [class.disable-options]="isEditing"
+                >edit</mat-icon
+              >
+            </i>
+
+            <ng-template #saveEdicao>
+              <mat-icon
+                (click)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+                >save</mat-icon
+              >
+              <mat-icon space (click)="cancelEdit(grupoDespesa)"
+                >cancel</mat-icon
+              >
+              <!-- Ícone de cancelar -->
+            </ng-template>
+
+            <i space *ngIf="!grupoDespesa.isEditing">
+              <mat-icon
+                (click)="confirmDelete(grupoDespesa.id)"
+                [class.disable-options]="isEditing"
+                >delete</mat-icon
+              >
+            </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

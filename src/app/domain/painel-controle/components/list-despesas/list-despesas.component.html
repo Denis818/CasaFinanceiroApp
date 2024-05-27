@@ -1,0 +1,216 @@
+<div despesa-list-by-group>
+  <div >
+    <div card-app>
+      <div card-app-head>
+        <div card-title>Lista de despesas por Grupo de Fatura</div>
+      </div>
+      <div card-app-body>
+        <div filtro input-mat-custom>
+          <mat-form-field appearance="outline">
+            <mat-label class="filter-label">Filtrar por:</mat-label>
+            <mat-select
+              [(ngModel)]="tipoFiltro"
+              [disabled]="isDespesaEditing"
+              (selectionChange)="aoSelecionarFiltro()"
+            >
+              <mat-option
+                *ngFor="let tipo of listTipoFiltro"
+                [value]="tipo.value"
+              >
+                {{ tipo.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div input-filtrar>
+            <mat-form-field appearance="outline">
+              <mat-label>Buscar</mat-label>
+              <input
+                matInput
+                placeholder="Buscar por {{ tipoFiltro }}..."
+                [(ngModel)]="filtro"
+                (input)="aplicarFiltro(filtro)"
+                [disabled]="isDespesaEditing"
+              />
+              <i
+                style="border: none; background-color: transparent"
+                mat-icon-button
+                matSuffix
+                aria-label="Search button for search input"
+              >
+                <mat-icon>search</mat-icon>
+              </i>
+            </mat-form-field>
+          </div>
+        </div>
+        <div table-app table-icons-options input-select-custom>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Categoria</th>
+                <th>Fornecedor</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+                <th>Data da compra</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let despesa of despesasFiltradas"
+                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                [class.disabled]="isDespesaEditing && !despesa.isDespesaEditing"
+              >
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewItem">
+                    <ng-container
+                      *ngIf="
+                        despesa.categoria.descricao === 'Aluguel';
+                        else inputItem
+                      "
+                    >
+                      <mat-select
+                        [(ngModel)]="despesa.item"
+                        (selectionChange)="
+                          tableEditManipulation.aoAlterarItem(despesa)
+                        "
+                      >
+                        <mat-option [value]="'Parcela Caixa'"
+                          >Parcela Caixa</mat-option
+                        >
+                        <mat-option [value]="'Parcela Ap Ponto'"
+                          >Parcela Ap Ponto</mat-option
+                        >
+                      </mat-select>
+                    </ng-container>
+                    <ng-template #inputItem>
+                      <input
+                        type="text"
+                        [(ngModel)]="despesa.item"
+                        [readonly]="
+                          tableEditManipulation.inputSomenteLeitura('item')
+                        "
+                      />
+                    </ng-template>
+                  </div>
+                  <ng-template #viewItem>{{ despesa.item }}</ng-template>
+                </td>
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewCategoria">
+                    <mat-select
+                      [(ngModel)]="despesa.categoria.id"
+                      (ngModelChange)="
+                        tableEditManipulation.aoAlterarCategoria(
+                          categorias,
+                          despesa,
+                          $event
+                        )
+                      "
+                    >
+                      <mat-option
+                        *ngFor="let categoria of categorias"
+                        [value]="categoria.id"
+                      >
+                        {{ categoria.descricao }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                  <ng-template #viewCategoria>{{
+                    despesa.categoria.descricao
+                  }}</ng-template>
+                </td>
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewFornecedor">
+                    <input
+                      type="text"
+                      [(ngModel)]="despesa.fornecedor"
+                      [readonly]="
+                        tableEditManipulation.inputSomenteLeitura('fornecedor')
+                      "
+                    />
+                  </div>
+                  <ng-template #viewFornecedor>{{
+                    despesa.fornecedor
+                  }}</ng-template>
+                </td>
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewPreco">
+                    <input
+                      class="preco"
+                      type="text"
+                      currencyMask
+                      [options]="{
+                        prefix: 'R$ ',
+                        thousands: '.',
+                        decimal: ','
+                      }"
+                      [(ngModel)]="despesa.preco"
+                    />
+                  </div>
+                  <ng-template #viewPreco>{{
+                    despesa.preco | currency : "BRL"
+                  }}</ng-template>
+                </td>
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewQuantidade">
+                    <input
+                      type="text"
+                      [(ngModel)]="despesa.quantidade"
+                      [readonly]="tableEditManipulation.inputSomenteLeitura()"
+                    />
+                  </div>
+                  <ng-template #viewQuantidade>{{
+                    despesa.quantidade
+                  }}</ng-template>
+                </td>
+                <td>{{ despesa.total | currency : "BRL" }}</td>
+                <td>{{ despesa.dataCompra }}</td>
+                <td>
+                  <i *ngIf="!despesa.isDespesaEditing; else saveEdicao">
+                    <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
+                  </i>
+                  <ng-template #saveEdicao>
+                    <mat-icon (click)="updateDespesa(despesa.id, despesa)"
+                      >save</mat-icon
+                    >
+                    <mat-icon space (click)="cancelEdit(despesa)"
+                      >cancel</mat-icon
+                    >
+                  </ng-template>
+                  <i space *ngIf="!despesa.isDespesaEditing">
+                    <mat-icon (click)="confirmDelete(despesa.id)"
+                      >delete</mat-icon
+                    >
+                  </i>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot *ngIf="despesasFiltradas?.length == 0">
+              <tr>
+                <td colspan="8">
+                  <h2>Nenhuma despesa encontrada</h2>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div pagination>
+            <mat-paginator
+              #paginator
+              class="demo-paginator"
+              (page)="mudarPagina($event)"
+              [length]="page.totalItens"
+              [pageSize]="page.itensPorPagina"
+              [pageSizeOptions]="tamanhosDePagina"
+              aria-label="Select page"
+              [disabled]="isDespesaEditing"
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
