@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { environment } from 'src/app/environments/environment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
-import { MediaPorFornecedor } from '../interfaces/media-por-fornecedor.interface';
+import { SugestaoDeFornecedorResponse } from '../interfaces/media-por-fornecedor.interface';
 import { SugestaoEconomia } from '../interfaces/sugestao-economia.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -14,14 +14,14 @@ export class ConferenciaComprasService extends BaseService {
   public mediaDespesasPorFornecedor(
     paginaAtual: number,
     itensPorPagina: number
-  ): Observable<MediaPorFornecedor[]> {
+  ): Observable<SugestaoDeFornecedorResponse[]> {
     const params = new HttpParams()
       .set('paginaAtual', paginaAtual.toString())
       .set('itensPorPagina', itensPorPagina.toString());
 
-    return this.sendHttpRequest<ApiResponse<MediaPorFornecedor[]>>(
+    return this.sendHttpRequest<ApiResponse<SugestaoDeFornecedorResponse[]>>(
       'GET',
-      `${this.url}/despesa/media-por-fornecedor`,
+      `${this.url}/despesa/sugestoes-fornecedor`,
       null,
       params
     ).pipe(map((response) => response.dados));

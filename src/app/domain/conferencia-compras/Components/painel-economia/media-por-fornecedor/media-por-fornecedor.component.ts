@@ -19,7 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { MediaPorFornecedor } from '../../../interfaces/media-por-fornecedor.interface';
+import { SugestaoDeFornecedorResponse } from '../../../interfaces/media-por-fornecedor.interface';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
 
 export const slideDownAnimation = trigger('slideDown', [
@@ -66,7 +66,7 @@ registerLocaleData(localePt);
 export class DespesasPorFornecedorComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
-  mediasPorFornecedor: MediaPorFornecedor[] = [];
+  sugestoesDeFornecedores: SugestaoDeFornecedorResponse[] = [];
 
   tamanhosDePagina: number[] = [5, 10, 50];
 
@@ -88,10 +88,10 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
     this.comprasService
       .mediaDespesasPorFornecedor(1, this.tamanhosDePagina[0])
       .subscribe((sugestoesDespesas) => {
-        this.mediasPorFornecedor = sugestoesDespesas.map((sugestao) => ({
+        this.sugestoesDeFornecedores = sugestoesDespesas.map((sugestao) => ({
           ...sugestao,
           page: {
-            totalItens: sugestao.itensDesteFornecedor.totalItens,
+            totalItens: sugestao.listaItens.totalItens,
             paginaAtual: 1,
             itensPorPagina: this.tamanhosDePagina[0],
           },
@@ -112,26 +112,26 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
   //#endregion
 
   //#region Paginação
-  mudarPagina(event: PageEvent, sugestao: MediaPorFornecedor): void {
+  mudarPagina(event: PageEvent, sugestao: SugestaoDeFornecedorResponse): void {
     sugestao.page.paginaAtual = event.pageIndex + 1;
     sugestao.page.itensPorPagina = event.pageSize;
     this.atualizarItensSugestao(sugestao);
   }
 
-  atualizarItensSugestao(sugestao: MediaPorFornecedor) {
+  atualizarItensSugestao(sugestao: SugestaoDeFornecedorResponse) {
     this.comprasService
       .mediaDespesasPorFornecedor(
         sugestao.page.paginaAtual,
         sugestao.page.itensPorPagina
       )
       .subscribe((sugestoesDespesas) => {
-        const index = this.mediasPorFornecedor.findIndex(
-          (s) => s.mediaDeFornecedor === sugestao.mediaDeFornecedor
+        const index = this.sugestoesDeFornecedores.findIndex(
+          (s) => s.sugestao === sugestao.sugestao
         );
         if (index !== -1) {
-          this.mediasPorFornecedor[index].itensDesteFornecedor =
-            sugestoesDespesas[index].itensDesteFornecedor;
-          this.mediasPorFornecedor[index].page = sugestao.page;
+          this.sugestoesDeFornecedores[index].listaItens =
+            sugestoesDespesas[index].listaItens;
+          this.sugestoesDeFornecedores[index].page = sugestao.page;
         }
       });
   }
@@ -139,8 +139,8 @@ export class DespesasPorFornecedorComponent implements OnDestroy {
 
   //#region Metodos de suporte
   toggleDetail(index: number) {
-    this.mediasPorFornecedor[index].expanded =
-      !this.mediasPorFornecedor[index].expanded;
+    this.sugestoesDeFornecedores[index].expanded =
+      !this.sugestoesDeFornecedores[index].expanded;
   }
 
   removerPrefixoFatura(nome: string): string {
