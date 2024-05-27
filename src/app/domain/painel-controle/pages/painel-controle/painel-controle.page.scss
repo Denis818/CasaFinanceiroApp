@@ -5,7 +5,7 @@
       flex-wrap: wrap;
       display: flex;
       justify-content: space-between;
-      padding: 15px;
+      padding: 5px;
       border-radius: 10px;
       background-color: #efefef;
       border: 1px solid #ddd;
@@ -75,13 +75,13 @@
 
       [list-itens] {
         button {
-          margin-left: 10px;
+          margin: 10px;
         }
       }
 
       [insert-itens] {
         button {
-          margin-left: 15px;
+          margin: 10px;
         }
       }
     }
