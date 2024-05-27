@@ -48,6 +48,13 @@
           </td>
         </tr>
       </tbody>
+      <tfoot *ngIf="grupoDespesas.length == 0">
+        <tr>
+          <td colspan="2">
+            <div class="sem-dados">Nenhum grupo encontrado</div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

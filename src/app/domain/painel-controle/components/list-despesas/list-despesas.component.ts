@@ -67,7 +67,7 @@ export class ListDespesasComponent implements OnDestroy {
   isDespesaEditing: boolean = false;
   despesaAtual: Despesa;
 
-  despesasFiltradas: Despesa[];
+  despesasFiltradas: Despesa[] = [];
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
   listTipoFiltro = this.listFiltroDespesa.listTipoFiltro;

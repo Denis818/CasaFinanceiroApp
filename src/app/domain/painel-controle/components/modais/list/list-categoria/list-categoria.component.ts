@@ -35,7 +35,7 @@ export class ListCategoriaComponent {
   categoriaAtual: Categoria;
   isEditing: boolean = false;
 
-  categorias: Categoria[];
+  categorias: Categoria[] = [];
   constructor(
     private readonly categoriaService: CategoriaService,
     private readonly toastr: ToastrService,

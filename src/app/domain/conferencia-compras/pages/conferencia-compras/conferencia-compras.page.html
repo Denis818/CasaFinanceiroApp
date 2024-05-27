@@ -78,10 +78,10 @@
                 <td>{{ despesa.dataCompra }}</td>
               </tr>
             </tbody>
-            <tfoot *ngIf="despesasFiltradas?.length == 0">
+            <tfoot *ngIf="despesasFiltradas.length == 0">
               <tr>
                 <td colspan="8">
-                  <h2>Nenhuma despesa encontrada</h2>
+                  <div class="sem-dados">Nenhuma despesa encontrada</div>
                 </td>
               </tr>
             </tfoot>

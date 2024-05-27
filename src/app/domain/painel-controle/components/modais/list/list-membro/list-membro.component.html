@@ -50,6 +50,13 @@
           </td>
         </tr>
       </tbody>
+       <tfoot *ngIf="membros.length == 0">
+        <tr>
+          <td colspan="3">
+            <div class="sem-dados">Nenhum membro encontrado</div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>

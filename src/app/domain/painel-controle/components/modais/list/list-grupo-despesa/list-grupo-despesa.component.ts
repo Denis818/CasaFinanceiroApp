@@ -31,7 +31,7 @@ import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-no
   ],
 })
 export class ListGrupoDespesaComponent {
-  grupoDespesas: GrupoDespesa[];
+  grupoDespesas: GrupoDespesa[] = [];
   nomeMes: string;
 
   grupoDespesaAtual: GrupoDespesa;

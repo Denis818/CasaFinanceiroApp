@@ -55,7 +55,7 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   categorias: Categoria[] = [];
 
-  despesasFiltradas: Despesa[];
+  despesasFiltradas: Despesa[] = [];
   filtro: string = '';
 
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;

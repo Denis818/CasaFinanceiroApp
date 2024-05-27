@@ -268,9 +268,8 @@
       font-size: 14px;
     }
 
-    tfoot td {
+    tfoot tr td {
       text-align: center;
-      padding-top: 20px;
     }
 
     &::-webkit-scrollbar {
@@ -294,6 +293,15 @@
       background-color: #5c2ca3;
     }
   }
+}
+
+.sem-dados {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #757575;
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
 }
 
 @media screen and (max-width: 600px) {

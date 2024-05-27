@@ -30,7 +30,7 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
   ],
 })
 export class ListMembroComponent {
-  membros: Membro[];
+  membros: Membro[] = [];
 
   membroAtual: Membro;
   isEditing: boolean = false;

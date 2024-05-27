@@ -15,17 +15,19 @@
         </div>
       </div>
       <div app-multi-card-body>
-        <div *ngFor="let item of despesasPorMembros" class="expense-item">
-          <div class="expense-title">{{ item.nome }}</div>
-          <div class="expense-value">
-            {{ item.valorDespesaCasa | currency:'BRL' }}
-          </div>
-          <div
-            share-whatsapp
-            (click)="openMensagemWhatsAppModal(item.nome, false)"
-          >
-            <mat-icon>share</mat-icon>
-            <span>WhatsApp</span>
+        <div *ngIf="despesasPorMembros.length > 0; else semDados">
+          <div *ngFor="let item of despesasPorMembros" class="expense-item">
+            <div class="expense-title">{{ item.nome }}</div>
+            <div class="expense-value">
+              {{ item.valorDespesaCasa | currency:'BRL' }}
+            </div>
+            <div
+              share-whatsapp
+              (click)="openMensagemWhatsAppModal(item.nome, false)"
+            >
+              <mat-icon>share</mat-icon>
+              <span>WhatsApp</span>
+            </div>
           </div>
         </div>
       </div>
@@ -49,21 +51,26 @@
         </div>
       </div>
       <div app-multi-card-body>
-        <ng-container *ngFor="let item of despesasPorMembros">
-          <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">
-            <div class="expense-title">{{ item.nome }}</div>
-            <div class="expense-value">
-              {{ item.valorDespesaMoradia | currency:'BRL' }}
+        <div *ngIf="despesasPorMembros.length > 0; else semDados">
+          <ng-container *ngFor="let item of despesasPorMembros">
+            <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">
+              <div class="expense-title">{{ item.nome }}</div>
+              <div class="expense-value">
+                {{ item.valorDespesaMoradia | currency:'BRL' }}
+              </div>
+              <div
+                share-whatsapp
+                (click)="openMensagemWhatsAppModal(item.nome, true)"
+              >
+                <mat-icon>share</mat-icon>
+                <span>WhatsApp</span>
+              </div>
             </div>
-            <div
-              share-whatsapp
-              (click)="openMensagemWhatsAppModal(item.nome, true)"
-            >
-              <mat-icon>share</mat-icon>
-              <span>WhatsApp</span>
-            </div>
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
+        <ng-template #noDespesasMoradia>
+          <h2>Nenhuma despesa encontrada</h2>
+        </ng-template>
       </div>
     </div>
 
@@ -72,14 +79,21 @@
         <div app-card-title>Análise de Compras por Grupo</div>
       </div>
       <div app-multi-card-body>
-        <app-graphic
-          [graphicConfig]="graphicConfig"
-          [graphicMobile]="graphicMobile"
-          [graphicType]="'line'"
-          [width]="900"
-          [height]="315"
+        <div
+          *ngIf="graphicConfig && graphicConfig.chartData.datasets.length; else semDados"
         >
-        </app-graphic>
+          <app-graphic
+            [graphicConfig]="graphicConfig"
+            [graphicMobile]="graphicMobile"
+            [graphicType]="'line'"
+            [width]="900"
+            [height]="315"
+          >
+          </app-graphic>
+        </div>
+        <ng-template #noGraphicData>
+          <h2>Nenhuma análise de compras encontrada</h2>
+        </ng-template>
       </div>
     </div>
 
@@ -105,7 +119,7 @@
             <tfoot *ngIf="listDespesasPorCategoria.length == 0">
               <tr>
                 <td colspan="2">
-                  <h2>Nenhuma despesa encontrada</h2>
+                  <div class="sem-dados">Nenhuma informação encontrada</div>
                 </td>
               </tr>
             </tfoot>
@@ -148,4 +162,8 @@
       <mat-icon>{{ scrollIcon }}</mat-icon>
     </button>
   </div>
+
+  <ng-template #semDados>
+    <div class="sem-dados">Nenhuma informação encontrada</div>
+  </ng-template>
 </div>
