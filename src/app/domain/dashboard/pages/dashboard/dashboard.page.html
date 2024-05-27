@@ -1,7 +1,7 @@
 <div dashboard>
-  <div card-information tooltip-helper>
-    <div class="card">
-      <div class="card-head">
+  <div card-container tooltip-helper>
+    <div multi-card>
+      <div multi-card-head>
         <div card-title>Despesa de casa</div>
         <div>
           <button download-button (click)="downloadRelatorioDespesasCasa()">
@@ -14,7 +14,7 @@
           </mat-icon>
         </div>
       </div>
-      <div class="card-body">
+      <div multi-card-body>
         <div *ngFor="let item of despesasPorMembros" class="expense-item">
           <div class="expense-title">{{ item.nome }}</div>
           <div class="expense-value">
@@ -31,8 +31,8 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-head">
+    <div multi-card>
+      <div multi-card-head>
         <div card-title>Despesa de moradia</div>
         <div>
           <button
@@ -48,7 +48,7 @@
           >
         </div>
       </div>
-      <div class="card-body">
+      <div multi-card-body>
         <ng-container *ngFor="let item of despesasPorMembros">
           <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
@@ -67,11 +67,11 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-head">
+    <div multi-card>
+      <div multi-card-head>
         <div card-title>Análise de Compras por Grupo</div>
       </div>
-      <div class="card-body">
+      <div multi-card-body>
         <app-graphic
           [graphicConfig]="graphicConfig"
           [graphicMobile]="graphicMobile"
@@ -83,11 +83,11 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-head">
+    <div multi-card>
+      <div multi-card-head>
         <div card-title>Total por categoria</div>
       </div>
-      <div class="card-body">
+      <div multi-card-body>
         <div table-app>
           <table>
             <thead>
@@ -114,11 +114,11 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-head">
+    <div multi-card>
+      <div multi-card-head>
         <div card-title>{{relatorioGastosDoGrupo.grupoDespesaNome}}</div>
       </div>
-      <div class="card-body">
+      <div multi-card-body>
         <div class="expense-item">
           <div class="expense-title">Total Moradia</div>
           <div class="expense-value no-button-whats">
