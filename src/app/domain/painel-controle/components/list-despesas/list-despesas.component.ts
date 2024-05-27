@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';

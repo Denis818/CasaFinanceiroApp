@@ -17,9 +17,9 @@ import {
 } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { SugestaoDeFornecedorResponse } from '../../../interfaces/media-por-fornecedor.interface';
+import { SugestaoDeFornecedorResponse } from '../../../interfaces/sugestao-fornecedor-response';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
 
 export const slideDownAnimation = trigger('slideDown', [
@@ -43,10 +43,10 @@ export const slideDownAnimation = trigger('slideDown', [
 
 registerLocaleData(localePt);
 @Component({
-  selector: 'media-por-fornecedor',
-  templateUrl: './media-por-fornecedor.component.html',
+  selector: 'sugestao-fornecedor',
+  templateUrl: './sugestao-fornecedor.component.html',
   styleUrls: [
-    './media-por-fornecedor.component.scss',
+    './sugestao-fornecedor.component.scss',
     '../painel-economia.component.scss',
   ],
   animations: [slideDownAnimation],
@@ -63,7 +63,7 @@ registerLocaleData(localePt);
     MatPaginatorModule,
   ],
 })
-export class DespesasPorFornecedorComponent implements OnDestroy {
+export class SugestaoFornecedorComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   sugestoesDeFornecedores: SugestaoDeFornecedorResponse[] = [];

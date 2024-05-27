@@ -5,10 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 
 registerLocaleData(localePt);
 @Component({

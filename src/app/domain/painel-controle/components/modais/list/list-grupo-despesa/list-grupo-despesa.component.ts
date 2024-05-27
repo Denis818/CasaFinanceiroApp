@@ -10,8 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 
 @Component({
   selector: 'modal-listGrupoDespesa',

@@ -11,8 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 
 @Component({
   selector: 'app-membro',

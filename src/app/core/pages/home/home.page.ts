@@ -8,7 +8,7 @@ import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
 import { GrupoDespesaService } from '../../services/grupo-despesa.service';
 import { StorageService } from '../../services/storage/storage.service';
-import { GrupoDespesaNotification } from '../../utilities/grupo-despesa-notification';
+import { GrupoDespesaNotification } from '../../services/grupo-despesa-notification.service';
 
 @Component({
   selector: 'app-home',

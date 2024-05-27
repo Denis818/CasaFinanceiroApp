@@ -1,7 +1,7 @@
 import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { Categoria } from './categoria.interface';
 
-export class Despesa {
+export interface Despesa {
   id: number;
   dataCompra: Date;
   item: string;
@@ -13,5 +13,5 @@ export class Despesa {
   grupoDespesa: GrupoDespesa;
   categoriaId: number;
   grupoDespesaId: number;
-  isDespesaEditing?: boolean = false;
+  isDespesaEditing: boolean;
 }

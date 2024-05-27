@@ -6,7 +6,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { GrupoDespesaNotification } from 'src/app/core/utilities/grupo-despesa-notification';
 import { MensagemWhatsAppComponent } from 'src/app/domain/painel-controle/components/modais/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
@@ -15,6 +14,7 @@ import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-m
 import { RelatorioGastosDoGrupoResponse } from '../../interfaces/financy/relatorio-gastos-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
+import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 
 registerLocaleData(localePt);
 

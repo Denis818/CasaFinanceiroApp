@@ -1,4 +1,4 @@
-export interface SugestaoEconomia {
+export interface SugestaoEconomiaResponse {
   item: string;
   fornecedorMaisBarato: string;
   precoMaisBarato: number;

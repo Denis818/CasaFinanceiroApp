@@ -1,5 +1,5 @@
-export class Categoria {
+export interface Categoria {
   id: number;
   descricao: string;
-  isEditing?: boolean = false;
+  isEditing: boolean;
 }
