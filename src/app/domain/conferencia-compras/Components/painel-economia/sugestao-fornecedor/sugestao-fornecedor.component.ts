@@ -19,7 +19,7 @@ import {
 } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
+import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { SugestaoDeFornecedorResponse } from '../../../interfaces/sugestao-fornecedor-response';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
@@ -78,7 +78,7 @@ export class SugestaoFornecedorComponent implements OnDestroy {
 
   constructor(
     private readonly comprasService: ConferenciaComprasService,
-    private readonly grupoDespesaNotification: GrupoDespesaNotification
+    private readonly grupoFaturaNotification: grupoFaturaNotification
   ) {
     this.reloadDespesas();
   }
@@ -107,7 +107,7 @@ export class SugestaoFornecedorComponent implements OnDestroy {
 
   reloadDespesas() {
     this.reloadPageSubscriber =
-      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.mediaDespesasPorFornecedor();

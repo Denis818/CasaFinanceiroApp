@@ -53,7 +53,7 @@
                 <th>Preço</th>
                 <th>Quantidade</th>
                 <th>Total</th>
-                <th>Data da compra</th>
+                <th>Grupo de Fatura</th>
                 <th>Opções</th>
               </tr>
             </thead>
@@ -166,7 +166,21 @@
                   }}</ng-template>
                 </td>
                 <td>{{ despesa.total | currency : "BRL" }}</td>
-                <td>{{ despesa.dataCompra }}</td>
+                <td>
+                  <div *ngIf="despesa.isDespesaEditing; else viewGrupoFatura">
+                    <mat-select [(ngModel)]="despesa.grupoFatura.id">
+                      <mat-option
+                        *ngFor="let grupoFatura of grupoFaturas"
+                        [value]="grupoFatura.id"
+                      >
+                        {{ grupoFatura.nome }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                  <ng-template #viewGrupoFatura>{{
+                    despesa.grupoFatura.nome
+                  }}</ng-template>
+                </td>
                 <td>
                   <i *ngIf="!despesa.isDespesaEditing; else saveEdicao">
                     <mat-icon (click)="openEdit(despesa)">edit</mat-icon>

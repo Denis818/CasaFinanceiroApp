@@ -4,11 +4,11 @@ import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-import { GrupoDespesaService } from '../../services/grupo-despesa.service';
+import { GrupoFatura } from '../../interfaces/grupo-despesa.interface';
+import { grupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
+import { GrupoFaturaService } from '../../services/grupo-fatura.service';
 import { StorageService } from '../../services/storage/storage.service';
-import { GrupoDespesaNotification } from '../../services/grupo-despesa-notification.service';
 
 @Component({
   selector: 'app-home',
@@ -21,30 +21,30 @@ export class HomePage implements OnDestroy {
   isDesktop: boolean = true;
 
   grupoDefault: number;
-  private grupoDespesasSubscriber: Subscription;
-  grupoDespesas: GrupoDespesa[] = [];
+  private grupoFaturasSubscriber: Subscription;
+  grupoFaturas: GrupoFatura[] = [];
 
-  grupoDespesasForm: FormGroup = new FormGroup({
-    grupoDespesaId: new FormControl(),
+  grupoFaturasForm: FormGroup = new FormGroup({
+    grupoFaturaId: new FormControl(),
   });
 
   constructor(
-    private readonly grupoDespesa: GrupoDespesaService,
-    private readonly grupoDespesaNotification: GrupoDespesaNotification,
+    private readonly grupoFatura: GrupoFaturaService,
+    private readonly grupoFaturaNotification: grupoFaturaNotification,
     private readonly storageService: StorageService,
     private readonly user: UserService,
     private router: Router,
     public readonly titleService: Title
   ) {
     this.updateSelectedButtonFromRoute();
-    this.getAllGrupoDespesas();
-    this.reloadGrupoDespesas();
+    this.getAllgrupoFaturas();
+    this.reloadgrupoFaturas();
     this.setGrupoId();
   }
 
   ngOnDestroy(): void {
-    if (this.grupoDespesasSubscriber) {
-      this.grupoDespesasSubscriber.unsubscribe();
+    if (this.grupoFaturasSubscriber) {
+      this.grupoFaturasSubscriber.unsubscribe();
     }
   }
 
@@ -85,41 +85,41 @@ export class HomePage implements OnDestroy {
     this.user.logout();
   }
 
-  getAllGrupoDespesas() {
-    this.grupoDespesa.getAll().subscribe({
-      next: (grupoDespesas) => {
-        this.grupoDespesas = grupoDespesas;
-        this.grupoDefault = grupoDespesas[0].id;
+  getAllgrupoFaturas() {
+    this.grupoFatura.getAll().subscribe({
+      next: (grupoFaturas) => {
+        this.grupoFaturas = grupoFaturas;
+        this.grupoDefault = grupoFaturas[0].id;
 
         this.inicializeForm();
       },
     });
   }
 
-  reloadGrupoDespesas() {
-    this.grupoDespesasSubscriber =
-      this.grupoDespesaNotification.realoadGrupoDespesas.subscribe({
+  reloadgrupoFaturas() {
+    this.grupoFaturasSubscriber =
+      this.grupoFaturaNotification.realoadgrupoFaturas.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.getAllGrupoDespesas();
+            this.getAllgrupoFaturas();
           }
         },
       });
   }
 
   inicializeForm(): void {
-    this.grupoDespesasForm.reset({
-      grupoDespesaId: this.getGrupoId(),
+    this.grupoFaturasForm.reset({
+      grupoFaturaId: this.getGrupoId(),
     });
   }
 
   getGrupoId(): number {
     let grupoId =
-      parseInt(this.storageService.getItem('grupoDespesasId')) ||
+      parseInt(this.storageService.getItem('grupoFaturaId')) ||
       this.grupoDefault;
 
-    let grupo = this.grupoDespesas.find(
-      (grupoDespesa) => grupoDespesa.id === grupoId
+    let grupo = this.grupoFaturas.find(
+      (grupoFatura) => grupoFatura.id === grupoId
     );
 
     if (grupo == null) {
@@ -129,21 +129,19 @@ export class HomePage implements OnDestroy {
   }
 
   setGrupoId(): void {
-    this.grupoDespesasForm
-      .get('grupoDespesaId')
-      .valueChanges.subscribe((grupoDespesasId) => {
-        const grupoId = parseInt(
-          this.storageService.getItem('grupoDespesasId')
-        );
+    this.grupoFaturasForm
+      .get('grupoFaturaId')
+      .valueChanges.subscribe((grupoFaturaId) => {
+        const grupoId = parseInt(this.storageService.getItem('grupoFaturaId'));
 
-        const grupoExiste = this.grupoDespesas.some((g) => g.id === grupoId);
+        const grupoExiste = this.grupoFaturas.some((g) => g.id === grupoId);
 
         if (grupoId != 0 || grupoExiste) {
           this.storageService.setItem(
-            'grupoDespesasId',
-            grupoDespesasId.toString()
+            'grupoFaturaId',
+            grupoFaturaId.toString()
           );
-          this.grupoDespesaNotification.notificarComponentesGrupoIdMudou();
+          this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
         }
       });
   }

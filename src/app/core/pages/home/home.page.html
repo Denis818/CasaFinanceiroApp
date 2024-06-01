@@ -1,7 +1,7 @@
 <nav class="navbar">
   <h1 title>{{ titleService.getTitle() }}</h1>
 
-  <div selected-group [formGroup]="grupoDespesasForm">
+  <div selected-group [formGroup]="grupoFaturasForm">
     <div app-tooltip-helper>
       <mat-icon
         class="icon-help"
@@ -10,12 +10,12 @@
       </mat-icon>
     </div>
     <mat-form-field appearance="fill">
-      <mat-select formControlName="grupoDespesaId">
+      <mat-select formControlName="grupoFaturaId">
         <mat-option
-          *ngFor="let grupoDespesa of grupoDespesas"
-          [value]="grupoDespesa.id"
+          *ngFor="let grupoFatura of grupoFaturas"
+          [value]="grupoFatura.id"
         >
-          {{ grupoDespesa.nome }}
+          {{ grupoFatura.nome }}
         </mat-option>
       </mat-select>
     </mat-form-field>

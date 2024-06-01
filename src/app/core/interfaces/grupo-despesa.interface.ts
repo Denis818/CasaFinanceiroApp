@@ -1,4 +1,4 @@
-export interface GrupoDespesa {
+export interface GrupoFatura {
   id: number;
   nome: string;
   nomeEditavel: string;

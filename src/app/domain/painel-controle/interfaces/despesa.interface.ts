@@ -1,4 +1,4 @@
-import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { Categoria } from './categoria.interface';
 
 export interface Despesa {
@@ -10,8 +10,8 @@ export interface Despesa {
   fornecedor: string;
   total: number;
   categoria: Categoria;
-  grupoDespesa: GrupoDespesa;
+  grupoFatura: GrupoFatura;
   categoriaId: number;
-  grupoDespesaId: number;
+  grupoFaturaId: number;
   isDespesaEditing: boolean;
 }

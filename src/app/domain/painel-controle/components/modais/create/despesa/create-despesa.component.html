@@ -7,12 +7,12 @@
     <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline">
         <mat-label>Selecione um Grupo</mat-label>
-        <mat-select formControlName="grupoDespesaId">
+        <mat-select formControlName="grupoFaturaId">
           <mat-option
-            *ngFor="let grupoDespesa of grupoDespesas"
-            [value]="grupoDespesa.id"
+            *ngFor="let grupoFatura of grupoFaturas"
+            [value]="grupoFatura.id"
           >
-            {{ grupoDespesa.nome }}
+            {{ grupoFatura.nome }}
           </mat-option>
         </mat-select>
       </mat-form-field>

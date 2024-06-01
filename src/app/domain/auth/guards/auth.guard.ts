@@ -46,7 +46,7 @@ export class AuthGuard {
 
   private resetLocalStorage(): void {
     this.storageService.cleanAndPreserverItem([
-      'grupoDespesasId',
+      'grupoFaturaId',
       'selectedButton',
     ]);
   }

@@ -11,13 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
-import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
+import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
+import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 
 @Component({
   selector: 'app-membro',
-  templateUrl: './create-grupo-despesa.component.html',
-  styleUrls: ['./create-grupo-despesa.component.scss'],
+  templateUrl: './create-grupo-fatura.component.html',
+  styleUrls: ['./create-grupo-fatura.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -28,17 +28,17 @@ import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service
     MatInputModule,
   ],
 })
-export class CreateGrupoDespesaComponent {
-  grupoDespesaForm: FormGroup;
+export class CreategrupoFaturaComponent {
+  grupoFaturaForm: FormGroup;
   userInput: string = '';
 
-  get grupoDespesaValidator(): any {
-    return this.grupoDespesaForm.controls;
+  get grupoFaturaValidator(): any {
+    return this.grupoFaturaForm.controls;
   }
   constructor(
-    private readonly grupoDespesaService: GrupoDespesaService,
-    private readonly grupoDespesaNotification: GrupoDespesaNotification,
-    private readonly dialogRef: MatDialogRef<CreateGrupoDespesaComponent>,
+    private readonly grupoFaturaService: GrupoFaturaService,
+    private readonly grupoFaturaNotification: grupoFaturaNotification,
+    private readonly dialogRef: MatDialogRef<CreategrupoFaturaComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
   ) {
@@ -46,13 +46,13 @@ export class CreateGrupoDespesaComponent {
   }
 
   onSubmit(): void {
-    if (this.grupoDespesaForm.valid) {
-      this.grupoDespesaService.insert(this.grupoDespesaForm.value).subscribe({
+    if (this.grupoFaturaForm.valid) {
+      this.grupoFaturaService.insert(this.grupoFaturaForm.value).subscribe({
         next: (grupoInserido) => {
           if (grupoInserido) {
-            this.grupoDespesaNotification.recarregarListaGrupoDespesa();
+            this.grupoFaturaNotification.recarregarListagrupoFatura();
             this.toastr.success(
-              `Grupo ${this.grupoDespesaForm.value.nome} criado com sucesso!`,
+              `Grupo ${this.grupoFaturaForm.value.nome} criado com sucesso!`,
               'Finalizado!'
             );
 
@@ -64,7 +64,7 @@ export class CreateGrupoDespesaComponent {
   }
 
   public validation(): void {
-    this.grupoDespesaForm = this.fb.group({
+    this.grupoFaturaForm = this.fb.group({
       nome: [
         '',
         [

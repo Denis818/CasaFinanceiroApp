@@ -14,8 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { GrupoDespesaService } from 'src/app/core/services/grupo-despesa.service';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
 import { CategoriaService } from 'src/app/domain/painel-controle/services/categoria.service';
@@ -52,9 +52,9 @@ export class CreateDespesaComponent {
   categorias: Categoria[] = [];
   categoriaSelecionada: string;
 
-  grupoDespesas: GrupoDespesa[];
+  grupoFaturas: GrupoFatura[];
   grupoDefault: number;
-  grupoId = this.storageService.getItem('grupoDespesasId');
+  grupoId = this.storageService.getItem('grupoFaturaId');
 
   despesaForm: FormGroup;
   get despesaValidator(): any {
@@ -64,7 +64,7 @@ export class CreateDespesaComponent {
   constructor(
     private readonly categoriaService: CategoriaService,
     private readonly despesaService: DespesaService,
-    private readonly grupoDespesaService: GrupoDespesaService,
+    private readonly grupoFaturaService: GrupoFaturaService,
     private readonly dialogRef: MatDialogRef<CreateDespesaComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService,
@@ -73,7 +73,7 @@ export class CreateDespesaComponent {
     this.validation();
     this.resetForm();
     this.getAllCategorias();
-    this.getAllGrupoDespesas();
+    this.getAllgrupoFaturas();
     this.definirValoresMensaisNoInput();
   }
 
@@ -101,10 +101,10 @@ export class CreateDespesaComponent {
     });
   }
 
-  getAllGrupoDespesas() {
-    this.grupoDespesaService.getAll().subscribe({
-      next: (grupoDespesas) => {
-        this.grupoDespesas = grupoDespesas;
+  getAllgrupoFaturas() {
+    this.grupoFaturaService.getAll().subscribe({
+      next: (grupoFaturas) => {
+        this.grupoFaturas = grupoFaturas;
       },
     });
   }
@@ -136,7 +136,7 @@ export class CreateDespesaComponent {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      grupoDespesaId: ['', [Validators.required]],
+      grupoFaturaId: ['', [Validators.required]],
       categoriaId: [1, [Validators.required]],
 
       item: [
@@ -178,8 +178,8 @@ export class CreateDespesaComponent {
       quantidade: 1,
       fornecedor: this.setValueInputFornecedor(),
       categoriaId: this.despesaForm.value.categoriaId || 1,
-      grupoDespesaId:
-        this.despesaForm.value.grupoDespesaId || parseInt(this.grupoId),
+      grupoFaturaId:
+        this.despesaForm.value.grupoFaturaId || parseInt(this.grupoId),
     });
   }
 

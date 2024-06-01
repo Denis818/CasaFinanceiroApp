@@ -1,4 +1,4 @@
-<div grupodespesa-list-by-group>
+<div grupoFatura-list-by-group>
   <div app-table app-table-icons-options>
     <table>
       <thead>
@@ -7,40 +7,39 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let grupoDespesa of grupoDespesas"
-          (keyup.enter)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+          *ngFor="let grupoFatura of grupoFaturas"
+          (keyup.enter)="updategrupoFatura(grupoFatura.id, grupoFatura)"
         >
           <td>
-            <div *ngIf="grupoDespesa.isEditing; else viewNome">
+            <div *ngIf="grupoFatura.isEditing; else viewNome">
               <span matPrefix>Fatura de&nbsp;</span>
-              <input type="text" [(ngModel)]="grupoDespesa.nomeEditavel" />
+              <input type="text" [(ngModel)]="grupoFatura.nomeEditavel" />
             </div>
-            <ng-template #viewNome>{{ grupoDespesa.nome }}</ng-template>
+            <ng-template #viewNome>{{ grupoFatura.nome }}</ng-template>
           </td>
 
           <td>
-            <i *ngIf="!grupoDespesa.isEditing; else saveEdicao">
+            <i *ngIf="!grupoFatura.isEditing; else saveEdicao">
               <mat-icon
-                (click)="openEdit(grupoDespesa)"
+                (click)="openEdit(grupoFatura)"
                 [class.disable-options]="isEditing"
                 >edit</mat-icon
               >
             </i>
 
             <ng-template #saveEdicao>
-              <mat-icon
-                (click)="updateGrupoDespesa(grupoDespesa.id, grupoDespesa)"
+              <mat-icon (click)="updategrupoFatura(grupoFatura.id, grupoFatura)"
                 >save</mat-icon
               >
-              <mat-icon space (click)="cancelEdit(grupoDespesa)"
+              <mat-icon space (click)="cancelEdit(grupoFatura)"
                 >cancel</mat-icon
               >
               <!-- Ícone de cancelar -->
             </ng-template>
 
-            <i space *ngIf="!grupoDespesa.isEditing">
+            <i space *ngIf="!grupoFatura.isEditing">
               <mat-icon
-                (click)="confirmDelete(grupoDespesa.id)"
+                (click)="confirmDelete(grupoFatura.id)"
                 [class.disable-options]="isEditing"
                 >delete</mat-icon
               >
@@ -48,7 +47,7 @@
           </td>
         </tr>
       </tbody>
-      <tfoot *ngIf="grupoDespesas.length == 0">
+      <tfoot *ngIf="grupoFaturas.length == 0">
         <tr>
           <td colspan="2">
             <div class="sem-dados">Nenhum grupo encontrado</div>

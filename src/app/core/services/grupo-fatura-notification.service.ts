@@ -4,12 +4,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class GrupoDespesaNotification {
-  private reloadSelectedGrupoDespesa = new BehaviorSubject<boolean>(false);
+export class grupoFaturaNotification {
+  private reloadSelectedgrupoFatura = new BehaviorSubject<boolean>(false);
   private notificarGrupoIdMudou = new BehaviorSubject<boolean>(false);
 
-  get realoadGrupoDespesas(): Observable<boolean> {
-    return this.reloadSelectedGrupoDespesa.asObservable();
+  get realoadgrupoFaturas(): Observable<boolean> {
+    return this.reloadSelectedgrupoFatura.asObservable();
   }
 
   get recarregarPaginaComNovoGrupoId(): Observable<boolean> {
@@ -20,7 +20,7 @@ export class GrupoDespesaNotification {
     this.notificarGrupoIdMudou.next(true);
   }
 
-  recarregarListaGrupoDespesa() {
-    this.reloadSelectedGrupoDespesa.next(true);
+  recarregarListagrupoFatura() {
+    this.reloadSelectedgrupoFatura.next(true);
   }
 }

@@ -10,10 +10,10 @@ import { ListDespesasComponent } from '../../components/list-despesas/list-despe
 import { ChecarFaturaCartaoComponent } from '../../components/modais/checar-fatura-cartao/checar-fatura-cartao.component';
 import { CreateCategoriaComponent } from '../../components/modais/create/categoria/create-categoria.component';
 import { CreateDespesaComponent } from '../../components/modais/create/despesa/create-despesa.component';
-import { CreateGrupoDespesaComponent } from '../../components/modais/create/grupo-despesa/create-grupo-despesa.component';
+import { CreategrupoFaturaComponent } from '../../components/modais/create/grupo-despesa/create-grupo-fatura.component';
 import { CreateMembroComponent } from '../../components/modais/create/membro/create-membro.component';
 import { ListCategoriaComponent } from '../../components/modais/list/list-categoria/list-categoria.component';
-import { ListGrupoDespesaComponent } from '../../components/modais/list/list-grupo-despesa/list-grupo-despesa.component';
+import { ListgrupoFaturaComponent } from '../../components/modais/list/list-grupo-fatura/list-grupo-fatura.component';
 import { ListMembroComponent } from '../../components/modais/list/list-membro/list-membro.component';
 
 @Component({
@@ -57,8 +57,8 @@ export class PainelControlePage {
     dialogRef.afterClosed();
   }
 
-  openListGrupoDespesasModal() {
-    const dialogRef = this.dialog.open(ListGrupoDespesaComponent, {
+  openListgrupoFaturasModal() {
+    const dialogRef = this.dialog.open(ListgrupoFaturaComponent, {
       width: '400px',
     });
     dialogRef.afterClosed();
@@ -76,8 +76,8 @@ export class PainelControlePage {
     });
   }
 
-  openCreateGrupoDespesaModal(): void {
-    this.dialog.open(CreateGrupoDespesaComponent, {
+  openCreategrupoFaturaModal(): void {
+    this.dialog.open(CreategrupoFaturaComponent, {
       width: '400px',
     });
   }

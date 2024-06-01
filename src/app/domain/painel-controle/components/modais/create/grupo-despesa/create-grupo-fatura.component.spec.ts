@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateMembroModal } from './create-grupo-despesa.component';
+import { CreateMembroModal } from './create-grupo-fatura.component';
 
 describe('ModalMembroComponent', () => {
   let component: CreateMembroModal;

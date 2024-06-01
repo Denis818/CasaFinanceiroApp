@@ -1,5 +1,5 @@
 export interface RelatorioGastosDoGrupoResponse {
-  grupoDespesaNome: string;
+  grupoFaturaNome: string;
   totalGastosMoradia: number;
   totalGastosCasa: number;
   totalGeral: number;

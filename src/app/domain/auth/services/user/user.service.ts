@@ -74,7 +74,7 @@ export class UserService extends BaseService {
   }
 
   removeAuthLocalStorage() {
-    this.storageService.cleanAndPreserverItem(['grupoDespesasId']);
+    this.storageService.cleanAndPreserverItem(['grupoFaturaId']);
   }
   //
 }

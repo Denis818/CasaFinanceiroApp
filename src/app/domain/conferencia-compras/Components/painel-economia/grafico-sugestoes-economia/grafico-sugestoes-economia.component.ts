@@ -5,10 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
+import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
-import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
 
 registerLocaleData(localePt);
 @Component({
@@ -30,7 +30,7 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
 
   constructor(
     private readonly comprasService: ConferenciaComprasService,
-    private readonly grupoDespesaNotification: GrupoDespesaNotification
+    private readonly grupoFaturaNotification: grupoFaturaNotification
   ) {
     this.reloadDespesas();
   }
@@ -43,7 +43,7 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
 
   reloadDespesas() {
     this.reloadPageSubscriber =
-      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getGraficoSugestoesEconomia();

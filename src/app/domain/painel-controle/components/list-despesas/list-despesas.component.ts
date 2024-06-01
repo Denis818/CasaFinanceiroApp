@@ -18,8 +18,9 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { GrupoDespesa } from 'src/app/core/interfaces/grupo-despesa.interface';
-import { GrupoDespesaNotification } from 'src/app/core/services/grupo-despesa-notification.service';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
+import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
@@ -62,7 +63,7 @@ export class ListDespesasComponent implements OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   categorias: Categoria[] = [];
-  grupoDespesas: GrupoDespesa[];
+  grupoFaturas: GrupoFatura[];
 
   isDespesaEditing: boolean = false;
   despesaAtual: Despesa;
@@ -82,9 +83,10 @@ export class ListDespesasComponent implements OnDestroy {
   constructor(
     private readonly despesaService: DespesaService,
     private readonly categoriaService: CategoriaService,
+    private readonly grupoFaturaService: GrupoFaturaService,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
-    private readonly grupoDespesaNotification: GrupoDespesaNotification,
+    private readonly grupoFaturaNotification: grupoFaturaNotification,
     protected readonly tableEditManipulation: TableEditManipulation,
     private readonly listFiltroDespesa: ListFiltroDespesa
   ) {
@@ -153,9 +155,17 @@ export class ListDespesasComponent implements OnDestroy {
     });
   }
 
+  getAllGrupoFatura() {
+    this.grupoFaturaService.getAll().subscribe({
+      next: (grupoFaturas) => {
+        this.grupoFaturas = grupoFaturas;
+      },
+    });
+  }
+
   reloadDespesas() {
     this.reloadPageSubscriber =
-      this.grupoDespesaNotification.recarregarPaginaComNovoGrupoId.subscribe({
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getListDespesasPorGrupo();
@@ -182,6 +192,7 @@ export class ListDespesasComponent implements OnDestroy {
       this.despesaAtual = JSON.parse(JSON.stringify(despesa));
 
       this.getAllCategorias();
+      this.getAllGrupoFatura();
     }
   }
 
@@ -192,7 +203,7 @@ export class ListDespesasComponent implements OnDestroy {
 
   updateDespesa(id: number, despesa: Despesa): void {
     despesa.categoriaId = despesa.categoria.id;
-    despesa.grupoDespesaId = despesa.grupoDespesa.id;
+    despesa.grupoFaturaId = despesa.grupoFatura.id;
 
     if (!this.despesaAlterada(despesa)) {
       this.despesaService.update(id, despesa).subscribe({
@@ -243,7 +254,8 @@ export class ListDespesasComponent implements OnDestroy {
       this.despesaAtual.preco === despesa.preco &&
       this.despesaAtual.quantidade === despesa.quantidade &&
       this.despesaAtual.fornecedor === despesa.fornecedor &&
-      this.despesaAtual.categoria.id === despesa.categoriaId
+      this.despesaAtual.categoria.id === despesa.categoriaId &&
+      this.despesaAtual.grupoFatura.id === despesa.grupoFaturaId
     );
   }
 
