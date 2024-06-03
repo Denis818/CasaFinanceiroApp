@@ -217,7 +217,7 @@ export class CreateDespesaComponent {
         this.inputFornecedor = ValorInputFornecedor.cemig;
         break;
       default:
-        this.inputFornecedor = 'Epa';
+        this.inputFornecedor = this.despesaForm?.value?.fornecedor || 'Epa';
     }
     return this.inputFornecedor;
   }
