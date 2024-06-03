@@ -84,6 +84,7 @@ export class CreateDespesaComponent {
     this.despesaForm.patchValue({
       item: this.setValueInputItem(),
       fornecedor: this.setValueInputFornecedor(),
+      quantidade: this.setValueInputQuantidade(),
     });
   }
 
@@ -175,7 +176,7 @@ export class CreateDespesaComponent {
     this.despesaForm.reset({
       item: this.setValueInputItem(),
       preco: 0,
-      quantidade: 1,
+      quantidade: this.setValueInputQuantidade(),
       fornecedor: this.setValueInputFornecedor(),
       categoriaId: this.despesaForm.value.categoriaId || 1,
       grupoFaturaId:
@@ -202,6 +203,22 @@ export class CreateDespesaComponent {
         this.inputItem = 'Compra';
     }
     return this.inputItem;
+  }
+
+  setValueInputQuantidade() {
+    console.log(this.despesaForm?.value?.quantidade);
+    let quantidade = this.despesaForm?.value?.quantidade || 1;
+
+    if (
+      this.categoriaSelecionada === CategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada === CategoriasMensais.condominio ||
+      this.categoriaSelecionada === CategoriasMensais.internet ||
+      this.categoriaSelecionada === CategoriasMensais.aluguel
+    ) {
+      quantidade = 1;
+    }
+
+    return quantidade;
   }
 
   setValueInputFornecedor(): string {
