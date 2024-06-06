@@ -1,12 +1,12 @@
 import { BooleanInput } from '@angular/cdk/coercion';
 import { Injectable } from '@angular/core';
+import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
 import {
   CategoriasMensais,
   ValorInputFornecedor,
   ValorInputItem,
 } from 'src/app/shared/enums/enumInputValues';
 import { Categoria } from '../interfaces/categoria.interface';
-import { Despesa } from '../interfaces/despesa.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TableEditManipulation {
@@ -20,17 +20,14 @@ export class TableEditManipulation {
     const categoria = categorias.find((c) => c.id === categoriaId);
     const novaCategoria = categoria?.descricao;
 
-    this.atualizarInputItemEhFornecedor(
-      despesa,
-      novaCategoria,
-      despesa.categoria.descricao
-    );
+    this.inputItemEhFornecedor(despesa, novaCategoria);
 
     despesa.categoria.descricao = novaCategoria;
     this.categoriaSelecionada = novaCategoria;
   }
+
   aoAlterarItem(despesa: Despesa) {
-    this.atualizarFornecedor(despesa);
+    this.inputFornecedor(despesa);
   }
 
   inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
@@ -54,32 +51,32 @@ export class TableEditManipulation {
     return false;
   }
 
-  private atualizarInputItemEhFornecedor(
-    despesa: Despesa,
-    novaCategoria: string,
-    categoriaAnterior: string
-  ) {
+  private inputItemEhFornecedor(despesa: Despesa, novaCategoria: string) {
     switch (novaCategoria) {
       case CategoriasMensais.aluguel:
-        this.salvarValorAnteriorEAtualizar(
-          despesa,
-          ValorInputItem.parcelaApPonto
-        );
+        this.inputItem(despesa, ValorInputItem.parcelaApPonto);
+        this.inputFornecedor(despesa);
+        this.inputQuantidade(despesa, 1);
         break;
 
       case CategoriasMensais.condominio:
-        this.salvarValorAnteriorEAtualizar(despesa, ValorInputItem.condominio);
+        this.inputItem(despesa, ValorInputItem.condominio);
+        this.inputFornecedor(despesa);
+        this.inputQuantidade(despesa, 1);
         break;
 
       case CategoriasMensais.contaDeLuz:
-        this.salvarValorAnteriorEAtualizar(despesa, ValorInputItem.contaDeLuz);
+        this.inputItem(despesa, ValorInputItem.contaDeLuz);
+        this.inputFornecedor(despesa);
+        this.inputQuantidade(despesa, 1);
         break;
 
       default:
-        this.salvarValorAnteriorEAtualizar(despesa, 'Compra');
+        this.inputItem(despesa, despesa.item);
         if (
-          categoriaAnterior === CategoriasMensais.aluguel ||
-          categoriaAnterior === CategoriasMensais.condominio
+          novaCategoria !== CategoriasMensais.aluguel &&
+          novaCategoria !== CategoriasMensais.condominio &&
+          novaCategoria !== CategoriasMensais.contaDeLuz
         ) {
           this.restaurarValorAnterior(despesa);
         }
@@ -87,15 +84,29 @@ export class TableEditManipulation {
     }
   }
 
-  private salvarValorAnteriorEAtualizar(despesa: any, novoItem: string) {
-    if (despesa.item !== novoItem) {
-      despesa.valorAnteriorItem = despesa.item;
-      despesa.item = novoItem;
+  private inputItem(despesa: any, inputItem: string = null) {
+    if (inputItem && despesa.item !== inputItem) {
+      if (!despesa.valorAnteriorItem) {
+        despesa.valorAnteriorItem = despesa.item;
+      }
+      despesa.item = inputItem;
     }
-    this.atualizarFornecedor(despesa);
   }
 
-  private atualizarFornecedor(despesa: any) {
+  private inputQuantidade(despesa: any, novaQuantidade: number = null) {
+    if (novaQuantidade && despesa.quantidade !== novaQuantidade) {
+      if (!despesa.valorAnteriorQuantidade) {
+        despesa.valorAnteriorQuantidade = despesa.quantidade;
+      }
+      despesa.quantidade = novaQuantidade;
+    }
+  }
+
+  private inputFornecedor(despesa: any) {
+    if (!despesa.valorAnteriorFornecedor) {
+      despesa.valorAnteriorFornecedor = despesa.fornecedor;
+    }
+
     switch (despesa.item) {
       case ValorInputItem.condominio:
       case ValorInputItem.parcelaApPonto:
@@ -107,20 +118,20 @@ export class TableEditManipulation {
       case ValorInputItem.contaDeLuz:
         despesa.fornecedor = ValorInputFornecedor.cemig;
         break;
-      default:
-        despesa.fornecedor = 'Epa';
-        break;
     }
   }
 
   private restaurarValorAnterior(despesa: any) {
-    if (
-      despesa.valorAnteriorItem &&
-      (despesa.item === ValorInputItem.parcelaApPonto ||
-        despesa.item === ValorInputItem.condominio)
-    ) {
+    if (despesa.valorAnteriorItem) {
       despesa.item = despesa.valorAnteriorItem;
     }
-    this.atualizarFornecedor(despesa);
+
+    if (despesa.valorAnteriorQuantidade) {
+      despesa.quantidade = despesa.valorAnteriorQuantidade;
+    }
+
+    if (despesa.valorAnteriorFornecedor) {
+      despesa.fornecedor = despesa.valorAnteriorFornecedor;
+    }
   }
 }
