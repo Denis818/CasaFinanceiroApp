@@ -86,7 +86,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     }
   }
 
-  statusFatura() {
+  atualizarStatusFatura() {
     this.getStatusFatura(EnumStatusFatura.CasaAberto);
     this.getStatusFatura(EnumStatusFatura.MoradiaAberto);
   }
@@ -128,7 +128,7 @@ export class DashboardPage implements OnInit, OnDestroy {
 
     this.grupoFaturaService
       .updateStatusFatura(faturaType, statusFatura)
-      .subscribe();
+      .subscribe(() => this.atualizarStatusFatura());
   }
 
   reloadPage() {
@@ -137,7 +137,7 @@ export class DashboardPage implements OnInit, OnDestroy {
         next: (isReload) => {
           if (isReload) {
             this.inicializeDashboard();
-            this.statusFatura();
+            this.atualizarStatusFatura();
           }
         },
       });
