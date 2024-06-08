@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
-import { ConferenciaComprasService } from '../../../services/conferencia-compras.service';
+import { ConferenciaComprasService } from 'src/app/domain/conferencia-compras/services/conferencia-compras.service';
 
 registerLocaleData(localePt);
 @Component({
