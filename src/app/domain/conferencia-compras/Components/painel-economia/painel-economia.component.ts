@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { GraficoSugestoesEconomiaComponent } from 'src/app/domain/conferencia-compras/components/painel-economia/grafico-sugestoes-economia/grafico-sugestoes-economia.component';
-import { SugestaoFornecedorComponent } from 'src/app/domain/conferencia-compras/components/painel-economia/sugestao-fornecedor/sugestao-fornecedor.component';
+import { GraficoSugestoesEconomiaComponent } from './grafico-sugestoes-economia/grafico-sugestoes-economia.component';
+import { SugestaoFornecedorComponent } from './sugestao-fornecedor/sugestao-fornecedor.component';
 
 @Component({
   selector: 'painel-economia',
