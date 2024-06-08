@@ -23,7 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CategoriaService } from 'src/app/domain/painel-controle/services/categoria.service';
 import { DespesaService } from 'src/app/domain/painel-controle/services/despesa.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
-import { PainelEconomiaComponent } from '../../components/painel-economia/painel-economia.component';
+import { PainelEconomiaComponent } from '../../Components/painel-economia/painel-economia.component';
 
 registerLocaleData(localePt);
 
