@@ -77,16 +77,18 @@ export class DashboardPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.inicializeDashboard();
     this.reloadPage();
-    this.getStatusFatura(EnumStatusFatura.CasaAberto);
-    this.getStatusFatura(EnumStatusFatura.MoradiaAberto);
   }
 
   ngOnDestroy() {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
     }
+  }
+
+  statusFatura() {
+    this.getStatusFatura(EnumStatusFatura.CasaAberto);
+    this.getStatusFatura(EnumStatusFatura.MoradiaAberto);
   }
 
   getStatusFatura(status: EnumStatusFatura) {
@@ -135,6 +137,7 @@ export class DashboardPage implements OnInit, OnDestroy {
         next: (isReload) => {
           if (isReload) {
             this.inicializeDashboard();
+            this.statusFatura();
           }
         },
       });
