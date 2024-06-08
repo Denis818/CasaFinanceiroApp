@@ -8,10 +8,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 
 @Component({
   selector: 'modal-listgrupoFatura',

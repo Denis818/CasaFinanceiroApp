@@ -1,4 +1,4 @@
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 import { Categoria } from './categoria.interface';
 
 export interface Despesa {

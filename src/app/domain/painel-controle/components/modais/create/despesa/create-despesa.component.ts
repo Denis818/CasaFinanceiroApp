@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Categoria } from 'src/app/domain/painel-controle/interfaces/categoria.interface';
@@ -24,7 +24,7 @@ import {
   CategoriasMensais,
   ValorInputFornecedor,
   ValorInputItem,
-} from 'src/app/shared/enums/enumInputValues';
+} from 'src/app/shared/enums/enum-input-values';
 
 @Component({
   selector: 'app-modal-despesa',
@@ -206,7 +206,6 @@ export class CreateDespesaComponent {
   }
 
   setValueInputQuantidade() {
-    console.log(this.despesaForm?.value?.quantidade);
     let quantidade = this.despesaForm?.value?.quantidade || 1;
 
     if (

@@ -115,7 +115,6 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
   }
 
   formatCurrency(value: unknown): string {
-    console.log(value);
     if (typeof value === 'number' && !isNaN(value)) {
       return new Intl.NumberFormat('pt-BR', {
         style: 'currency',

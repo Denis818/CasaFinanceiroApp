@@ -5,7 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-import { GrupoFatura } from '../../interfaces/grupo-despesa.interface';
+import { GrupoFatura } from '../../interfaces/grupo-fatura.interface';
 import { grupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from '../../services/grupo-fatura.service';
 import { StorageService } from '../../services/storage/storage.service';

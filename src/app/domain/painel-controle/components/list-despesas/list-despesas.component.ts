@@ -18,11 +18,9 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-despesa.interface';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enumFiltroDespesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
@@ -31,6 +29,8 @@ import { Categoria } from '../../interfaces/categoria.interface';
 import { CategoriaService } from '../../services/categoria.service';
 import { DespesaService } from '../../services/despesa.service';
 import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 
 registerLocaleData(localePt);
 

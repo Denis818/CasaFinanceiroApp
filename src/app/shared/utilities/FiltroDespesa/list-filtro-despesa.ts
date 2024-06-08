@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EnumFiltroDespesa } from '../../enums/enumFiltroDespesa';
+import { EnumFiltroDespesa } from '../../enums/enum-status-fatura';
 
 @Injectable({
   providedIn: 'root',

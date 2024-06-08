@@ -83,6 +83,27 @@
             }
           }
 
+
+          [status-fatura] {
+            text-align: start;
+            ::ng-deep {
+              .mdc-radio__outer-circle {
+                border-color: #ac7eff;
+              }
+
+              .mdc-radio__background::before {
+                background-color: #ac7eff;
+              }
+
+              .mdc-radio__inner-circle {
+                border-color: #00d51e;
+              }
+              .mdc-form-field > label {
+                color: #673ab7;
+              }
+            }
+          }
+
           table {
             th,
             td {

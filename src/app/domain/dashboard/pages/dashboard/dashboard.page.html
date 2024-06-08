@@ -15,6 +15,15 @@
         </div>
       </div>
       <div app-multi-card-body>
+        <div status-fatura>
+          <mat-radio-group
+            [(ngModel)]="statusFaturaCasa"
+            (change)="onStatusChange(casa)"
+          >
+            <mat-radio-button value="aberto">Fatura Aberta</mat-radio-button>
+            <mat-radio-button value="fechado">Fatura Fechada</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <div *ngIf="despesasPorMembros.length > 0; else semDados">
           <div *ngFor="let item of despesasPorMembros" class="expense-item">
             <div class="expense-title">{{ item.nome }}</div>
@@ -51,6 +60,15 @@
         </div>
       </div>
       <div app-multi-card-body>
+        <div status-fatura>
+          <mat-radio-group
+            [(ngModel)]="statusFaturaMoradia"
+            (change)="onStatusChange(moradia)"
+          >
+            <mat-radio-button value="aberto">Fatura Aberta</mat-radio-button>
+            <mat-radio-button value="fechado">Fatura Fechada</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <div *ngIf="despesasPorMembros.length > 0; else semDados">
           <ng-container *ngFor="let item of despesasPorMembros">
             <div *ngIf="item.valorDespesaMoradia >= 0" class="expense-item">

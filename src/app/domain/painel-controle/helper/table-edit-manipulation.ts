@@ -1,12 +1,9 @@
 import { BooleanInput } from '@angular/cdk/coercion';
 import { Injectable } from '@angular/core';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
-import {
-  CategoriasMensais,
-  ValorInputFornecedor,
-  ValorInputItem,
-} from 'src/app/shared/enums/enumInputValues';
+
 import { Categoria } from '../interfaces/categoria.interface';
+import { CategoriasMensais, ValorInputFornecedor, ValorInputItem } from 'src/app/shared/enums/enum-input-values';
 
 @Injectable({ providedIn: 'root' })
 export class TableEditManipulation {
