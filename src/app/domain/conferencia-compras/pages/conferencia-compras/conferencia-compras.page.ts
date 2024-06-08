@@ -18,12 +18,11 @@ import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.inter
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
-
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PainelEconomiaComponent } from 'src/app/domain/conferencia-compras/components/painel-economia/painel-economia.component';
 import { CategoriaService } from 'src/app/domain/painel-controle/services/categoria.service';
 import { DespesaService } from 'src/app/domain/painel-controle/services/despesa.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
-import { PainelEconomiaComponent } from '../../components/painel-economia/painel-economia.component';
 
 registerLocaleData(localePt);
 
