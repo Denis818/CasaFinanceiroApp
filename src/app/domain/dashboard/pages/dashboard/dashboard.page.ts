@@ -128,7 +128,17 @@ export class DashboardPage implements OnInit, OnDestroy {
 
     this.grupoFaturaService
       .updateStatusFatura(faturaType, statusFatura)
-      .subscribe(() => this.atualizarStatusFatura());
+      .subscribe({
+        error: (error) => {
+          const unauthorized = error?.error?.mensagens.some(
+            (result: any) => result.statusCode === 401
+          );
+
+          if (!unauthorized) {
+            this.atualizarStatusFatura();
+          }
+        },
+      });
   }
 
   reloadPage() {
