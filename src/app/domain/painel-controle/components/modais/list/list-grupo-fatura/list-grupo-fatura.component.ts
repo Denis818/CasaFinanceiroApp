@@ -8,10 +8,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
+import { StatusFatura } from 'src/app/core/interfaces/status-fatura.interface';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
+import {
+  EnumFaturaType,
+  EnumStatusFatura,
+} from 'src/app/shared/enums/enum-filtro-despesa';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 
 @Component({
   selector: 'modal-listgrupoFatura',
@@ -134,5 +139,36 @@ export class ListgrupoFaturaComponent {
     grupoFatura.isEditing = false;
     this.isEditing = false;
     this.grupoFaturaAtual = null;
+  }
+
+  setStatusFatura(statusFaturas: StatusFatura[]): string {
+    let isCasaFechada = true;
+    let isMoradiaFechada = true;
+    let isCasaAberta = true;
+    let isMoradiaAberta = true;
+
+    for (const statusFatura of statusFaturas) {
+      switch (statusFatura.faturaNome) {
+        case EnumFaturaType.Casa:
+          isCasaFechada &&=
+            statusFatura.estado === EnumStatusFatura.CasaFechado;
+          isCasaAberta &&= statusFatura.estado === EnumStatusFatura.CasaAberto;
+          break;
+        case EnumFaturaType.Moradia:
+          isMoradiaFechada &&=
+            statusFatura.estado === EnumStatusFatura.MoradiaFechado;
+          isMoradiaAberta &&=
+            statusFatura.estado === EnumStatusFatura.MoradiaAberto;
+          break;
+      }
+    }
+
+    if (isCasaAberta && isMoradiaAberta) {
+      return 'Fatura Aberta';
+    } else if (isCasaFechada && isMoradiaFechada) {
+      return 'Fatura Fechada';
+    } else {
+      return 'Fatura Pendente';
+    }
   }
 }

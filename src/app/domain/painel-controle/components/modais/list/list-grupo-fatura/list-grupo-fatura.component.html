@@ -2,7 +2,8 @@
   <div app-table app-table-icons-options>
     <table>
       <thead>
-        <th>Grupo de Despesa</th>
+        <th>Grupo de Fatura</th>
+        <th>Status da Fatura</th>
         <th>Opções</th>
       </thead>
       <tbody>
@@ -17,7 +18,9 @@
             </div>
             <ng-template #viewNome>{{ grupoFatura.nome }}</ng-template>
           </td>
-
+          <td>
+            {{ setStatusFatura(grupoFatura.statusFaturas) }}
+          </td>
           <td>
             <i *ngIf="!grupoFatura.isEditing; else saveEdicao">
               <mat-icon

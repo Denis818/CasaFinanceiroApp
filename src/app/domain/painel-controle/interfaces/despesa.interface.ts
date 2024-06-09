@@ -13,5 +13,6 @@ export interface Despesa {
   grupoFatura: GrupoFatura;
   categoriaId: number;
   grupoFaturaId: number;
+  
   isDespesaEditing: boolean;
 }
