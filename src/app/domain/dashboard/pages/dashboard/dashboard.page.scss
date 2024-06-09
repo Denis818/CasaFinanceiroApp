@@ -27,6 +27,8 @@
         }
 
         [app-multi-card-body] {
+          max-height: 360px;
+
           .expense-item {
             position: relative;
             background-color: #fff;
@@ -82,7 +84,6 @@
               }
             }
           }
-
 
           [status-fatura] {
             text-align: start;
