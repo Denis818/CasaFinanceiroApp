@@ -71,6 +71,7 @@
         width: 100%;
         table-layout: fixed;
         transition: box-shadow 0.2s ease-in-out;
+        min-width: 600px;
 
         th,
         td {

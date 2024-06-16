@@ -50,39 +50,45 @@
           "
           class="expense-details"
         >
-          <table>
-            <thead>
-              <tr>
-                <th>Grupo de Fatura</th>
-                <th>Item</th>
-                <th>Categoria</th>
-                <th>Fornecedor</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let despesa of sugestaoDeFornecedor.listaItens.itens">
-                <td>
-                  {{ removerPrefixoFatura(despesa.grupoFatura.nome) }}
-                </td>
-                <td>{{ despesa.item }}</td>
-                <td>{{ despesa.categoria.descricao }}</td>
-                <td>{{ despesa.fornecedor }}</td>
-                <td>{{ despesa.preco | currency : "BRL" }}</td>
-                <td>{{ despesa.quantidade }}</td>
-                <td>{{ despesa.total | currency : "BRL" }}</td>
-              </tr>
-            </tbody>
-            <tfoot *ngIf="sugestaoDeFornecedor.listaItens.itens?.length === 0">
-              <tr>
-                <td colspan="7">
-                  Nenhuma despesa encontrada para esse fornecedor
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+          <div style="overflow-x: auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>Grupo de Fatura</th>
+                  <th>Item</th>
+                  <th>Categoria</th>
+                  <th>Fornecedor</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let despesa of sugestaoDeFornecedor.listaItens.itens"
+                >
+                  <td>
+                    {{ removerPrefixoFatura(despesa.grupoFatura.nome) }}
+                  </td>
+                  <td>{{ despesa.item }}</td>
+                  <td>{{ despesa.categoria.descricao }}</td>
+                  <td>{{ despesa.fornecedor }}</td>
+                  <td>{{ despesa.preco | currency : "BRL" }}</td>
+                  <td>{{ despesa.quantidade }}</td>
+                  <td>{{ despesa.total | currency : "BRL" }}</td>
+                </tr>
+              </tbody>
+              <tfoot
+                *ngIf="sugestaoDeFornecedor.listaItens.itens?.length === 0"
+              >
+                <tr>
+                  <td colspan="7">
+                    Nenhuma despesa encontrada para esse fornecedor
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
           <div pagination>
             <mat-paginator
               #paginator
