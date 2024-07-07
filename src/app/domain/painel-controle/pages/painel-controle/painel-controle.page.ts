@@ -52,14 +52,14 @@ export class PainelControlePage {
 
   openListMembroModal() {
     const dialogRef = this.dialog.open(ListMembroComponent, {
-      width: '400px',
+      width: '500px',
     });
     dialogRef.afterClosed();
   }
 
   openListgrupoFaturasModal() {
     const dialogRef = this.dialog.open(ListgrupoFaturaComponent, {
-      width: '400px',
+      width: '500px',
     });
     dialogRef.afterClosed();
   }
