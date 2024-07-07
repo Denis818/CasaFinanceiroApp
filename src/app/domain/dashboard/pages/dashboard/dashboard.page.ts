@@ -63,11 +63,6 @@ export class DashboardPage implements OnInit, OnDestroy {
   };
 
   graphicConfig: GraphicConfiguration;
-  graphicMobile: GraphicMobile = {
-    graphicType: 'bar',
-    width: 330,
-    height: 290,
-  };
 
   constructor(
     private readonly dashboardService: DashboardService,
