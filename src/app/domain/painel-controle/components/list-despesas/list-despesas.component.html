@@ -3,6 +3,13 @@
     <div app-card>
       <div app-card-header>
         <div app-card-title>Lista de despesas por Grupo de Fatura</div>
+        <button app-button-action (click)="openChecarFaturaCartaoModal()">
+          <div icon-bg>
+            <mat-icon>credit_card</mat-icon>
+          </div>
+
+          <span title-button>Conferir Fatura</span>
+        </button>
       </div>
       <div app-card-body>
         <div filtro app-input-color>

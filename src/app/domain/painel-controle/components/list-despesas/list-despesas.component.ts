@@ -31,6 +31,7 @@ import { DespesaService } from '../../services/despesa.service';
 import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
 import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
+import { ChecarFaturaCartaoComponent } from '../modais/checar-fatura-cartao/checar-fatura-cartao.component';
 
 registerLocaleData(localePt);
 
@@ -245,6 +246,12 @@ export class ListDespesasComponent implements OnDestroy {
     });
   }
   //#endregion
+
+  openChecarFaturaCartaoModal(): void {
+    this.dialog.open(ChecarFaturaCartaoComponent, {
+      width: '450px',
+    });
+  }
 
   //#region Metodos de suporte
 

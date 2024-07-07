@@ -7,7 +7,6 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { ListDespesasComponent } from '../../components/list-despesas/list-despesas.component';
-import { ChecarFaturaCartaoComponent } from '../../components/modais/checar-fatura-cartao/checar-fatura-cartao.component';
 import { CreateCategoriaComponent } from '../../components/modais/create/categoria/create-categoria.component';
 import { CreateDespesaComponent } from '../../components/modais/create/despesa/create-despesa.component';
 import { CreategrupoFaturaComponent } from '../../components/modais/create/grupo-despesa/create-grupo-fatura.component';
@@ -94,10 +93,4 @@ export class PainelControlePage {
     });
   }
   //#endregion
-
-  openChecarFaturaCartaoModal(): void {
-    this.dialog.open(ChecarFaturaCartaoComponent, {
-      width: '450px',
-    });
-  }
 }

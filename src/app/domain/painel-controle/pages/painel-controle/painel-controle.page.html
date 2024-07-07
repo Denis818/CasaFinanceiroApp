@@ -1,15 +1,15 @@
 <div painel-controle>
   <div options-header>
     <div insert-itens>
-      <button button-action (click)="openCreateMembroModal()">
+      <button app-button-action (click)="openCreateMembroModal()">
         <div icon-bg>
           <mat-icon>group_add</mat-icon>
         </div>
 
-        <span options-title>Novo Membro</span>
+        <span title-button>Novo Membro</span>
       </button>
 
-      <button button-action (click)="openCreateCategoriaModal()">
+      <button app-button-action (click)="openCreateCategoriaModal()">
         <div icon-bg>
           <img
             class="icon-position"
@@ -18,31 +18,23 @@
           />
         </div>
 
-        <span options-title>Nova Categoria</span>
+        <span title-button>Nova Categoria</span>
       </button>
 
-      <button button-action (click)="openCreategrupoFaturaModal()">
+      <button app-button-action (click)="openCreategrupoFaturaModal()">
         <div icon-bg>
           <mat-icon>note_add</mat-icon>
         </div>
 
-        <span options-title>Novo Grupo</span>
+        <span title-button>Nova Fatura</span>
       </button>
 
-      <button button-action (click)="openChecarFaturaCartaoModal()">
-        <div icon-bg>
-          <mat-icon>credit_card</mat-icon>
-        </div>
-
-        <span options-title>Conferir Fatura</span>
-      </button>
-
-      <button button-action (click)="openCreateDespesaModal()">
+      <button app-button-action (click)="openCreateDespesaModal()">
         <div icon-bg>
           <mat-icon>add_shopping_cart</mat-icon>
         </div>
 
-        <span options-title>Nova Despesa</span>
+        <span title-button>Nova Despesa</span>
       </button>
     </div>
 

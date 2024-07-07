@@ -93,6 +93,20 @@
           opacity: 0.8;
         }
       }
+
+      [app-button-action] {
+        background-color: #ffffff;
+        color: #673ab7;
+
+        & [icon-bg] {
+          background-color: #ffffff;
+          border: 2px solid #673ab7;
+
+          & mat-icon {
+            color: #0d0d0d;
+          }
+        }
+      }
     }
   }
 
@@ -158,6 +172,19 @@
 
         .mat-paginator {
           font-size: 12px;
+        }
+      }
+
+      [app-button-action] {
+        align-items: center;
+
+        padding: 10px;
+        & [icon-bg] {
+          display: none;
+        }
+
+        & [title-button] {
+          right: 0%;
         }
       }
     }

@@ -295,6 +295,57 @@
   }
 }
 
+[app-button-action] {
+  position: relative;
+  background-color: #673ab7;
+  color: #ffffff;
+  padding: 10px 0px 10px 60px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+
+  & [icon-bg] {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -4px;
+    top: 50%;
+    transition: transform 0.3s ease;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease;
+
+    & .icon-position {
+      height: 20px;
+      z-index: 1;
+    }
+
+    & mat-icon {
+      color: black;
+    }
+  }
+
+  & [title-button] {
+    position: relative;
+    margin-top: 2px;
+    right: 13%;
+  }
+}
+
 .sem-dados {
   text-align: center;
   padding: 20px;

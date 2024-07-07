@@ -13,57 +13,6 @@
       margin-bottom: 1%;
       transition: box-shadow 0.2s ease-in-out;
 
-      [button-action] {
-        position: relative;
-        background-color: #673ab7;
-        color: #ffffff;
-        padding: 10px 0px 10px 60px;
-        border: none;
-        border-radius: 20px;
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer;
-        outline: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
-
-        &:hover {
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-          transform: translateY(-2px);
-        }
-
-        & [icon-bg] {
-          position: absolute;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          left: -4px;
-          top: 50%;
-          transition: transform 0.3s ease;
-          transform: translateY(-50%);
-          width: 42px;
-          height: 40px;
-          background-color: #ffffff;
-          border-radius: 50%;
-          transition: box-shadow 0.3s ease;
-
-          & .icon-position {
-            height: 20px;
-            z-index: 1;
-          }
-
-          & mat-icon {
-            color: black;
-          }
-        }
-
-        & [options-title] {
-          position: relative;
-          margin-top: 2px;
-          right: 13%;
-        }
-      }
-
       .mdc-button {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
 
@@ -98,7 +47,7 @@
           transform: none;
         }
 
-        & [button-action] {
+        & [app-button-action] {
           width: 100%;
           padding: 11px 40px;
           margin-top: 10px;
@@ -110,7 +59,7 @@
             top: 8px;
           }
 
-          & [options-title] {
+          & [title-button] {
             left: 2%;
           }
         }
