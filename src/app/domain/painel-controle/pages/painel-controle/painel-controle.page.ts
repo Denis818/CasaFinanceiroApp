@@ -9,7 +9,7 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { ListDespesasComponent } from '../../components/list-despesas/list-despesas.component';
 import { CreateCategoriaComponent } from '../../components/modais/create/categoria/create-categoria.component';
 import { CreateDespesaComponent } from '../../components/modais/create/despesa/create-despesa.component';
-import { CreategrupoFaturaComponent } from '../../components/modais/create/grupo-despesa/create-grupo-fatura.component';
+import { CreategrupoFaturaComponent } from '../../components/modais/create/grupo-fatura/create-grupo-fatura.component';
 import { CreateMembroComponent } from '../../components/modais/create/membro/create-membro.component';
 import { ListCategoriaComponent } from '../../components/modais/list/list-categoria/list-categoria.component';
 import { ListgrupoFaturaComponent } from '../../components/modais/list/list-grupo-fatura/list-grupo-fatura.component';

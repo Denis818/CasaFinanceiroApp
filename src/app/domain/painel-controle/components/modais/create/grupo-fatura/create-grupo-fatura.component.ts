@@ -52,7 +52,7 @@ export class CreategrupoFaturaComponent {
           if (grupoInserido) {
             this.grupoFaturaNotification.recarregarListagrupoFatura();
             this.toastr.success(
-              `Grupo ${this.grupoFaturaForm.value.nome} criado com sucesso!`,
+              `Fatura de ${this.grupoFaturaForm.value.nome} criado com sucesso!`,
               'Finalizado!'
             );
 

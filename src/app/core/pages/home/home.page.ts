@@ -20,7 +20,7 @@ export class HomePage implements OnDestroy {
   sidenavExpanded = false;
   isDesktop: boolean = true;
 
-  grupoDefault: number;
+  faturaDefault: number;
   private grupoFaturasSubscriber: Subscription;
   grupoFaturas: GrupoFatura[] = [];
 
@@ -89,7 +89,7 @@ export class HomePage implements OnDestroy {
     this.grupoFatura.getAll().subscribe({
       next: (grupoFaturas) => {
         this.grupoFaturas = grupoFaturas;
-        this.grupoDefault = grupoFaturas[0].id;
+        this.faturaDefault = grupoFaturas[0].id;
 
         this.inicializeForm();
       },
@@ -116,14 +116,14 @@ export class HomePage implements OnDestroy {
   getGrupoId(): number {
     let grupoId =
       parseInt(this.storageService.getItem('grupoFaturaId')) ||
-      this.grupoDefault;
+      this.faturaDefault;
 
     let grupo = this.grupoFaturas.find(
       (grupoFatura) => grupoFatura.id === grupoId
     );
 
     if (grupo == null) {
-      return this.grupoDefault;
+      return this.faturaDefault;
     }
     return grupoId;
   }
