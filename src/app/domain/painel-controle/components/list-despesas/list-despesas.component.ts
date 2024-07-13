@@ -1,6 +1,12 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,9 +24,12 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.interface';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
@@ -28,10 +37,8 @@ import { TableEditManipulation } from '../../helper/table-edit-manipulation';
 import { Categoria } from '../../interfaces/categoria.interface';
 import { CategoriaService } from '../../services/categoria.service';
 import { DespesaService } from '../../services/despesa.service';
-import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
-import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 import { ChecarFaturaCartaoComponent } from '../modais/checar-fatura-cartao/checar-fatura-cartao.component';
+import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
 
 registerLocaleData(localePt);
 
@@ -57,8 +64,10 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ListDespesasComponent implements OnDestroy {
+export class ListDespesasComponent implements OnDestroy, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  faturaAtualName: string = '';
 
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
   private reloadPageSubscriber: Subscription;
@@ -89,8 +98,11 @@ export class ListDespesasComponent implements OnDestroy {
     private readonly dialog: MatDialog,
     private readonly grupoFaturaNotification: grupoFaturaNotification,
     protected readonly tableEditManipulation: TableEditManipulation,
-    private readonly listFiltroDespesa: ListFiltroDespesa
-  ) {
+    private readonly listFiltroDespesa: ListFiltroDespesa,
+    private readonly storageService: StorageService
+  ) {}
+
+  ngOnInit(): void {
     this.reloadDespesas();
     this.tempoParaFiltrar();
   }
@@ -99,8 +111,16 @@ export class ListDespesasComponent implements OnDestroy {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
     }
-
     this.tempoParaAplicarFiltroPorItem.unsubscribe();
+  }
+
+  getNameFatura() {
+    let faturaId = parseInt(this.storageService.getItem('grupoFaturaId'));
+    this.despesaService.getNameFatura(faturaId).subscribe({
+      next: (faturaName) => {
+        this.faturaAtualName = faturaName;
+      },
+    });
   }
 
   //#region Filtro
@@ -170,6 +190,7 @@ export class ListDespesasComponent implements OnDestroy {
         next: (isReload) => {
           if (isReload) {
             this.getListDespesasPorGrupo();
+            this.getNameFatura();
           }
         },
       });

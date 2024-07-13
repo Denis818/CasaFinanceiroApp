@@ -6,7 +6,7 @@
   <div app-modal-body>
     <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline">
-        <mat-label>Selecione um Grupo</mat-label>
+        <mat-label>Selecione uma Fatura</mat-label>
         <mat-select formControlName="grupoFaturaId">
           <mat-option
             *ngFor="let grupoFatura of grupoFaturas"

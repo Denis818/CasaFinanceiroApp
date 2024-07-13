@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { CrudService } from 'src/app/core/services/base/crud.service';
 import { environment } from 'src/app/environments/environment';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../interfaces/despesa.interface';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 
 @Injectable({ providedIn: 'root' })
 export class DespesaService extends CrudService<Despesa> {
@@ -66,5 +66,12 @@ export class DespesaService extends CrudService<Despesa> {
       null,
       params
     ).pipe(map((response: any) => response.dados));
+  }
+
+  public getNameFatura(id: number): Observable<string> {
+    return this.sendHttpRequest<ApiResponse<string>>(
+      'GET',
+      `${environment.base_url_financy}/grupo-fatura/${id}`
+    ).pipe(map((response) => response.dados));
   }
 }
