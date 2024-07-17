@@ -302,6 +302,7 @@
   padding: 10px 0px 10px 60px;
   border: none;
   border-radius: 20px;
+  border: solid 2px #673ab7;
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
@@ -326,6 +327,7 @@
     width: 42px;
     height: 40px;
     background-color: #ffffff;
+    border: solid 2px #ffffff;
     border-radius: 50%;
     transition: box-shadow 0.3s ease;
 
