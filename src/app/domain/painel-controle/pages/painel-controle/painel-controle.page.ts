@@ -58,7 +58,7 @@ export class PainelControlePage {
 
   openListgrupoFaturasModal() {
     const dialogRef = this.dialog.open(ListgrupoFaturaComponent, {
-      width: '500px',
+      width: '600px',
     });
     dialogRef.afterClosed();
   }

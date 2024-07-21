@@ -9,9 +9,8 @@
         }
 
         ::ng-deep {
-          .mat-mdc-form-field-icon-prefix,
-          [dir="rtl"] .mat-mdc-form-field-icon-suffix {
-            padding: 0px 2px 0px 10px;
+          .mat-mdc-form-field-icon-prefix {
+            padding: 0px 4px 0px 10px;
           }
         }
       }

@@ -8,7 +8,8 @@
   --mdc-outlined-text-field-container-shape: 10px !important;
 }
 
-.mat-typography {
+.mat-typography,
+.mat-mdc-select-panel {
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -22,17 +23,13 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #673ab7;
+    background-color: #683ab7d3;
+    border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
     background-color: #5c2ca3;
   }
-}
-
-//largura do input de select que fica na table
-.cdk-overlay-connected-position-bounding-box .cdk-overlay-pane {
-  width: 255px !important;
 }
 
 //select-fatura
@@ -60,4 +57,31 @@
 .mat-typography h3,
 .mat-typography p {
   margin: 0px;
+}
+
+//navbar
+.ano-select-panel {
+  padding: 0px !important;
+}
+
+.grupo-fatura-select-panel {
+  padding: 0px !important;
+  min-width: 255px !important;
+
+  &.create-despesa {
+    width: 80% !important;
+  }
+
+  &.create-fatura {
+    width: 60% !important;
+  }
+}
+
+//painel controle
+.categoria-select-painel {
+  padding: 0px !important;
+
+  &.create-despesa {
+    width: 80% !important;
+  }
 }

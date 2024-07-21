@@ -1,24 +1,40 @@
 <nav class="navbar">
   <h1 title>{{ titleService.getTitle() }}</h1>
 
+  <div app-tooltip-helper>
+    <mat-icon
+      class="icon-help"
+      matTooltip="Selecione uma fatura para visualizar e gerenciar as despesas associadas a ela. Cada fatura representa um conjunto específico de despesas."
+      >help_outline
+    </mat-icon>
+  </div>
   <div selected-group [formGroup]="grupoFaturasForm">
-    <div app-tooltip-helper>
-      <mat-icon
-        class="icon-help"
-        matTooltip="Selecione uma fatura para visualizar e gerenciar as despesas associadas a ela. Cada fatura representa um conjunto específico de despesas."
-        >help_outline
-      </mat-icon>
-    </div>
-    <mat-form-field appearance="fill">
-      <mat-select formControlName="grupoFaturaId">
-        <mat-option
-          *ngFor="let grupoFatura of grupoFaturas"
-          [value]="grupoFatura.id"
+    <div class="select-grupo-fatura">
+      <mat-form-field appearance="fill">
+        <mat-select
+          panelClass="grupo-fatura-select-panel"
+          formControlName="grupoFaturaId"
         >
-          {{ grupoFatura.nome }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+          <mat-option
+            *ngFor="let grupoFatura of grupoFaturas"
+            [value]="grupoFatura.id"
+          >
+            {{ grupoFatura.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="select-ano">
+      <mat-form-field appearance="fill">
+        <span matPrefix class="text-color">Ano</span>
+        <mat-select panelClass="ano-select-panel" formControlName="ano">
+          <mat-option *ngFor="let ano of anos" [value]="ano">
+            {{ ano }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
   <button mat-icon-button class="logout-icon" (click)="logout()">

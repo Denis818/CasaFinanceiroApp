@@ -17,6 +17,22 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
     super(`${environment.base_url_financy}/grupo-fatura`);
   }
 
+  public getListGruposFaturas(ano: string = ''): Observable<GrupoFatura[]> {
+    if (!ano) {
+      ano =
+        this.storageService.getItem('ano') ||
+        new Date().getFullYear().toString();
+    }
+
+    const params = new HttpParams().set('ano', ano);
+    return this.sendHttpRequest<ApiResponse<GrupoFatura[]>>(
+      'GET',
+      `${this.url}`,
+      null,
+      params
+    ).pipe(map((response) => response.dados));
+  }
+
   public getStatusFaturaByName(
     status: EnumStatusFatura
   ): Observable<StatusFaturaResponse> {

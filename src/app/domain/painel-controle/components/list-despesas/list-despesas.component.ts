@@ -177,7 +177,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
   }
 
   getAllGrupoFatura() {
-    this.grupoFaturaService.getAll().subscribe({
+    this.grupoFaturaService.getListGruposFaturas().subscribe({
       next: (grupoFaturas) => {
         this.grupoFaturas = grupoFaturas;
       },

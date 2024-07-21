@@ -20,11 +20,14 @@ export class DespesaService extends CrudService<Despesa> {
     itensPorPagina: number,
     tipoFilter: EnumFiltroDespesa
   ): Observable<PaginationResponse<Despesa>> {
-    const params = new HttpParams()
-      .set('paginaAtual', paginaAtual.toString())
-      .set('itensPorPagina', itensPorPagina.toString())
-      .set('filter', filterItem)
-      .set('tipoFiltro', tipoFilter);
+    const despesaFiltro = {
+      filter: filterItem,
+      tipoFiltro: tipoFilter,
+      paginaAtual: paginaAtual,
+      itensPorPagina: itensPorPagina,
+    };
+
+    const params = new HttpParams({ fromObject: { ...despesaFiltro } });
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',
@@ -40,11 +43,14 @@ export class DespesaService extends CrudService<Despesa> {
     paginaAtual: number,
     itensPorPagina: number
   ): Observable<PaginationResponse<Despesa>> {
-    const params = new HttpParams()
-      .set('paginaAtual', paginaAtual.toString())
-      .set('itensPorPagina', itensPorPagina.toString())
-      .set('filter', filterItem)
-      .set('tipoFiltro', tipoFilter);
+    const despesaFiltro = {
+      filter: filterItem,
+      tipoFiltro: tipoFilter,
+      paginaAtual: paginaAtual,
+      itensPorPagina: itensPorPagina,
+    };
+
+    const params = new HttpParams({ fromObject: { ...despesaFiltro } });
 
     return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
       'GET',

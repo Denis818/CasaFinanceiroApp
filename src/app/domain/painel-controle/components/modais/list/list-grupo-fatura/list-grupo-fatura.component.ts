@@ -12,6 +12,7 @@ import { GrupoFatura } from 'src/app/core/interfaces/grupo-fatura.interface';
 import { StatusFatura } from 'src/app/core/interfaces/status-fatura.interface';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 import {
   EnumFaturaType,
   EnumStatusFatura,
@@ -46,13 +47,14 @@ export class ListgrupoFaturaComponent {
     private readonly grupoFaturaService: GrupoFaturaService,
     private readonly grupoFaturaNotification: grupoFaturaNotification,
     private readonly toastr: ToastrService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly storageService: StorageService
   ) {
     this.getAllgrupoFaturas();
   }
 
   getAllgrupoFaturas() {
-    this.grupoFaturaService.getAll().subscribe((grupoFaturas) => {
+    this.grupoFaturaService.getListGruposFaturas().subscribe((grupoFaturas) => {
       this.grupoFaturas = grupoFaturas.map((despesa) => {
         return {
           ...despesa,
@@ -78,6 +80,9 @@ export class ListgrupoFaturaComponent {
   updategrupoFatura(id: number, grupoFatura: GrupoFatura): void {
     if (!this.grupoFaturaAlterado(grupoFatura)) {
       grupoFatura.nome = grupoFatura.nomeEditavel;
+      grupoFatura.ano =
+        this.storageService.getItem('ano') ||
+        new Date().getFullYear().toString();
 
       this.grupoFaturaService.update(id, grupoFatura).subscribe({
         next: (grupoFaturaAtualizado) => {

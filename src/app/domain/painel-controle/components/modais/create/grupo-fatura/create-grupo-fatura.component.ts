@@ -10,9 +10,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { ToastrService } from 'ngx-toastr';
 import { grupoFaturaNotification } from 'src/app/core/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
   selector: 'app-membro',
@@ -26,11 +28,27 @@ import { GrupoFaturaService } from 'src/app/core/services/grupo-fatura.service';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatSelectModule,
   ],
 })
 export class CreategrupoFaturaComponent {
   grupoFaturaForm: FormGroup;
   userInput: string = '';
+
+  meses = [
+    { viewValue: 'Janeiro' },
+    { viewValue: 'Fevereiro' },
+    { viewValue: 'Março' },
+    { viewValue: 'Abril' },
+    { viewValue: 'Maio' },
+    { viewValue: 'Junho' },
+    { viewValue: 'Julho' },
+    { viewValue: 'Agosto' },
+    { viewValue: 'Setembro' },
+    { viewValue: 'Outubro' },
+    { viewValue: 'Novembro' },
+    { viewValue: 'Dezembro' },
+  ];
 
   get grupoFaturaValidator(): any {
     return this.grupoFaturaForm.controls;
@@ -40,14 +58,22 @@ export class CreategrupoFaturaComponent {
     private readonly grupoFaturaNotification: grupoFaturaNotification,
     private readonly dialogRef: MatDialogRef<CreategrupoFaturaComponent>,
     private readonly fb: FormBuilder,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly storageService: StorageService
   ) {
     this.validation();
   }
 
   onSubmit(): void {
     if (this.grupoFaturaForm.valid) {
-      this.grupoFaturaService.insert(this.grupoFaturaForm.value).subscribe({
+      let grupoFatura = {
+        ...this.grupoFaturaForm.value,
+        ano:
+          this.storageService.getItem('ano') ||
+          new Date().getFullYear().toString(),
+      };
+
+      this.grupoFaturaService.insert(grupoFatura).subscribe({
         next: (grupoInserido) => {
           if (grupoInserido) {
             this.grupoFaturaNotification.recarregarListagrupoFatura();
@@ -65,14 +91,7 @@ export class CreategrupoFaturaComponent {
 
   public validation(): void {
     this.grupoFaturaForm = this.fb.group({
-      nome: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(25),
-        ],
-      ],
+      nome: ['Janeiro', [Validators.required]],
     });
   }
 

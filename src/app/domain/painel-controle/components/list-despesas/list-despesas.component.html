@@ -107,6 +107,7 @@
                 <td>
                   <div *ngIf="despesa.isDespesaEditing; else viewCategoria">
                     <mat-select
+                      panelClass="categoria-select-painel"
                       [(ngModel)]="despesa.categoria.id"
                       (ngModelChange)="
                         tableEditManipulation.aoAlterarCategoria(
@@ -175,7 +176,10 @@
                 <td>{{ despesa.total | currency : "BRL" }}</td>
                 <td>
                   <div *ngIf="despesa.isDespesaEditing; else viewGrupoFatura">
-                    <mat-select [(ngModel)]="despesa.grupoFatura.id">
+                    <mat-select
+                      panelClass="grupo-fatura-select-panel"
+                      [(ngModel)]="despesa.grupoFatura.id"
+                    >
                       <mat-option
                         *ngFor="let grupoFatura of grupoFaturas"
                         [value]="grupoFatura.id"

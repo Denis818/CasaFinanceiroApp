@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
@@ -15,17 +15,23 @@ import { StorageService } from '../../services/storage/storage.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnDestroy {
+export class HomePage implements OnInit, OnDestroy {
   selectedButton: string = '';
   sidenavExpanded = false;
   isDesktop: boolean = true;
 
   faturaDefault: number;
+
   private grupoFaturasSubscriber: Subscription;
+  private anoSubscriber: Subscription;
+  private grupoFaturaIdSubscriber: Subscription;
+
   grupoFaturas: GrupoFatura[] = [];
+  anos: string[] = ['2023', '2024', '2025', '2026', '2027'];
 
   grupoFaturasForm: FormGroup = new FormGroup({
     grupoFaturaId: new FormControl(),
+    ano: new FormControl(new Date().getFullYear()),
   });
 
   constructor(
@@ -37,15 +43,116 @@ export class HomePage implements OnDestroy {
     public readonly titleService: Title
   ) {
     this.updateSelectedButtonFromRoute();
+    this.reloadGrupoFaturas();
+  }
+
+  ngOnInit(): void {
+    this.inicializarValoresDoFormulario();
+    this.subscriberMudancasNoFormulario();
     this.getAllgrupoFaturas();
-    this.reloadgrupoFaturas();
-    this.setGrupoId();
   }
 
   ngOnDestroy(): void {
     if (this.grupoFaturasSubscriber) {
       this.grupoFaturasSubscriber.unsubscribe();
     }
+    if (this.anoSubscriber) {
+      this.anoSubscriber.unsubscribe();
+    }
+    if (this.grupoFaturaIdSubscriber) {
+      this.grupoFaturaIdSubscriber.unsubscribe();
+    }
+  }
+
+  //#region Select Grupos Faturas
+
+  inicializarValoresDoFormulario(): void {
+    const anoSalvo =
+      this.storageService.getItem('ano') || new Date().getFullYear();
+
+    const grupoFaturaIdSalvo =
+      parseInt(this.storageService.getItem('grupoFaturaId')) || null;
+
+    this.grupoFaturasForm.patchValue(
+      {
+        ano: anoSalvo,
+        grupoFaturaId: grupoFaturaIdSalvo,
+      },
+      { emitEvent: false }
+    );
+  }
+
+  subscriberMudancasNoFormulario(): void {
+    this.anoSubscriber = this.grupoFaturasForm
+      .get('ano')
+      .valueChanges.subscribe((ano) => {
+        this.storageService.setItem('ano', ano.toString());
+        this.getAllgrupoFaturas();
+      });
+
+    this.grupoFaturaIdSubscriber = this.grupoFaturasForm
+      .get('grupoFaturaId')
+      .valueChanges.subscribe(() => {
+        this.updateGrupoIdInStorage();
+      });
+  }
+
+  getAllgrupoFaturas() {
+    this.grupoFatura
+      .getListGruposFaturas(this.grupoFaturasForm.get('ano').value)
+      .subscribe({
+        next: (grupoFaturas) => {
+          this.grupoFaturas = grupoFaturas;
+          this.faturaDefault = grupoFaturas[0]?.id;
+
+          this.grupoFaturasForm.patchValue(
+            {
+              grupoFaturaId: this.getGrupoId(),
+            },
+            { emitEvent: false }
+          );
+
+          this.updateGrupoIdInStorage();
+        },
+      });
+  }
+
+  getGrupoId(): number {
+    let grupoId =
+      parseInt(this.storageService.getItem('grupoFaturaId')) ||
+      this.faturaDefault;
+
+    let grupo = this.grupoFaturas.find(
+      (grupoFatura) => grupoFatura.id === grupoId
+    );
+
+    if (grupo == null) {
+      return this.faturaDefault;
+    }
+    return grupoId;
+  }
+
+  updateGrupoIdInStorage(): void {
+    let grupoFaturaId = this.grupoFaturasForm.get('grupoFaturaId').value;
+    if (grupoFaturaId) {
+      this.storageService.setItem('grupoFaturaId', grupoFaturaId.toString());
+      this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
+    }
+  }
+  //#endregion
+
+  //#region Sidnav
+
+  abrirSidenav() {
+    this.sidenavExpanded = true;
+  }
+
+  fecharSidenav() {
+    this.sidenavExpanded = false;
+  }
+
+  checkIfMobile(): boolean {
+    return window.innerWidth >= 768;
   }
 
   setSelectedButton(button: string) {
@@ -66,37 +173,12 @@ export class HomePage implements OnDestroy {
       });
   }
 
-  abrirSidenav() {
-    this.sidenavExpanded = true;
-  }
-
-  fecharSidenav() {
-    this.sidenavExpanded = false;
-  }
-
-  checkIfMobile(): boolean {
-    if (window.innerWidth < 768) {
-      return false;
-    }
-    return true;
-  }
-
   logout() {
     this.user.logout();
   }
+  //#endregion
 
-  getAllgrupoFaturas() {
-    this.grupoFatura.getAll().subscribe({
-      next: (grupoFaturas) => {
-        this.grupoFaturas = grupoFaturas;
-        this.faturaDefault = grupoFaturas[0].id;
-
-        this.inicializeForm();
-      },
-    });
-  }
-
-  reloadgrupoFaturas() {
+  reloadGrupoFaturas() {
     this.grupoFaturasSubscriber =
       this.grupoFaturaNotification.realoadgrupoFaturas.subscribe({
         next: (isReload) => {
@@ -104,45 +186,6 @@ export class HomePage implements OnDestroy {
             this.getAllgrupoFaturas();
           }
         },
-      });
-  }
-
-  inicializeForm(): void {
-    this.grupoFaturasForm.reset({
-      grupoFaturaId: this.getGrupoId(),
-    });
-  }
-
-  getGrupoId(): number {
-    let grupoId =
-      parseInt(this.storageService.getItem('grupoFaturaId')) ||
-      this.faturaDefault;
-
-    let grupo = this.grupoFaturas.find(
-      (grupoFatura) => grupoFatura.id === grupoId
-    );
-
-    if (grupo == null) {
-      return this.faturaDefault;
-    }
-    return grupoId;
-  }
-
-  setGrupoId(): void {
-    this.grupoFaturasForm
-      .get('grupoFaturaId')
-      .valueChanges.subscribe((grupoFaturaId) => {
-        const grupoId = parseInt(this.storageService.getItem('grupoFaturaId'));
-
-        const grupoExiste = this.grupoFaturas.some((g) => g.id === grupoId);
-
-        if (grupoId != 0 || grupoExiste) {
-          this.storageService.setItem(
-            'grupoFaturaId',
-            grupoFaturaId.toString()
-          );
-          this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
-        }
       });
   }
 }

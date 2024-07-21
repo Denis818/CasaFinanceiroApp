@@ -103,7 +103,7 @@ export class CreateDespesaComponent {
   }
 
   getAllgrupoFaturas() {
-    this.grupoFaturaService.getAll().subscribe({
+    this.grupoFaturaService.getListGruposFaturas().subscribe({
       next: (grupoFaturas) => {
         this.grupoFaturas = grupoFaturas;
       },

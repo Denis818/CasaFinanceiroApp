@@ -7,7 +7,10 @@
     <form [formGroup]="despesaForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline">
         <mat-label>Selecione uma Fatura</mat-label>
-        <mat-select formControlName="grupoFaturaId">
+        <mat-select
+          panelClass="grupo-fatura-select-panel create-despesa"
+          formControlName="grupoFaturaId"
+        >
           <mat-option
             *ngFor="let grupoFatura of grupoFaturas"
             [value]="grupoFatura.id"
@@ -20,6 +23,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Selecione uma categoria</mat-label>
         <mat-select
+          panelClass="categoria-select-painel create-despesa"
           formControlName="categoriaId"
           (selectionChange)="getCategoriaSelected($event.value)"
         >
