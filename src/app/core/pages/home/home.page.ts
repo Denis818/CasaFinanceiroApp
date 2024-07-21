@@ -27,7 +27,7 @@ export class HomePage implements OnInit, OnDestroy {
   private grupoFaturaIdSubscriber: Subscription;
 
   grupoFaturas: GrupoFatura[] = [];
-  anos: string[] = ['2023', '2024', '2025', '2026', '2027'];
+  anos: string[] = ['2024', '2025', '2026', '2027'];
 
   grupoFaturasForm: FormGroup = new FormGroup({
     grupoFaturaId: new FormControl(),
