@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +7,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class grupoFaturaNotification {
   private reloadSelectedgrupoFatura = new BehaviorSubject<boolean>(false);
   private notificarGrupoIdMudou = new BehaviorSubject<boolean>(false);
+
+  private anoSelecionadoSource = new Subject<number>();
+  anoSelecionado$ = this.anoSelecionadoSource.asObservable();
 
   get realoadgrupoFaturas(): Observable<boolean> {
     return this.reloadSelectedgrupoFatura.asObservable();
@@ -22,5 +25,9 @@ export class grupoFaturaNotification {
 
   recarregarListagrupoFatura() {
     this.reloadSelectedgrupoFatura.next(true);
+  }
+
+  atualizarAnoSelecionado(ano: number) {
+    this.anoSelecionadoSource.next(ano);
   }
 }

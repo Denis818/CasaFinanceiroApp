@@ -25,6 +25,9 @@ export class DespesaService extends CrudService<Despesa> {
       tipoFiltro: tipoFilter,
       paginaAtual: paginaAtual,
       itensPorPagina: itensPorPagina,
+      ano:
+        this.storageService.getItem('ano') ||
+        new Date().getFullYear().toString(),
     };
 
     const params = new HttpParams({ fromObject: { ...despesaFiltro } });

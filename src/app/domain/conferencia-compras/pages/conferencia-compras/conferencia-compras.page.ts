@@ -18,6 +18,7 @@ import { Despesa } from 'src/app/domain/painel-controle/interfaces/despesa.inter
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
+import { grupoFaturaNotification } from '../../../../core/services/grupo-fatura-notification.service';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CategoriaService } from 'src/app/domain/painel-controle/services/categoria.service';
@@ -59,7 +60,7 @@ export class ConferenciaComprasPage implements OnDestroy {
   filtro: string = '';
 
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
-  listTipoFiltro = this.listFiltroDespesa.listTipoFiltro;
+  listTipoFiltro = this.listFiltroDespesa.listTipoFiltroConferenciaCompras;
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {
@@ -70,11 +71,18 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   constructor(
     private readonly despesaService: DespesaService,
+    private readonly grupoFaturaNotification: grupoFaturaNotification,
     private readonly categoriaService: CategoriaService,
     private readonly listFiltroDespesa: ListFiltroDespesa
   ) {
     this.getListDespesasAllGrupos();
     this.tempoParaFiltrar();
+
+    this.grupoFaturaNotification.anoSelecionado$.subscribe({
+      next: (ano) => {
+        this.getListDespesasAllGrupos();
+      },
+    });
   }
 
   ngOnDestroy() {

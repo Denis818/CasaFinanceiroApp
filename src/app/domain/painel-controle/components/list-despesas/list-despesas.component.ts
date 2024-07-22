@@ -81,7 +81,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
   despesasFiltradas: Despesa[] = [];
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
-  listTipoFiltro = this.listFiltroDespesa.listTipoFiltro;
+  listTipoFiltro = this.listFiltroDespesa.listTipoFiltroPainelControle;
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {

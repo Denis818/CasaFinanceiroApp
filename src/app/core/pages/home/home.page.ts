@@ -88,6 +88,7 @@ export class HomePage implements OnInit, OnDestroy {
       .valueChanges.subscribe((ano) => {
         this.storageService.setItem('ano', ano.toString());
         this.getAllgrupoFaturas();
+        this.grupoFaturaNotification.atualizarAnoSelecionado(ano);
       });
 
     this.grupoFaturaIdSubscriber = this.grupoFaturasForm
