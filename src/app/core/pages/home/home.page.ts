@@ -49,7 +49,7 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.inicializarValoresDoFormulario();
     this.subscriberMudancasNoFormulario();
-    this.getAllgrupoFaturas();
+    this.getListGrupoFaturaParaSeletorAsync();
   }
 
   ngOnDestroy(): void {
@@ -87,7 +87,7 @@ export class HomePage implements OnInit, OnDestroy {
       .get('ano')
       .valueChanges.subscribe((ano) => {
         this.storageService.setItem('ano', ano.toString());
-        this.getAllgrupoFaturas();
+        this.getListGrupoFaturaParaSeletorAsync();
         this.grupoFaturaNotification.atualizarAnoSelecionado(ano);
       });
 
@@ -98,7 +98,7 @@ export class HomePage implements OnInit, OnDestroy {
       });
   }
 
-  getAllgrupoFaturas() {
+  getListGrupoFaturaParaSeletorAsync() {
     this.grupoFatura
       .getListGrupoFaturaParaSeletorAsync(
         this.grupoFaturasForm.get('ano').value
@@ -186,7 +186,7 @@ export class HomePage implements OnInit, OnDestroy {
       this.grupoFaturaNotification.realoadgrupoFaturas.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.getAllgrupoFaturas();
+            this.getListGrupoFaturaParaSeletorAsync();
           }
         },
       });

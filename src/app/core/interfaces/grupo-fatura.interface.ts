@@ -4,6 +4,8 @@ export interface GrupoFatura {
   id: number;
   nome: string;
   ano: string;
+  quantidadeDespesas: number;
+  totalDespesas: number;
   statusFaturas: StatusFatura[];
 
   nomeEditavel: string;

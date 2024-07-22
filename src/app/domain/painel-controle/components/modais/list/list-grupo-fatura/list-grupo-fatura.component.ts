@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { Component, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +20,8 @@ import {
 } from 'src/app/shared/enums/enum-filtro-despesa';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
+registerLocaleData(localePt);
+
 @Component({
   selector: 'modal-listgrupoFatura',
   templateUrl: './list-grupo-fatura.component.html',
@@ -35,6 +38,7 @@ import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
     MatDialogModule,
     ConfirmDeleteComponent,
   ],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
 export class ListgrupoFaturaComponent {
   grupoFaturas: GrupoFatura[] = [];
