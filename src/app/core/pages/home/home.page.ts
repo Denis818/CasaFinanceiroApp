@@ -5,7 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UserService } from 'src/app/domain/auth/services/user/user.service';
-import { GrupoFatura } from '../../interfaces/grupo-fatura.interface';
+import { GrupoFaturaSeletor } from '../../interfaces/grupo-fatura-seletor-interface';
 import { grupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from '../../services/grupo-fatura.service';
 import { StorageService } from '../../services/storage/storage.service';
@@ -26,7 +26,7 @@ export class HomePage implements OnInit, OnDestroy {
   private anoSubscriber: Subscription;
   private grupoFaturaIdSubscriber: Subscription;
 
-  grupoFaturas: GrupoFatura[] = [];
+  grupoFaturas: GrupoFaturaSeletor[] = [];
   anos: string[] = ['2024', '2025', '2026', '2027'];
 
   grupoFaturasForm: FormGroup = new FormGroup({
@@ -100,7 +100,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   getAllgrupoFaturas() {
     this.grupoFatura
-      .getListGruposFaturas(this.grupoFaturasForm.get('ano').value)
+      .getListGrupoFaturaParaSeletorAsync(
+        this.grupoFaturasForm.get('ano').value
+      )
       .subscribe({
         next: (grupoFaturas) => {
           this.grupoFaturas = grupoFaturas;

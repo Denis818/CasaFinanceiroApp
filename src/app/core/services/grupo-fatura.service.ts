@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
+import { GrupoFaturaSeletor } from '../interfaces/grupo-fatura-seletor-interface';
 import { GrupoFatura } from '../interfaces/grupo-fatura.interface';
 import { StatusFaturaResponse } from '../interfaces/status-fatura-response.interface';
 import {
@@ -15,6 +16,24 @@ import { CrudService } from './base/crud.service';
 export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
   constructor() {
     super(`${environment.base_url_financy}/grupo-fatura`);
+  }
+
+  public getListGrupoFaturaParaSeletorAsync(
+    ano: string = ''
+  ): Observable<GrupoFaturaSeletor[]> {
+    if (!ano) {
+      ano =
+        this.storageService.getItem('ano') ||
+        new Date().getFullYear().toString();
+    }
+
+    const params = new HttpParams().set('ano', ano);
+    return this.sendHttpRequest<ApiResponse<GrupoFaturaSeletor[]>>(
+      'GET',
+      `${this.url}/seletor-grupo-fatura`,
+      null,
+      params
+    ).pipe(map((response) => response.dados));
   }
 
   public getListGruposFaturas(ano: string = ''): Observable<GrupoFatura[]> {
