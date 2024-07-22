@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { BaseService } from 'src/app/core/services/base/base.service';
@@ -59,9 +60,16 @@ export class DashboardService extends BaseService {
   }
 
   getGraficoTotaisComprasPorGrupo(): Observable<GraphicConfiguration> {
+    const ano =
+      this.storageService.getItem('ano') || new Date().getFullYear().toString();
+
+    const params = new HttpParams().set('ano', ano);
+
     return this.sendHttpRequest<ApiResponse<TotalPorGrupoResponse[]>>(
       'GET',
-      `${this.url}/total-por-grupo`
+      `${this.url}/total-por-grupo`,
+      null,
+      params
     ).pipe(
       map(
         (response): GraphicConfiguration => ({
