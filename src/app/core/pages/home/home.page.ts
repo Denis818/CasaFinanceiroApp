@@ -31,7 +31,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   grupoFaturasForm: FormGroup = new FormGroup({
     grupoFaturaId: new FormControl(),
-    ano: new FormControl(new Date().getFullYear()),
+    ano: new FormControl(new Date().getFullYear().toString()),
   });
 
   constructor(
@@ -68,7 +68,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   inicializarValoresDoFormulario(): void {
     const anoSalvo =
-      this.storageService.getItem('ano') || new Date().getFullYear();
+      this.storageService.getItem('ano') || new Date().getFullYear().toString();
 
     const grupoFaturaIdSalvo =
       parseInt(this.storageService.getItem('grupoFaturaId')) || null;
