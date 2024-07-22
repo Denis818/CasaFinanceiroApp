@@ -241,10 +241,11 @@
       }
 
       [selected-group] {
-        width: 305px;
+        width: 100%;
 
         .select-grupo-fatura {
           width: 145px;
+          margin-left: 5px;
         }
 
         .select-ano {
