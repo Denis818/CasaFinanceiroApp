@@ -231,8 +231,10 @@
               [pageSizeOptions]="tamanhosDePagina"
               aria-label="Select page"
               [disabled]="isDespesaEditing"
+              showFirstLastButtons
             >
             </mat-paginator>
+            <span>Total de itens: {{ page.totalItens }}</span>
           </div>
         </div>
       </div>

@@ -88,6 +88,13 @@
           }
         }
 
+        [pagination] {
+          & span {
+            color: #708090 !important;
+            font-size: 15px;
+          }
+        }
+
         .disabled {
           pointer-events: none;
           opacity: 0.8;
@@ -167,6 +174,10 @@
               padding: 0px 6px 0px;
               margin: 10px;
             }
+          }
+
+          span {
+            display: none;
           }
         }
 

@@ -96,8 +96,10 @@
               [pageSize]="page.itensPorPagina"
               [pageSizeOptions]="tamanhosDePagina"
               aria-label="Select page"
+              showFirstLastButtons
             >
             </mat-paginator>
+            <span>Total de itens: {{ page.totalItens }}</span>
           </div>
         </div>
       </div>

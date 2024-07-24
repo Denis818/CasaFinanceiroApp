@@ -125,12 +125,14 @@
               <tr>
                 <th>Mês</th>
                 <th>Total</th>
+                <th>Quantidade de Itens</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of listDespesasPorCategoria">
                 <td>{{ item.categoria }}</td>
                 <td>{{ item.total| currency:'BRL' }}</td>
+                <td>{{item.quantidadeDeItens}}</td>
               </tr>
             </tbody>
             <tfoot *ngIf="listDespesasPorCategoria.length == 0">
