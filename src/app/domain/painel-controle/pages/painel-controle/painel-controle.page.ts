@@ -51,7 +51,7 @@ export class PainelControlePage {
 
   openListMembroModal() {
     const dialogRef = this.dialog.open(ListMembroComponent, {
-      width: '500px',
+      width: '800px',
     });
     dialogRef.afterClosed();
   }

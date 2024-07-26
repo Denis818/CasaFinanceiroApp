@@ -4,6 +4,7 @@
       <thead>
         <th>Membro</th>
         <th>Telefone</th>
+        <th>Data de Início</th>
         <th>Opções</th>
       </thead>
       <tbody>
@@ -23,6 +24,7 @@
             </div>
             <ng-template #viewTelefone>{{ membro.telefone }}</ng-template>
           </td>
+          <td>{{ membro.dataInicio }}</td>
           <td>
             <i *ngIf="!membro.isEditing; else saveEdicao">
               <mat-icon
