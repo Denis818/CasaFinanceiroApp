@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { UserService } from 'src/app/modules/auth/services/user/user.service';
 import { StorageService } from '../../../services/storage/storage.service';
-import { GrupoFaturaSeletor } from '../../interfaces/grupo-fatura-seletor-interface';
+import { GrupoFaturaSeletorResponse } from '../../interfaces/grupo-fatura-seletor-response.interface';
 import { grupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from '../../services/grupo-fatura.service';
 
@@ -26,7 +26,7 @@ export class HomePage implements OnInit, OnDestroy {
   private anoSubscriber: Subscription;
   private grupoFaturaIdSubscriber: Subscription;
 
-  grupoFaturas: GrupoFaturaSeletor[] = [];
+  grupoFaturas: GrupoFaturaSeletorResponse[] = [];
   anos: string[] = ['2024', '2025', '2026', '2027'];
 
   grupoFaturasForm: FormGroup = new FormGroup({

@@ -8,15 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
+import { EnumFaturaType } from 'src/app/core/home/enums/enum-fatura-type';
+import { EnumStatusFatura } from 'src/app/core/home/enums/enum-status-fatura';
 import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { MensagemWhatsAppComponent } from 'src/app/modules/control-panel/components/modais/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
-import {
-  EnumFaturaType,
-  EnumStatusFatura,
-} from 'src/app/shared/enums/enum-filtro-despesa';
 import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
 import { RelatorioGastosDoGrupoResponse } from '../../interfaces/financy/relatorio-gastos-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';

@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { CrudService } from 'src/app/core/services/base/crud.service';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';

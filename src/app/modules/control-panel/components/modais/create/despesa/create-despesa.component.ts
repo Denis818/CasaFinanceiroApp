@@ -17,14 +17,12 @@ import { ToastrService } from 'ngx-toastr';
 import { GrupoFatura } from 'src/app/core/home/interfaces/grupo-fatura.interface';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { EnumCategoriasMensais } from 'src/app/modules/control-panel/enums/enum-categorias-mensais';
+import { EnumValorInputFornecedor } from 'src/app/modules/control-panel/enums/enum-input-values';
+import { EnumValorInputItem } from 'src/app/modules/control-panel/enums/enum-valor-input-item';
 import { Categoria } from 'src/app/modules/control-panel/interfaces/categoria.interface';
 import { CategoriaService } from 'src/app/modules/control-panel/services/categoria.service';
 import { DespesaService } from 'src/app/modules/control-panel/services/despesa.service';
-import {
-  CategoriasMensais,
-  ValorInputFornecedor,
-  ValorInputItem,
-} from 'src/app/shared/enums/enum-input-values';
 
 @Component({
   selector: 'app-modal-despesa',
@@ -47,7 +45,7 @@ export class CreateDespesaComponent {
 
   inputItem: string;
   inputFornecedor: string;
-  valorInputItem = ValorInputItem;
+  valorInputItem = EnumValorInputItem;
 
   categorias: Categoria[] = [];
   categoriaSelecionada: string;
@@ -190,14 +188,14 @@ export class CreateDespesaComponent {
 
   setValueInputItem(): string {
     switch (this.categoriaSelecionada) {
-      case CategoriasMensais.aluguel:
-        this.inputItem = ValorInputItem.parcelaApPonto;
+      case EnumCategoriasMensais.aluguel:
+        this.inputItem = EnumValorInputItem.parcelaApPonto;
         break;
-      case CategoriasMensais.condominio:
-        this.inputItem = ValorInputItem.condominio;
+      case EnumCategoriasMensais.condominio:
+        this.inputItem = EnumValorInputItem.condominio;
         break;
-      case CategoriasMensais.contaDeLuz:
-        this.inputItem = ValorInputItem.contaDeLuz;
+      case EnumCategoriasMensais.contaDeLuz:
+        this.inputItem = EnumValorInputItem.contaDeLuz;
         break;
       default:
         this.inputItem = 'Compra';
@@ -209,10 +207,10 @@ export class CreateDespesaComponent {
     let quantidade = this.despesaForm?.value?.quantidade || 1;
 
     if (
-      this.categoriaSelecionada === CategoriasMensais.contaDeLuz ||
-      this.categoriaSelecionada === CategoriasMensais.condominio ||
-      this.categoriaSelecionada === CategoriasMensais.internet ||
-      this.categoriaSelecionada === CategoriasMensais.aluguel
+      this.categoriaSelecionada === EnumCategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada === EnumCategoriasMensais.condominio ||
+      this.categoriaSelecionada === EnumCategoriasMensais.internet ||
+      this.categoriaSelecionada === EnumCategoriasMensais.aluguel
     ) {
       quantidade = 1;
     }
@@ -222,15 +220,15 @@ export class CreateDespesaComponent {
 
   setValueInputFornecedor(): string {
     switch (this.inputItem) {
-      case ValorInputItem.parcelaCaixa:
-        this.inputFornecedor = ValorInputFornecedor.caixa;
+      case EnumValorInputItem.parcelaCaixa:
+        this.inputFornecedor = EnumValorInputFornecedor.caixa;
         break;
-      case ValorInputItem.parcelaApPonto:
-      case ValorInputItem.condominio:
-        this.inputFornecedor = ValorInputFornecedor.apPonto;
+      case EnumValorInputItem.parcelaApPonto:
+      case EnumValorInputItem.condominio:
+        this.inputFornecedor = EnumValorInputFornecedor.apPonto;
         break;
-      case ValorInputItem.contaDeLuz:
-        this.inputFornecedor = ValorInputFornecedor.cemig;
+      case EnumValorInputItem.contaDeLuz:
+        this.inputFornecedor = EnumValorInputFornecedor.cemig;
         break;
       default:
         this.inputFornecedor = this.despesaForm?.value?.fornecedor || 'Epa';
@@ -240,7 +238,7 @@ export class CreateDespesaComponent {
 
   inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
     if (
-      (this.categoriaSelecionada == CategoriasMensais.internet &&
+      (this.categoriaSelecionada == EnumCategoriasMensais.internet &&
         inputCampo == 'fornecedor') ||
       inputCampo == 'item'
     ) {
@@ -248,10 +246,10 @@ export class CreateDespesaComponent {
     }
 
     if (
-      this.categoriaSelecionada == CategoriasMensais.contaDeLuz ||
-      this.categoriaSelecionada == CategoriasMensais.condominio ||
-      this.categoriaSelecionada == CategoriasMensais.internet ||
-      this.categoriaSelecionada == CategoriasMensais.aluguel
+      this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada == EnumCategoriasMensais.condominio ||
+      this.categoriaSelecionada == EnumCategoriasMensais.internet ||
+      this.categoriaSelecionada == EnumCategoriasMensais.aluguel
     ) {
       return true;
     }

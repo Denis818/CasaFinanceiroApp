@@ -29,7 +29,6 @@ import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { Despesa } from 'src/app/modules/control-panel/interfaces/despesa.interface';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
@@ -39,6 +38,7 @@ import { CategoriaService } from '../../services/categoria.service';
 import { DespesaService } from '../../services/despesa.service';
 import { ChecarFaturaCartaoComponent } from '../modais/checar-fatura-cartao/checar-fatura-cartao.component';
 import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 
 registerLocaleData(localePt);
 

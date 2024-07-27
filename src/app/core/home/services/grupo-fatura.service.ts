@@ -1,14 +1,12 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import {
-  EnumFaturaType,
-  EnumStatusFatura,
-} from 'src/app/shared/enums/enum-filtro-despesa';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { CrudService } from '../../services/base/crud.service';
-import { GrupoFaturaSeletor } from '../interfaces/grupo-fatura-seletor-interface';
+import { EnumFaturaType } from '../enums/enum-fatura-type';
+import { EnumStatusFatura } from '../enums/enum-status-fatura';
+import { GrupoFaturaSeletorResponse } from '../interfaces/grupo-fatura-seletor-response.interface';
 import { GrupoFatura } from '../interfaces/grupo-fatura.interface';
 import { StatusFaturaResponse } from '../interfaces/status-fatura-response.interface';
 
@@ -20,7 +18,7 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
 
   public getListGrupoFaturaParaSeletorAsync(
     ano: string = ''
-  ): Observable<GrupoFaturaSeletor[]> {
+  ): Observable<GrupoFaturaSeletorResponse[]> {
     if (!ano) {
       ano =
         this.storageService.getItem('ano') ||
@@ -28,7 +26,7 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
     }
 
     const params = new HttpParams().set('ano', ano);
-    return this.sendHttpRequest<ApiResponse<GrupoFaturaSeletor[]>>(
+    return this.sendHttpRequest<ApiResponse<GrupoFaturaSeletorResponse[]>>(
       'GET',
       `${this.url}/seletor-grupo-fatura`,
       null,

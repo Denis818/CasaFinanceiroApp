@@ -14,10 +14,9 @@ import { StatusFatura } from 'src/app/core/home/interfaces/status-fatura.interfa
 import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
-import {
-  EnumFaturaType,
-  EnumStatusFatura,
-} from 'src/app/shared/enums/enum-filtro-despesa';
+
+import { EnumFaturaType } from 'src/app/core/home/enums/enum-fatura-type';
+import { EnumStatusFatura } from 'src/app/core/home/enums/enum-status-fatura';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
 registerLocaleData(localePt);

@@ -2,11 +2,9 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import { Injectable } from '@angular/core';
 import { Despesa } from 'src/app/modules/control-panel/interfaces/despesa.interface';
 
-import {
-  CategoriasMensais,
-  ValorInputFornecedor,
-  ValorInputItem,
-} from 'src/app/shared/enums/enum-input-values';
+import { EnumCategoriasMensais } from '../enums/enum-categorias-mensais';
+import { EnumValorInputFornecedor } from '../enums/enum-input-values';
+import { EnumValorInputItem } from '../enums/enum-valor-input-item';
 import { Categoria } from '../interfaces/categoria.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -33,7 +31,7 @@ export class TableEditManipulation {
 
   inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
     if (
-      (this.categoriaSelecionada == CategoriasMensais.internet &&
+      (this.categoriaSelecionada == EnumCategoriasMensais.internet &&
         inputCampo == 'fornecedor') ||
       inputCampo == 'item'
     ) {
@@ -41,10 +39,10 @@ export class TableEditManipulation {
     }
 
     if (
-      this.categoriaSelecionada == CategoriasMensais.contaDeLuz ||
-      this.categoriaSelecionada == CategoriasMensais.condominio ||
-      this.categoriaSelecionada == CategoriasMensais.internet ||
-      this.categoriaSelecionada == CategoriasMensais.aluguel
+      this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
+      this.categoriaSelecionada == EnumCategoriasMensais.condominio ||
+      this.categoriaSelecionada == EnumCategoriasMensais.internet ||
+      this.categoriaSelecionada == EnumCategoriasMensais.aluguel
     ) {
       return true;
     }
@@ -54,25 +52,25 @@ export class TableEditManipulation {
 
   private inputItemEhFornecedor(despesa: Despesa, novaCategoria: string) {
     switch (novaCategoria) {
-      case CategoriasMensais.aluguel:
-        this.inputItem(despesa, ValorInputItem.parcelaApPonto);
+      case EnumCategoriasMensais.aluguel:
+        this.inputItem(despesa, EnumValorInputItem.parcelaApPonto);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
         break;
 
-      case CategoriasMensais.condominio:
-        this.inputItem(despesa, ValorInputItem.condominio);
+      case EnumCategoriasMensais.condominio:
+        this.inputItem(despesa, EnumValorInputItem.condominio);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
         break;
 
-      case CategoriasMensais.contaDeLuz:
-        this.inputItem(despesa, ValorInputItem.contaDeLuz);
+      case EnumCategoriasMensais.contaDeLuz:
+        this.inputItem(despesa, EnumValorInputItem.contaDeLuz);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
         break;
 
-      case CategoriasMensais.internet:
+      case EnumCategoriasMensais.internet:
         this.inputItem(despesa, despesa.item);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
@@ -81,9 +79,9 @@ export class TableEditManipulation {
       default:
         this.inputItem(despesa, despesa.item);
         if (
-          novaCategoria !== CategoriasMensais.aluguel &&
-          novaCategoria !== CategoriasMensais.condominio &&
-          novaCategoria !== CategoriasMensais.contaDeLuz
+          novaCategoria !== EnumCategoriasMensais.aluguel &&
+          novaCategoria !== EnumCategoriasMensais.condominio &&
+          novaCategoria !== EnumCategoriasMensais.contaDeLuz
         ) {
           this.restaurarValorAnterior(despesa);
         }
@@ -115,15 +113,15 @@ export class TableEditManipulation {
     }
 
     switch (despesa.item) {
-      case ValorInputItem.condominio:
-      case ValorInputItem.parcelaApPonto:
-        despesa.fornecedor = ValorInputFornecedor.apPonto;
+      case EnumValorInputItem.condominio:
+      case EnumValorInputItem.parcelaApPonto:
+        despesa.fornecedor = EnumValorInputFornecedor.apPonto;
         break;
-      case ValorInputItem.parcelaCaixa:
-        despesa.fornecedor = ValorInputFornecedor.caixa;
+      case EnumValorInputItem.parcelaCaixa:
+        despesa.fornecedor = EnumValorInputFornecedor.caixa;
         break;
-      case ValorInputItem.contaDeLuz:
-        despesa.fornecedor = ValorInputFornecedor.cemig;
+      case EnumValorInputItem.contaDeLuz:
+        despesa.fornecedor = EnumValorInputFornecedor.cemig;
         break;
     }
   }

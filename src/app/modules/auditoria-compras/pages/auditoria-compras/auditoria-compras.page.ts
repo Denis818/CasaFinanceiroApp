@@ -23,9 +23,9 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CategoriaService } from 'src/app/modules/control-panel/services/categoria.service';
 import { DespesaService } from 'src/app/modules/control-panel/services/despesa.service';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-status-fatura';
 import { GraficoSugestoesEconomiaComponent } from '../../components/grafico-sugestoes-economia/grafico-sugestoes-economia.component';
 import { SugestaoFornecedorComponent } from '../../components/sugestao-fornecedor/sugestao-fornecedor.component';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 
 registerLocaleData(localePt);
 
