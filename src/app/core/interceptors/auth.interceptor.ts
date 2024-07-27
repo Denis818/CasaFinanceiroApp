@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { StorageService } from './../services/storage/storage.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
