@@ -8,6 +8,10 @@
   --mdc-outlined-text-field-container-shape: 10px !important;
 }
 
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 .mat-typography,
 .mat-mdc-select-panel {
   &::-webkit-scrollbar {
@@ -45,15 +49,13 @@
 }
 //end select fatura
 
-//title navbar
-.mat-typography h1 {
-  margin: 0;
-}
 //option selecionada em um select
 .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
   color: #673ab7;
 }
 
+.mat-typography h1,
+.mat-typography h2,
 .mat-typography h3,
 .mat-typography p {
   margin: 0px;

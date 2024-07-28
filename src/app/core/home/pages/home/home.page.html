@@ -42,26 +42,25 @@
   </button>
 </nav>
 
-<div container-app>
-  <div
-    class="sidenav"
-    [ngClass]="{'expanded': sidenavExpanded}"
-    (mouseenter)="checkIfMobile() && abrirSidenav()"
-    (mouseleave)="checkIfMobile() && fecharSidenav()"
-  >
-    <div logo-content>
-      <a [routerLink]="'dashboard'" class="nav-link">
-        <img logo-app src="../../../../favicon.ico" alt="logo" />
-        <h2 *ngIf="sidenavExpanded">Despesas</h2>
-      </a>
-    </div>
+<div
+  class="sidenav"
+  [ngClass]="{'expanded': sidenavExpanded}"
+  (mouseenter)="checkIfMobile() && abrirSidenav()"
+  (mouseleave)="checkIfMobile() && fecharSidenav()"
+>
+  <div logo-content>
+    <mat-icon>trending_up</mat-icon>
+    <h2 *ngIf="sidenavExpanded">Gerenciar Despesas</h2>
+  </div>
+
+  <div menu-links>
     <hr line />
 
     <a
       [routerLink]="'dashboard'"
       (click)="setSelectedButton('dashboard')"
       [ngClass]="{'selected': selectedButton === 'dashboard'}"
-      class="nav-link"
+      class="nav-link-icon"
     >
       <mat-icon>dashboard_customize</mat-icon>
       <span *ngIf="sidenavExpanded">Dashboard</span>
@@ -70,7 +69,7 @@
       [routerLink]="'painel'"
       (click)="setSelectedButton('painel')"
       [ngClass]="{'selected': selectedButton === 'painel'}"
-      class="nav-link"
+      class="nav-link-icon"
     >
       <mat-icon>settings_applications</mat-icon>
       <span *ngIf="sidenavExpanded">Painel de Controle</span>
@@ -80,14 +79,14 @@
       [routerLink]="'auditoria-compras'"
       (click)="setSelectedButton('auditoria-compras')"
       [ngClass]="{'selected': selectedButton === 'auditoria-compras'}"
-      class="nav-link"
+      class="nav-link-icon"
     >
       <mat-icon>attach_money</mat-icon>
-      <span *ngIf="sidenavExpanded">Conferência de Compras</span>
+      <span *ngIf="sidenavExpanded">Auditoria de Compras</span>
     </a>
   </div>
+</div>
 
-  <div class="content-app">
-    <router-outlet></router-outlet>
-  </div>
+<div home-content-app>
+  <router-outlet></router-outlet>
 </div>
