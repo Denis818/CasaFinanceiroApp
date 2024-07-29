@@ -9,14 +9,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoFatura } from 'src/app/core/home/interfaces/grupo-fatura.interface';
-import { StatusFatura } from 'src/app/core/home/interfaces/status-fatura.interface';
-import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
-import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
+import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
+import { StatusFatura } from 'src/app/core/portal/interfaces/status-fatura.interface';
+import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
+import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
-import { EnumFaturaType } from 'src/app/core/home/enums/enum-fatura-type';
-import { EnumStatusFatura } from 'src/app/core/home/enums/enum-status-fatura';
+import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
+import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
 registerLocaleData(localePt);

@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { AuditoriaComprasService } from 'src/app/standalone/auditoria-compras/services/auditoria-compras.service';

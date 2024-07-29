@@ -19,7 +19,7 @@ import {
 } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { SugestaoDeFornecedorResponse } from 'src/app/standalone/auditoria-compras/interfaces/sugestao-fornecedor-response';
 import { AuditoriaComprasService } from 'src/app/standalone/auditoria-compras/services/auditoria-compras.service';

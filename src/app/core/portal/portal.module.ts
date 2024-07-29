@@ -8,14 +8,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SideNavComponent } from './components/side-nav/sidenav.component';
-import { HomePage } from './pages/home/home.page';
-import { AppRoutingModule } from 'src/app/modules/start/app-routing.module';
+import { SideNavComponent } from './components/sidenav/sidenav.component';
+import { PortalPage } from './pages/portal/portal.page';
+import { PortalRoutingModule } from './portal-routing.module';
 
 @NgModule({
-  declarations: [NavbarComponent, SideNavComponent, HomePage],
+  declarations: [NavbarComponent, SideNavComponent, PortalPage],
   imports: [
-    AppRoutingModule,
+    PortalRoutingModule,
     BrowserModule,
     CommonModule,
     FormsModule,
@@ -27,4 +27,4 @@ import { AppRoutingModule } from 'src/app/modules/start/app-routing.module';
     MatTooltipModule,
   ],
 })
-export class HomeModule {}
+export class PortalModule {}

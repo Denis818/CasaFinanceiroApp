@@ -13,7 +13,7 @@ import {
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { Subject, debounceTime } from 'rxjs';
-import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
