@@ -13,7 +13,7 @@ import {
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { Subject, debounceTime } from 'rxjs';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { Categoria } from 'src/app/modules/control-panel/interfaces/categoria.interface';
 import { Despesa } from 'src/app/modules/control-panel/interfaces/despesa.interface';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
@@ -23,9 +23,9 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CategoriaService } from 'src/app/modules/control-panel/services/categoria.service';
 import { DespesaService } from 'src/app/modules/control-panel/services/despesa.service';
+import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 import { GraficoSugestoesEconomiaComponent } from '../../components/grafico-sugestoes-economia/grafico-sugestoes-economia.component';
 import { SugestaoFornecedorComponent } from '../../components/sugestao-fornecedor/sugestao-fornecedor.component';
-import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 
 registerLocaleData(localePt);
 
@@ -73,7 +73,7 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   constructor(
     private readonly despesaService: DespesaService,
-    private readonly grupoFaturaNotification: grupoFaturaNotification,
+    private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly categoriaService: CategoriaService,
     private readonly listFiltroDespesa: ListFiltroDespesa
   ) {

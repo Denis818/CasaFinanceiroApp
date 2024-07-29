@@ -28,11 +28,19 @@ import { HomePage } from 'src/app/core/home/pages/home/home.page';
 import { AuthInterceptor } from 'src/app/core/interceptors/auth.interceptor';
 import { LoginComponent } from 'src/app/modules/auth/pages/login/login.component';
 
+import { NavbarComponent } from 'src/app/core/home/components/navbar/navbar.component';
+import { SideNavComponent } from 'src/app/core/home/components/side-nav/sidenav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomePage],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    NavbarComponent,
+    SideNavComponent,
+    HomePage,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

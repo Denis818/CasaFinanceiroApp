@@ -11,7 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoFatura } from 'src/app/core/home/interfaces/grupo-fatura.interface';
 import { StatusFatura } from 'src/app/core/home/interfaces/status-fatura.interface';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
@@ -48,7 +48,7 @@ export class ListgrupoFaturaComponent {
 
   constructor(
     private readonly grupoFaturaService: GrupoFaturaService,
-    private readonly grupoFaturaNotification: grupoFaturaNotification,
+    private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
     private readonly storageService: StorageService

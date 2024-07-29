@@ -12,7 +12,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrService } from 'ngx-toastr';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
@@ -55,7 +55,7 @@ export class CreategrupoFaturaComponent {
   }
   constructor(
     private readonly grupoFaturaService: GrupoFaturaService,
-    private readonly grupoFaturaNotification: grupoFaturaNotification,
+    private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly dialogRef: MatDialogRef<CreategrupoFaturaComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService,

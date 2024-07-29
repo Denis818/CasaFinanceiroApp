@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { EnumFaturaType } from 'src/app/core/home/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/home/enums/enum-status-fatura';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/home/services/grupo-fatura.service';
 import { MensagemWhatsAppComponent } from 'src/app/modules/control-panel/components/modais/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
@@ -65,7 +65,7 @@ export class DashboardPage implements OnInit, OnDestroy {
     private readonly dashboardService: DashboardService,
     private readonly grupoFaturaService: GrupoFaturaService,
     private readonly dialog: MatDialog,
-    private readonly grupoFaturaNotification: grupoFaturaNotification
+    private readonly grupoFaturaNotification: GrupoFaturaNotification
   ) {}
 
   ngOnInit() {

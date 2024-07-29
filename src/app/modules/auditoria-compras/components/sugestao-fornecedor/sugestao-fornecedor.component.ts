@@ -19,7 +19,7 @@ import {
 } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { SugestaoDeFornecedorResponse } from 'src/app/modules/auditoria-compras/interfaces/sugestao-fornecedor-response';
 import { AuditoriaComprasService } from 'src/app/modules/auditoria-compras/services/auditoria-compras.service';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
@@ -75,7 +75,7 @@ export class SugestaoFornecedorComponent implements OnDestroy {
 
   constructor(
     private readonly comprasService: AuditoriaComprasService,
-    private readonly grupoFaturaNotification: grupoFaturaNotification
+    private readonly grupoFaturaNotification: GrupoFaturaNotification
   ) {
     this.reloadDespesas();
   }

@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { grupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
+import { GrupoFaturaNotification } from 'src/app/core/home/services/grupo-fatura-notification.service';
 import { AuditoriaComprasService } from 'src/app/modules/auditoria-compras/services/auditoria-compras.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
@@ -14,9 +14,7 @@ registerLocaleData(localePt);
 @Component({
   selector: 'grafico-sugestoes-economia',
   templateUrl: './grafico-sugestoes-economia.component.html',
-  styleUrls: [
-    './grafico-sugestoes-economia.component.scss'
-  ],
+  styleUrls: ['./grafico-sugestoes-economia.component.scss'],
   standalone: true,
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   imports: [CommonModule, MatIconModule, MatTooltipModule, GraphicComponent],
@@ -29,7 +27,7 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
 
   constructor(
     private readonly comprasService: AuditoriaComprasService,
-    private readonly grupoFaturaNotification: grupoFaturaNotification
+    private readonly grupoFaturaNotification: GrupoFaturaNotification
   ) {
     this.reloadDespesas();
   }

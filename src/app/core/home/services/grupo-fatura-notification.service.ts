@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class grupoFaturaNotification {
+export class GrupoFaturaNotification {
   private reloadSelectedgrupoFatura = new BehaviorSubject<boolean>(false);
   private notificarGrupoIdMudou = new BehaviorSubject<boolean>(false);
 

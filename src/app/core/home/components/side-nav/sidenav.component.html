@@ -1,0 +1,44 @@
+<div
+  sidenav
+  [ngClass]="{'expanded': sidenavExpanded}"
+  (mouseenter)="checkIfMobile() && abrirSidenav()"
+  (mouseleave)="checkIfMobile() && fecharSidenav()"
+>
+  <div logo-content>
+    <mat-icon>trending_up</mat-icon>
+    <h2 *ngIf="sidenavExpanded">Gerenciar Despesas</h2>
+  </div>
+
+  <div menu-links>
+    <hr line />
+
+    <a
+      [routerLink]="'dashboard'"
+      (click)="setSelectedButton('dashboard')"
+      [ngClass]="{'selected': selectedButton === 'dashboard'}"
+      class="nav-link-icon"
+    >
+      <mat-icon>dashboard_customize</mat-icon>
+      <span *ngIf="sidenavExpanded">Dashboard</span>
+    </a>
+    <a
+      [routerLink]="'painel'"
+      (click)="setSelectedButton('painel')"
+      [ngClass]="{'selected': selectedButton === 'painel'}"
+      class="nav-link-icon"
+    >
+      <mat-icon>settings_applications</mat-icon>
+      <span *ngIf="sidenavExpanded">Painel de Controle</span>
+    </a>
+
+    <a
+      [routerLink]="'auditoria-compras'"
+      (click)="setSelectedButton('auditoria-compras')"
+      [ngClass]="{'selected': selectedButton === 'auditoria-compras'}"
+      class="nav-link-icon"
+    >
+      <mat-icon>attach_money</mat-icon>
+      <span *ngIf="sidenavExpanded">Auditoria de Compras</span>
+    </a>
+  </div>
+</div>
