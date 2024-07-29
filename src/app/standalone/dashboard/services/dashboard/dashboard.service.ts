@@ -5,9 +5,9 @@ import { BaseService } from 'src/app/core/services/base/base.service';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
-import { ResumoGrupoResponse } from '../../interfaces/financy/resumo-grupo-response.interface';
-import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
-import { TotalPorGrupoResponse } from '../../interfaces/financy/total-por-grupo-response.interface';
+import { ResumoGrupoResponse } from '../../interfaces/resumo-grupo-response.interface';
+import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
+import { TotalPorGrupoResponse } from '../../interfaces/total-por-grupo-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService extends BaseService {

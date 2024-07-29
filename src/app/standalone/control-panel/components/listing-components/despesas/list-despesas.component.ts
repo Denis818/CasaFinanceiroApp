@@ -28,17 +28,17 @@ import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interfa
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
-import { TableEditManipulation } from '../../helpers/table-edit-manipulation';
-import { Categoria } from '../../interfaces/categoria.interface';
-import { CategoriaService } from '../../services/categoria.service';
-import { DespesaService } from '../../services/despesa.service';
-import { ChecarFaturaCartaoComponent } from '../modais/checar-fatura-cartao/checar-fatura-cartao.component';
-import { ConfirmDeleteComponent } from '../modais/delete/confirm-delete.component';
+import { TableEditManipulation } from '../../../helpers/table-edit-manipulation';
+import { Categoria } from '../../../interfaces/categoria.interface';
+import { CategoriaService } from '../../../services/categoria.service';
+import { DespesaService } from '../../../services/despesa.service';
+import { ChecarFaturaCartaoComponent } from '../../checar-fatura-cartao/checar-fatura-cartao.component';
 
 registerLocaleData(localePt);
 

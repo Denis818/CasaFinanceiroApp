@@ -14,10 +14,10 @@ import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatu
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
-import { MensagemWhatsAppComponent } from 'src/app/standalone/control-panel/components/modais/mensagem-whatsapp/mensagem-whatsapp.component';
-import { DespesaPorMembroResponse } from '../../interfaces/financy/despesa-por-membro-response.interface';
-import { RelatorioGastosDoGrupoResponse } from '../../interfaces/financy/relatorio-gastos-grupo-response.interface';
-import { TotalPorCategoriaResponse } from '../../interfaces/financy/total-por-categoria-response.interface';
+import { MensagemWhatsAppComponent } from 'src/app/standalone/dashboard/components/mensagem-whatsapp/mensagem-whatsapp.component';
+import { DespesaPorMembroResponse } from '../../interfaces/despesa-por-membro-response.interface';
+import { RelatorioGastosDoGrupoResponse } from '../../interfaces/relatorio-gastos-grupo-response.interface';
+import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 
 registerLocaleData(localePt);

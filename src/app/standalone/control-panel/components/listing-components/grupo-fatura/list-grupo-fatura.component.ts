@@ -17,7 +17,7 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
-import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
+import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 
 registerLocaleData(localePt);
 

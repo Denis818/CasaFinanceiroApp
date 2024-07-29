@@ -8,9 +8,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
-import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
 @Component({
   selector: 'modal-listcategoria',
@@ -98,7 +98,7 @@ export class ListCategoriaComponent {
   //#region Delete
   confirmDelete(idCategoria: number): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-      width: '400px',
+      width: '380px',
       data: {
         descricao:
           'Apagar a categoria irá deletar todas as despesas relacionadas a ela, deseja continuar?',

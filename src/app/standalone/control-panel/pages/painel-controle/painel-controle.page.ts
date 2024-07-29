@@ -6,14 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
-import { ListDespesasComponent } from 'src/app/standalone/control-panel/components/list-despesas/list-despesas.component';
-import { CreateCategoriaComponent } from 'src/app/standalone/control-panel/components/modais/create/categoria/create-categoria.component';
-import { CreateDespesaComponent } from 'src/app/standalone/control-panel/components/modais/create/despesa/create-despesa.component';
-import { CreategrupoFaturaComponent } from 'src/app/standalone/control-panel/components/modais/create/grupo-fatura/create-grupo-fatura.component';
-import { CreateMembroComponent } from 'src/app/standalone/control-panel/components/modais/create/membro/create-membro.component';
-import { ListCategoriaComponent } from 'src/app/standalone/control-panel/components/modais/list/list-categoria/list-categoria.component';
-import { ListgrupoFaturaComponent } from 'src/app/standalone/control-panel/components/modais/list/list-grupo-fatura/list-grupo-fatura.component';
-import { ListMembroComponent } from 'src/app/standalone/control-panel/components/modais/list/list-membro/list-membro.component';
+import { CreateCategoriaComponent } from '../../components/creation-components/categoria/create-categoria.component';
+import { CreateDespesaComponent } from '../../components/creation-components/despesa/create-despesa.component';
+import { CreategrupoFaturaComponent } from '../../components/creation-components/grupo-fatura/create-grupo-fatura.component';
+import { CreateMembroComponent } from '../../components/creation-components/membro/create-membro.component';
+import { ListCategoriaComponent } from '../../components/listing-components/categoria/list-categoria.component';
+import { ListDespesasComponent } from '../../components/listing-components/despesas/list-despesas.component';
+import { ListgrupoFaturaComponent } from '../../components/listing-components/grupo-fatura/list-grupo-fatura.component';
+import { ListMembroComponent } from '../../components/listing-components/membro/list-membro.component';
 
 @Component({
   selector: 'painel-controle-page',

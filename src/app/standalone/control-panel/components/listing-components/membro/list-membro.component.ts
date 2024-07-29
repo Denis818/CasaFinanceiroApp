@@ -8,9 +8,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { Membro } from 'src/app/standalone/control-panel/interfaces/membro.interface';
 import { MembroService } from 'src/app/standalone/control-panel/services/membro.service';
-import { ConfirmDeleteComponent } from '../../delete/confirm-delete.component';
 
 @Component({
   selector: 'modal-list-membro',

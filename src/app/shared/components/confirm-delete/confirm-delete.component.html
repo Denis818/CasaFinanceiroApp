@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Confirmação</h2>
+
+<mat-dialog-content class="mat-typography">
+  <p>Tem certeza que quer deletar?</p>
+  <p danger-description>{{ data?.descricao }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button [mat-dialog-close]="false">Cancelar</button>
+  <button mat-flat-button color="warn" [mat-dialog-close]="true">Confirmar</button>
+</mat-dialog-actions>
