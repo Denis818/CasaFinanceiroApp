@@ -6,7 +6,7 @@ import { LoginPage } from '../auth/pages/login/login.page';
 const routes: Routes = [
   {
     path: 'portal',
-    canActivate: [AuthGuard],
+    canMatch: [AuthGuard],
     loadChildren: () =>
       import('src/app/core/portal/portal.module').then(
         (module) => module.PortalModule

@@ -37,8 +37,8 @@ export class SideNavComponent {
       .subscribe((event: NavigationEnd) => {
         if (event.urlAfterRedirects.includes('dashboard')) {
           this.setSelectedButton('dashboard');
-        } else if (event.urlAfterRedirects.includes('painel')) {
-          this.setSelectedButton('painel');
+        } else if (event.urlAfterRedirects.includes('painel-controle')) {
+          this.setSelectedButton('painel-controle');
         } else if (event.urlAfterRedirects.includes('auditoria-compras')) {
           this.setSelectedButton('auditoria-compras');
         }

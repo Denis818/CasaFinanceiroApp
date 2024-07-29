@@ -4,14 +4,9 @@ import { PortalPage } from './pages/portal/portal.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'portal',
     component: PortalPage,
     children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
       {
         path: 'dashboard',
         title: 'Dashboard',
@@ -44,8 +39,8 @@ const routes: Routes = [
       },
     ],
   },
-  /*   { path: '**', redirectTo: 'portal/dashboard', pathMatch: 'full' },
-  { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' }, */
+  { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'portal/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
