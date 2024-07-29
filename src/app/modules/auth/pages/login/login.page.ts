@@ -6,10 +6,10 @@ import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent {
+export class LoginPage {
   showPassword: boolean;
   form: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required]],

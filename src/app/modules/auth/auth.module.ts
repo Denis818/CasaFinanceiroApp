@@ -4,11 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { LoginComponent } from './components/login/login.component';
-import { AuthPage } from './pages/auth/auth.page';
+import { LoginPage } from './pages/login/login.page';
 
 @NgModule({
-  declarations: [AuthPage, LoginComponent],
+  declarations: [LoginPage],
   imports: [
     CommonModule,
     FormsModule,

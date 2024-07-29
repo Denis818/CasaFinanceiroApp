@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from 'src/app/core/home/pages/home/home.page';
-import { LoginComponent } from 'src/app/modules/auth/components/login/login.component';
 import { AuthGuard } from 'src/app/modules/auth/guards/auth.guard';
+import { LoginPage } from '../auth/pages/login/login.page';
 
 const routes: Routes = [
   {
@@ -48,7 +48,7 @@ const routes: Routes = [
     ],
     canMatch: [AuthGuard],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginPage },
   { path: '**', redirectTo: 'portal/dashboard', pathMatch: 'full' },
   { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' },
 ];
