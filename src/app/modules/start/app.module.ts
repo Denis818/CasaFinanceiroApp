@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicModule } from '@ionic/angular';
 
@@ -24,30 +24,25 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { HomePage } from 'src/app/core/home/pages/home/home.page';
-import { AuthInterceptor } from 'src/app/core/interceptors/auth.interceptor';
-import { LoginComponent } from 'src/app/modules/auth/pages/login/login.component';
-
-import { NavbarComponent } from 'src/app/core/home/components/navbar/navbar.component';
-import { SideNavComponent } from 'src/app/core/home/components/side-nav/sidenav.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { HomeModule } from 'src/app/core/home/home.module';
+import { AuthModule } from '../auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    NavbarComponent,
-    SideNavComponent,
-    HomePage,
-  ],
+  declarations: [AppComponent],
   imports: [
+    HomeModule,
+    AuthModule,
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatFormFieldModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
@@ -73,11 +68,6 @@ import { AppComponent } from './components/app.component';
       useValue: {
         floatLabel: 'always',
       },
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
     },
   ],
   bootstrap: [AppComponent],

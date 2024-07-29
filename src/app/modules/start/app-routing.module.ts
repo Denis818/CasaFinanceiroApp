@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from 'src/app/core/home/pages/home/home.page';
+import { LoginComponent } from 'src/app/modules/auth/components/login/login.component';
 import { AuthGuard } from 'src/app/modules/auth/guards/auth.guard';
-import { LoginComponent } from 'src/app/modules/auth/pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'auditoria-compras',
-        title: 'Conferência de Compras',
+        title: 'Auditoria de Compras',
         loadComponent: async () =>
           (
             await import(
