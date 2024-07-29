@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { UserService } from 'src/app/modules/auth/services/user/user.service';
@@ -15,10 +14,6 @@ import { GrupoFaturaService } from '../../services/grupo-fatura.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  selectedButton: string = '';
-  sidenavExpanded = false;
-  isDesktop: boolean = true;
-
   faturaDefault: number;
 
   private grupoFaturasSubscriber: Subscription;
