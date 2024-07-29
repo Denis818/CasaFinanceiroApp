@@ -21,7 +21,7 @@ const routes: Routes = [
         loadComponent: async () =>
           (
             await import(
-              'src/app/modules/dashboard/pages/dashboard/dashboard.page'
+              'src/app/standalone/dashboard/pages/dashboard/dashboard.page'
             )
           ).DashboardPage,
       },
@@ -31,7 +31,7 @@ const routes: Routes = [
         loadComponent: async () =>
           (
             await import(
-              'src/app/modules/control-panel/pages/painel-controle/painel-controle.page'
+              'src/app/standalone/control-panel/pages/painel-controle/painel-controle.page'
             )
           ).PainelControlePage,
       },
@@ -41,7 +41,7 @@ const routes: Routes = [
         loadComponent: async () =>
           (
             await import(
-              'src/app/modules/auditoria-compras/pages/auditoria-compras/auditoria-compras.page'
+              'src/app/standalone/auditoria-compras/pages/auditoria-compras/auditoria-compras.page'
             )
           ).ConferenciaComprasPage,
       },
