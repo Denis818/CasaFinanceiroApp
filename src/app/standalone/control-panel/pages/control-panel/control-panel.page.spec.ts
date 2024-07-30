@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PainelControlePage } from './painel-controle.page';
+import { ControlPanelPage } from './control-panel.page';
 
 describe('PainelControleComponent', () => {
-  let component: PainelControlePage;
-  let fixture: ComponentFixture<PainelControlePage>;
+  let component: ControlPanelPage;
+  let fixture: ComponentFixture<ControlPanelPage>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PainelControlePage],
+      declarations: [ControlPanelPage],
     });
-    fixture = TestBed.createComponent(PainelControlePage);
+    fixture = TestBed.createComponent(ControlPanelPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

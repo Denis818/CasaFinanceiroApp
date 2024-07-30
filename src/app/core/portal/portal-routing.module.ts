@@ -23,9 +23,9 @@ const routes: Routes = [
         loadComponent: async () =>
           (
             await import(
-              'src/app/standalone/control-panel/pages/painel-controle/painel-controle.page'
+              'src/app/standalone/control-panel/pages/control-panel/control-panel.page'
             )
-          ).PainelControlePage,
+          ).ControlPanelPage,
       },
       {
         path: 'auditoria-compras',

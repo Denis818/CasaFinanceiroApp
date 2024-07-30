@@ -16,9 +16,9 @@ import { ListgrupoFaturaComponent } from '../../components/listing-components/gr
 import { ListMembroComponent } from '../../components/listing-components/membro/list-membro.component';
 
 @Component({
-  selector: 'painel-controle-page',
-  templateUrl: './painel-controle.page.html',
-  styleUrls: ['./painel-controle.page.scss'],
+  selector: 'control-panel-page',
+  templateUrl: './control-panel.page.html',
+  styleUrls: ['./control-panel.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -31,7 +31,7 @@ import { ListMembroComponent } from '../../components/listing-components/membro/
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
-export class PainelControlePage {
+export class ControlPanelPage {
   constructor(private readonly dialog: MatDialog) {}
 
   @ViewChild(ListDespesasComponent) listDespesaModal: ListDespesasComponent;
