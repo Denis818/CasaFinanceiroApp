@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PortalPage } from './pages/portal/portal.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' },
   {
-    path: '',
+    path: 'portal',
     component: PortalPage,
     children: [
       {
@@ -40,6 +39,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '', redirectTo: 'portal/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'portal/dashboard', pathMatch: 'full' },
 ];
 
