@@ -1,16 +1,6 @@
 :host {
   [categoria-list] {
     table {
-      width: 100%;
-      table-layout: fixed;
-
-      th,
-      td {
-        text-align: center;
-        vertical-align: middle;
-        border: 1px solid #e0e0e0;
-      }
-
       th {
         background-color: #f7f7f7;
         padding: 12px;
@@ -20,11 +10,6 @@
           width: 14px;
           font-size: 14px;
         }
-      }
-
-      td {
-        color: #708090;
-        padding: 3px;
       }
 
       input[type="text"] {
@@ -39,8 +24,14 @@
       }
 
       [space] {
-        margin-left: 40px;
+        margin-left: 20px;
       }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    table {
+      display: inline-table;
     }
   }
 }

@@ -1,14 +1,14 @@
 :host {
-  [home-content-app] {
+  [portal-content-app] {
     transition: margin-left 0.5s, width 0.5s;
-    padding: 53px 4px 56px 65px;
+    padding: 56px 5px 56px 65px;
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
   }
 
   @media screen and (max-width: 600px) {
-    [home-content-app] {
+    [portal-content-app] {
       flex-shrink: 0;
       margin: 0px;
       width: 100%;

@@ -107,13 +107,17 @@
 
       [menu-links] {
         & a {
-          padding: 20px;
+          padding: 0px 45px 0px 45px;
           text-decoration: none;
           font-size: 20px;
           color: rgb(255 255 255 / 55%);
           display: inline;
           align-items: center;
           transition: color 0.3s;
+        }
+
+        mat-icon {
+          padding: 0px;
         }
       }
 

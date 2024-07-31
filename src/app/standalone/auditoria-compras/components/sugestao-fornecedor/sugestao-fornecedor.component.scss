@@ -37,6 +37,7 @@
       color: #673ab7;
     }
   }
+  
   .expense-item {
     position: relative;
     background-color: #fff;
@@ -68,17 +69,7 @@
       width: 100%;
 
       table {
-        width: 100%;
-        table-layout: fixed;
         transition: box-shadow 0.2s ease-in-out;
-        min-width: 600px;
-
-        th,
-        td {
-          text-align: center;
-          vertical-align: middle;
-          border: 1px solid #e0e0e0;
-        }
 
         th {
           background-color: #f7f7f7;
@@ -86,9 +77,12 @@
         }
 
         td {
-          padding: 5px;
-          font-size: 14px;
           word-break: break-word;
+        }
+
+        th,
+        td {
+          min-width: 100px;
         }
       }
     }
@@ -122,6 +116,12 @@
       .scroll-toggle-button {
         right: 20px;
       }
+    }
+  }
+
+@media (max-width: 1800px) {
+    table {
+      display: block;
     }
   }
 }

@@ -358,6 +358,16 @@
 }
 
 @media screen and (max-width: 600px) {
+  [app-table] {
+    table {
+      display: block;
+
+      th,
+      td {
+        min-width: 100px;
+      }
+    }
+  }
   [app-card-container] {
     [app-multi-card] {
       flex: 1 1 100%;

@@ -105,20 +105,6 @@
 
         [app-card-body] {
           padding-top: 15px;
-          table {
-            width: 100%;
-            display: block;
-
-            th,
-            td {
-              font-size: 14px;
-              min-width: 100px;
-            }
-
-            [space] {
-              margin: 20;
-            }
-          }
 
           [pagination] {
             display: flex;
