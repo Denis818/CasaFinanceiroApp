@@ -97,9 +97,14 @@
                 background-color: #ac7eff;
               }
 
-              .mdc-radio__inner-circle {
+              .fatura-aberta .mdc-radio__inner-circle {
                 border-color: #00d51e;
               }
+
+              .fatura-fechada .mdc-radio__inner-circle {
+                border-color: #673ab7;
+              }
+
               .mdc-form-field > label {
                 color: #708090;
               }

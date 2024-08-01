@@ -20,8 +20,12 @@
             [(ngModel)]="statusFaturaCasa"
             (change)="onStatusChange(casa)"
           >
-            <mat-radio-button value="aberto">Fatura Aberta</mat-radio-button>
-            <mat-radio-button value="fechado">Fatura Fechada</mat-radio-button>
+            <mat-radio-button value="aberto" class="fatura-aberta"
+              >Fatura Aberta</mat-radio-button
+            >
+            <mat-radio-button value="fechado" class="fatura-fechada"
+              >Fatura Fechada</mat-radio-button
+            >
           </mat-radio-group>
         </div>
         <div *ngIf="despesasPorMembros.length > 0; else semDados">
@@ -65,8 +69,12 @@
             [(ngModel)]="statusFaturaMoradia"
             (change)="onStatusChange(moradia)"
           >
-            <mat-radio-button value="aberto">Fatura Aberta</mat-radio-button>
-            <mat-radio-button value="fechado">Fatura Fechada</mat-radio-button>
+            <mat-radio-button value="aberto" class="fatura-aberta"
+              >Fatura Aberta</mat-radio-button
+            >
+            <mat-radio-button value="fechado" class="fatura-fechada"
+              >Fatura Fechada</mat-radio-button
+            >
           </mat-radio-group>
         </div>
         <div *ngIf="despesasPorMembros.length > 0; else semDados">
