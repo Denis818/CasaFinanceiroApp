@@ -153,6 +153,12 @@
                 right: 38%;
               }
             }
+
+            [app-table] {
+              table {
+                display: inline-table;
+              }
+            }
           }
         }
 
