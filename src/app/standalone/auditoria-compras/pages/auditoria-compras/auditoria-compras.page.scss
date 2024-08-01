@@ -48,15 +48,6 @@
           td {
             padding: 7px;
           }
-
-          tr {
-            transition: transform 0.6s, box-shadow 0.6s;
-          }
-
-          tr:hover {
-            transform: translateY(-0.1px);
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.11);
-          }
         }
 
         [pagination] {
@@ -65,23 +56,6 @@
             font-size: 15px;
           }
         }
-      }
-
-      .scroll-toggle-button {
-        position: fixed;
-        bottom: 60px;
-        right: 50px;
-        background-color: #673ab7;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 1000;
       }
     }
 
