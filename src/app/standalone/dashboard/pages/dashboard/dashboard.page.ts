@@ -148,7 +148,8 @@ export class DashboardPage implements OnInit, OnDestroy {
   inicializeDashboard() {
     this.getGraficoTotaisComprasPorMes();
     this.getTotalPorCategoria();
-    this.getAnaliseDesesasPorGrupo();
+    this.getDespesasDivididasPorMembro();
+    this.getRelatorioDeGastosDoGrupoAsync();
   }
 
   getGraficoTotaisComprasPorMes() {
@@ -159,11 +160,18 @@ export class DashboardPage implements OnInit, OnDestroy {
     });
   }
 
-  getAnaliseDesesasPorGrupo() {
-    this.dashboardService.getAnaliseDesesasPorGrupo().subscribe((dados) => {
+  getDespesasDivididasPorMembro() {
+    this.dashboardService.getDespesasDivididasPorMembro().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembro;
-      this.relatorioGastosDoGrupo = dados.relatorioGastosDoGrupo;
     });
+  }
+
+  getRelatorioDeGastosDoGrupoAsync() {
+    this.dashboardService
+      .getRelatorioDeGastosDoGrupoAsync()
+      .subscribe((relatorioGastosDoGrupo) => {
+        this.relatorioGastosDoGrupo = relatorioGastosDoGrupo;
+      });
   }
 
   getTotalPorCategoria() {

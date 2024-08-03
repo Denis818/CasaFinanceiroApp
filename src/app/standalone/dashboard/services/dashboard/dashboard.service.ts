@@ -5,6 +5,7 @@ import { BaseService } from 'src/app/core/services/base/base.service';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
+import { RelatorioGastosDoGrupoResponse } from '../../interfaces/relatorio-gastos-grupo-response.interface';
 import { ResumoGrupoResponse } from '../../interfaces/resumo-grupo-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
 import { TotalPorGrupoResponse } from '../../interfaces/total-por-grupo-response.interface';
@@ -13,10 +14,17 @@ import { TotalPorGrupoResponse } from '../../interfaces/total-por-grupo-response
 export class DashboardService extends BaseService {
   url: string = `${environment.base_url_financy}/despesa`;
 
-  public getAnaliseDesesasPorGrupo(): Observable<ResumoGrupoResponse> {
+  public getDespesasDivididasPorMembro(): Observable<ResumoGrupoResponse> {
     return this.sendHttpRequest<ApiResponse<ResumoGrupoResponse>>(
       'GET',
-      this.url + '/analise-despesa-por-grupo'
+      this.url + '/despesas-dividas-por-membro'
+    ).pipe(map((response) => response.dados));
+  }
+
+  public getRelatorioDeGastosDoGrupoAsync(): Observable<RelatorioGastosDoGrupoResponse> {
+    return this.sendHttpRequest<ApiResponse<RelatorioGastosDoGrupoResponse>>(
+      'GET',
+      this.url + '/relatorio-gastos-grupo'
     ).pipe(map((response) => response.dados));
   }
 
