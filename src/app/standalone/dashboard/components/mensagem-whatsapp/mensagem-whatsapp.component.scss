@@ -1,7 +1,10 @@
 :host {
   [app-modal] {
     [app-modal-header] {
-      padding: 10px 0px 0px 0px;
+      p,
+      h2 {
+        margin: 0px;
+      }
     }
   }
 }

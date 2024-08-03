@@ -1,126 +1,122 @@
 :host {
-  [despesa-list-all-group] {
-    [app-card] {
-      [app-card-body] {
-        padding-top: 15px;
-        [filtro] {
-          display: flex;
-          justify-content: space-between;
+  [app-card] {
+    margin-bottom: 10px;
+
+    [app-card-body] {
+      padding-top: 15px;
+      [filtro] {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-radius: 10px;
+        padding-bottom: 12px;
+
+        [input-filtrar] {
           width: 100%;
-          border-radius: 10px;
-          padding-bottom: 12px;
-
-          [input-filtrar] {
-            width: 100%;
-
-            ::ng-deep {
-              mat-form-field {
-                width: 100%;
-              }
-              .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-                max-width: 100%;
-                border-radius: 10px;
-              }
-
-              .mat-mdc-form-field-bottom-align::before {
-                display: none;
-              }
-
-              .mdc-text-field--filled:not(.mdc-text-field--disabled)
-                .mdc-line-ripple::before {
-                border-bottom-color: #673ab7;
-              }
-            }
-
-            .mat-icon {
-              width: 40px;
-            }
-          }
 
           ::ng-deep {
+            mat-form-field {
+              width: 100%;
+            }
+            .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+              max-width: 100%;
+              border-radius: 10px;
+            }
+
             .mat-mdc-form-field-bottom-align::before {
               display: none;
             }
+
+            .mdc-text-field--filled:not(.mdc-text-field--disabled)
+              .mdc-line-ripple::before {
+              border-bottom-color: #673ab7;
+            }
+          }
+
+          .mat-icon {
+            width: 40px;
           }
         }
 
-        table {
-          td {
-            padding: 7px;
-          }
-        }
-
-        [pagination] {
-          & span {
-            color: #708090 !important;
-            font-size: 15px;
+        ::ng-deep {
+          .mat-mdc-form-field-bottom-align::before {
+            display: none;
           }
         }
       }
-    }
 
-    [painel-economia] {
-      width: 100%;
-    }
+      table {
+        td {
+          padding: 7px;
+        }
+      }
 
-    [app-multi-card] {
-      margin-top: 10px;
+      [pagination] {
+        & span {
+          color: #708090 !important;
+          font-size: 15px;
+        }
+      }
     }
+  }
 
-    @media screen and (max-width: 600px) {
-      [app-card] {
-        [app-card-headerer] {
-          [filtro] {
-            [input-filtrar] {
-              width: 60%;
+  [painel-economia] {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 600px) {
+    [app-card] {
+      [app-card-headerer] {
+        [filtro] {
+          [input-filtrar] {
+            width: 60%;
+          }
+        }
+      }
+
+      [app-card-body] {
+        padding-top: 15px;
+
+        [pagination] {
+          display: flex;
+          justify-content: center;
+
+          ::ng-deep {
+            .mat-mdc-paginator-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0px;
+              width: 100%;
             }
+
+            .mat-mdc-paginator-page-size-label {
+              margin: 0px;
+              white-space: nowrap;
+            }
+            .mat-mdc-paginator-range-label {
+              margin: 0px;
+              white-space: nowrap;
+            }
+
+            .mat-mdc-paginator-page-size {
+              margin-right: 0px;
+            }
+            .mat-mdc-paginator-range-actions {
+              border: solid 1px #ccc;
+              border-radius: 5px;
+              padding: 0px 6px 0px;
+              margin: 10px;
+            }
+          }
+
+          span {
+            display: none;
           }
         }
 
-        [app-card-body] {
-          padding-top: 15px;
-
-          [pagination] {
-            display: flex;
-            justify-content: center;
-
-            ::ng-deep {
-              .mat-mdc-paginator-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0px;
-                width: 100%;
-              }
-
-              .mat-mdc-paginator-page-size-label {
-                margin: 0px;
-                white-space: nowrap;
-              }
-              .mat-mdc-paginator-range-label {
-                margin: 0px;
-                white-space: nowrap;
-              }
-
-              .mat-mdc-paginator-page-size {
-                margin-right: 0px;
-              }
-              .mat-mdc-paginator-range-actions {
-                border: solid 1px #ccc;
-                border-radius: 5px;
-                padding: 0px 6px 0px;
-                margin: 10px;
-              }
-            }
-
-            span {
-              display: none;
-            }
-          }
-
-          .mat-paginator {
-            font-size: 12px;
-          }
+        .mat-paginator {
+          font-size: 12px;
         }
       }
     }

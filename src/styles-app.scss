@@ -10,8 +10,6 @@
       color: #fff;
       padding: 10px;
       font-size: 24px;
-      margin: 0 0 16px;
-      line-height: 32px;
     }
   }
 
@@ -131,8 +129,8 @@
   width: 100%;
 
   [app-multi-card] {
-    flex: 0 0 calc(50% - 11px);
-    max-width: calc(50% - 11px);
+    flex: 0 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
     text-align: center;
     display: flex;
     flex-direction: column;
