@@ -1,6 +1,10 @@
 :host {
   [grupoFatura-list-by-group] {
     table {
+       td {
+        padding: 6px;
+      }
+
       input[type="text"] {
         border: none;
         outline: none;

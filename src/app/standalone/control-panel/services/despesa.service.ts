@@ -7,6 +7,7 @@ import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../interfaces/despesa.interface';
+import { RelatorioGastosDoGrupoResponse } from '../interfaces/relatorio-gastos-grupo-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DespesaService extends CrudService<Despesa> {
@@ -37,6 +38,13 @@ export class DespesaService extends CrudService<Despesa> {
       `${this.url}/todos-grupos`,
       null,
       params
+    ).pipe(map((response) => response.dados));
+  }
+
+  public getRelatorioDeGastosDoGrupoAsync(): Observable<RelatorioGastosDoGrupoResponse> {
+    return this.sendHttpRequest<ApiResponse<RelatorioGastosDoGrupoResponse>>(
+      'GET',
+      this.url + '/relatorio-gastos-grupo'
     ).pipe(map((response) => response.dados));
   }
 

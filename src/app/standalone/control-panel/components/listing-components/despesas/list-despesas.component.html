@@ -2,7 +2,9 @@
   <div>
     <div app-card>
       <div app-card-header>
-        <div app-card-title>Despesas da {{ this.faturaAtualName }}</div>
+        <div app-card-title>
+          Despesas da {{ this.relatorioGastosDoGrupo.grupoFaturaNome }}
+        </div>
         <button app-button-action (click)="openChecarFaturaCartaoModal()">
           <div icon-bg>
             <mat-icon>credit_card</mat-icon>
@@ -221,20 +223,49 @@
             </tfoot>
           </table>
 
-          <div pagination>
-            <mat-paginator
-              #paginator
-              class="demo-paginator"
-              (page)="mudarPagina($event)"
-              [length]="page.totalItens"
-              [pageSize]="page.itensPorPagina"
-              [pageSizeOptions]="tamanhosDePagina"
-              aria-label="Select page"
-              [disabled]="isDespesaEditing"
-              showFirstLastButtons
-            >
-            </mat-paginator>
-            <span>Total de itens: {{ page.totalItens }}</span>
+          <div div-footer>
+            <div class="total-itens">
+              <span
+                >Total Moradia:
+                <strong>
+                  {{
+                    relatorioGastosDoGrupo.totalGastosMoradia | currency : "BRL"
+                  }}</strong
+                ></span
+              >
+              <span
+                >Total Casa:
+                <strong>
+                  {{
+                    relatorioGastosDoGrupo.totalGastosCasa | currency : "BRL"
+                  }}
+                </strong>
+              </span>
+              <span
+                >Total Geral:
+                <strong>
+                  {{
+                    relatorioGastosDoGrupo.totalGeral | currency : "BRL"
+                  }}</strong
+                >
+              </span>
+            </div>
+
+            <div class="pagination">
+              <mat-paginator
+                #paginator
+                class="demo-paginator"
+                (page)="mudarPagina($event)"
+                [length]="page.totalItens"
+                [pageSize]="page.itensPorPagina"
+                [pageSizeOptions]="tamanhosDePagina"
+                aria-label="Select page"
+                [disabled]="isDespesaEditing"
+                showFirstLastButtons
+              >
+              </mat-paginator>
+              <span>Total de itens: {{ page.totalItens }}</span>
+            </div>
           </div>
         </div>
       </div>

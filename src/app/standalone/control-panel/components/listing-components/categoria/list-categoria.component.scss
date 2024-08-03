@@ -2,14 +2,15 @@
   [categoria-list] {
     table {
       th {
-        background-color: #f7f7f7;
-        padding: 12px;
-
         mat-icon.icon-help {
           height: 16px;
           width: 14px;
           font-size: 14px;
         }
+      }
+
+      td {
+        padding: 6px;
       }
 
       input[type="text"] {

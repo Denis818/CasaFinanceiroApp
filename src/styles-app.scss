@@ -252,20 +252,23 @@
 
     th,
     td {
+      padding: 10px;
       text-align: center;
       vertical-align: middle;
-      border: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
     }
 
     th {
       background-color: #f7f7f7;
-      padding: 12px;
     }
 
     td {
       color: #708090;
-      padding: 3px;
       font-size: 14px;
+    }
+
+    & tr:nth-child(even) {
+      background-color: #f7f7f7;
     }
 
     tfoot tr td {

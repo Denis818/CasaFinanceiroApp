@@ -37,7 +37,7 @@
       color: #673ab7;
     }
   }
-  
+
   .expense-item {
     position: relative;
     background-color: #fff;
@@ -78,6 +78,7 @@
 
         td {
           word-break: break-word;
+          padding: 6px;
         }
 
         th,
@@ -119,7 +120,7 @@
     }
   }
 
-@media (max-width: 1800px) {
+  @media (max-width: 1800px) {
     table {
       display: block;
     }

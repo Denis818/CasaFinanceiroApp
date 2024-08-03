@@ -57,7 +57,7 @@
               position: relative;
               right: 20%;
               font-size: 18px;
-              font-weight: bold;
+              font-weight: 550;
               color: #673ab7;
 
               &.no-button-whats {
@@ -112,11 +112,9 @@
           }
 
           table {
-            th,
-            td {
-              padding: 12px;
-              border-bottom: 1px solid #e0e0e0;
-              border-right: 1px solid #e0e0e0;
+            td,
+            th {
+              padding: 10px;
             }
 
             tfoot tr td {

@@ -155,32 +155,6 @@
       </div>
     </div>
 
-    <div app-multi-card>
-      <div app-multi-card-header>
-        <div app-card-title>{{relatorioGastosDoGrupo.grupoFaturaNome}}</div>
-      </div>
-      <div app-multi-card-body>
-        <div class="expense-item">
-          <div class="expense-title">Total Moradia</div>
-          <div class="expense-value no-button-whats">
-            {{ relatorioGastosDoGrupo.totalGastosMoradia | currency:'BRL' }}
-          </div>
-        </div>
-        <div class="expense-item">
-          <div class="expense-title">Total Casa</div>
-          <div class="expense-value no-button-whats">
-            {{ relatorioGastosDoGrupo.totalGastosCasa | currency:'BRL' }}
-          </div>
-        </div>
-        <div class="expense-item">
-          <div class="expense-title">Total Casa + Moradia</div>
-          <div class="expense-value no-button-whats">
-            {{ relatorioGastosDoGrupo.totalGeral | currency:'BRL' }}
-          </div>
-        </div>
-      </div>
-    </div>
-
     <button
       id="scrollToggle"
       class="scroll-toggle-button"

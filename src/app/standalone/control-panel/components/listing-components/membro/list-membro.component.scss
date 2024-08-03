@@ -1,22 +1,8 @@
 :host {
   [membro-list] {
     table {
-
-      th,
       td {
-        text-align: center;
-        vertical-align: middle;
-        border: 1px solid #e0e0e0;
-      }
-
-      th {
-        background-color: #f7f7f7;
-        padding: 12px;
-      }
-
-      td {
-        color: #708090;
-        padding: 3px;
+        padding: 6px;
       }
 
       input[type="text"] {

@@ -34,8 +34,10 @@ import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-f
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
+
 import { TableEditManipulation } from '../../../helpers/table-edit-manipulation';
 import { Categoria } from '../../../interfaces/categoria.interface';
+import { RelatorioGastosDoGrupoResponse } from '../../../interfaces/relatorio-gastos-grupo-response.interface';
 import { CategoriaService } from '../../../services/categoria.service';
 import { DespesaService } from '../../../services/despesa.service';
 import { ChecarFaturaCartaoComponent } from '../../checar-fatura-cartao/checar-fatura-cartao.component';
@@ -67,8 +69,6 @@ registerLocaleData(localePt);
 export class ListDespesasComponent implements OnDestroy, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  faturaAtualName: string = '';
-
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
   private reloadPageSubscriber: Subscription;
 
@@ -88,6 +88,13 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     totalItens: 0,
     paginaAtual: 1,
     itensPorPagina: this.tamanhosDePagina[1],
+  };
+
+  relatorioGastosDoGrupo: RelatorioGastosDoGrupoResponse = {
+    grupoFaturaNome: '',
+    totalGastosMoradia: 0,
+    totalGastosCasa: 0,
+    totalGeral: 0,
   };
 
   constructor(
@@ -114,13 +121,12 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     this.tempoParaAplicarFiltroPorItem.unsubscribe();
   }
 
-  getNameFatura() {
-    let faturaId = parseInt(this.storageService.getItem('grupoFaturaId'));
-    this.despesaService.getNameFatura(faturaId).subscribe({
-      next: (faturaName) => {
-        this.faturaAtualName = faturaName;
-      },
-    });
+  getRelatorioDeGastosDoGrupoAsync() {
+    this.despesaService
+      .getRelatorioDeGastosDoGrupoAsync()
+      .subscribe((relatorioGastosDoGrupo) => {
+        this.relatorioGastosDoGrupo = relatorioGastosDoGrupo;
+      });
   }
 
   //#region Filtro
@@ -190,7 +196,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
         next: (isReload) => {
           if (isReload) {
             this.getListDespesasPorGrupo();
-            this.getNameFatura();
+            this.getRelatorioDeGastosDoGrupoAsync();
           }
         },
       });
