@@ -62,6 +62,17 @@
         [app-table] {
           table {
             margin-bottom: 15px;
+            
+            & input[type="text"] {
+              border: none;
+              outline: none;
+              width: 90%;
+              background-color: transparent;
+              text-align: center;
+              font-size: 15px;
+              color: #708090;
+              border-bottom: 1px solid #d3d3d3;
+            }
 
             input.preco {
               text-align: center !important;
