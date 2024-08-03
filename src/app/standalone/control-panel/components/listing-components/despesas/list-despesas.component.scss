@@ -62,7 +62,7 @@
         [app-table] {
           table {
             margin-bottom: 15px;
-            
+
             & input[type="text"] {
               border: none;
               outline: none;
@@ -132,7 +132,7 @@
 
               strong {
                 font-weight: 550;
-                color: #00d51e;
+                color: #673ab7; /* #00d51e; */
               }
             }
           }
