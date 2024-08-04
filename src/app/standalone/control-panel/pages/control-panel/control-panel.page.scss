@@ -1,6 +1,8 @@
 :host {
   [painel-controle] {
     width: 100%;
+    margin-bottom: 5px;
+
     [options-header] {
       flex-wrap: wrap;
       display: flex;
