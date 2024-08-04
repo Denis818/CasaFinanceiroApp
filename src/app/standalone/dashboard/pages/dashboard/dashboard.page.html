@@ -104,7 +104,7 @@
       <div app-multi-card-header>
         <div app-card-title>Análise de Compras por Grupo</div>
       </div>
-      <div app-multi-card-body>
+      <div app-multi-card-body class="contralizar-grafico">
         <div
           *ngIf="graphicConfig && graphicConfig.chartData.datasets.length; else semDados"
         >
@@ -155,7 +155,7 @@
       </div>
     </div>
   </div>
-  
+
   <button
     id="scrollToggle"
     class="scroll-toggle-button"
