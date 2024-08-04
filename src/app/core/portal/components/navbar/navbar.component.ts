@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.inicializarValoresDoFormulario();
     this.subscriberMudancasNoFormulario();
-    this.getListGrupoFaturaParaSeletorAsync();
+    this.atualizarAnoEGruposFatura();
   }
 
   ngOnDestroy(): void {
@@ -72,8 +72,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       },
       { emitEvent: false }
     );
-
-    this.atualizarAnoEGruposFatura();
   }
 
   subscriberMudancasNoFormulario(): void {
@@ -134,6 +132,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.storageService.setItem('ano', ano.toString());
       this.grupoFaturaNotification.notificarComponentesAnoMudou();
     }
+
+    this.getListGrupoFaturaParaSeletorAsync();
   }
 
   updateGrupoIdInStorage(): void {
