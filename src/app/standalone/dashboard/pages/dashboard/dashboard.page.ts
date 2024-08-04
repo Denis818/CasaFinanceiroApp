@@ -15,7 +15,6 @@ import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.se
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { MensagemWhatsAppComponent } from 'src/app/standalone/dashboard/components/mensagem-whatsapp/mensagem-whatsapp.component';
-import { RelatorioGastosDoGrupoResponse } from '../../../control-panel/interfaces/relatorio-gastos-grupo-response.interface';
 import { DespesaPorMembroResponse } from '../../interfaces/despesa-por-membro-response.interface';
 import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
@@ -51,13 +50,6 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   despesasPorMembros: DespesaPorMembroResponse[] = [];
   listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
-
-  relatorioGastosDoGrupo: RelatorioGastosDoGrupoResponse = {
-    grupoFaturaNome: '',
-    totalGastosMoradia: 0,
-    totalGastosCasa: 0,
-    totalGeral: 0,
-  };
 
   graphicConfig: GraphicConfiguration;
 

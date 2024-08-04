@@ -88,25 +88,40 @@
 
           [status-fatura] {
             text-align: start;
+
             ::ng-deep {
-              .mdc-radio__outer-circle {
-                border-color: #ac7eff;
-              }
-
-              .mdc-radio__background::before {
-                background-color: #ac7eff;
-              }
-
-              .fatura-aberta .mdc-radio__inner-circle {
-                border-color: #00d51e;
-              }
-
-              .fatura-fechada .mdc-radio__inner-circle {
-                border-color: #673ab7;
-              }
-
-              .mdc-form-field > label {
+              .mdc-form-field {
                 color: #708090;
+              }
+
+              .mat-mdc-radio-button {
+                & .mdc-radio {
+                  & .mdc-radio__background {
+                    &::before {
+                      background-color: #ffffff00;
+                    }
+
+                    .mdc-radio__outer-circle {
+                      border-color: #ac7eff !important;
+                    }
+                  }
+                }
+
+                &.fatura-aberta {
+                  & .mdc-radio {
+                    & .mdc-radio__inner-circle {
+                      border-color: #00d51e;
+                    }
+                  }
+                }
+
+                &.fatura-fechada {
+                  & .mdc-radio {
+                    & .mdc-radio__inner-circle {
+                      border-color: #673ab7;
+                    }
+                  }
+                }
               }
             }
           }
@@ -120,26 +135,30 @@
             tfoot tr td {
               text-align: center;
             }
+
+            tr:last-child td {
+              border-bottom: none;
+            }
           }
         }
       }
+    }
 
-      .scroll-toggle-button {
-        position: fixed;
-        bottom: 60px;
-        right: 50px;
-        background-color: #673ab7;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 1000;
-      }
+    .scroll-toggle-button {
+      position: fixed;
+      bottom: 60px;
+      right: 50px;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
     }
 
     @media screen and (max-width: 600px) {

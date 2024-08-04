@@ -120,13 +120,21 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     }
     this.tempoParaAplicarFiltroPorItem.unsubscribe();
   }
-
-  getRelatorioDeGastosDoGrupoAsync() {
-    this.despesaService
-      .getRelatorioDeGastosDoGrupoAsync()
-      .subscribe((relatorioGastosDoGrupo) => {
-        this.relatorioGastosDoGrupo = relatorioGastosDoGrupo;
+  reloadDespesas() {
+    this.reloadPageSubscriber =
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.getListDespesasPorGrupo();
+          }
+        },
       });
+  }
+
+  openChecarFaturaCartaoModal(): void {
+    this.dialog.open(ChecarFaturaCartaoComponent, {
+      width: '450px',
+    });
   }
 
   //#region Filtro
@@ -157,6 +165,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
   //#endregion
 
   //#region Gets
+
   getListDespesasPorGrupo() {
     this.despesaService
       .getListDespesasPorGrupo(
@@ -169,6 +178,8 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
         this.despesasFiltradas = listPaginada.itens;
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
+
+        this.getRelatorioDeGastosDoGrupo();
       });
 
     this.isDespesaEditing = false;
@@ -190,22 +201,12 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     });
   }
 
-  reloadDespesas() {
-    this.reloadPageSubscriber =
-      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
-        next: (isReload) => {
-          if (isReload) {
-            this.getListDespesasPorGrupo();
-            this.getRelatorioDeGastosDoGrupoAsync();
-          }
-        },
+  getRelatorioDeGastosDoGrupo() {
+    this.despesaService
+      .getRelatorioDeGastosDoGrupo()
+      .subscribe((relatorioGastosDoGrupo) => {
+        this.relatorioGastosDoGrupo = relatorioGastosDoGrupo;
       });
-  }
-
-  mudarPagina(event: PageEvent): void {
-    this.page.paginaAtual = event.pageIndex + 1;
-    this.page.itensPorPagina = event.pageSize;
-    this.getListDespesasPorGrupo();
   }
 
   //#endregion
@@ -247,9 +248,11 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
 
     this.resetPropertys(despesa);
   }
+
   //#endregion
 
   //#region Delete
+
   confirmDelete(idDespesa: number): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
@@ -272,15 +275,16 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
       },
     });
   }
+
   //#endregion
 
-  openChecarFaturaCartaoModal(): void {
-    this.dialog.open(ChecarFaturaCartaoComponent, {
-      width: '450px',
-    });
-  }
-
   //#region Metodos de suporte
+
+  mudarPagina(event: PageEvent): void {
+    this.page.paginaAtual = event.pageIndex + 1;
+    this.page.itensPorPagina = event.pageSize;
+    this.getListDespesasPorGrupo();
+  }
 
   despesaAlterada(despesa: Despesa): boolean {
     return (

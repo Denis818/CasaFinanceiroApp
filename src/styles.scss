@@ -8,6 +8,10 @@
   --mdc-outlined-text-field-container-shape: 10px !important;
 }
 
+.mat-mdc-radio-button.mat-accent {
+  --mat-radio-checked-ripple-color: #673ab7;
+}
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

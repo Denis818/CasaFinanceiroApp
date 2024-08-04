@@ -41,7 +41,7 @@ export class DespesaService extends CrudService<Despesa> {
     ).pipe(map((response) => response.dados));
   }
 
-  public getRelatorioDeGastosDoGrupoAsync(): Observable<RelatorioGastosDoGrupoResponse> {
+  public getRelatorioDeGastosDoGrupo(): Observable<RelatorioGastosDoGrupoResponse> {
     return this.sendHttpRequest<ApiResponse<RelatorioGastosDoGrupoResponse>>(
       'GET',
       this.url + '/relatorio-gastos-grupo'

@@ -129,14 +129,15 @@
   width: 100%;
 
   [app-multi-card] {
-    flex: 0 0 calc(50% - 10px);
-    max-width: calc(50% - 10px);
+    flex: 0 0 calc(50% - 12px);
+    max-width: calc(50% - 12px);
     text-align: center;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     transition: box-shadow 0.4s ease-in-out;
+    border: 1px solid #ccc;
 
     &:hover {
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
@@ -164,8 +165,6 @@
 
     [app-multi-card-body] {
       flex-grow: 1;
-      border: 1px solid #ccc;
-      border-radius: 0px 0px 8px 8px;
       overflow-y: auto;
       max-height: 320px;
 
