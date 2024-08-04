@@ -1,0 +1,28 @@
+:host {
+  [app-multi-card-body] {
+    table {
+      td,
+      th {
+        padding: 10px;
+      }
+
+      tfoot tr td {
+        text-align: center;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    [app-multi-card-body] {
+      [app-table] {
+        table {
+          display: inline-table;
+        }
+      }
+    }
+  }
+}

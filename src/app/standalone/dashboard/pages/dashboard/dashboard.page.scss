@@ -126,26 +126,6 @@
               }
             }
           }
-
-          table {
-            td,
-            th {
-              padding: 10px;
-            }
-
-            tfoot tr td {
-              text-align: center;
-            }
-
-            tr:last-child td {
-              border-bottom: none;
-            }
-          }
-        }
-
-        .contralizar-grafico {
-          display: flex;
-          align-items: center;
         }
       }
     }
@@ -180,12 +160,6 @@
             .expense-item {
               .expense-value {
                 right: 38%;
-              }
-            }
-
-            [app-table] {
-              table {
-                display: inline-table;
               }
             }
           }

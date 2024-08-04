@@ -72,15 +72,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
       },
       { emitEvent: false }
     );
+
+    this.atualizarAnoEGruposFatura();
   }
 
   subscriberMudancasNoFormulario(): void {
     this.anoSubscriber = this.grupoFaturasForm
       .get('ano')
-      .valueChanges.subscribe((ano) => {
-        this.storageService.setItem('ano', ano.toString());
-        this.getListGrupoFaturaParaSeletorAsync();
-        this.grupoFaturaNotification.atualizarAnoSelecionado(ano);
+      .valueChanges.subscribe(() => {
+        this.atualizarAnoEGruposFatura();
       });
 
     this.grupoFaturaIdSubscriber = this.grupoFaturasForm
@@ -127,11 +127,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return grupoId;
   }
 
+  atualizarAnoEGruposFatura() {
+    let ano = this.grupoFaturasForm.get('ano').value;
+
+    if (ano && ano > 0) {
+      this.storageService.setItem('ano', ano.toString());
+      this.grupoFaturaNotification.notificarComponentesAnoMudou();
+    }
+  }
+
   updateGrupoIdInStorage(): void {
     let grupoFaturaId = this.grupoFaturasForm.get('grupoFaturaId').value;
+    console.log('updateGrupoIdInStorage: ' + grupoFaturaId);
+
     if (grupoFaturaId) {
+      console.log('entrei');
       this.storageService.setItem('grupoFaturaId', grupoFaturaId.toString());
       this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
+    } else {
+      console.log('nao entrei');
     }
   }
   //#endregion
@@ -142,12 +156,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   reloadGrupoFaturas() {
     this.grupoFaturasSubscriber =
-      this.grupoFaturaNotification.realoadgrupoFaturas.subscribe({
-        next: (isReload) => {
-          if (isReload) {
-            this.getListGrupoFaturaParaSeletorAsync();
-          }
-        },
-      });
+      this.grupoFaturaNotification.recarregarSeletorGrupoFaturaComAlteracoes.subscribe(
+        {
+          next: (isReload) => {
+            if (isReload) {
+              this.getListGrupoFaturaParaSeletorAsync();
+            }
+          },
+        }
+      );
   }
 }

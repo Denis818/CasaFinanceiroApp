@@ -32,6 +32,8 @@ export class AuthInterceptor implements HttpInterceptor {
     let faturaId = this.storageService.getItem('grupoFaturaId');
     faturaId = faturaId && parseInt(faturaId) !== 0 ? faturaId : null;
 
+
+    console.log('fatura id no intercept: ' + faturaId);
     let headers = req.headers.set('Authorization', `Bearer ${token}`);
 
     if (faturaId) {

@@ -76,7 +76,7 @@ export class CreategrupoFaturaComponent {
       this.grupoFaturaService.insert(grupoFatura).subscribe({
         next: (grupoInserido) => {
           if (grupoInserido) {
-            this.grupoFaturaNotification.recarregarListagrupoFatura();
+            this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
             this.toastr.success(
               `Fatura de ${this.grupoFaturaForm.value.nome} criado com sucesso!`,
               'Finalizado!'

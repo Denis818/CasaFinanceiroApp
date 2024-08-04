@@ -1,0 +1,10 @@
+:host {
+  [app-multi-card-body] {
+    max-height: 328px;
+
+    .contralizar-grafico {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

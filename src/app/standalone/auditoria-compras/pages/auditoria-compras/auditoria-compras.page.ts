@@ -77,12 +77,13 @@ export class ConferenciaComprasPage implements OnDestroy {
     private readonly categoriaService: CategoriaService,
     private readonly listFiltroDespesa: ListFiltroDespesa
   ) {
-    this.getListDespesasAllGrupos();
     this.tempoParaFiltrar();
 
-    this.grupoFaturaNotification.anoSelecionado$.subscribe({
-      next: (ano) => {
-        this.getListDespesasAllGrupos();
+    this.grupoFaturaNotification.recarregarComponentComNovoAno.subscribe({
+      next: (isReload) => {
+        if (isReload) {
+          this.getListDespesasAllGrupos();
+        }
       },
     });
   }

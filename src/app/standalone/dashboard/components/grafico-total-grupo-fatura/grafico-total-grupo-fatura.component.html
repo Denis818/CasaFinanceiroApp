@@ -1,0 +1,27 @@
+<div app-multi-card-header>
+  <div app-card-title>Análise de Compras por Grupo</div>
+</div>
+
+<div app-multi-card-body class="contralizar-grafico">
+  <div
+    *ngIf="
+      graphicConfig && graphicConfig.chartData.datasets.length;
+      else semDados
+    "
+  >
+    <app-graphic
+      [graphicConfig]="graphicConfig"
+      [graphicType]="'line'"
+      [width]="900"
+      [height]="315"
+    >
+    </app-graphic>
+  </div>
+  <ng-template #noGraphicData>
+    <h2>Nenhuma análise de compras encontrada</h2>
+  </ng-template>
+</div>
+
+<ng-template #semDados>
+  <div dados-nao-encontrados>Nenhuma informação encontrada</div>
+</ng-template>

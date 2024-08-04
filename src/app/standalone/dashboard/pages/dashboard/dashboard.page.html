@@ -101,58 +101,11 @@
     </div>
 
     <div app-multi-card>
-      <div app-multi-card-header>
-        <div app-card-title>Análise de Compras por Grupo</div>
-      </div>
-      <div app-multi-card-body class="contralizar-grafico">
-        <div
-          *ngIf="graphicConfig && graphicConfig.chartData.datasets.length; else semDados"
-        >
-          <app-graphic
-            [graphicConfig]="graphicConfig"
-            [graphicType]="'line'"
-            [width]="900"
-            [height]="315"
-          >
-          </app-graphic>
-        </div>
-        <ng-template #noGraphicData>
-          <h2>Nenhuma análise de compras encontrada</h2>
-        </ng-template>
-      </div>
+      <app-grafico-total-grupo-fatura></app-grafico-total-grupo-fatura>
     </div>
 
     <div app-multi-card>
-      <div app-multi-card-header>
-        <div app-card-title>Total por categoria</div>
-      </div>
-      <div app-multi-card-body>
-        <div app-table>
-          <table>
-            <thead>
-              <tr>
-                <th>Categoria</th>
-                <th>Total</th>
-                <th>Quantidade de Itens</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of listDespesasPorCategoria">
-                <td>{{ item.categoria }}</td>
-                <td>{{ item.total| currency:'BRL' }}</td>
-                <td>{{item.quantidadeDeItens}}</td>
-              </tr>
-            </tbody>
-            <tfoot *ngIf="listDespesasPorCategoria.length == 0">
-              <tr>
-                <td colspan="3">
-                  <div dados-nao-encontrados>Nenhuma informação encontrada</div>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div>
+      <app-table-despesas-por-categoria></app-table-despesas-por-categoria>
     </div>
   </div>
 

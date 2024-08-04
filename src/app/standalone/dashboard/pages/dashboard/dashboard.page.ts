@@ -12,11 +12,10 @@ import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
-import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
-import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { MensagemWhatsAppComponent } from 'src/app/standalone/dashboard/components/mensagem-whatsapp/mensagem-whatsapp.component';
+import { GraficoTotalGrupoFaturaComponent } from '../../components/grafico-total-grupo-fatura/grafico-total-grupo-fatura.component';
+import { TableDespesasPorCategoriaComponent } from '../../components/table-despesas-por-categoria/table-despesas-por-categoria.component';
 import { DespesaPorMembroResponse } from '../../interfaces/despesa-por-membro-response.interface';
-import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 
 registerLocaleData(localePt);
@@ -29,13 +28,14 @@ registerLocaleData(localePt);
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   imports: [
     CommonModule,
-    GraphicComponent,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
     MatRadioModule,
     FormsModule,
+    GraficoTotalGrupoFaturaComponent,
+    TableDespesasPorCategoriaComponent,
   ],
 })
 export class DashboardPage implements OnInit, OnDestroy {
@@ -49,9 +49,6 @@ export class DashboardPage implements OnInit, OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   despesasPorMembros: DespesaPorMembroResponse[] = [];
-  listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
-
-  graphicConfig: GraphicConfiguration;
 
   constructor(
     private readonly dashboardService: DashboardService,
@@ -138,28 +135,12 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   inicializeDashboard() {
-    this.getGraficoTotaisComprasPorMes();
-    this.getTotalPorCategoria();
     this.getDespesasDivididasPorMembro();
-  }
-
-  getGraficoTotaisComprasPorMes() {
-    this.dashboardService.getGraficoTotaisComprasPorGrupo().subscribe({
-      next: (graphicConfig) => {
-        this.graphicConfig = graphicConfig;
-      },
-    });
   }
 
   getDespesasDivididasPorMembro() {
     this.dashboardService.getDespesasDivididasPorMembro().subscribe((dados) => {
       this.despesasPorMembros = dados.despesasPorMembro;
-    });
-  }
-
-  getTotalPorCategoria() {
-    this.dashboardService.getTotalPorCategoria().subscribe((dados) => {
-      this.listDespesasPorCategoria = dados;
     });
   }
 

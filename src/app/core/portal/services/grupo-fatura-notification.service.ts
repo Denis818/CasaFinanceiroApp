@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GrupoFaturaNotification {
-  private reloadSelectedgrupoFatura = new BehaviorSubject<boolean>(false);
+  private notificarSeletorGrupoFatura = new BehaviorSubject<boolean>(false);
   private notificarGrupoIdMudou = new BehaviorSubject<boolean>(false);
+  private notificarAnoMudou = new BehaviorSubject<boolean>(false);
 
-  private anoSelecionadoSource = new Subject<number>();
-  anoSelecionado$ = this.anoSelecionadoSource.asObservable();
+  get recarregarComponentComNovoAno() {
+    return this.notificarAnoMudou.asObservable();
+  }
 
-  get realoadgrupoFaturas(): Observable<boolean> {
-    return this.reloadSelectedgrupoFatura.asObservable();
+  get recarregarSeletorGrupoFaturaComAlteracoes(): Observable<boolean> {
+    return this.notificarSeletorGrupoFatura.asObservable();
   }
 
   get recarregarPaginaComNovoGrupoId(): Observable<boolean> {
@@ -23,11 +25,11 @@ export class GrupoFaturaNotification {
     this.notificarGrupoIdMudou.next(true);
   }
 
-  recarregarListagrupoFatura() {
-    this.reloadSelectedgrupoFatura.next(true);
+  notificarComponentesAnoMudou() {
+    this.notificarAnoMudou.next(true);
   }
 
-  atualizarAnoSelecionado(ano: number) {
-    this.anoSelecionadoSource.next(ano);
+  notificarAlteracaoNoSeletorGrupoFatura() {
+    this.notificarSeletorGrupoFatura.next(true);
   }
 }

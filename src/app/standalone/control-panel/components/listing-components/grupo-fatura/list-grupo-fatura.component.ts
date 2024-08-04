@@ -90,7 +90,7 @@ export class ListgrupoFaturaComponent {
       this.grupoFaturaService.update(id, grupoFatura).subscribe({
         next: (grupoFaturaAtualizado) => {
           if (grupoFaturaAtualizado) {
-            this.grupoFaturaNotification.recarregarListagrupoFatura();
+            this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
           this.getAllgrupoFaturas();
@@ -123,7 +123,7 @@ export class ListgrupoFaturaComponent {
     this.grupoFaturaService.delete(grupoFaturaId).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
-          this.grupoFaturaNotification.recarregarListagrupoFatura();
+          this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
         this.getAllgrupoFaturas();
