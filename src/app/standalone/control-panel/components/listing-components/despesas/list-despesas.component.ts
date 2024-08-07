@@ -135,7 +135,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     if (valor > limite) {
       return { color: 'red' };
     } else if (valor >= limite * 0.9) {
-      return { color: 'rgb(247 179 0)' };
+      return { color: '#e5bd00' };
     } else {
       return {};
     }

@@ -78,8 +78,10 @@ export class DashboardService extends BaseService {
             datasets: [
               {
                 data: response.dados.map((item) => item.total),
+                backgroundColor: response.dados.map((item) =>
+                  this.getBackgroundColor(item.total)
+                ),
                 borderColor: '#673ab7',
-                backgroundColor: '#6b18ffd4',
                 label: 'Total',
                 fill: false,
               },
@@ -92,11 +94,40 @@ export class DashboardService extends BaseService {
               legend: {
                 display: true,
                 position: 'top',
+                labels: {
+                  generateLabels: function (chart) {
+                    return [
+                      {
+                        text: 'Fatura Muito Alta  ',
+                        fillStyle: 'red',
+                      },
+                      {
+                        text: 'Fatura Razoável  ',
+                        fillStyle: '#e5bd00',
+                      },
+                      {
+                        text: 'Fatura Neutra',
+                        fillStyle: '#6b18ffd4',
+                      },
+                    ];
+                  },
+                },
               },
             },
           },
         })
       )
     );
+  }
+
+  private getBackgroundColor(total: number): string {
+    const limite = 5700;
+    if (total > limite) {
+      return 'red';
+    } else if (total >= limite * 0.9) {
+      return '#e5bd00';
+    } else {
+      return '#6b18ffd4';
+    }
   }
 }
