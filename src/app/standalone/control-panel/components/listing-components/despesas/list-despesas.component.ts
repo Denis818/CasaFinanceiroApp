@@ -35,12 +35,14 @@ import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-pagin
 import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
 
+import { MatButtonModule } from '@angular/material/button';
 import { TableEditManipulation } from '../../../helpers/table-edit-manipulation';
 import { Categoria } from '../../../interfaces/categoria.interface';
 import { RelatorioGastosDoGrupoResponse } from '../../../interfaces/relatorio-gastos-grupo-response.interface';
 import { CategoriaService } from '../../../services/categoria.service';
 import { DespesaService } from '../../../services/despesa.service';
 import { ChecarFaturaCartaoComponent } from '../../checar-fatura-cartao/checar-fatura-cartao.component';
+import { CardDescricaoTotaisComponent } from './card-descricao-totais/card-descricao-totais.component';
 
 registerLocaleData(localePt);
 
@@ -60,6 +62,7 @@ registerLocaleData(localePt);
     MatSelectModule,
     CurrencyMaskModule,
     MatTooltipModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },
@@ -129,6 +132,10 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
           }
         },
       });
+  }
+
+  openLegendModal(): void {
+    this.dialog.open(CardDescricaoTotaisComponent);
   }
 
   getStyle(valor: number, limite: number): { [key: string]: string } {

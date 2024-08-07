@@ -5,6 +5,7 @@
         <div app-card-title>
           Despesas da {{ this.relatorioGastosDoGrupo.grupoFaturaNome }}
         </div>
+
         <button app-button-action (click)="openChecarFaturaCartaoModal()">
           <div icon-bg>
             <mat-icon>credit_card</mat-icon>
@@ -256,6 +257,10 @@
                   }}</strong
                 >
               </span>
+
+              <button mat-raised-button (click)="openLegendModal()">
+                Entender Cores
+              </button>
             </div>
 
             <div class="pagination">
@@ -272,22 +277,6 @@
               >
               </mat-paginator>
               <span>Total de itens: {{ page.totalItens }}</span>
-            </div>
-          </div>
-          <div card-detalhes-totais>
-            <div descricao-valor>
-              <span class="color-box red"></span>
-              <span class="legend-text">Fatura Alta (Acima de R$ 5700)</span>
-            </div>
-            <div descricao-valor>
-              <span class="color-box yellow"></span>
-              <span class="legend-text"
-                >Fatura Razoável (Entre R$ 5130 e R$ 5700)</span
-              >
-            </div>
-            <div descricao-valor>
-              <span class="color-box purple"></span>
-              <span class="legend-text">Fatura Neutro (Abaixo de R$ 5130)</span>
             </div>
           </div>
         </div>
