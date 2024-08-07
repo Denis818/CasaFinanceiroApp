@@ -99,13 +99,13 @@ export class DashboardService extends BaseService {
                     return [
                       {
                         text: 'Fatura Muito Alta  ',
-                        fillStyle: 'red',
+                        fillStyle: '#ff0000d9',
                         strokeStyle: 'red',
                         lineWidth: 1,
                       },
                       {
                         text: 'Fatura Razoável  ',
-                        fillStyle: '#e5bd00',
+                        fillStyle: '#e5bd00db',
                         strokeStyle: '#e5bd00',
                         lineWidth: 1,
                       },
@@ -129,9 +129,9 @@ export class DashboardService extends BaseService {
   private getBackgroundColor(total: number): string {
     const limite = 5700;
     if (total > limite) {
-      return 'red';
+      return '#ff0000d9';
     } else if (total >= limite * 0.9) {
-      return '#e5bd00';
+      return '#e5bd00db';
     } else {
       return '#6b18ffd4';
     }
