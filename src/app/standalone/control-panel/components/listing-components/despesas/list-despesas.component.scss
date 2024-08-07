@@ -125,6 +125,7 @@
               font-size: 15px;
               margin-right: 30px;
               padding: 10px;
+              background-color: #f9f9f9;
               border: solid 2px #673ab7b3;
               border-radius: 5px;
               color: #673ab7;
@@ -152,6 +153,48 @@
               font-weight: 550;
               font-size: 12px;
               color: #708090;
+            }
+          }
+        }
+
+        [card-detalhes-totais] {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          margin-top: 10px;
+          width: 900px;
+          border: 2px solid #673ab7b3;
+          border-radius: 5px;
+          background-color: #f9f9f9;
+
+          [descricao-valor] {
+            display: flex;
+            align-items: center;
+
+            .color-box {
+              width: 20px;
+              height: 20px;
+              margin-right: 10px;
+              border-radius: 3px;
+            }
+
+            .color-box.red {
+              background-color: red;
+            }
+
+            .color-box.yellow {
+              background-color: #e5bd00;
+            }
+
+            .color-box.purple {
+              background-color: #6b18ffd4;
+            }
+
+            .legend-text {
+              font-size: 15px;
+              font-weight: 500;
+              color: #673ab7;
             }
           }
         }
@@ -231,6 +274,10 @@
               display: none;
             }
           }
+        }
+
+        [card-detalhes-totais] {
+          display: none !important;
         }
 
         .mat-paginator {
