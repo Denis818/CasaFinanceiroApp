@@ -100,14 +100,20 @@ export class DashboardService extends BaseService {
                       {
                         text: 'Fatura Muito Alta  ',
                         fillStyle: 'red',
+                        strokeStyle: 'red',
+                        lineWidth: 1,
                       },
                       {
                         text: 'Fatura Razoável  ',
                         fillStyle: '#e5bd00',
+                        strokeStyle: '#e5bd00',
+                        lineWidth: 1,
                       },
                       {
                         text: 'Fatura Neutra',
                         fillStyle: '#6b18ffd4',
+                        strokeStyle: '#6b18ffd4',
+                        lineWidth: 1,
                       },
                     ];
                   },
