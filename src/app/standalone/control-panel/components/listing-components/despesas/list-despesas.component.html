@@ -225,26 +225,33 @@
 
           <div div-footer>
             <div class="total-itens">
-              <span
-                >Total Moradia:
-                <strong>
-                  {{
+              <span>
+                Total Moradia:
+                <strong
+                  [ngStyle]="
+                    getStyle(relatorioGastosDoGrupo.totalGastosMoradia, 2900)
+                  "
+                  >{{
                     relatorioGastosDoGrupo.totalGastosMoradia | currency : "BRL"
                   }}</strong
-                ></span
-              >
-              <span
-                >Total Casa:
-                <strong>
-                  {{
-                    relatorioGastosDoGrupo.totalGastosCasa | currency : "BRL"
-                  }}
-                </strong>
+                >
               </span>
-              <span
-                >Total Geral:
-                <strong>
-                  {{
+              <span>
+                Total Casa:
+                <strong
+                  [ngStyle]="
+                    getStyle(relatorioGastosDoGrupo.totalGastosCasa, 3300)
+                  "
+                  >{{
+                    relatorioGastosDoGrupo.totalGastosCasa | currency : "BRL"
+                  }}</strong
+                >
+              </span>
+              <span>
+                Total Geral:
+                <strong
+                  [ngStyle]="getStyle(relatorioGastosDoGrupo.totalGeral, 5700)"
+                  >{{
                     relatorioGastosDoGrupo.totalGeral | currency : "BRL"
                   }}</strong
                 >

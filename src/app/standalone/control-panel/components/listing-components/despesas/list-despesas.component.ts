@@ -131,6 +131,16 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
       });
   }
 
+  getStyle(valor: number, limite: number): { [key: string]: string } {
+    if (valor > limite) {
+      return { color: 'red' };
+    } else if (valor >= limite * 0.9) {
+      return { color: 'rgb(247 179 0)' };
+    } else {
+      return {};
+    }
+  }
+
   openChecarFaturaCartaoModal(): void {
     this.dialog.open(ChecarFaturaCartaoComponent, {
       width: '450px',
