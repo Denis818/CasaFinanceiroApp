@@ -237,10 +237,10 @@
           flex-direction: column;
 
           .total-itens {
-            width: 100%;
+            width: 100% !important;
 
             span{
-              margin-right: 5px;
+              margin-right: 5px !important;
             }
 
             button {
