@@ -233,6 +233,7 @@
 
       [app-card-body] {
         [div-footer] {
+          display: flex;
           flex-direction: column;
 
           .total-itens {
