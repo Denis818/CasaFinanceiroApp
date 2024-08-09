@@ -144,12 +144,7 @@
             ::ng-deep {
               .mdc-button .mdc-button__label {
                 color: #708090;
-                /*   white-space: nowrap; */
               }
-
-              /*  .mat-mdc-raised-button.mat-mdc-button-base {
-                height: 50px;
-              } */
             }
           }
 
@@ -196,112 +191,122 @@
   }
 
   @media (max-width: 1500px) {
-    [app-card] {
-      [app-card-body] {
-        [div-footer] {
-          display: inline;
+    [despesa-list-by-group] {
+      [app-card] {
+        [app-card-body] {
+          [div-footer] {
+            display: inline;
 
-          .total-itens {
-            margin-bottom: 5px;
+            .total-itens {
+              margin-bottom: 5px;
 
-            button {
-              margin-top: 15px;
+              button {
+                margin-top: 15px;
+              }
+
+              & span {
+                margin-top: 15px;
+              }
+
+              ::ng-deep {
+                .mat-mdc-raised-button.mat-mdc-button-base {
+                  padding: 26px 40px;
+                }
+              }
             }
 
-            & span {
-              margin-top: 15px;
+            .pagination {
+              justify-content: end;
             }
-          }
-
-          .pagination {
-            justify-content: end;
           }
         }
       }
     }
   }
 
-  @media screen and (max-width: 600px) {
-    [app-card] {
-      [app-card-headerer] {
-        [filtro] {
-          [input-filtrar] {
-            width: 60%;
+  @media (max-width: 600px) {
+    [despesa-list-by-group] {
+      [app-card] {
+        [app-card-headerer] {
+          [filtro] {
+            [input-filtrar] {
+              width: 60%;
+            }
           }
         }
-      }
 
-      [app-card-body] {
-        [div-footer] {
-          display: flex;
-          flex-direction: column;
-
-          .total-itens {
-            width: 100% !important;
-
-            span{
-              margin-right: 5px !important;
-            }
-
-            button {
-              display: none;
-            }
-          }
-
-          .pagination {
+        [app-card-body] {
+          [div-footer] {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
 
-            ::ng-deep {
-              .mat-mdc-paginator-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0px;
-                width: 100%;
+            .total-itens {
+              width: 100% !important;
+
+              span {
+                margin-right: 5px !important;
               }
 
-              .mat-mdc-paginator-page-size-label {
-                margin: 0px;
-                white-space: nowrap;
-              }
-              .mat-mdc-paginator-range-label {
-                margin: 0px;
-                white-space: nowrap;
-              }
-
-              .mat-mdc-paginator-page-size {
-                margin-right: 0px;
-              }
-              .mat-mdc-paginator-range-actions {
-                border: solid 1px #ccc;
-                border-radius: 5px;
-                padding: 0px 6px 0px;
-                margin: 10px;
+              button {
+                display: none;
               }
             }
 
-            & span {
-              display: none;
+            .pagination {
+              display: flex;
+              justify-content: center;
+
+              ::ng-deep {
+                .mat-mdc-paginator-container {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 0px;
+                  width: 100%;
+                }
+
+                .mat-mdc-paginator-page-size-label {
+                  margin: 0px;
+                  white-space: nowrap;
+                }
+                .mat-mdc-paginator-range-label {
+                  margin: 0px;
+                  white-space: nowrap;
+                }
+
+                .mat-mdc-paginator-page-size {
+                  margin-right: 0px;
+                }
+                .mat-mdc-paginator-range-actions {
+                  border: solid 1px #ccc;
+                  border-radius: 5px;
+                  padding: 0px 6px 0px;
+                  margin: 10px;
+                }
+              }
+
+              & span {
+                display: none;
+              }
             }
+          }
+
+          .mat-paginator {
+            font-size: 12px;
           }
         }
 
-        .mat-paginator {
-          font-size: 12px;
-        }
-      }
+        [app-button-action] {
+          align-items: center;
 
-      [app-button-action] {
-        align-items: center;
+          padding: 10px;
+          & [icon-bg] {
+            display: none;
+          }
 
-        padding: 10px;
-        & [icon-bg] {
-          display: none;
-        }
-
-        & [title-button] {
-          right: 0%;
+          & [title-button] {
+            right: 0%;
+          }
         }
       }
     }
