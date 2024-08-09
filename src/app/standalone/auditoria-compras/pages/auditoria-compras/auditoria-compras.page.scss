@@ -8,6 +8,8 @@
 
       [app-card-body] {
         padding-top: 15px;
+        max-height: 425px;
+
         [filtro] {
           display: flex;
           justify-content: space-between;
@@ -59,25 +61,45 @@
           }
         }
 
-        .pagination {
-          display: flex;
-          align-items: center;
-          justify-content: end;
-
+        [table-all-groups] {
           ::ng-deep {
-            .mat-mdc-paginator {
-              color: #708090;
+            .mdc-data-table__cell,
+            .mdc-data-table__header-cell {
+              padding: 10px 30px 10px 30px;
             }
 
-            .mat-mdc-paginator-range-label {
-              margin: 0px;
+            .mat-mdc-row {
+              height: 40px;
+              color: #708090;
+              font-size: 14px;
+            }
+
+            .mat-mdc-header-row {
+              height: 35px;
+              color: #4e6376;
             }
           }
 
-          & span {
-            font-weight: 550;
-            font-size: 12px;
-            color: #708090;
+          .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+
+            ::ng-deep {
+              .mat-mdc-paginator {
+                color: #708090;
+              }
+
+              .mat-mdc-paginator-range-label {
+                margin: 0px;
+              }
+            }
+
+            & span {
+              font-weight: 550;
+              font-size: 12px;
+              color: #708090;
+            }
           }
         }
       }

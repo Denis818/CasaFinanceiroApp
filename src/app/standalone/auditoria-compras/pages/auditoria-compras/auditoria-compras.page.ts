@@ -20,8 +20,10 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
 
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
+import { ListgrupoFaturaComponent } from 'src/app/standalone/control-panel/components/listing-components/grupo-fatura/list-grupo-fatura.component';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
 import { DespesaService } from 'src/app/standalone/control-panel/services/despesa.service';
 import { GraficoSugestoesEconomiaComponent } from '../../components/grafico-sugestoes-economia/grafico-sugestoes-economia.component';
@@ -42,9 +44,11 @@ registerLocaleData(localePt);
     MatTableModule,
     MatInputModule,
     MatSelectModule,
+    MatSortModule,
     MatTooltipModule,
     SugestaoFornecedorComponent,
     GraficoSugestoesEconomiaComponent,
+    ListgrupoFaturaComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },
@@ -53,12 +57,24 @@ registerLocaleData(localePt);
 })
 export class ConferenciaComprasPage implements OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  displayedColumns: string[] = [
+    'Grupo de Fatura',
+    'Item',
+    'Categoria',
+    'Fornecedor',
+    'Preço',
+    'Quantidade',
+    'Total',
+    'Data da compra',
+  ];
 
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
 
   categorias: Categoria[] = [];
-
-  despesasFiltradas: Despesa[] = [];
+  despesas: Despesa[] = [];
+  sortedData: Despesa[];
   filtro: string = '';
 
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
@@ -68,7 +84,7 @@ export class ConferenciaComprasPage implements OnDestroy {
   page: Pagination = {
     totalItens: 0,
     paginaAtual: 1,
-    itensPorPagina: this.tamanhosDePagina[1],
+    itensPorPagina: this.tamanhosDePagina[0],
   };
 
   constructor(
@@ -128,7 +144,8 @@ export class ConferenciaComprasPage implements OnDestroy {
         this.tipoFiltro
       )
       .subscribe((listPaginada) => {
-        this.despesasFiltradas = listPaginada.itens;
+        this.despesas = listPaginada.itens;
+        this.sortedData = this.despesas.slice();
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
       });
@@ -155,5 +172,39 @@ export class ConferenciaComprasPage implements OnDestroy {
       return nome.slice(prefixo.length);
     }
     return nome;
+  }
+
+  sortData(sort: Sort) {
+    const data = this.despesas.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Item':
+          return compare(a.item, b.item, isAsc);
+        case 'Preço':
+          return compare(a.preco, b.preco, isAsc);
+        case 'Quantidade':
+          return compare(a.quantidade, b.quantidade, isAsc);
+        case 'Total':
+          return compare(a.total, b.total, isAsc);
+        case 'Data da compra':
+          return compare(a.dataCompra, b.dataCompra, isAsc);
+        default:
+          return 0;
+      }
+    });
+
+    function compare(
+      a: number | string | Date,
+      b: number | string | Date,
+      isAsc: boolean
+    ) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
   }
 }

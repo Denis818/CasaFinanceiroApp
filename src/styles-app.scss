@@ -233,9 +233,32 @@
   }
 
   [app-card-body] {
+    overflow-y: auto;
+    max-height: 100%;
     border: 1px solid #ccc;
     border-radius: 0px 0px 8px 8px;
     padding: 12px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      border-radius: 10px;
+      background-color: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #683ab7d3;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #5c2ca3;
+    }
   }
 }
 

@@ -22,7 +22,7 @@ import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete
 registerLocaleData(localePt);
 
 @Component({
-  selector: 'modal-listgrupoFatura',
+  selector: 'list-grupos-faturas',
   templateUrl: './list-grupo-fatura.component.html',
   styleUrls: ['./list-grupo-fatura.component.scss'],
   standalone: true,
