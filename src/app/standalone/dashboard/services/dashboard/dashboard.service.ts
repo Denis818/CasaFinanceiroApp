@@ -102,18 +102,30 @@ export class DashboardService extends BaseService {
                         fillStyle: '#ff0000d9',
                         strokeStyle: 'red',
                         lineWidth: 1,
+                        fontColor: '#673ab7',
+                        font: {
+                          weight: 'bold',
+                        },
                       },
                       {
                         text: 'Fatura Razoável  ',
                         fillStyle: '#e5bd00db',
                         strokeStyle: '#e5bd00',
                         lineWidth: 1,
+                        fontColor: '#673ab7',
+                        font: {
+                          weight: 'bold',
+                        },
                       },
                       {
                         text: 'Fatura Neutra',
                         fillStyle: '#6b18ffd4',
                         strokeStyle: '#6b18ffd4',
                         lineWidth: 1,
+                        fontColor: '#673ab7',
+                        font: {
+                          weight: 'bold',
+                        },
                       },
                     ];
                   },
