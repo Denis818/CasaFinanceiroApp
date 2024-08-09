@@ -75,8 +75,8 @@ export class ConferenciaComprasPage implements OnDestroy {
   categorias: Categoria[] = [];
   despesas: Despesa[] = [];
   sortedData: Despesa[];
-  filtro: string = '';
 
+  filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
   listTipoFiltro = this.listFiltroDespesa.listTipoFiltroConferenciaCompras;
 
@@ -166,14 +166,7 @@ export class ConferenciaComprasPage implements OnDestroy {
   }
   //#endregion
 
-  removerPrefixoFatura(nome: string): string {
-    const prefixo = 'Fatura de ';
-    if (nome.startsWith(prefixo)) {
-      return nome.slice(prefixo.length);
-    }
-    return nome;
-  }
-
+  //#region Ordenador
   sortData(sort: Sort) {
     const data = this.despesas.slice();
     if (!sort.active || sort.direction === '') {
@@ -184,27 +177,46 @@ export class ConferenciaComprasPage implements OnDestroy {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
+        case 'Grupo de Fatura':
+          return this.compare(a.grupoFatura.nome, b.grupoFatura.nome, isAsc);
         case 'Item':
-          return compare(a.item, b.item, isAsc);
+          return this.compare(a.item, b.item, isAsc);
+        case 'Categoria':
+          return this.compare(
+            a.categoria.descricao,
+            b.categoria.descricao,
+            isAsc
+          );
+        case 'Fornecedor':
+          return this.compare(a.fornecedor, b.fornecedor, isAsc);
         case 'Preço':
-          return compare(a.preco, b.preco, isAsc);
+          return this.compare(a.preco, b.preco, isAsc);
         case 'Quantidade':
-          return compare(a.quantidade, b.quantidade, isAsc);
+          return this.compare(a.quantidade, b.quantidade, isAsc);
         case 'Total':
-          return compare(a.total, b.total, isAsc);
+          return this.compare(a.total, b.total, isAsc);
         case 'Data da compra':
-          return compare(a.dataCompra, b.dataCompra, isAsc);
+          return this.compare(a.dataCompra, b.dataCompra, isAsc);
         default:
           return 0;
       }
     });
+  }
 
-    function compare(
-      a: number | string | Date,
-      b: number | string | Date,
-      isAsc: boolean
-    ) {
-      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  compare(
+    a: number | string | Date,
+    b: number | string | Date,
+    isAsc: boolean
+  ) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+  //#endregion
+
+  removerPrefixoFatura(nome: string): string {
+    const prefixo = 'Fatura de ';
+    if (nome.startsWith(prefixo)) {
+      return nome.slice(prefixo.length);
     }
+    return nome;
   }
 }
