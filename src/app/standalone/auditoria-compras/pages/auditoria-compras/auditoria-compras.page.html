@@ -51,9 +51,9 @@
 
       <div table-all-groups>
         <table
+          matSort
           mat-table
           [dataSource]="sortedData"
-          matSort
           (matSortChange)="sortData($event)"
         >
           <!-- Grupo de Fatura Column -->

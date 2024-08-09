@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -14,6 +15,8 @@ import { GrupoFaturaService } from '../../services/grupo-fatura.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+  darkMode: boolean = true;
+
   faturaDefault: number;
 
   private grupoFaturasSubscriber: Subscription;
@@ -29,12 +32,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   });
 
   constructor(
+    @Inject(DOCUMENT)
+    private document: Document,
+    private renderer: Renderer2,
     private readonly grupoFatura: GrupoFaturaService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly storageService: StorageService,
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
+    this.isDarkMode();
     this.reloadGrupoFaturas();
   }
 
@@ -152,6 +159,26 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.user.logout();
+  }
+
+  setDarkMode(isDarkMode: boolean): void {
+    this.darkMode = isDarkMode;
+    this.storageService.setItem('darkMode', isDarkMode.toString());
+
+    if (isDarkMode) {
+      this.renderer.addClass(this.document.body, 'dark');
+      this.renderer.removeClass(this.document.body, 'light');
+    } else {
+      this.renderer.removeClass(this.document.body, 'dark');
+      this.renderer.addClass(this.document.body, 'light');
+    }
+  }
+
+  isDarkMode() {
+    let darkModeValue = this.storageService.getItem('darkMode');
+    const isDarkMode = darkModeValue && darkModeValue === 'true' ? true : false;
+
+    this.setDarkMode(isDarkMode);
   }
 
   reloadGrupoFaturas() {

@@ -38,8 +38,27 @@
       </div>
     </div>
 
-    <i logout-icon (click)="logout()">
-      <mat-icon>logout</mat-icon>
-    </i>
+    <div
+      style="
+        width: 81px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <i>
+        <a class="mr-3" (click)="setDarkMode(!darkMode)">
+          <mat-icon *ngIf="darkMode; else sunIcon">brightness_2</mat-icon>
+
+          <ng-template #sunIcon>
+            <mat-icon>brightness_5</mat-icon>
+          </ng-template>
+        </a>
+      </i>
+
+      <i logout-icon (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </i>
+    </div>
   </div>
 </nav>
