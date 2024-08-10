@@ -49,6 +49,13 @@
 }
 
 [app-input-color] {
+  --mdc-outlined-text-field-label-text-color: #673ab7;
+  --mdc-outlined-text-field-focus-label-text-color: #673ab7;
+  --mdc-outlined-text-field-outline-color: #9762f2;
+  --mdc-outlined-text-field-hover-outline-color: #673ab7;
+  --mdc-outlined-text-field-focus-outline-color: #673ab7;
+  --mdc-outlined-text-field-caret-color: #673ab7;
+
   .mat-mdc-form-field .mat-mdc-text-field-wrapper {
     background-color: #f5f5f5;
     border-radius: 6px !important;

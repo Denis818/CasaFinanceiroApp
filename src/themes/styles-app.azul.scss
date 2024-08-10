@@ -36,6 +36,12 @@ body {
               [share-whatsapp] {
                 background-color: #007bff !important;
               }
+
+
+
+              .expense-value {
+                color: #007BFF !important;
+              }
             }
 
             [status-fatura] {
@@ -150,7 +156,7 @@ body {
     }
 
     [app-input-color] {
-      --mdc-outlined-text-field-label-text-color: #69b1ff;
+      --mdc-outlined-text-field-label-text-color: #007bff;
       --mdc-outlined-text-field-focus-label-text-color: #007bff;
       --mdc-outlined-text-field-outline-color: #69b1ff;
       --mdc-outlined-text-field-hover-outline-color: #007bff;
