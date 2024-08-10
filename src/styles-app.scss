@@ -125,7 +125,6 @@
       color: white;
       padding: 10px;
       border-radius: 8px 8px 0 0;
-      border-bottom: solid 1px #737373;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -423,4 +422,19 @@
   mat-icon.icon-help {
     display: none;
   }
+}
+
+:root {
+  --mdc-outlined-text-field-focus-outline-color: #673ab7;
+  --mdc-outlined-text-field-outline-color: #673ab775;
+  --mdc-outlined-text-field-hover-outline-color: #4200b7;
+
+  /* ícone-seletor-options */
+  --mat-select-enabled-arrow-color: #7f4dd6;
+  --mat-option-selected-state-label-text-color: #673ab7;
+  --mat-select-focused-arrow-color: #673ab7;
+  .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+    color: #673ab7;
+  }
+  /* end */
 }

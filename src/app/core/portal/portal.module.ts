@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AppRoutingModule } from 'src/app/modules/start/app-routing.module';
@@ -17,10 +19,12 @@ import { PortalPage } from './pages/portal/portal.page';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatRadioModule,
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
 })
 export class PortalModule {}

@@ -38,21 +38,10 @@
       </div>
     </div>
 
-    <div
-      style="
-        width: 81px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      "
-    >
+    <div opcoes>
       <i>
-        <a class="mr-3" (click)="setDarkMode(!darkMode)">
-          <mat-icon *ngIf="darkMode; else sunIcon">brightness_2</mat-icon>
-
-          <ng-template #sunIcon>
-            <mat-icon>brightness_5</mat-icon>
-          </ng-template>
+        <a class="mr-3" [matMenuTriggerFor]="themeMenu">
+          <mat-icon>format_color_fill</mat-icon>
         </a>
       </i>
 
@@ -60,5 +49,26 @@
         <mat-icon>logout</mat-icon>
       </i>
     </div>
+
+    <mat-menu #themeMenu="matMenu">
+      <mat-radio-group
+        mat-radio-custom
+        [(ngModel)]="selectedTheme"
+        (change)="onThemeChange($event)"
+        class="theme-radio-group"
+      >
+        <mat-radio-button class="roxo" value="light-theme">
+          Branco e Roxo
+        </mat-radio-button>
+
+        <mat-radio-button class="azul" value="azul-theme">
+          Branco e Azul
+        </mat-radio-button>
+
+        <mat-radio-button class="black" value="dark-theme">
+          Tema Escuro
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-menu>
   </div>
 </nav>

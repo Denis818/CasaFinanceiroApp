@@ -1,11 +1,8 @@
 @import "reset";
 @import "styles-app.scss";
 @import "themes/styles-app.dark.scss";
+@import "themes/styles-app.azul.scss";
 :root {
-  --mdc-outlined-text-field-focus-outline-color: #673ab7;
-  --mdc-outlined-text-field-outline-color: #673ab775;
-  --mdc-outlined-text-field-hover-outline-color: #4200b7;
-
   --mdc-outlined-text-field-outline-width: 2px !important;
   --mdc-outlined-text-field-container-shape: 10px !important;
 }

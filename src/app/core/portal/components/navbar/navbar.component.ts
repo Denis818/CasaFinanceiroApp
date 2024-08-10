@@ -16,6 +16,7 @@ import { GrupoFaturaService } from '../../services/grupo-fatura.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   darkMode: boolean = true;
+  selectedTheme: string;
 
   faturaDefault: number;
 
@@ -41,7 +42,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly user: UserService,
     public readonly titleService: Title
   ) {
-    this.isDarkMode();
+    this.selectedTheme =
+      this.storageService.getItem('selectedTheme') || 'light-theme';
+    this.applyTheme(this.selectedTheme);
+
     this.reloadGrupoFaturas();
   }
 
@@ -161,24 +165,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.user.logout();
   }
 
-  setDarkMode(isDarkMode: boolean): void {
-    this.darkMode = isDarkMode;
-    this.storageService.setItem('darkMode', isDarkMode.toString());
-
-    if (isDarkMode) {
-      this.renderer.addClass(this.document.body, 'dark');
-      this.renderer.removeClass(this.document.body, 'light');
-    } else {
-      this.renderer.removeClass(this.document.body, 'dark');
-      this.renderer.addClass(this.document.body, 'light');
-    }
+  onThemeChange(event: any): void {
+    const theme = event.value;
+    this.applyTheme(theme);
   }
 
-  isDarkMode() {
-    let darkModeValue = this.storageService.getItem('darkMode');
-    const isDarkMode = darkModeValue && darkModeValue === 'true' ? true : false;
+  applyTheme(theme: string): void {
+    this.renderer.removeClass(this.document.body, 'light-theme');
+    this.renderer.removeClass(this.document.body, 'dark-theme');
+    this.renderer.removeClass(this.document.body, 'azul-theme');
 
-    this.setDarkMode(isDarkMode);
+    this.renderer.addClass(this.document.body, theme);
+    this.storageService.setItem('selectedTheme', theme);
   }
 
   reloadGrupoFaturas() {

@@ -1,0 +1,193 @@
+body {
+  &.azul-theme {
+    [navbar] {
+      background-color: #007bff !important;
+    }
+
+    [sidenav] {
+      background-color: #007bff !important;
+
+      [line] {
+        border-color: #007bffb5 !important;
+      }
+    }
+
+    [painel-controle] {
+      [options-header] {
+        [list-itens] {
+          .mat-mdc-unelevated-button.mat-primary {
+            --mdc-filled-button-container-color: #007bff;
+          }
+        }
+      }
+    }
+
+    [dashboard] {
+      [app-card-container] {
+        [app-multi-card] {
+          [app-multi-card-header] {
+            [download-button] {
+              color: #007bff !important;
+            }
+          }
+
+          [app-multi-card-body] {
+            .expense-item {
+              [share-whatsapp] {
+                background-color: #007bff !important;
+              }
+            }
+
+            [status-fatura] {
+              .mdc-radio__outer-circle {
+                border-color: #007bff !important;
+              }
+
+              .mdc-radio__background::before {
+                background-color: #ffffff00;
+              }
+
+              .fatura-aberta {
+                --mdc-radio-selected-icon-color: #00d51e;
+                --mdc-radio-selected-hover-icon-color: #00d51e;
+                --mdc-radio-selected-pressed-icon-color: #00d51e;
+                --mat-radio-checked-ripple-color: #00d51e;
+              }
+
+              .fatura-fechada {
+                --mdc-radio-selected-icon-color: #007bff !important;
+                --mdc-radio-selected-hover-icon-color: #007bff !important;
+                --mdc-radio-selected-pressed-icon-color: #007bff !important;
+                --mat-radio-checked-ripple-color: #007bff !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    [auditoria-compras] {
+      [app-multi-card-header] {
+        .mat-icon[_ngcontent-ng-c1696448175] {
+          color: #007bff;
+        }
+      }
+    }
+
+    [app-modal] {
+      [app-modal-header] {
+        background-color: #007bff;
+      }
+
+      [app-modal-body] {
+        [form-custom] {
+          [app-card] {
+            .fatura {
+              &.fatura-neutra {
+                color: #007bff !important;
+              }
+            }
+          }
+
+          .form-actions {
+            .mat-mdc-unelevated-button.mat-primary {
+              --mdc-filled-button-container-color: #007bff;
+            }
+          }
+        }
+      }
+    }
+
+    [app-card-container] {
+      [app-multi-card] {
+        [app-multi-card-header] {
+          background-color: #007bff;
+        }
+      }
+    }
+
+    [app-card] {
+      [app-card-header] {
+        background-color: #007bff;
+
+        [app-button-action] {
+          color: #007bff !important;
+
+          & [icon-bg] {
+            border: 1px solid #007bff !important;
+          }
+        }
+      }
+    }
+
+    [app-table] {
+      table {
+        .mat-icon {
+          color: #007bff !important;
+        }
+      }
+    }
+
+    [app-button-action] {
+      background-color: #007bff;
+      border: solid 2px #007bff;
+    }
+
+    [despesa-list-by-group] {
+      [div-footer] {
+        .total-itens {
+          span {
+            border: solid 2px #007bff !important;
+            color: #007bff !important;
+          }
+        }
+      }
+    }
+
+    [app-button] {
+      background: linear-gradient(135deg, #007bff, #69b1ff);
+      border: solid 1px #007bff;
+    }
+
+    [app-input-color] {
+      --mdc-outlined-text-field-label-text-color: #69b1ff;
+      --mdc-outlined-text-field-focus-label-text-color: #007bff;
+      --mdc-outlined-text-field-outline-color: #69b1ff;
+      --mdc-outlined-text-field-hover-outline-color: #007bff;
+      --mdc-outlined-text-field-focus-outline-color: #007bff;
+      --mdc-outlined-text-field-caret-color: #007bff;
+    }
+
+    /* scroll bar */
+    [app-card-body],
+    [app-multi-card-body],
+    table,
+    .mat-typography,
+    .mat-mdc-select-panel {
+      &::-webkit-scrollbar-thumb {
+        background-color: #238dff !important;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #007bff !important;
+      }
+    }
+    /* end */
+
+    /* pagination */
+    --mdc-outlined-text-field-outline-color: #238dff;
+    --mdc-outlined-text-field-hover-outline-color: #007bff;
+    --mdc-outlined-text-field-focus-outline-color: #007bff;
+    /* end */
+
+    /* ícone-seletor-options */
+    --mat-select-enabled-arrow-color: #69b1ff;
+    --mat-option-selected-state-label-text-color: #007bff;
+    --mat-select-focused-arrow-color: #007bff;
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: #007bff;
+    }
+    /* end */
+  }
+}
