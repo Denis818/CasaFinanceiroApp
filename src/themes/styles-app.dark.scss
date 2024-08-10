@@ -1,0 +1,292 @@
+body {
+  &.dark {
+    background-color: #222;
+    color: #ddd;
+
+    [app-input-color] {
+      --mdc-outlined-text-field-label-text-color: #f8f8f8ad;
+      --mdc-outlined-text-field-focus-label-text-color: #f8f8f8ad;
+      --mdc-outlined-text-field-outline-color: #838383;
+      --mdc-outlined-text-field-hover-outline-color: #b4b4b4;
+      --mdc-outlined-text-field-focus-outline-color: #b4b4b4;
+      --mdc-outlined-text-field-input-text-placeholder-color: #ddd;
+      --mdc-outlined-text-field-input-text-color: #ddd;
+      --mdc-outlined-text-field-caret-color: #ddd;
+
+      .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+        background-color: #555555 !important;
+      }
+    }
+
+    [navbar] {
+      background-color: #494949 !important;
+      border-bottom: solid 3px #222 !important;
+
+      [itens-nav] {
+        [selected-group] {
+          .text-color {
+            color: #ddd !important;
+          }
+        }
+      }
+    }
+
+    [sidenav] {
+      background-color: #494949 !important;
+
+      [line] {
+        border-color: #9f9f9f !important;
+      }
+    }
+
+    [app-modal] {
+      [app-modal-body] {
+        background-color: #4d4d4d;
+
+        [form-custom] {
+          .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+            background-color: #4d4d4d;
+          }
+        }
+      }
+    }
+
+    [app-input-color] {
+      .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+        background-color: #4d4d4d;
+      }
+    }
+
+    [app-card-container] {
+      [app-multi-card] {
+        border: 1px solid #3d3d3d;
+
+        [app-multi-card-header] {
+          background-color: #494949;
+        }
+
+        [app-multi-card-body] {
+          .expense-item {
+            background-color: #4d4d4d !important;
+            border: 1px solid #716d6d !important;
+            color: #c0d8f1 !important;
+
+            .expense-title {
+              color: #c0d8f1 !important;
+            }
+
+            .expense-value {
+              color: #c0d8f1 !important;
+            }
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #4c4c4cd3;
+            border-radius: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: #353535d3;
+          }
+        }
+      }
+    }
+
+    [app-card] {
+      background-color: #222 !important;
+      border: 1px solid #3d3d3d !important;
+
+      [app-card-header] {
+        background-color: #494949;
+
+        [app-button-action] {
+          color: #ddd !important;
+          background-color: #303030 !important;
+
+          & [icon-bg] {
+            background-color: #303030 !important;
+            border: 1px solid #ddd !important;
+
+            & mat-icon {
+              color: #ddd !important;
+            }
+          }
+        }
+      }
+
+      [app-card-body] {
+        border: 1px solid #3d3d3d !important;
+
+        [filtro] {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          border-radius: 10px;
+          padding-bottom: 12px;
+        }
+      }
+    }
+
+    [app-table] {
+      table {
+        th,
+        td {
+          border-bottom: 1px solid #222 !important;
+        }
+
+        th {
+          background-color: #494949 !important;
+          color: #c0d8f1 !important;
+        }
+
+        td {
+          color: #c0d8f1 !important;
+        }
+
+        tr {
+          background-color: #222 !important;
+        }
+
+        & tr:nth-child(even) {
+          background-color: #494949 !important;
+        }
+
+        .mat-icon {
+          color: #909090 !important;
+        }
+      }
+    }
+
+    [app-button-action] {
+      background-color: rgb(48 48 48);
+      border: solid 2px rgb(48 48 48);
+    }
+
+    [painel-controle] {
+      [options-header] {
+        background-color: #494949 !important;
+        border: 1px solid #3d3d3d !important;
+
+        [list-itens] {
+          .mat-mdc-unelevated-button.mat-primary {
+            --mdc-filled-button-container-color: #303030;
+          }
+        }
+      }
+    }
+
+    [dashboard] {
+      [app-card-container] {
+        [app-multi-card] {
+          [app-multi-card-header] {
+            [download-button] {
+              background-color: #303030 !important;
+              color: #ddd !important;
+            }
+          }
+
+          [app-multi-card-body] {
+            .expense-item {
+              [share-whatsapp] {
+                background-color: #303030 !important;
+                color: #ddd !important;
+              }
+            }
+
+            [status-fatura] {
+              .mdc-radio__outer-circle {
+                border-color: #828282 !important;
+              }
+
+              .mdc-radio__background::before {
+                background-color: #ffffff00;
+              }
+
+              .fatura-aberta {
+                --mdc-radio-selected-icon-color: #00d51e;
+                --mdc-radio-selected-hover-icon-color: #00d51e;
+                --mdc-radio-selected-pressed-icon-color: #00d51e;
+                --mat-radio-checked-ripple-color: #00d51e;
+              }
+
+              .fatura-fechada {
+                --mdc-radio-selected-icon-color: #4d4d4d !important;
+                --mdc-radio-selected-hover-icon-color: #4d4d4d !important;
+                --mdc-radio-selected-pressed-icon-color: #4d4d4d !important;
+                --mat-radio-checked-ripple-color: #4d4d4d !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    [auditoria-compras] {
+      [app-multi-card-header] {
+        .mat-icon {
+          color: #b5b5b5 !important;
+        }
+      }
+    }
+
+    [despesa-list-by-group] {
+      [div-footer] {
+        .total-itens {
+          span {
+            background-color: #494949 !important;
+            border: solid 2px rgb(69 69 69 / 70%) !important;
+            color: #ddd !important;
+          }
+        }
+      }
+    }
+
+    [app-button] {
+      background: linear-gradient(135deg, #222222, #4d4d4d);
+      color: #ffffff;
+      border: solid 1px #333333;
+      font-size: 13px;
+    }
+
+    /* table angular material */
+    --mat-table-background-color: #222;
+    --mat-table-row-item-outline-color: rgb(109 109 109 / 53%);
+    /* end */
+
+    /* scroll bar */
+    &::-webkit-scrollbar-thumb {
+      background-color: #4c4c4cd3;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #353535d3;
+    }
+    /* end */
+
+    /* pagination */
+    --mdc-outlined-text-field-outline-color: #676767a1;
+    --mdc-outlined-text-field-hover-outline-color: #595959;
+    --mdc-outlined-text-field-focus-outline-color: #797979;
+
+    --mat-paginator-enabled-icon-color: rgb(247 247 247 / 57%);
+    --mat-paginator-disabled-icon-color: rgb(255 255 255 / 18%);
+    .mat-mdc-paginator-container {
+      background-color: #222;
+    }
+    /* end */
+
+    /* ícone-seletor-options */
+    --mat-option-label-text-color: #ddd;
+    --mat-select-panel-background-color: #5d5d5d;
+    --mat-option-selected-state-label-text-color: #141414;
+    --mat-select-focused-arrow-color: #141414;
+    --mat-select-enabled-trigger-text-color: #ddd;
+    --mat-select-enabled-arrow-color: #ddd;
+    --mdc-filled-text-field-container-color: #4d4d4d;
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: #141414;
+    }
+    /* end */
+  }
+}

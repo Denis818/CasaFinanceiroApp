@@ -1,6 +1,6 @@
 <div dashboard>
   <div app-card-container app-tooltip-helper>
-    <div app-multi-card>
+    <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <div app-card-title>Despesa de casa</div>
         <div>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div app-multi-card>
+    <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <div app-card-title>Despesa de moradia</div>
         <div>
@@ -109,13 +109,13 @@
     </div>
   </div>
 
-  <button
+  <!--   <button
     id="scrollToggle"
     class="scroll-toggle-button"
     (click)="toggleScroll()"
   >
     <mat-icon>{{ scrollIcon }}</mat-icon>
-  </button>
+  </button> -->
 
   <ng-template #semDados>
     <div dados-nao-encontrados>Nenhuma informação encontrada</div>

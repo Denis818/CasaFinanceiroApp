@@ -1,5 +1,6 @@
 @import "reset";
-@import "styles-app.dark.scss";
+@import "styles-app.scss";
+@import "themes/styles-app.dark.scss";
 :root {
   --mdc-outlined-text-field-focus-outline-color: #673ab7;
   --mdc-outlined-text-field-outline-color: #673ab775;

@@ -9,9 +9,9 @@
         >help_outline
       </mat-icon>
     </div>
-    <div selected-group [formGroup]="grupoFaturasForm">
+    <div app-input-color selected-group [formGroup]="grupoFaturasForm">
       <div class="select-grupo-fatura">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-select
             panelClass="grupo-fatura-select-panel"
             formControlName="grupoFaturaId"
@@ -27,7 +27,7 @@
       </div>
 
       <div class="select-ano">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <span matPrefix class="text-color">Ano</span>
           <mat-select panelClass="ano-select-panel" formControlName="ano">
             <mat-option *ngFor="let ano of anos" [value]="ano">

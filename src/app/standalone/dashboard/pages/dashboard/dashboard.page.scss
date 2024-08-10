@@ -94,36 +94,41 @@
               .mdc-form-field {
                 color: #708090;
               }
-
-              .mat-mdc-radio-button {
-                & .mdc-radio {
-                  & .mdc-radio__background {
-                    &::before {
-                      background-color: #ffffff00;
-                    }
-
-                    .mdc-radio__outer-circle {
-                      border-color: #ac7eff !important;
-                    }
-                  }
-                }
-
-                &.fatura-aberta {
-                  & .mdc-radio {
-                    & .mdc-radio__inner-circle {
-                      border-color: #00d51e;
-                    }
-                  }
-                }
-
-                &.fatura-fechada {
-                  & .mdc-radio {
-                    & .mdc-radio__inner-circle {
-                      border-color: #673ab7;
-                    }
-                  }
-                }
+              .mdc-radio__outer-circle {
+                border-color: #ac7eff;
               }
+
+              .mdc-radio__background::before {
+                background-color: #ffffff00;
+              }
+
+              .fatura-aberta {
+                --mdc-radio-selected-icon-color: #00d51e;
+                --mdc-radio-selected-hover-icon-color: #00d51e;
+                --mdc-radio-selected-pressed-icon-color: #00d51e;
+                --mat-radio-checked-ripple-color: #00d51e;
+              }
+
+              .fatura-fechada {
+                --mdc-radio-selected-icon-color: #673ab7;
+                --mdc-radio-selected-hover-icon-color: #673ab7;
+                --mdc-radio-selected-pressed-icon-color: #673ab7;
+                --mat-radio-checked-ripple-color: #673ab7;
+              }
+            }
+          }
+        }
+
+        &.header-with-button {
+          [app-multi-card-header] {
+            padding: 4px !important;
+
+            [app-card-title] {
+              margin-left: 5px !important;
+            }
+
+            [download-button] {
+              padding: 12px !important;
             }
           }
         }

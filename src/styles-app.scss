@@ -53,8 +53,13 @@
 }
 
 [app-input-color] {
+  /* --mdc-outlined-text-field-outline-color: #f5f5f5;
+  --mdc-outlined-text-field-hover-outline-color: #f5f5f5;
+  --mdc-outlined-text-field-focus-outline-color: #f5f5f5; */
+
   .mat-mdc-form-field .mat-mdc-text-field-wrapper {
     background-color: #f5f5f5;
+    border-radius: 6px !important;
   }
 }
 
@@ -76,26 +81,6 @@
     &:hover {
       transform: translateY(-3px);
     }
-  }
-}
-
-[app-table-icons-options] {
-  table {
-    .mat-icon {
-      cursor: pointer;
-      color: #673ab7;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: translateY(-3px);
-      }
-    }
-  }
-
-  //desablitar opções de edit e delete das tables
-  .disable-options {
-    pointer-events: none;
-    opacity: 0.5;
   }
 }
 
@@ -148,6 +133,7 @@
       color: white;
       padding: 10px;
       border-radius: 8px 8px 0 0;
+      border-bottom: solid 1px #737373;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -299,6 +285,16 @@
       text-align: center;
     }
 
+    .mat-icon {
+      cursor: pointer;
+      color: #673ab7;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+
     &::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -372,6 +368,31 @@
     position: relative;
     margin-top: 2px;
     right: 13%;
+  }
+}
+
+[app-button] {
+  background: linear-gradient(135deg, #673ab7, #925cf3);
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 }
 

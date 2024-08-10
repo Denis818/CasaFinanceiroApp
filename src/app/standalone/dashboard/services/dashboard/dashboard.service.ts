@@ -102,7 +102,7 @@ export class DashboardService extends BaseService {
                         fillStyle: '#ff0000d9',
                         strokeStyle: 'red',
                         lineWidth: 1,
-                        fontColor: '#673ab7',
+                        fontColor: '#708090',
                         font: {
                           weight: 'bold',
                         },
@@ -112,7 +112,7 @@ export class DashboardService extends BaseService {
                         fillStyle: '#e5bd00db',
                         strokeStyle: '#e5bd00',
                         lineWidth: 1,
-                        fontColor: '#673ab7',
+                        fontColor: '#708090',
                         font: {
                           weight: 'bold',
                         },
@@ -122,7 +122,7 @@ export class DashboardService extends BaseService {
                         fillStyle: '#6b18ffd4',
                         strokeStyle: '#6b18ffd4',
                         lineWidth: 1,
-                        fontColor: '#673ab7',
+                        fontColor: '#708090',
                         font: {
                           weight: 'bold',
                         },

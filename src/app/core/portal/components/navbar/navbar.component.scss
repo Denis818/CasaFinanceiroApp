@@ -29,32 +29,40 @@
         .select-grupo-fatura {
           width: 256px;
         }
+
         .select-ano {
           width: 139px;
+          color: rgba(0, 0, 0, 0.87);
         }
+
         ::ng-deep {
+          --mdc-outlined-text-field-outline-color: #f5f5f5;
+          --mdc-outlined-text-field-hover-outline-color: #f5f5f5;
+          --mdc-outlined-text-field-focus-outline-color: #f5f5f5;
+          
           .mat-mdc-form-field {
             width: 100%;
           }
-
-          .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-            border-radius: 12px;
+          .mat-mdc-form-field-subscript-wrapper {
+            width: 0px;
           }
+
           .mat-mdc-form-field-bottom-align::before {
             display: inline;
           }
 
-          .mdc-text-field--filled {
-            height: 40px !important;
+          .mdc-text-field--outlined {
+            height: 40px;
           }
 
-          .mat-mdc-form-field-infix {
+          .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+            .mat-mdc-form-field-infix {
             padding-top: 9px;
           }
 
           .select-ano {
             .mat-mdc-form-field-icon-prefix {
-              padding: 3px 4px 16px 0px;
+              padding: 3px 6px 18px 0px;
             }
           }
         }
@@ -65,7 +73,7 @@
         }
 
         .text-color {
-          color: #000000de;
+          color: #000;
           margin-left: 16px;
         }
       }
