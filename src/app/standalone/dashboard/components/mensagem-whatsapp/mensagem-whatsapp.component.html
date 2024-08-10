@@ -4,7 +4,7 @@
     <p>Você sera redirecionado para o WhatsApp.</p>
   </div>
 
-  <div app-modal-body>
+  <div app-modal-body app-input-color>
     <form [formGroup]="valoresForm" (ngSubmit)="enviarMensagem()" form-custom>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Pix</mat-label>

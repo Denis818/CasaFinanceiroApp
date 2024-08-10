@@ -3,7 +3,7 @@
     <h2>Adicionar Membro</h2>
   </div>
 
-  <div app-modal-body>
+  <div app-modal-body app-input-color>
     <form [formGroup]="membroForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nome</mat-label>

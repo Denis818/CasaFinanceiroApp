@@ -3,12 +3,15 @@
     <h2>Adicionar Nova Fatura</h2>
   </div>
 
-  <div app-modal-body>
+  <div app-modal-body app-input-color>
     <form [formGroup]="grupoFaturaForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Mês da Fatura</mat-label>
-        <span matPrefix>Fatura de</span>
-        <mat-select  panelClass="grupo-fatura-select-panel create-fatura" formControlName="nome">
+        <span matPrefix class="text-color">Fatura de</span>
+        <mat-select
+          panelClass="grupo-fatura-select-panel create-fatura"
+          formControlName="nome"
+        >
           <mat-option *ngFor="let mes of meses" [value]="mes.viewValue">
             {{ mes.viewValue }}
           </mat-option>

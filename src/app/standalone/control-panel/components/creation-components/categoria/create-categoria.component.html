@@ -3,7 +3,7 @@
     <h2>Adicionar Categoria</h2>
   </div>
 
-  <div app-modal-body>
+  <div app-modal-body app-input-color>
     <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descricao</mat-label>
