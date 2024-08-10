@@ -15,30 +15,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-typography,
-.mat-mdc-select-panel {
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    border-radius: 10px;
-    background-color: #f1f1f1;
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #f1f1f1;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #683ab7d3;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #5c2ca3;
-  }
-}
-
 //cor do input ao ser selecionado
 .mat-mdc-form-field-focus-overlay {
   background-color: rgb(0 0 0 / 0%);

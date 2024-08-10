@@ -151,27 +151,6 @@
       flex-grow: 1;
       overflow-y: auto;
       max-height: 320px;
-
-      &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        border-radius: 10px;
-        background-color: #f1f1f1;
-      }
-
-      &::-webkit-scrollbar-track {
-        border-radius: 10px;
-        background-color: #f1f1f1;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: #683ab7d3;
-        border-radius: 10px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background-color: #5c2ca3;
-      }
     }
   }
 }
@@ -222,27 +201,6 @@
     border: 1px solid #ccc;
     border-radius: 0px 0px 8px 8px;
     padding: 12px;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #683ab7d3;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #5c2ca3;
-    }
   }
 }
 
@@ -291,27 +249,6 @@
       &:hover {
         transform: translateY(-3px);
       }
-    }
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background-color: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #683ab7d3;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #5c2ca3;
     }
   }
 }
@@ -444,4 +381,31 @@
     color: #673ab7;
   }
   /* end */
+}
+
+[app-card-body],
+[app-multi-card-body],
+table,
+.mat-typography,
+.mat-mdc-select-panel {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #683ab7d3;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #5c2ca3;
+  }
 }
