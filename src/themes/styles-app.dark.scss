@@ -302,22 +302,6 @@ body {
     --mat-table-row-item-outline-color: rgb(109 109 109 / 53%);
     /* end */
 
-    /* scroll bar */
-    [app-card-body],
-    [app-multi-card-body],
-    table,
-    .mat-typography,
-    .mat-mdc-select-panel {
-      &::-webkit-scrollbar-thumb {
-        background-color: #4c4c4cd3 !important;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background-color: #353535d3 !important;
-      }
-    }
-    /* end */
-
     /* pagination */
     --mdc-outlined-text-field-outline-color: #676767a1;
     --mdc-outlined-text-field-hover-outline-color: #595959;
@@ -341,6 +325,35 @@ body {
     --mdc-filled-text-field-container-color: #4d4d4d;
     .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
       color: #141414;
+    }
+    /* end */
+
+    /* scroll bar */
+    [app-card-body],
+    [app-multi-card-body],
+    table,
+    .mat-typography,
+    .mat-mdc-select-panel {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #4c4c4cd3 !important;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #353535d3 !important;
+      }
     }
     /* end */
   }

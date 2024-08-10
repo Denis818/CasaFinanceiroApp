@@ -37,10 +37,8 @@ body {
                 background-color: #007bff !important;
               }
 
-
-
               .expense-value {
-                color: #007BFF !important;
+                color: #007bff !important;
               }
             }
 
@@ -164,23 +162,6 @@ body {
       --mdc-outlined-text-field-caret-color: #007bff;
     }
 
-    /* scroll bar */
-    [app-card-body],
-    [app-multi-card-body],
-    table,
-    .mat-typography,
-    .mat-mdc-select-panel {
-      &::-webkit-scrollbar-thumb {
-        background-color: #238dff !important;
-        border-radius: 10px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background-color: #007bff !important;
-      }
-    }
-    /* end */
-
     /* pagination */
     --mdc-outlined-text-field-outline-color: #238dff;
     --mdc-outlined-text-field-hover-outline-color: #007bff;
@@ -193,6 +174,35 @@ body {
     --mat-select-focused-arrow-color: #007bff;
     .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
       color: #007bff;
+    }
+    /* end */
+
+    /* scroll bar */
+    [app-card-body],
+    [app-multi-card-body],
+    table,
+    .mat-typography,
+    .mat-mdc-select-panel {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #238dff !important;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #007bff !important;
+      }
     }
     /* end */
   }

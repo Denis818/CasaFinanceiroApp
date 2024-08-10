@@ -385,8 +385,8 @@
 
 [app-card-body],
 [app-multi-card-body],
-table,
 .mat-typography,
+table,
 .mat-mdc-select-panel {
   &::-webkit-scrollbar {
     width: 8px;
@@ -401,11 +401,11 @@ table,
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #683ab7d3;
+    background-color: #c0c0c0d3;
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: #5c2ca3;
+    background-color: #c0c0c0d3;
   }
 }
