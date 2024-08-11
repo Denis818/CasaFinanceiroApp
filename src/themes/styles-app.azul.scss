@@ -185,6 +185,12 @@ body {
       border: solid 1px #1398e5;
     }
 
+    [modal-descricao-cores-valores] {
+      .color-box.default {
+        background-color: #2c9ad9 !important;
+      }
+    }
+
     [app-input-color] {
       --mdc-outlined-text-field-label-text-color: #1398e5;
       --mdc-outlined-text-field-focus-label-text-color: #1398e5;

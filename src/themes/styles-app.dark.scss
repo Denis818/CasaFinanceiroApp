@@ -238,6 +238,12 @@ body {
       }
     }
 
+    [modal-descricao-cores-valores] {
+      .color-box.default {
+        background-color: #ddd !important;
+      }
+    }
+
     [app-button] {
       background: linear-gradient(135deg, #375a7f, #88b2df9e);
       color: #ffffff;
