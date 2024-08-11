@@ -55,18 +55,35 @@
         mat-radio-custom
         [(ngModel)]="selectedTheme"
         (change)="onThemeChange($event)"
-        class="theme-radio-group"
       >
         <mat-radio-button class="roxo" value="light-theme">
-          Branco e Roxo
+          <div descricao-tema>
+            <span>Branco e Roxo</span>
+            <span class="theme-icon">
+              <img src="../../../../../assets/icons/tema-roxo.png" />
+            </span>
+          </div>
         </mat-radio-button>
 
         <mat-radio-button class="azul" value="azul-theme">
-          Branco e Azul
+          <div descricao-tema>
+            <span> Branco e Azul</span>
+            <span>
+              <img
+                src="../../../../../assets/icons/tema-azul.png"
+                alt="Branco e Azul"
+              />
+            </span>
+          </div>
         </mat-radio-button>
 
         <mat-radio-button class="black" value="dark-theme">
-          Tema Escuro
+          <div descricao-tema>
+            <span>Tema Escuro</span>
+            <span class="theme-icon">
+              <img src="../../../../../assets/icons/tema-escuro.png" />
+            </span>
+          </div>
         </mat-radio-button>
       </mat-radio-group>
     </mat-menu>
