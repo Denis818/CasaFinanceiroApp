@@ -81,6 +81,14 @@ body {
       }
     }
 
+    [app-table] {
+      table {
+        .mat-icon {
+          color: #1398e5 !important;
+        }
+      }
+    }
+
     [painel-controle] {
       [options-header] {
         [app-button-action] {
@@ -169,14 +177,6 @@ body {
     [app-card] {
       [app-card-header] {
         background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
-      }
-    }
-
-    [app-table] {
-      table {
-        .mat-icon {
-          color: #1398e5 !important;
-        }
       }
     }
 

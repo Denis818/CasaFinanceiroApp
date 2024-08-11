@@ -27,20 +27,6 @@ body {
         border-color: #9f9f9f !important;
       }
     }
-
-    [painel-controle] {
-      [options-header] {
-        background-color: #494949 !important;
-        border: 1px solid #3d3d3d !important;
-
-        [list-itens] {
-          .mat-mdc-unelevated-button.mat-primary {
-            --mdc-filled-button-container-color: #303030;
-          }
-        }
-      }
-    }
-
     [dashboard] {
       [app-card-container] {
         [app-multi-card] {
@@ -87,21 +73,65 @@ body {
       }
     }
 
-    [auditoria-compras] {
-      [app-multi-card-header] {
-        .mat-icon {
-          color: #b5b5b5 !important;
+    [app-card-container] {
+      [app-multi-card] {
+        border: 1px solid #333333;
+
+        [app-multi-card-header] {
+          background-color: #2e2e2e;
+        }
+
+        [app-multi-card-body] {
+          .expense-item {
+            background-color: #222222 !important;
+            border: 1px solid #3d3d3d !important;
+
+            .expense-title {
+              color: #e3e3e3 !important;
+            }
+
+            .expense-value {
+              color: #e3e3e3 !important;
+            }
+          }
         }
       }
+    }
 
-      [app-card-body] {
-        [table-all-groups] {
-          .mat-mdc-row {
-            color: #e3e3e3 !important;
-          }
+    [app-table] {
+      table {
+        th,
+        td {
+          border-bottom: 1px solid #3d3d3d !important;
+          color: #e3e3e3 !important;
+        }
 
-          .mat-mdc-header-row {
-            color: rgb(227, 227, 227) !important;
+        th {
+          background-color: #222222 !important;
+        }
+
+        tr {
+          background-color: #2d2d2db3 !important;
+        }
+
+        & tr:nth-child(even) {
+          background-color: #222222 !important;
+        }
+
+        .mat-icon {
+          color: #909090 !important;
+        }
+      }
+    }
+
+    [painel-controle] {
+      [options-header] {
+        background-color: #494949 !important;
+        border: 1px solid #3d3d3d !important;
+
+        [list-itens] {
+          .mat-mdc-unelevated-button.mat-primary {
+            --mdc-filled-button-container-color: #303030;
           }
         }
       }
@@ -168,52 +198,12 @@ body {
       }
     }
 
-    [app-card-container] {
-      [app-multi-card] {
-        border: 1px solid #333333;
-
-        [app-multi-card-header] {
-          background-color: #2e2e2e;
-          /*    border-bottom: solid 1px #737373; */
-        }
-
-        [app-multi-card-body] {
-          .expense-item {
-            background-color: #222222 !important;
-            border: 1px solid #3d3d3d !important;
-
-            .expense-title {
-              color: #e3e3e3 !important;
-            }
-
-            .expense-value {
-              color: #e3e3e3 !important;
-            }
-          }
-        }
-      }
-    }
-
     [app-card] {
       border-radius: 11px;
 
       [app-card-header] {
         background-color: #2e2e2e;
         border: 1px solid #3d3d3d !important;
-
-        [app-button-action] {
-          color: #ddd !important;
-          background-color: #303030 !important;
-
-          & [icon-bg] {
-            background-color: #303030 !important;
-            border: 1px solid #ddd !important;
-
-            & mat-icon {
-              color: #ddd !important;
-            }
-          }
-        }
       }
 
       [app-card-body] {
@@ -230,38 +220,26 @@ body {
       }
     }
 
-    [app-table] {
-      table {
-        th,
-        td {
-          border-bottom: 1px solid #3d3d3d !important;
-          color: #e3e3e3 !important;
-        }
-
-        th {
-          background-color: #222222 !important;
-        }
-
-        tr {
-          background-color: #2d2d2db3 !important;
-        }
-
-        & tr:nth-child(even) {
-          background-color: #222222 !important;
-        }
-
-        .mat-icon {
-          color: #909090 !important;
-        }
-      }
-    }
-
     [app-button-action] {
       background-color: rgb(48 48 48);
       border: solid 2px rgb(48 48 48);
     }
 
     [despesa-list-by-group] {
+      [app-button-action] {
+        color: #ddd !important;
+        background-color: #303030 !important;
+
+        & [icon-bg] {
+          background-color: #303030 !important;
+          border: 1px solid #ddd !important;
+
+          & mat-icon {
+            color: #ddd !important;
+          }
+        }
+      }
+
       [div-footer] {
         .total-itens {
           span {
@@ -278,6 +256,26 @@ body {
       color: #ffffff;
       border: solid 1px #333333;
       font-size: 13px;
+    }
+
+    [auditoria-compras] {
+      [app-multi-card-header] {
+        .mat-icon {
+          color: #b5b5b5 !important;
+        }
+      }
+
+      [app-card-body] {
+        [table-all-groups] {
+          .mat-mdc-row {
+            color: #e3e3e3 !important;
+          }
+
+          .mat-mdc-header-row {
+            color: rgb(227, 227, 227) !important;
+          }
+        }
+      }
     }
 
     [app-input-color] {
