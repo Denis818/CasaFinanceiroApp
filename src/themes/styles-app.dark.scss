@@ -1,46 +1,48 @@
 body {
   &.dark-theme {
-    background-color: #222;
+    background-color: #222222;
     color: #ddd;
 
     [navbar] {
-      background-color: #2e2e2e !important;
-      border-bottom: solid 3px #222 !important;
+      background-color: #375a7f !important;
+      border-bottom: solid 3px #222222 !important;
 
       [itens-nav] {
         [selected-group] {
           --mdc-outlined-text-field-outline-color: #373737 !important;
           --mdc-outlined-text-field-hover-outline-color: #373737 !important;
           --mdc-outlined-text-field-focus-outline-color: #717171 !important;
+          --mat-select-enabled-trigger-text-color: #1e1e1e;
 
           .text-color {
-            color: #ddd !important;
+            color: #1e1e1e !important;
           }
         }
       }
     }
 
     [sidenav] {
-      background-color: #2e2e2e !important;
+      background-color: #375a7f !important;
 
       [line] {
-        border-color: #9f9f9f !important;
+        border-color: #375a7f5e !important;
       }
     }
+
     [dashboard] {
       [app-card-container] {
         [app-multi-card] {
           [app-multi-card-header] {
             [download-button] {
-              background-color: #5f5f5f !important;
-              color: #ddd !important;
+              background-color: #fff !important;
+              color: #375a7f !important;
             }
           }
 
           [app-multi-card-body] {
             .expense-item {
               [share-whatsapp] {
-                background-color: #5f5f5f !important;
+                background-color: #375a7f !important;
                 color: #ddd !important;
               }
             }
@@ -62,10 +64,10 @@ body {
               }
 
               .fatura-fechada {
-                --mdc-radio-selected-icon-color: #4d4d4d !important;
-                --mdc-radio-selected-hover-icon-color: #4d4d4d !important;
-                --mdc-radio-selected-pressed-icon-color: #4d4d4d !important;
-                --mat-radio-checked-ripple-color: #4d4d4d !important;
+                --mdc-radio-selected-icon-color: #375a7f !important;
+                --mdc-radio-selected-hover-icon-color: #375a7f !important;
+                --mdc-radio-selected-pressed-icon-color: #375a7f !important;
+                --mat-radio-checked-ripple-color: #375a7f !important;
               }
             }
           }
@@ -78,7 +80,7 @@ body {
         border: 1px solid #333333;
 
         [app-multi-card-header] {
-          background-color: #2e2e2e;
+          background-color: #375a7f;
         }
 
         [app-multi-card-body] {
@@ -111,7 +113,7 @@ body {
         }
 
         tr {
-          background-color: #2d2d2db3 !important;
+          background-color: rgb(45 45 45 / 53%) !important;
         }
 
         & tr:nth-child(even) {
@@ -119,38 +121,39 @@ body {
         }
 
         .mat-icon {
-          color: #909090 !important;
+          color: #375a7f !important;
         }
       }
     }
 
     [painel-controle] {
       [options-header] {
-        background-color: #494949 !important;
-        border: 1px solid #3d3d3d !important;
+        background-color: #375a7f !important;
+        border: 1px solid #375a7f !important;
 
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
-            --mdc-filled-button-container-color: #303030;
+            --mdc-filled-button-container-color: #ffffff;
+            --mdc-filled-button-label-text-color: #375a7f;
           }
         }
       }
     }
 
     [app-modal] {
-      background-color: #222 !important;
+      background-color: #222222 !important;
 
       [app-modal-header] {
-        background-color: #494949;
+        background-color: #375a7f;
       }
 
       [app-modal-body] {
-        background-color: #222;
+        background-color: #222222;
 
         [form-custom] {
           [app-card] {
             [app-card-header] {
-              background-color: #222 !important;
+              background-color: #222222 !important;
               color: #ddd !important;
 
               h3 {
@@ -163,22 +166,16 @@ body {
 
             .fatura {
               &.fatura-neutra {
-                color: #ededed !important;
+                color: #375a7f !important;
               }
             }
-          }
-
-          .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-            background-color: #4d4d4d;
           }
 
           .form-actions {
             .mat-mdc-unelevated-button.mat-primary,
             .mat-mdc-raised-button.mat-primary {
-              --mdc-filled-button-container-color: #e9e9e9;
-              --mdc-protected-button-container-color: #e9e9e9;
-              --mdc-filled-button-label-text-color: #181818;
-              --mdc-protected-button-label-text-color: #181818;
+              --mdc-filled-button-container-color: #375a7f;
+              --mdc-protected-button-container-color: #375a7f;
             }
 
             .mat-mdc-unelevated-button[disabled][disabled] {
@@ -200,50 +197,41 @@ body {
 
     [app-card] {
       [app-card-header] {
-        background-color: #2e2e2e;
-        border: 1px solid #3d3d3d !important;
+        background-color: #375a7f;
       }
 
       [app-card-body] {
-        background-color: #222;
+        background-color: #222222;
         border: 1px solid #3d3d3d !important;
-
-        [filtro] {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          border-radius: 10px;
-          padding-bottom: 12px;
-        }
       }
     }
 
     [app-button-action] {
-      background-color: rgb(48 48 48);
-      border: solid 2px rgb(48 48 48);
+      background-color: #ffffff;
+      border: solid 2px #375a7f;
+      color: #375a7f;
+
+      & [icon-bg] {
+        border: 1px solid #375a7f !important;
+      }
     }
 
     [despesa-list-by-group] {
       [app-button-action] {
-        color: #ddd !important;
-        background-color: #303030 !important;
-        border: 1px solid #ddd !important;
+        color: #375a7f !important;
+        background-color: #ffffff !important;
+        border: 1px solid #375a7f !important;
 
         & [icon-bg] {
-          background-color: #303030 !important;
-          border: 1px solid #ddd !important;
-
-          & mat-icon {
-            color: #ddd !important;
-          }
+          border: 1px solid #375a7f !important;
         }
       }
 
       [div-footer] {
         .total-itens {
           span {
-            background-color: #494949 !important;
-            border: solid 2px rgb(69 69 69 / 70%) !important;
+            background-color: #375a7f !important;
+            border: solid 2px #7c91a745 !important;
             color: #ddd !important;
           }
         }
@@ -251,16 +239,41 @@ body {
     }
 
     [app-button] {
-      background: linear-gradient(135deg, #222222, #4d4d4d);
+      background: linear-gradient(135deg, #375a7f, #88b2df9e);
       color: #ffffff;
       border: solid 1px #333333;
       font-size: 13px;
     }
 
+    [app-input-color] {
+      --mdc-outlined-text-field-label-text-color: #ffffff;
+      --mdc-outlined-text-field-focus-label-text-color: #ffffff;
+      --mdc-outlined-text-field-outline-color: #b3b3b3b8;
+      --mdc-outlined-text-field-hover-outline-color: #838383;
+      --mdc-outlined-text-field-focus-outline-color: #838383;
+      --mdc-outlined-text-field-input-text-placeholder-color: #1e1e1e;
+      --mdc-outlined-text-field-input-text-color: #1e1e1e;
+      --mdc-outlined-text-field-caret-color: #375a7f;
+
+      .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+        background-color: #dddddda8;
+      }
+    }
+
     [auditoria-compras] {
       [app-multi-card-header] {
-        .mat-icon {
-          color: #b5b5b5 !important;
+        .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+          background-color: #d5d5d5d1 !important;
+
+          --mdc-outlined-text-field-input-text-placeholder-color: #375a7f;
+          --mdc-outlined-text-field-input-text-color: #375a7f;
+          --mdc-outlined-text-field-caret-color: #375a7f;
+        }
+
+        i {
+          .mat-icon {
+            color: #375a7f !important;
+          }
         }
       }
 
@@ -277,18 +290,9 @@ body {
       }
     }
 
-    [app-input-color] {
-      --mdc-outlined-text-field-label-text-color: #f8f8f8ad;
-      --mdc-outlined-text-field-focus-label-text-color: #f8f8f8ad;
-      --mdc-outlined-text-field-outline-color: #838383;
-      --mdc-outlined-text-field-hover-outline-color: #b4b4b4;
-      --mdc-outlined-text-field-focus-outline-color: #b4b4b4;
-      --mdc-outlined-text-field-input-text-placeholder-color: #ddd;
-      --mdc-outlined-text-field-input-text-color: #ddd;
-      --mdc-outlined-text-field-caret-color: #ddd;
-
-      .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-        background-color: #555555 !important;
+    [sugestao-fornecedor] {
+      [app-table] {
+        border: solid 1px #3d3d3d !important;
       }
     }
 
@@ -303,9 +307,9 @@ body {
     /* end */
 
     /* pagination */
-    --mdc-outlined-text-field-outline-color: #676767a1;
-    --mdc-outlined-text-field-hover-outline-color: #595959;
-    --mdc-outlined-text-field-focus-outline-color: #797979;
+    --mdc-outlined-text-field-outline-color: #375a7f;
+    --mdc-outlined-text-field-hover-outline-color: #375a7f;
+    --mdc-outlined-text-field-focus-outline-color: #375a7f;
 
     --mat-paginator-enabled-icon-color: rgb(247 247 247 / 57%);
     --mat-paginator-disabled-icon-color: rgb(255 255 255 / 18%);
@@ -315,16 +319,16 @@ body {
     /* end */
 
     /* ícone-seletor-options */
-    --mat-option-label-text-color: #e3e3e3;
-    --mat-select-panel-background-color: #5d5d5d;
-    --mat-option-selected-state-label-text-color: #141414;
+    --mat-option-label-text-color: #151515;
+    --mat-select-panel-background-color: #cbcbcb;
+    --mat-option-selected-state-label-text-color: #375a7f;
 
-    --mat-select-focused-arrow-color: #141414;
+    --mat-select-focused-arrow-color: #ddd;
     --mat-select-enabled-trigger-text-color: #ddd;
     --mat-select-enabled-arrow-color: #ddd;
-    --mdc-filled-text-field-container-color: #4d4d4d;
+
     .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-      color: #141414;
+      color: #375a7f;
     }
     /* end */
 
@@ -347,12 +351,12 @@ body {
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: #4c4c4cd3 !important;
+        background-color: #375a7f !important;
         border-radius: 10px;
       }
 
       &::-webkit-scrollbar-thumb:hover {
-        background-color: #353535d3 !important;
+        background-color: #375a7f !important;
       }
     }
     /* end */

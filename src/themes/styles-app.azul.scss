@@ -196,8 +196,10 @@ body {
 
     [auditoria-compras] {
       [app-multi-card-header] {
-        .mat-icon {
-          color: #1398e5;
+        i {
+          .mat-icon {
+            color: #1398e5;
+          }
         }
       }
     }
