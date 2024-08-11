@@ -1,123 +1,127 @@
-<div app-modal>
-  <div app-modal-header>
-    <h2 app-tooltip-helper>
-      Conferir Fatura do Cartão
-      <mat-icon
-        class="icon-help"
-        matTooltip="Aqui você poderá entrar com o valor da fatura do cartão e será conferido com o total de despesas da casa e assim saber se há divergências."
-        >help_outline</mat-icon
-      >
-    </h2>
-  </div>
+<div checar-fatura-modal>
+  <div app-modal>
+    <div app-modal-header>
+      <h2 app-tooltip-helper>
+        Conferir Fatura do Cartão
+        <mat-icon
+          class="icon-help"
+          matTooltip="Aqui você poderá entrar com o valor da fatura do cartão e será conferido com o total de despesas da casa e assim saber se há divergências."
+          >help_outline</mat-icon
+        >
+      </h2>
+    </div>
 
-  <div app-modal-body app-input-color>
-    <form form-custom [formGroup]="faturaForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Fatura do cartão</mat-label>
-        <input
-          placeholder="R$ 0.00"
-          matInput
-          currencyMask
-          formControlName="faturaCartao"
-          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-          [ngClass]="{
-            'is-invalid':
-              faturaValidator.faturaCartao.errors &&
-              faturaValidator.faturaCartao.touched
-          }"
-        />
-
-        <mat-error *ngIf="faturaValidator['faturaCartao'].hasError('required')">
-          Fatura do cartão é obrigatória.
-        </mat-error>
-      </mat-form-field>
-
-      <div app-card [ngClass]="{ 'ocultar-card': !isValueCalculed }">
-        <div app-card-header>
-          <h3>
-            Fatura do Cartão:
-            <b
-              class="fatura fatura-neutra"
-              [ngClass]="{ 'fatura-negativa': faturaCartao > 1100 }"
-            >
-              {{ faturaCartao | currency : "BRL" }}
-            </b>
-          </h3>
-
-          <h3>
-            Total de Despesas:
-            <b
-              class="fatura fatura-neutra"
-              [ngClass]="{ 'fatura-negativa': totalDespesa > 1100 }"
-            >
-              {{ totalDespesa | currency : "BRL" }}
-            </b>
-          </h3>
-        </div>
-
-        <div app-card-body>
-          <div
-            fatura-descricao
+    <div app-modal-body app-input-color>
+      <form form-custom [formGroup]="faturaForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Fatura do cartão</mat-label>
+          <input
+            placeholder="R$ 0.00"
+            matInput
+            currencyMask
+            formControlName="faturaCartao"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
             [ngClass]="{
-              'descricao-negativa': faturaCartao > totalDespesa,
-              'descricao-positiva': faturaCartao < totalDespesa
+              'is-invalid':
+                faturaValidator.faturaCartao.errors &&
+                faturaValidator.faturaCartao.touched
             }"
+          />
+
+          <mat-error
+            *ngIf="faturaValidator['faturaCartao'].hasError('required')"
           >
-            <p *ngIf="totalDespesa == faturaCartao">
-              Não há divergência nos valores.
+            Fatura do cartão é obrigatória.
+          </mat-error>
+        </mat-form-field>
 
-              <b class="fatura fatura-neutra">{{
-                valorSubtraido | currency : "BRL"
-              }}</b
-              >.
-            </p>
+        <div app-card [ngClass]="{ 'ocultar-card': !isValueCalculed }">
+          <div app-card-header>
+            <h3>
+              Fatura do Cartão:
+              <b
+                class="fatura fatura-neutra"
+                [ngClass]="{ 'fatura-negativa': faturaCartao > 1100 }"
+              >
+                {{ faturaCartao | currency : "BRL" }}
+              </b>
+            </h3>
 
-            <p *ngIf="faturaCartao < totalDespesa">
-              Total das despesa é <b>MAIOR</b> que a fatura do cartão. <br />
-              Com uma diferenca de
+            <h3>
+              Total de Despesas:
+              <b
+                class="fatura fatura-neutra"
+                [ngClass]="{ 'fatura-negativa': totalDespesa > 1100 }"
+              >
+                {{ totalDespesa | currency : "BRL" }}
+              </b>
+            </h3>
+          </div>
 
-              <b class="fatura fatura-positiva">{{
-                valorSubtraido | currency : "BRL"
-              }}</b
-              >.<br />
-              <br />
+          <div app-card-body>
+            <div
+              fatura-descricao
+              [ngClass]="{
+                'descricao-negativa': faturaCartao > totalDespesa,
+                'descricao-positiva': faturaCartao < totalDespesa
+              }"
+            >
+              <p *ngIf="totalDespesa == faturaCartao">
+                Não há divergência nos valores.
 
-              Possivelmente alguém fez compras <b>SEM</b> o cartão da casa e
-              <b>deixou a notinha no porta notas</b>
-            </p>
+                <b class="fatura fatura-neutra">{{
+                  valorSubtraido | currency : "BRL"
+                }}</b
+                >.
+              </p>
 
-            <p *ngIf="faturaCartao > totalDespesa">
-              Total das despesa é <b>MENOR</b> que a fatura do cartão. <br />
+              <p *ngIf="faturaCartao < totalDespesa">
+                Total das despesa é <b>MAIOR</b> que a fatura do cartão. <br />
+                Com uma diferenca de
 
-              Voce deve <b>ADICONAR</b> uma compra no valor de
-              <b class="fatura fatura-negativa">{{
-                valorSubtraido | currency : "BRL"
-              }}</b>
-              para que os valores fechem.
-            </p>
+                <b class="fatura fatura-positiva">{{
+                  valorSubtraido | currency : "BRL"
+                }}</b
+                >.<br />
+                <br />
+
+                Possivelmente alguém fez compras <b>SEM</b> o cartão da casa e
+                <b>deixou a notinha no porta notas</b>
+              </p>
+
+              <p *ngIf="faturaCartao > totalDespesa">
+                Total das despesa é <b>MENOR</b> que a fatura do cartão. <br />
+
+                Voce deve <b>ADICONAR</b> uma compra no valor de
+                <b class="fatura fatura-negativa">{{
+                  valorSubtraido | currency : "BRL"
+                }}</b>
+                para que os valores fechem.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-actions">
-        <button
-          type="button"
-          mat-raised-button
-          color="warn"
-          (click)="onClose()"
-        >
-          Cancelar
-        </button>
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-raised-button
+            color="warn"
+            (click)="onClose()"
+          >
+            Cancelar
+          </button>
 
-        <button
-          type="submit"
-          mat-raised-button
-          color="primary"
-          [disabled]="!faturaForm.valid"
-        >
-          Calcular
-        </button>
-      </div>
-    </form>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!faturaForm.valid"
+          >
+            Calcular
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

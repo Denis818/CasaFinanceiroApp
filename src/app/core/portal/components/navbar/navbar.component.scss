@@ -148,6 +148,12 @@
           display: flex;
           margin-left: 15px;
         }
+
+        [opcoes] {
+          .icon-temas {
+            margin-left: 12px;
+          }
+        }
       }
     }
   }
@@ -182,10 +188,10 @@
       }
 
       .azul {
-        --mdc-radio-selected-icon-color: #007BFF ;
-        --mdc-radio-selected-hover-icon-color: #007BFF;
-        --mdc-radio-selected-pressed-icon-color: #007BFF;
-        --mat-radio-checked-ripple-color: #007BFF;
+        --mdc-radio-selected-icon-color: #007bff;
+        --mdc-radio-selected-hover-icon-color: #007bff;
+        --mdc-radio-selected-pressed-icon-color: #007bff;
+        --mat-radio-checked-ripple-color: #007bff;
       }
 
       .roxo {

@@ -1,75 +1,77 @@
 :host {
-  [app-modal] {
-    [app-modal-body] {
-      [form-custom] {
-        input {
-          text-align: left !important;
-        }
+  [checar-fatura-modal] {
+    [app-modal] {
+      [app-modal-body] {
+        [form-custom] {
+          input {
+            text-align: left !important;
+          }
 
-        [app-card] {
-          border: solid 1px #ccc;
-          margin-bottom: 20px;
+          [app-card] {
+            border: solid 1px #ccc;
+            margin-bottom: 20px;
 
-          [app-card-header] {
-            background-color: #ffffff;
-            color: black;
-            display: inline;
+            [app-card-header] {
+              background-color: #ffffff;
+              color: black;
+              display: inline;
 
-            h3 {
-              color: #616161;
+              h3 {
+                color: #616161;
+              }
+            }
+
+            [app-card-body] {
+              border: none;
+              padding-top: 0px;
+
+              [fatura-descricao] {
+                background-color: #673ab71f;
+                border: solid 2px #673ab7;
+                border-radius: 6px;
+                padding: 10px;
+                text-align: start;
+
+                p {
+                  margin: 0px;
+                }
+                b {
+                  font-weight: 500;
+                }
+
+                &.descricao-negativa {
+                  background-color: rgb(255 0 0 / 6%);
+                  border: solid 2px red;
+                }
+
+                &.descricao-positiva {
+                  background-color: rgb(15 228 0 / 6%);
+                  border: solid 2px #0fe400;
+                }
+              }
+            }
+
+            .fatura {
+              font-weight: 500;
+              font-size: 15px;
+
+              &.fatura-positiva {
+                color: #0fe400;
+              }
+
+              &.fatura-negativa {
+                color: red;
+              }
+
+              &.fatura-neutra {
+                color: #673ab7;
+              }
             }
           }
 
-          [app-card-body] {
-            border: none;
-            padding-top: 0px;
-
-            [fatura-descricao] {
-              background-color: #673ab71f;
-              border: solid 2px #673ab7;
-              border-radius: 6px;
-              padding: 10px;
-              text-align: start;
-
-              p {
-                margin: 0px;
-              }
-              b {
-                font-weight: 500;
-              }
-
-              &.descricao-negativa {
-                background-color: rgb(255 0 0 / 6%);
-                border: solid 2px red;
-              }
-
-              &.descricao-positiva {
-                background-color: rgb(15 228 0 / 6%);
-                border: solid 2px #0fe400;
-              }
-            }
+          .ocultar-card {
+            display: none;
           }
-
-          .fatura {
-            font-weight: 500;
-            font-size: 15px;
-
-            &.fatura-positiva {
-              color: #0fe400;
-            }
-
-            &.fatura-negativa {
-              color: red;
-            }
-
-            &.fatura-neutra {
-              color: #673ab7;
-            }
-          }
-        }
-
-        .ocultar-card {
-          display: none;
         }
       }
     }

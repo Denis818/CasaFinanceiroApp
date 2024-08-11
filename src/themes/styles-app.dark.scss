@@ -143,9 +143,12 @@ body {
           }
 
           .form-actions {
-            .mat-mdc-unelevated-button.mat-primary {
+            .mat-mdc-unelevated-button.mat-primary,
+            .mat-mdc-raised-button.mat-primary {
               --mdc-filled-button-container-color: #e9e9e9;
+              --mdc-protected-button-container-color: #e9e9e9;
               --mdc-filled-button-label-text-color: #181818;
+              --mdc-protected-button-label-text-color: #181818;
             }
 
             .mat-mdc-unelevated-button[disabled][disabled] {
