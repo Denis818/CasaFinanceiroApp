@@ -57,7 +57,6 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   reloadComponent() {
     this.temaCorNotification.recarregarComponentComNovoTema.subscribe({
       next: (isReload) => {
-        console.log(isReload);
         if (isReload) {
           this.getGraficoTotaisComprasPorMes();
         }
