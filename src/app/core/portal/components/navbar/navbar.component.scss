@@ -2,7 +2,6 @@
   [navbar] {
     position: fixed;
     width: 100%;
-    background-color: #673ab7;
     color: white;
     display: flex;
     align-items: center;
@@ -200,9 +199,6 @@
 
       .mdc-form-field {
         color: #708090;
-      }
-      .mdc-radio__outer-circle {
-        border-color: #ac7eff;
       }
 
       .mdc-radio__background::before {

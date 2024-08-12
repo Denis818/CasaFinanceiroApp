@@ -171,7 +171,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   applyTheme(theme: string): void {
-    this.renderer.removeClass(this.document.body, 'light-theme');
+    this.renderer.removeClass(this.document.body, 'roxo-theme');
     this.renderer.removeClass(this.document.body, 'dark-theme');
     this.renderer.removeClass(this.document.body, 'azul-theme');
 

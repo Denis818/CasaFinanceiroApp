@@ -1,0 +1,259 @@
+body {
+  &.roxo-theme {
+    --roxo-theme-color: #673ab7;
+    --roxo-theme-background: #673ab7;
+
+    [navbar] {
+      background-color: var(--roxo-theme-background);
+    }
+
+    [sidenav] {
+      background-color: var(--roxo-theme-background);
+
+      [menu-links] {
+        & a {
+          color: rgb(255 255 255 / 71%) !important;
+
+          &.selected {
+            color: white !important;
+          }
+        }
+      }
+
+      [line] {
+        border-color: #ad7eff !important;
+      }
+    }
+
+    [dashboard] {
+      [app-card-container] {
+        [app-multi-card] {
+          [app-multi-card-header] {
+            [download-button] {
+              color: var(--roxo-theme-color) !important;
+            }
+          }
+
+          [app-multi-card-body] {
+            .expense-item {
+              [share-whatsapp] {
+                background-color: var(--roxo-theme-background);
+              }
+
+              .expense-value {
+                color: var(--roxo-theme-color) !important;
+              }
+            }
+
+            [status-fatura] {
+              .mdc-radio__outer-circle {
+                border-color: var(--roxo-theme-color) !important;
+              }
+
+              .mdc-radio__background::before {
+                background-color: #ffffff00;
+              }
+
+              .fatura-aberta {
+                --mdc-radio-selected-icon-color: #00d51e;
+                --mdc-radio-selected-hover-icon-color: #00d51e;
+                --mdc-radio-selected-pressed-icon-color: #00d51e;
+                --mat-radio-checked-ripple-color: #00d51e;
+              }
+
+              .fatura-fechada {
+                --mdc-radio-selected-icon-color: var(
+                  --roxo-theme-color
+                ) !important;
+                --mdc-radio-selected-hover-icon-color: var(
+                  --roxo-theme-color
+                ) !important;
+                --mdc-radio-selected-pressed-icon-color: var(
+                  --roxo-theme-color
+                ) !important;
+                --mat-radio-checked-ripple-color: var(
+                  --roxo-theme-color
+                ) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    [app-card-container] {
+      [app-multi-card] {
+        [app-multi-card-header] {
+          background-color: var(--roxo-theme-background);
+        }
+      }
+    }
+
+    [app-table] {
+      table {
+        .mat-icon {
+          color: var(--roxo-theme-color) !important;
+        }
+      }
+    }
+
+    [painel-controle] {
+      [options-header] {
+        [app-button-action] {
+          background-color: var(--roxo-theme-background);
+          border: solid 2px var(--roxo-theme-color);
+        }
+
+        [list-itens] {
+          .mat-mdc-unelevated-button.mat-primary {
+            background-color: var(--roxo-theme-background);
+          }
+        }
+      }
+
+      [app-card] {
+        [app-card-header] {
+          [app-button-action] {
+            color: var(--roxo-theme-color) !important;
+
+            & [icon-bg] {
+              border: 1px solid var(--roxo-theme-color) !important;
+            }
+          }
+        }
+      }
+    }
+
+    [app-modal] {
+      [app-modal-header] {
+        background-color: var(--roxo-theme-background);
+      }
+
+      [app-modal-body] {
+        [form-custom] {
+          [app-card] {
+            .fatura {
+              &.fatura-neutra {
+                color: var(--roxo-theme-color) !important;
+              }
+            }
+          }
+
+          .form-actions {
+            .mat-mdc-unelevated-button.mat-primary,
+            .mat-mdc-raised-button.mat-primary {
+              --mdc-filled-button-container-color: var(--roxo-theme-color);
+              --mdc-protected-button-container-color: var(--roxo-theme-color);
+            }
+          }
+        }
+      }
+    }
+
+    [despesa-list-by-group] {
+      [app-card] {
+        [app-card-header] {
+          [app-button-action] {
+            background-color: #f5f5f5 !important;
+            border: solid 2px var(--roxo-theme-color);
+          }
+        }
+      }
+
+      [div-footer] {
+        .total-itens {
+          span {
+            border: solid 2px var(--roxo-theme-color) !important;
+            color: var(--roxo-theme-color) !important;
+          }
+        }
+      }
+    }
+
+    [app-card] {
+      [app-card-header] {
+        background-color: var(--roxo-theme-background);
+      }
+    }
+
+    [app-button] {
+      background: var(--roxo-theme-background);
+      border: solid 1px var(--roxo-theme-color);
+    }
+
+    [modal-descricao-cores-valores] {
+      .color-box.default {
+        background-color: #6b18ffd4 !important;
+      }
+    }
+
+    [app-input-color] {
+      --mdc-outlined-text-field-label-text-color: var(--roxo-theme-color);
+      --mdc-outlined-text-field-focus-label-text-color: var(--roxo-theme-color);
+      --mdc-outlined-text-field-outline-color: #9762f2;
+      --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);
+      --mdc-outlined-text-field-focus-outline-color: var(--roxo-theme-color);
+      --mdc-outlined-text-field-caret-color: var(--roxo-theme-color);
+    }
+
+    [auditoria-compras] {
+      [app-multi-card-header] {
+        i {
+          .mat-icon {
+            color: var(--roxo-theme-color);
+          }
+        }
+      }
+    }
+
+    // pagination
+    --mdc-outlined-text-field-outline-color: var(--roxo-theme-color);
+    --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);
+    --mdc-outlined-text-field-focus-outline-color: var(--roxo-theme-color);
+
+    // ícone-seletor-options
+    --mat-select-enabled-arrow-color: #7f4dd6;
+    --mat-option-selected-state-label-text-color: var(--roxo-theme-color);
+    --mat-select-focused-arrow-color: var(--roxo-theme-color);
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: var(--roxo-theme-color);
+    }
+
+    /* ícone-seletor-options */
+    --mat-select-enabled-arrow-color: #7f4dd6;
+    --mat-option-selected-state-label-text-color: var(--roxo-theme-color);
+    --mat-select-focused-arrow-color: var(--roxo-theme-color);
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: var(--roxo-theme-color);
+    }
+    /* end */
+
+    // scroll bar
+    [app-card-body],
+    [app-multi-card-body],
+    table,
+    .mat-typography,
+    .mat-mdc-select-panel {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #7f4dd6;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: var(--roxo-theme-background) !important;
+      }
+    }
+  }
+}

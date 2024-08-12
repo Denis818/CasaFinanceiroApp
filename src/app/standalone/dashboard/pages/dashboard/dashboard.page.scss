@@ -8,7 +8,6 @@
         [app-multi-card-header] {
           [download-button] {
             background-color: #fff;
-            color: #673ab7;
             padding: 5px 5px;
             text-decoration: none;
             display: inline-block;
@@ -59,7 +58,6 @@
               right: 20%;
               font-size: 18px;
               font-weight: 550;
-              color: #673ab7;
 
               &.no-button-whats {
                 right: 0px;
@@ -70,7 +68,6 @@
               position: absolute;
               bottom: 0;
               right: 0;
-              background-color: #673ab7;
               padding: 10px 4px;
               border-radius: 0px 8px 8px 0px;
               color: white;
@@ -94,9 +91,6 @@
               .mdc-form-field {
                 color: #708090;
               }
-              .mdc-radio__outer-circle {
-                border-color: #ac7eff;
-              }
 
               .mdc-radio__background::before {
                 background-color: #ffffff00;
@@ -107,13 +101,6 @@
                 --mdc-radio-selected-hover-icon-color: #00d51e;
                 --mdc-radio-selected-pressed-icon-color: #00d51e;
                 --mat-radio-checked-ripple-color: #00d51e;
-              }
-
-              .fatura-fechada {
-                --mdc-radio-selected-icon-color: #673ab7;
-                --mdc-radio-selected-hover-icon-color: #673ab7;
-                --mdc-radio-selected-pressed-icon-color: #673ab7;
-                --mat-radio-checked-ripple-color: #673ab7;
               }
             }
           }
@@ -139,7 +126,6 @@
       position: fixed;
       bottom: 60px;
       right: 50px;
-      background-color: #673ab7;
       color: white;
       border: none;
       border-radius: 50%;

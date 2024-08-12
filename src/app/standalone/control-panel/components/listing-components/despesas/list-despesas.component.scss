@@ -31,10 +31,7 @@
                 display: none;
               }
 
-              .mdc-text-field--filled:not(.mdc-text-field--disabled)
-                .mdc-line-ripple::before {
-                border-bottom-color: #673ab7;
-              }
+             
             }
 
             .mat-icon {
@@ -131,9 +128,9 @@
               margin-right: 30px;
               padding: 10px;
               background-color: #f9f9f9;
-              border: solid 2px #673ab7b3;
+
               border-radius: 5px;
-              color: #673ab7;
+
               font-weight: 500;
 
               strong {
@@ -170,11 +167,11 @@
 
       [app-button-action] {
         background-color: #ffffff;
-        color: #673ab7;
+
 
         & [icon-bg] {
           background-color: #ffffff;
-          border: 2px solid #673ab7;
+
 
           & mat-icon {
             color: #0d0d0d;

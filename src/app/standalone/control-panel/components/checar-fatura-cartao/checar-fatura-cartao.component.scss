@@ -28,7 +28,7 @@
 
               [fatura-descricao] {
                 background-color: #673ab71f;
-                border: solid 2px #673ab7;
+
                 border-radius: 6px;
                 padding: 10px;
                 text-align: start;
@@ -62,10 +62,6 @@
 
               &.fatura-negativa {
                 color: red;
-              }
-
-              &.fatura-neutra {
-                color: #673ab7;
               }
             }
           }

@@ -1,17 +1,15 @@
 @import "reset";
 @import "styles-app.scss";
+@import "themes/styles-app.roxo.scss";
 @import "themes/styles-app.dark.scss";
 @import "themes/styles-app.azul.scss";
+
 :root {
   --mdc-outlined-text-field-outline-width: 2px !important;
   --mdc-outlined-text-field-container-shape: 10px !important;
 
   //seletor de temas da navbar
   --mat-menu-container-color: #efefef !important;
-}
-
-.mat-mdc-radio-button.mat-accent {
-  --mat-radio-checked-ripple-color: #673ab7;
 }
 
 body {
@@ -23,11 +21,6 @@ body {
   background-color: rgb(0 0 0 / 0%);
 }
 //end select fatura
-
-//option selecionada em um select
-.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-  color: #673ab7;
-}
 
 .mat-typography h1 {
   margin: 0px;
