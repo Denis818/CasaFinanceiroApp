@@ -267,8 +267,12 @@ body {
     }
 
     [app-input-color] {
-      --mdc-outlined-text-field-label-text-color: var(--dark-theme-color-branco);
-      --mdc-outlined-text-field-focus-label-text-color: var(--dark-theme-color-branco);
+      --mdc-outlined-text-field-label-text-color: var(
+        --dark-theme-color-branco
+      );
+      --mdc-outlined-text-field-focus-label-text-color: var(
+        --dark-theme-color-branco
+      );
       --mdc-outlined-text-field-outline-color: #b3b3b3b8;
       --mdc-outlined-text-field-hover-outline-color: #838383;
       --mdc-outlined-text-field-focus-outline-color: #838383;
@@ -320,12 +324,12 @@ body {
     }
 
     footer {
-      background-color: #222;
+      background-color: var(--dark-theme-background);
       border-top: 1px solid #414141;
     }
 
     /* table angular material */
-    --mat-table-background-color: #222;
+    --mat-table-background-color: var(--dark-theme-background);
     --mat-table-row-item-outline-color: rgb(109 109 109 / 53%);
     /* end */
 
@@ -337,7 +341,7 @@ body {
     --mat-paginator-enabled-icon-color: rgb(247 247 247 / 57%);
     --mat-paginator-disabled-icon-color: rgb(255 255 255 / 18%);
     .mat-mdc-paginator-container {
-      background-color: #222;
+      background-color: var(--dark-theme-background);
     }
     /* end */
 
