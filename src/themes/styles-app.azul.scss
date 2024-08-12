@@ -1,11 +1,14 @@
 body {
   &.azul-theme {
+    --azul-theme-color: #1398e5;
+    --azul-theme-background: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+
     [navbar] {
-      background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+      background-image: var(--azul-theme-background);
     }
 
     [sidenav] {
-      background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+      background-image: var(--azul-theme-background);
 
       [menu-links] {
         & a {
@@ -16,6 +19,7 @@ body {
           }
         }
       }
+      
       [line] {
         border-color: rgb(60 183 255 / 56%) !important;
       }
@@ -26,28 +30,24 @@ body {
         [app-multi-card] {
           [app-multi-card-header] {
             [download-button] {
-              color: #1398e5 !important;
+              color: var(--azul-theme-color) !important;
             }
           }
 
           [app-multi-card-body] {
             .expense-item {
               [share-whatsapp] {
-                background-image: linear-gradient(
-                  #50b3eb,
-                  #2fa4e7 60%,
-                  #2c9ad9
-                );
+                background-image: var(--azul-theme-background);
               }
 
               .expense-value {
-                color: #1398e5 !important;
+                color: var(--azul-theme-color) !important;
               }
             }
 
             [status-fatura] {
               .mdc-radio__outer-circle {
-                border-color: #1398e5 !important;
+                border-color: var(--azul-theme-color) !important;
               }
 
               .mdc-radio__background::before {
@@ -62,10 +62,18 @@ body {
               }
 
               .fatura-fechada {
-                --mdc-radio-selected-icon-color: #1398e5 !important;
-                --mdc-radio-selected-hover-icon-color: #1398e5 !important;
-                --mdc-radio-selected-pressed-icon-color: #1398e5 !important;
-                --mat-radio-checked-ripple-color: #1398e5 !important;
+                --mdc-radio-selected-icon-color: var(
+                  --azul-theme-color
+                ) !important;
+                --mdc-radio-selected-hover-icon-color: var(
+                  --azul-theme-color
+                ) !important;
+                --mdc-radio-selected-pressed-icon-color: var(
+                  --azul-theme-color
+                ) !important;
+                --mat-radio-checked-ripple-color: var(
+                  --azul-theme-color
+                ) !important;
               }
             }
           }
@@ -76,7 +84,7 @@ body {
     [app-card-container] {
       [app-multi-card] {
         [app-multi-card-header] {
-          background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+          background-image: var(--azul-theme-background);
         }
       }
     }
@@ -84,7 +92,7 @@ body {
     [app-table] {
       table {
         .mat-icon {
-          color: #1398e5 !important;
+          color: var(--azul-theme-color) !important;
         }
       }
     }
@@ -92,13 +100,13 @@ body {
     [painel-controle] {
       [options-header] {
         [app-button-action] {
-          background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
-          border: solid 2px #1398e5;
+          background-image: var(--azul-theme-background);
+          border: solid 2px var(--azul-theme-color);
         }
 
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
-            background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+            background-image: var(--azul-theme-background);
           }
         }
       }
@@ -106,10 +114,10 @@ body {
       [app-card] {
         [app-card-header] {
           [app-button-action] {
-            color: #1398e5 !important;
+            color: var(--azul-theme-color) !important;
 
             & [icon-bg] {
-              border: 1px solid #1398e5 !important;
+              border: 1px solid var(--azul-theme-color) !important;
             }
           }
         }
@@ -118,7 +126,7 @@ body {
 
     [app-modal] {
       [app-modal-header] {
-        background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+        background-image: var(--azul-theme-background);
       }
 
       [app-modal-body] {
@@ -126,7 +134,7 @@ body {
           [app-card] {
             .fatura {
               &.fatura-neutra {
-                color: #1398e5 !important;
+                color: var(--azul-theme-color) !important;
               }
             }
           }
@@ -134,22 +142,10 @@ body {
           .form-actions {
             .mat-mdc-unelevated-button.mat-primary,
             .mat-mdc-raised-button.mat-primary {
-              --mdc-filled-button-container-color: #1398e5;
-              --mdc-protected-button-container-color: #1398e5;
+              --mdc-filled-button-container-color: var(--azul-theme-color);
+              --mdc-protected-button-container-color: var(--azul-theme-color);
             }
           }
-        }
-      }
-    }
-
-    [checar-fatura-modal] {
-      [app-card] {
-        [app-card-header] {
-          background-image: linear-gradient(
-            #ffffff,
-            #ffffff,
-            #ffffff
-          ) !important;
         }
       }
     }
@@ -159,7 +155,7 @@ body {
         [app-card-header] {
           [app-button-action] {
             background-color: #f5f5f5 !important;
-            border: solid 2px #1398e5;
+            border: solid 2px var(--azul-theme-color);
           }
         }
       }
@@ -167,8 +163,8 @@ body {
       [div-footer] {
         .total-itens {
           span {
-            border: solid 2px #1398e5 !important;
-            color: #1398e5 !important;
+            border: solid 2px var(--azul-theme-color) !important;
+            color: var(--azul-theme-color) !important;
           }
         }
       }
@@ -176,13 +172,13 @@ body {
 
     [app-card] {
       [app-card-header] {
-        background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+        background-image: var(--azul-theme-background);
       }
     }
 
     [app-button] {
-      background: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
-      border: solid 1px #1398e5;
+      background: var(--azul-theme-background);
+      border: solid 1px var(--azul-theme-color);
     }
 
     [modal-descricao-cores-valores] {
@@ -192,19 +188,19 @@ body {
     }
 
     [app-input-color] {
-      --mdc-outlined-text-field-label-text-color: #1398e5;
-      --mdc-outlined-text-field-focus-label-text-color: #1398e5;
+      --mdc-outlined-text-field-label-text-color: var(--azul-theme-color);
+      --mdc-outlined-text-field-focus-label-text-color: var(--azul-theme-color);
       --mdc-outlined-text-field-outline-color: #69b1ff;
-      --mdc-outlined-text-field-hover-outline-color: #1398e5;
-      --mdc-outlined-text-field-focus-outline-color: #1398e5;
-      --mdc-outlined-text-field-caret-color: #1398e5;
+      --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
+      --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
+      --mdc-outlined-text-field-caret-color: var(--azul-theme-color);
     }
 
     [auditoria-compras] {
       [app-multi-card-header] {
         i {
           .mat-icon {
-            color: #1398e5;
+            color: var(--azul-theme-color);
           }
         }
       }
@@ -212,15 +208,15 @@ body {
 
     // pagination
     --mdc-outlined-text-field-outline-color: #238dff;
-    --mdc-outlined-text-field-hover-outline-color: #1398e5;
-    --mdc-outlined-text-field-focus-outline-color: #1398e5;
+    --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
+    --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
 
     // ícone-seletor-options
     --mat-select-enabled-arrow-color: #69b1ff;
-    --mat-option-selected-state-label-text-color: #1398e5;
-    --mat-select-focused-arrow-color: #1398e5;
+    --mat-option-selected-state-label-text-color: var(--azul-theme-color);
+    --mat-select-focused-arrow-color: var(--azul-theme-color);
     .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-      color: #1398e5;
+      color: var(--azul-theme-color);
     }
 
     // scroll bar
@@ -242,7 +238,7 @@ body {
       }
 
       &::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
+        background-image: var(--azul-theme-background);
         border-radius: 10px;
       }
 
