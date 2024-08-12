@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
+import { TemaCorNotification } from 'src/app/core/portal/services/tema-cor-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
@@ -39,7 +40,8 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly dashboardService: DashboardService,
-    private readonly grupoFaturaNotification: GrupoFaturaNotification
+    private readonly grupoFaturaNotification: GrupoFaturaNotification,
+    private temaCorNotification: TemaCorNotification
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,15 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   }
 
   reloadComponent() {
+    this.temaCorNotification.recarregarComponentComNovoTema.subscribe({
+      next: (isReload) => {
+        console.log(isReload);
+        if (isReload) {
+          this.getGraficoTotaisComprasPorMes();
+        }
+      },
+    });
+
     this.reloadComponentSubscriber =
       this.grupoFaturaNotification.recarregarComponentComNovoAno.subscribe({
         next: (isReload) => {

@@ -55,7 +55,6 @@ export class TableDespesasPorCategoriaComponent implements OnInit, OnDestroy {
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
-            console.log('categorfias aquiiii');
             this.getTotalPorCategoria();
           }
         },

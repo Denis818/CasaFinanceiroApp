@@ -8,6 +8,7 @@ import { UserService } from 'src/app/modules/auth/services/user/user.service';
 import { GrupoFaturaSeletorResponse } from '../../interfaces/grupo-fatura-seletor-response.interface';
 import { GrupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from '../../services/grupo-fatura.service';
+import { TemaCorNotification } from '../../services/tema-cor-notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -40,10 +41,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly storageService: StorageService,
     private readonly user: UserService,
-    public readonly titleService: Title
+    public readonly titleService: Title,
+    private temaCorNotification: TemaCorNotification
   ) {
     this.selectedTheme =
-      this.storageService.getItem('selectedTheme') || 'light-theme';
+      this.storageService.getItem('selectedTheme') || 'roxo-theme';
     this.applyTheme(this.selectedTheme);
 
     this.reloadGrupoFaturas();
@@ -149,14 +151,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   updateGrupoIdInStorage(): void {
     let grupoFaturaId = this.grupoFaturasForm.get('grupoFaturaId').value;
-    console.log('updateGrupoIdInStorage: ' + grupoFaturaId);
 
     if (grupoFaturaId) {
-      console.log('entrei');
       this.storageService.setItem('grupoFaturaId', grupoFaturaId.toString());
       this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
     } else {
-      console.log('nao entrei');
     }
   }
   //#endregion
@@ -168,6 +167,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onThemeChange(event: any): void {
     const theme = event.value;
     this.applyTheme(theme);
+    this.temaCorNotification.notificarComponentesTemaMudou();
   }
 
   applyTheme(theme: string): void {
