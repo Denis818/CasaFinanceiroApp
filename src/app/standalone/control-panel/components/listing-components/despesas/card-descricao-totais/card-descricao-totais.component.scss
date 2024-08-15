@@ -35,12 +35,12 @@
         border-radius: 8px;
         transition: box-shadow 0.4s ease-in-out;
 
-        input[type="number"] {
+        input[type="text"] {
           border: none;
           outline: none;
-          width: 60px;
+          width: 100px;
           background-color: transparent;
-          text-align: center;
+          text-align: center !important;
           font-size: 16px;
           color: #708090;
           border-bottom: 1px solid #d3d3d3;

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { EnumTipoMetrica } from 'src/app/standalone/control-panel/enums/enum-tipo-metrica';
 import { ParametroAlertaGastos } from 'src/app/standalone/control-panel/interfaces/parametro-alerta-gastos.interface';
@@ -22,6 +23,7 @@ import { MetricasNotification } from './metricas-notification.service';
     MatInputModule,
     FormsModule,
     MatButtonModule,
+    CurrencyMaskModule,
   ],
 })
 export class CardDescricaoTotaisComponent implements OnInit {

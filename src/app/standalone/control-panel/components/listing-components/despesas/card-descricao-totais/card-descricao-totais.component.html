@@ -8,27 +8,63 @@
         <table *ngIf="getMetrica(enumTipoMetricas[0]) as metricaCasa">
           <tr>
             <td><span class="color-box default"></span></td>
-            <td>Abaixo de R$</td>
+            <td>Abaixo de</td>
             <td>
-              <input type="number" [(ngModel)]="metricaCasa.limiteAmarelo" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaCasa.limiteAmarelo"
+              />
             </td>
           </tr>
           <tr>
             <td><span class="color-box red"></span></td>
-            <td>Acima de R$</td>
+            <td>Acima de</td>
             <td>
-              <input type="number" [(ngModel)]="metricaCasa.limiteVermelho" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaCasa.limiteVermelho"
+              />
             </td>
           </tr>
           <tr>
             <td><span class="color-box yellow"></span></td>
-            <td>Entre R$</td>
+            <td>Entre</td>
             <td>
-              <input type="number" [(ngModel)]="metricaCasa.limiteAmarelo" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaCasa.limiteAmarelo"
+              />
             </td>
-            <td>e R$</td>
+            <td>e</td>
             <td>
-              <input type="number" [(ngModel)]="metricaCasa.limiteVermelho" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaCasa.limiteVermelho"
+              />
             </td>
           </tr>
         </table>
@@ -43,31 +79,61 @@
         <table *ngIf="getMetrica(enumTipoMetricas[1]) as metricaMoradia">
           <tr>
             <td><span class="color-box default"></span></td>
-            <td>Abaixo de R$</td>
+            <td>Abaixo de</td>
             <td>
-              <input type="number" [(ngModel)]="metricaMoradia.limiteAmarelo" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaMoradia.limiteAmarelo"
+              />
             </td>
           </tr>
           <tr>
             <td><span class="color-box red"></span></td>
-            <td>Acima de R$</td>
+            <td>Acima de</td>
             <td>
               <input
-                type="number"
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
                 [(ngModel)]="metricaMoradia.limiteVermelho"
               />
             </td>
           </tr>
           <tr>
             <td><span class="color-box yellow"></span></td>
-            <td>Entre R$</td>
-            <td>
-              <input type="number" [(ngModel)]="metricaMoradia.limiteAmarelo" />
-            </td>
-            <td>e R$</td>
+            <td>Entre</td>
             <td>
               <input
-                type="number"
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaMoradia.limiteAmarelo"
+              />
+            </td>
+            <td>e</td>
+            <td>
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
                 [(ngModel)]="metricaMoradia.limiteVermelho"
               />
             </td>
@@ -84,27 +150,63 @@
         <table *ngIf="getMetrica(enumTipoMetricas[2]) as metricaGeral">
           <tr>
             <td><span class="color-box default"></span></td>
-            <td>Abaixo de R$</td>
+            <td>Abaixo de</td>
             <td>
-              <input type="number" [(ngModel)]="metricaGeral.limiteAmarelo" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaGeral.limiteAmarelo"
+              />
             </td>
           </tr>
           <tr>
             <td><span class="color-box red"></span></td>
-            <td>Acima de R$</td>
+            <td>Acima de</td>
             <td>
-              <input type="number" [(ngModel)]="metricaGeral.limiteVermelho" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaGeral.limiteVermelho"
+              />
             </td>
           </tr>
           <tr>
             <td><span class="color-box yellow"></span></td>
-            <td>Entre R$</td>
+            <td>Entre</td>
             <td>
-              <input type="number" [(ngModel)]="metricaGeral.limiteAmarelo" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaGeral.limiteAmarelo"
+              />
             </td>
-            <td>e R$</td>
+            <td>e</td>
             <td>
-              <input type="number" [(ngModel)]="metricaGeral.limiteVermelho" />
+              <input
+                type="text"
+                currencyMask
+                [options]="{
+                  prefix: 'R$ ',
+                  thousands: '.',
+                  decimal: ','
+                }"
+                [(ngModel)]="metricaGeral.limiteVermelho"
+              />
             </td>
           </tr>
         </table>
