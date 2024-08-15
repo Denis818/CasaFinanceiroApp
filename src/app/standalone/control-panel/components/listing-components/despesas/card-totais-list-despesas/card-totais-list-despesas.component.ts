@@ -26,7 +26,7 @@ registerLocaleData(localePt);
 @Component({
   selector: 'app-card-totais-list-despesas',
   templateUrl: './card-totais-list-despesas.component.html',
-  styleUrls: ['./card-totais-list-despesas.component.css'],
+  styleUrls: ['./card-totais-list-despesas.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

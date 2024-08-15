@@ -244,10 +244,12 @@ body {
 
       [div-footer] {
         .total-itens {
-          span {
-            background-color: var(--dark-theme-color) !important;
-            border: solid 2px #7c91a745 !important;
-            color: var(--dark-theme-text) !important;
+          .total-value {
+            span {
+              background-color: var(--dark-theme-color) !important;
+              border: solid 2px #7c91a745 !important;
+              color: var(--dark-theme-text) !important;
+            }
           }
         }
       }

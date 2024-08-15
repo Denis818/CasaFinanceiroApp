@@ -30,8 +30,6 @@
               .mat-mdc-form-field-bottom-align::before {
                 display: none;
               }
-
-             
             }
 
             .mat-icon {
@@ -117,28 +115,6 @@
           justify-content: space-between;
           width: 100%;
 
-          .total-itens {
-            display: flex;
-            align-items: center;
-            width: 50%;
-
-            & span {
-              text-align: center;
-              font-size: 15px;
-              margin-right: 30px;
-              padding: 10px;
-              background-color: #f9f9f9;
-
-              border-radius: 5px;
-
-              font-weight: 500;
-
-              strong {
-                font-weight: 550;
-              }
-            }
-          }
-
           .pagination {
             display: flex;
             align-items: center;
@@ -168,10 +144,8 @@
       [app-button-action] {
         background-color: #ffffff;
 
-
         & [icon-bg] {
           background-color: #ffffff;
-
 
           & mat-icon {
             color: #0d0d0d;
@@ -187,24 +161,6 @@
         [app-card-body] {
           [div-footer] {
             display: inline;
-
-            .total-itens {
-              margin-bottom: 5px;
-
-              button {
-                margin-top: 15px;
-              }
-
-              & span {
-                margin-top: 15px;
-              }
-
-              ::ng-deep {
-                .mat-mdc-raised-button.mat-mdc-button-base {
-                  padding: 26px 40px;
-                }
-              }
-            }
 
             .pagination {
               justify-content: end;
@@ -230,18 +186,6 @@
           [div-footer] {
             display: flex;
             flex-direction: column;
-
-            .total-itens {
-              width: 100% !important;
-
-              span {
-                margin-right: 5px !important;
-              }
-
-              button {
-                display: none;
-              }
-            }
 
             .pagination {
               display: flex;

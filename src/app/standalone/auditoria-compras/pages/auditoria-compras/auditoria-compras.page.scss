@@ -32,8 +32,6 @@
               .mat-mdc-form-field-bottom-align::before {
                 display: none;
               }
-
-            
             }
 
             .mat-icon {
@@ -63,6 +61,7 @@
             .mdc-data-table__cell,
             .mdc-data-table__header-cell {
               padding: 10px 30px 10px 30px;
+              background-color: #efefef;
             }
 
             .mat-mdc-row {

@@ -147,7 +147,7 @@
 }
 
 [app-card] {
-  background-color: #ffffff;
+  background-color: #efefef;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -191,6 +191,10 @@
     border: 1px solid #ccc;
     border-radius: 0px 0px 8px 8px;
     padding: 12px;
+  }
+
+  .mat-mdc-paginator-container {
+    background-color: #efefef;
   }
 }
 

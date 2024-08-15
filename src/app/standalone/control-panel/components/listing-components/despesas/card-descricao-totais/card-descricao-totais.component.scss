@@ -45,16 +45,24 @@
           color: #708090;
           border-bottom: 1px solid #d3d3d3;
         }
+
+        td {
+          vertical-align: middle;
+          padding-bottom: 6px;
+        }
       }
 
-      .mat-mdc-card-content {
-        margin-top: 10px;
+      .mat-mdc-card-header {
+        display: flex;
+        padding: 16px 16px 10px;
       }
+      /*  .mat-mdc-card-content {
+        margin-top: 10px;
+      } */
     }
   }
 
   .button-save {
-    margin-top: 5px;
     &.mat-mdc-unelevated-button.mat-mdc-button-base {
       width: 50% !important;
     }

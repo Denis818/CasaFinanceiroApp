@@ -99,29 +99,17 @@ body {
 
     [painel-controle] {
       [options-header] {
-        [app-button-action] {
-          background-image: var(--azul-theme-background);
-          border: solid 2px var(--azul-theme-color);
-        }
-
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
             background-image: var(--azul-theme-background);
           }
         }
       }
+    }
 
-      [app-card] {
-        [app-card-header] {
-          [app-button-action] {
-            color: var(--azul-theme-color) !important;
-
-            & [icon-bg] {
-              border: 1px solid var(--azul-theme-color) !important;
-            }
-          }
-        }
-      }
+    [app-button-action] {
+      background-image: var(--azul-theme-background);
+      border: solid 2px var(--azul-theme-color);
     }
 
     [app-modal] {
@@ -154,17 +142,25 @@ body {
       [app-card] {
         [app-card-header] {
           [app-button-action] {
+            background-image: none;
             background-color: #f5f5f5 !important;
+            color: var(--azul-theme-color) !important;
             border: solid 2px var(--azul-theme-color);
+
+            & [icon-bg] {
+              border: 1px solid var(--azul-theme-color) !important;
+            }
           }
         }
       }
 
       [div-footer] {
         .total-itens {
-          span {
-            border: solid 2px var(--azul-theme-color) !important;
-            color: var(--azul-theme-color) !important;
+          .total-value {
+            span {
+              border: solid 2px var(--azul-theme-color) !important;
+              color: var(--azul-theme-color) !important;
+            }
           }
         }
       }
