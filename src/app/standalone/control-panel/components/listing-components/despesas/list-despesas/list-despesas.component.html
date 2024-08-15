@@ -2,9 +2,7 @@
   <div>
     <div app-card>
       <div app-card-header>
-        <div app-card-title>
-          Despesas da {{ this.relatorioGastosDoGrupo.grupoFaturaNome }}
-        </div>
+        <div app-card-title>Despesas da {{ this.faturaAtualName }}</div>
 
         <button app-button-action (click)="openChecarFaturaCartaoModal()">
           <div icon-bg>
@@ -225,43 +223,7 @@
           </table>
 
           <div div-footer>
-            <div class="total-itens">
-              <span>
-                Total Moradia:
-                <strong
-                  [ngStyle]="
-                    getStyle(relatorioGastosDoGrupo.totalGastosMoradia, 2900)
-                  "
-                  >{{
-                    relatorioGastosDoGrupo.totalGastosMoradia | currency : "BRL"
-                  }}</strong
-                >
-              </span>
-              <span>
-                Total Casa:
-                <strong
-                  [ngStyle]="
-                    getStyle(relatorioGastosDoGrupo.totalGastosCasa, 3600)
-                  "
-                  >{{
-                    relatorioGastosDoGrupo.totalGastosCasa | currency : "BRL"
-                  }}</strong
-                >
-              </span>
-              <span>
-                Total Geral:
-                <strong
-                  [ngStyle]="getStyle(relatorioGastosDoGrupo.totalGeral, 5700)"
-                  >{{
-                    relatorioGastosDoGrupo.totalGeral | currency : "BRL"
-                  }}</strong
-                >
-              </span>
-
-              <button app-button (click)="openLegendModal()">
-                Entender Cores
-              </button>
-            </div>
+            <app-card-totais-list-despesas></app-card-totais-list-despesas>
 
             <div class="pagination">
               <mat-paginator

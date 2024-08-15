@@ -27,7 +27,6 @@ import { debounceTime } from 'rxjs/operators';
 import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
-import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 import { ListFiltroDespesa } from 'src/app/shared/utilities/FiltroDespesa/list-filtro-despesa';
@@ -36,13 +35,15 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
 
 import { MatButtonModule } from '@angular/material/button';
-import { TableEditManipulation } from '../../../helpers/table-edit-manipulation';
-import { Categoria } from '../../../interfaces/categoria.interface';
-import { RelatorioGastosDoGrupoResponse } from '../../../interfaces/relatorio-gastos-grupo-response.interface';
-import { CategoriaService } from '../../../services/categoria.service';
-import { DespesaService } from '../../../services/despesa.service';
-import { ChecarFaturaCartaoComponent } from '../../checar-fatura-cartao/checar-fatura-cartao.component';
-import { CardDescricaoTotaisComponent } from './card-descricao-totais/card-descricao-totais.component';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
+import { TableEditManipulation } from 'src/app/standalone/control-panel/helpers/table-edit-manipulation';
+import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
+import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
+import { DespesaService } from 'src/app/standalone/control-panel/services/despesa.service';
+import { ChecarFaturaCartaoComponent } from '../../../checar-fatura-cartao/checar-fatura-cartao.component';
+import { CardDescricaoTotaisComponent } from '../card-descricao-totais/card-descricao-totais.component';
+import { MetricasNotification } from '../card-descricao-totais/metricas-notification.service';
+import { CardTotaisListDespesasComponent } from '../card-totais-list-despesas/card-totais-list-despesas.component';
 
 registerLocaleData(localePt);
 
@@ -63,6 +64,7 @@ registerLocaleData(localePt);
     CurrencyMaskModule,
     MatTooltipModule,
     MatButtonModule,
+    CardTotaisListDespesasComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: CustomPaginator },
@@ -71,6 +73,10 @@ registerLocaleData(localePt);
 })
 export class ListDespesasComponent implements OnDestroy, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(CardTotaisListDespesasComponent)
+  cardTotaisListDespesas: CardTotaisListDespesasComponent;
+
+  faturaAtualName: string = '';
 
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
   private reloadPageSubscriber: Subscription;
@@ -93,13 +99,6 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     itensPorPagina: this.tamanhosDePagina[1],
   };
 
-  relatorioGastosDoGrupo: RelatorioGastosDoGrupoResponse = {
-    grupoFaturaNome: '',
-    totalGastosMoradia: 0,
-    totalGastosCasa: 0,
-    totalGeral: 0,
-  };
-
   constructor(
     private readonly despesaService: DespesaService,
     private readonly categoriaService: CategoriaService,
@@ -107,6 +106,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
+    private metricasNotification: MetricasNotification,
     protected readonly tableEditManipulation: TableEditManipulation,
     private readonly listFiltroDespesa: ListFiltroDespesa,
     private readonly storageService: StorageService
@@ -121,31 +121,36 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     if (this.reloadPageSubscriber) {
       this.reloadPageSubscriber.unsubscribe();
     }
-    this.tempoParaAplicarFiltroPorItem.unsubscribe();
+    if (this.tempoParaAplicarFiltroPorItem) {
+      this.tempoParaAplicarFiltroPorItem.unsubscribe();
+    }
   }
+
   reloadDespesas() {
     this.reloadPageSubscriber =
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
+            this.getNameFatura();
             this.getListDespesasPorGrupo();
           }
         },
       });
+
+    this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
+      next: (isReload) => {
+        if (isReload) {
+          this.cardTotaisListDespesas.getParametrosDeAlertasDeGastos();
+        }
+      },
+    });
   }
 
-  openLegendModal(): void {
-    this.dialog.open(CardDescricaoTotaisComponent);
-  }
-
-  getStyle(valor: number, limite: number): { [key: string]: string } {
-    if (valor > limite) {
-      return { color: 'red' };
-    } else if (valor >= limite * 0.9) {
-      return { color: '#e5bd00' };
-    } else {
-      return {};
-    }
+  //#region Abrir Modais
+  openEditMetricasModal(): void {
+    this.dialog.open(CardDescricaoTotaisComponent, {
+      height: '220px',
+    });
   }
 
   openChecarFaturaCartaoModal(): void {
@@ -153,6 +158,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
       width: '450px',
     });
   }
+  //#endregion
 
   //#region Filtro
   tempoParaFiltrar() {
@@ -195,8 +201,6 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
         this.despesasFiltradas = listPaginada.itens;
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
-
-        this.getRelatorioDeGastosDoGrupo();
       });
 
     this.isDespesaEditing = false;
@@ -218,12 +222,13 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     });
   }
 
-  getRelatorioDeGastosDoGrupo() {
-    this.despesaService
-      .getRelatorioDeGastosDoGrupo()
-      .subscribe((relatorioGastosDoGrupo) => {
-        this.relatorioGastosDoGrupo = relatorioGastosDoGrupo;
-      });
+  getNameFatura() {
+    let faturaId = parseInt(this.storageService.getItem('grupoFaturaId'));
+    this.despesaService.getNameFatura(faturaId).subscribe({
+      next: (faturaName) => {
+        this.faturaAtualName = faturaName;
+      },
+    });
   }
 
   //#endregion

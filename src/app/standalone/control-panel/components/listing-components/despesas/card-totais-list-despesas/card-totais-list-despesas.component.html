@@ -1,0 +1,34 @@
+<div class="total-itens">
+  <span>
+    Casa:
+    <strong
+      [ngStyle]="
+        getStyle(relatorioGastosDoGrupo.totalGastosCasa, enumTipoMetricas[0])
+      "
+    >
+      {{ relatorioGastosDoGrupo.totalGastosCasa | currency : "BRL" }}
+    </strong>
+  </span>
+  <span>
+    Moradia:
+    <strong
+      [ngStyle]="
+        getStyle(relatorioGastosDoGrupo.totalGastosMoradia, enumTipoMetricas[1])
+      "
+    >
+      {{ relatorioGastosDoGrupo.totalGastosMoradia | currency : "BRL" }}
+    </strong>
+  </span>
+  <span>
+    Total:
+    <strong
+      [ngStyle]="
+        getStyle(relatorioGastosDoGrupo.totalGeral, enumTipoMetricas[2])
+      "
+    >
+      {{ relatorioGastosDoGrupo.totalGeral | currency : "BRL" }}
+    </strong>
+  </span>
+
+  <button app-button (click)="openEditMetricasModal()">Editar Métricas</button>
+</div>

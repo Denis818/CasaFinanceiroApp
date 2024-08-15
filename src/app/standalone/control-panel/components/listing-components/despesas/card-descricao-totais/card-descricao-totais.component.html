@@ -1,52 +1,124 @@
-<div modal-descricao-cores-valores>
-  <mat-card class="legend-card">
-    <mat-card-header>
-      <mat-card-title>Total Moradia</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="legend-item">
-        <span class="color-box red"></span>(Acima de R$ 2900)
-      </div>
-      <div class="legend-item">
-        <span class="color-box yellow"></span>(Entre R$ 2610 e R$ 2900)
-      </div>
-      <div class="legend-item">
-        <span class="color-box default"></span>(Abaixo de R$ 2610)
-      </div>
-    </mat-card-content>
-  </mat-card>
+<div card-descricao-totais>
+  <div modal-descricao-cores-valores>
+    <mat-card class="legend-card">
+      <mat-card-header>
+        <mat-card-title>Total Casa</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table *ngIf="getMetrica(enumTipoMetricas[0]) as metricaCasa">
+          <tr>
+            <td><span class="color-box default"></span></td>
+            <td>Abaixo de R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaCasa.limiteAmarelo" />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box red"></span></td>
+            <td>Acima de R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaCasa.limiteVermelho" />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box yellow"></span></td>
+            <td>Entre R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaCasa.limiteAmarelo" />
+            </td>
+            <td>e R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaCasa.limiteVermelho" />
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card class="legend-card">
-    <mat-card-header>
-      <mat-card-title>Total Casa</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="legend-item">
-        <span class="color-box red"></span>(Acima de R$ 3600)
-      </div>
-      <div class="legend-item">
-        <span class="color-box yellow"></span>(Entre R$ 3240 e R$ 3600)
-      </div>
-      <div class="legend-item">
-        <span class="color-box default"></span>(Abaixo de R$ 3240)
-      </div>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="legend-card">
+      <mat-card-header>
+        <mat-card-title>Total Moradia</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table *ngIf="getMetrica(enumTipoMetricas[1]) as metricaMoradia">
+          <tr>
+            <td><span class="color-box default"></span></td>
+            <td>Abaixo de R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaMoradia.limiteAmarelo" />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box red"></span></td>
+            <td>Acima de R$</td>
+            <td>
+              <input
+                type="number"
+                [(ngModel)]="metricaMoradia.limiteVermelho"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box yellow"></span></td>
+            <td>Entre R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaMoradia.limiteAmarelo" />
+            </td>
+            <td>e R$</td>
+            <td>
+              <input
+                type="number"
+                [(ngModel)]="metricaMoradia.limiteVermelho"
+              />
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card class="legend-card">
-    <mat-card-header>
-      <mat-card-title>Total Geral</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="legend-item">
-        <span class="color-box red"></span>(Acima de R$ 5700)
-      </div>
-      <div class="legend-item">
-        <span class="color-box yellow"></span>(Entre R$ 5130 e R$ 5700)
-      </div>
-      <div class="legend-item">
-        <span class="color-box default"></span>(Abaixo de R$ 5130)
-      </div>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="legend-card">
+      <mat-card-header>
+        <mat-card-title>Total Geral</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table *ngIf="getMetrica(enumTipoMetricas[2]) as metricaGeral">
+          <tr>
+            <td><span class="color-box default"></span></td>
+            <td>Abaixo de R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaGeral.limiteAmarelo" />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box red"></span></td>
+            <td>Acima de R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaGeral.limiteVermelho" />
+            </td>
+          </tr>
+          <tr>
+            <td><span class="color-box yellow"></span></td>
+            <td>Entre R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaGeral.limiteAmarelo" />
+            </td>
+            <td>e R$</td>
+            <td>
+              <input type="number" [(ngModel)]="metricaGeral.limiteVermelho" />
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <button
+    class="button-save"
+    mat-flat-button
+    color="primary"
+    (click)="salvarMetricas()"
+    type="submit"
+  >
+    Salvar
+  </button>
 </div>

@@ -11,7 +11,7 @@ import { CreateDespesaComponent } from '../../components/creation-components/des
 import { CreategrupoFaturaComponent } from '../../components/creation-components/grupo-fatura/create-grupo-fatura.component';
 import { CreateMembroComponent } from '../../components/creation-components/membro/create-membro.component';
 import { ListCategoriaComponent } from '../../components/listing-components/categoria/list-categoria.component';
-import { ListDespesasComponent } from '../../components/listing-components/despesas/list-despesas.component';
+import { ListDespesasComponent } from '../../components/listing-components/despesas/list-despesas/list-despesas.component';
 import { ListgrupoFaturaComponent } from '../../components/listing-components/grupo-fatura/list-grupo-fatura.component';
 import { ListMembroComponent } from '../../components/listing-components/membro/list-membro.component';
 

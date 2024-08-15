@@ -7,10 +7,13 @@ import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
 import { Despesa } from '../interfaces/despesa.interface';
+import { ParametroAlertaGastos } from '../interfaces/parametro-alerta-gastos.interface';
 import { RelatorioGastosDoGrupoResponse } from '../interfaces/relatorio-gastos-grupo-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class DespesaService extends CrudService<Despesa> {
+  private metricas: ParametroAlertaGastos[] = [];
+
   constructor() {
     super(`${environment.base_url_financy}/despesa`);
   }
@@ -83,6 +86,23 @@ export class DespesaService extends CrudService<Despesa> {
       null,
       params
     ).pipe(map((response: any) => response.dados));
+  }
+
+  public getParametrosDeAlertasDeGastos(): Observable<ParametroAlertaGastos[]> {
+    return this.sendHttpRequest<ApiResponse<ParametroAlertaGastos[]>>(
+      'GET',
+      this.url + '/parametro-alerta-gastos'
+    ).pipe(map((response) => response.dados));
+  }
+
+  public updateParametroAlertaGastos(
+    metricas: ParametroAlertaGastos[]
+  ): Observable<boolean> {
+    return this.sendHttpRequest<ApiResponse<boolean>>(
+      'PUT',
+      `${this.url}/parametro-alerta-gastos`,
+      metricas
+    ).pipe(map((response) => response.dados));
   }
 
   public getNameFatura(id: number): Observable<string> {
