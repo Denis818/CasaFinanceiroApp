@@ -97,6 +97,12 @@ body {
       }
     }
 
+    [pagination] {
+      --mdc-outlined-text-field-outline-color: #238dff;
+      --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
+      --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
+    }
+
     [painel-controle] {
       [options-header] {
         [list-itens] {
@@ -209,11 +215,6 @@ body {
         }
       }
     }
-
-    // pagination
-    --mdc-outlined-text-field-outline-color: #238dff;
-    --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
-    --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
 
     // ícone-seletor-options
     --mat-select-enabled-arrow-color: #69b1ff;

@@ -57,11 +57,12 @@
         }
 
         [table-all-groups] {
+          --mat-table-background-color: #efefef;
+
           ::ng-deep {
             .mdc-data-table__cell,
             .mdc-data-table__header-cell {
               padding: 10px 30px 10px 30px;
-              background-color: #efefef;
             }
 
             .mat-mdc-row {
@@ -76,7 +77,7 @@
             }
           }
 
-          .pagination {
+          [pagination] {
             display: flex;
             align-items: center;
             justify-content: end;

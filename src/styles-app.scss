@@ -193,8 +193,10 @@
     padding: 12px;
   }
 
-  .mat-mdc-paginator-container {
-    background-color: #efefef;
+  [pagination] {
+    .mat-mdc-paginator-container {
+      background-color: #efefef;
+    }
   }
 }
 

@@ -140,6 +140,17 @@ body {
         }
       }
     }
+    [pagination] {
+      --mdc-outlined-text-field-outline-color: var(--dark-theme-color);
+      --mdc-outlined-text-field-hover-outline-color: var(--dark-theme-color);
+      --mdc-outlined-text-field-focus-outline-color: var(--dark-theme-color);
+
+      --mat-paginator-enabled-icon-color: rgb(247 247 247 / 57%);
+      --mat-paginator-disabled-icon-color: rgb(255 255 255 / 18%);
+      .mat-mdc-paginator-container {
+        background-color: var(--dark-theme-background);
+      }
+    }
 
     [painel-controle] {
       [options-header] {
@@ -328,6 +339,9 @@ body {
 
       [app-card-body] {
         [table-all-groups] {
+          --mat-table-background-color: var(--dark-theme-background) !important;
+          --mat-table-row-item-outline-color: rgb(109 109 109 / 53%);
+
           .mat-mdc-row {
             color: var(--dark-theme-text) !important;
           }
@@ -349,23 +363,6 @@ body {
       background-color: var(--dark-theme-background);
       border-top: 1px solid #414141;
     }
-
-    /* table angular material */
-    --mat-table-background-color: var(--dark-theme-background);
-    --mat-table-row-item-outline-color: rgb(109 109 109 / 53%);
-    /* end */
-
-    /* pagination */
-    --mdc-outlined-text-field-outline-color: var(--dark-theme-color);
-    --mdc-outlined-text-field-hover-outline-color: var(--dark-theme-color);
-    --mdc-outlined-text-field-focus-outline-color: var(--dark-theme-color);
-
-    --mat-paginator-enabled-icon-color: rgb(247 247 247 / 57%);
-    --mat-paginator-disabled-icon-color: rgb(255 255 255 / 18%);
-    .mat-mdc-paginator-container {
-      background-color: var(--dark-theme-background);
-    }
-    /* end */
 
     /* ícone-seletor-options */
     --mat-option-label-text-color: #151515;
