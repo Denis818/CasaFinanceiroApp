@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 
     [modal-descricao-cores-valores] {
       display: flex;
@@ -11,6 +12,22 @@
       color: #4d4f51;
       font-size: 16px;
 
+      .color-box {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 3px;
+        display: block;
+
+        &.red {
+          background-color: red;
+        }
+
+        &.yellow {
+          background-color: #e5bd00;
+        }
+      }
+
       .legend-card {
         max-width: 400px;
         margin: auto;
@@ -18,54 +35,21 @@
         border-radius: 8px;
         transition: box-shadow 0.4s ease-in-out;
 
-        .legend-item {
-          display: flex;
-          align-items: center;
-          margin-bottom: 10px;
-
-          .valores {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-          }
-
-          .label {
-            margin-right: 5px;
-          }
+        input[type="number"] {
+          border: none;
+          outline: none;
+          width: 60px;
+          background-color: transparent;
+          text-align: center;
+          font-size: 16px;
+          color: #708090;
+          border-bottom: 1px solid #d3d3d3;
         }
       }
 
       .mat-mdc-card-content {
         margin-top: 10px;
       }
-    }
-  }
-
-  input[type="number"] {
-    border: none;
-    outline: none;
-    width: 60px;
-    background-color: transparent;
-    text-align: center;
-    font-size: 16px;
-    color: #708090;
-    border-bottom: 1px solid #d3d3d3;
-  }
-
-  .color-box {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border-radius: 3px;
-    display: block;
-
-    &.red {
-      background-color: red;
-    }
-
-    &.yellow {
-      background-color: #e5bd00;
     }
   }
 

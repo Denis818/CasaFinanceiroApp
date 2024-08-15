@@ -148,9 +148,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
 
   //#region Abrir Modais
   openEditMetricasModal(): void {
-    this.dialog.open(CardDescricaoTotaisComponent, {
-      height: '220px',
-    });
+    this.dialog.open(CardDescricaoTotaisComponent, {});
   }
 
   openChecarFaturaCartaoModal(): void {

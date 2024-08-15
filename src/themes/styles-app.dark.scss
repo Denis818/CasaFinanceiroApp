@@ -253,9 +253,29 @@ body {
       }
     }
 
-    [modal-descricao-cores-valores] {
-      .color-box.default {
-        background-color: var(--dark-theme-text) !important;
+    [card-descricao-totais] {
+      background-color: var(--dark-theme-background);
+
+      [modal-descricao-cores-valores] {
+        .color-box.default {
+          background-color: var(--dark-theme-text) !important;
+        }
+
+        .legend-card {
+          background-color: #2f3031;
+          color: #fff;
+
+          input[type="number"] {
+            color: #fff !important;
+          }
+        }
+      }
+
+      .button-save {
+        &.mat-mdc-unelevated-button.mat-primary {
+          --mdc-filled-button-container-color: var(--dark-theme-color);
+          --mdc-filled-button-label-text-color: var(--dark-theme-color-branco);
+        }
       }
     }
 
