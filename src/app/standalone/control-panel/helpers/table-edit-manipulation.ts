@@ -29,15 +29,7 @@ export class TableEditManipulation {
     this.inputFornecedor(despesa);
   }
 
-  inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
-    if (
-      (this.categoriaSelecionada == EnumCategoriasMensais.internet &&
-        inputCampo == 'fornecedor') ||
-      inputCampo == 'item'
-    ) {
-      return false;
-    }
-
+  inputSomenteLeitura(): BooleanInput {
     if (
       this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada == EnumCategoriasMensais.condominio ||
@@ -71,7 +63,7 @@ export class TableEditManipulation {
         break;
 
       case EnumCategoriasMensais.internet:
-        this.inputItem(despesa, despesa.item);
+        this.inputItem(despesa, EnumValorInputItem.internet);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
         break;
@@ -122,6 +114,9 @@ export class TableEditManipulation {
         break;
       case EnumValorInputItem.contaDeLuz:
         despesa.fornecedor = EnumValorInputFornecedor.cemig;
+        break;
+      case EnumValorInputItem.internet:
+        despesa.fornecedor = EnumValorInputFornecedor.internet;
         break;
     }
   }

@@ -98,7 +98,7 @@
                         type="text"
                         [(ngModel)]="despesa.item"
                         [readonly]="
-                          tableEditManipulation.inputSomenteLeitura('item')
+                          tableEditManipulation.inputSomenteLeitura()
                         "
                       />
                     </ng-template>
@@ -136,7 +136,7 @@
                       type="text"
                       [(ngModel)]="despesa.fornecedor"
                       [readonly]="
-                        tableEditManipulation.inputSomenteLeitura('fornecedor')
+                        tableEditManipulation.inputSomenteLeitura()
                       "
                     />
                   </div>

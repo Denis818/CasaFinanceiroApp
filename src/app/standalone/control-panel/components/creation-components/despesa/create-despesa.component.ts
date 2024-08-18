@@ -179,7 +179,7 @@ export class CreateDespesaComponent {
       preco: 0,
       quantidade: this.setValueInputQuantidade(),
       fornecedor: this.setValueInputFornecedor(),
-      categoriaCode: this.despesaForm.value.categoriaCode || 1,
+      categoriaCode: this.despesaForm.value.categoriaCode,
       grupoFaturaCode: this.despesaForm.value.grupoFaturaCode || this.grupoCode,
     });
   }
@@ -188,7 +188,7 @@ export class CreateDespesaComponent {
     this.dialogRef.close();
   }
 
-  setValueInputItem(): string {
+   setValueInputItem(): string {
     switch (this.categoriaSelecionada) {
       case EnumCategoriasMensais.aluguel:
         this.inputItem = EnumValorInputItem.parcelaApPonto;
@@ -198,6 +198,9 @@ export class CreateDespesaComponent {
         break;
       case EnumCategoriasMensais.contaDeLuz:
         this.inputItem = EnumValorInputItem.contaDeLuz;
+        break;
+      case EnumCategoriasMensais.internet:
+        this.inputItem = EnumValorInputItem.internet;
         break;
       default:
         this.inputItem = 'Compra';
@@ -232,21 +235,16 @@ export class CreateDespesaComponent {
       case EnumValorInputItem.contaDeLuz:
         this.inputFornecedor = EnumValorInputFornecedor.cemig;
         break;
+      case EnumValorInputItem.internet:
+        this.inputFornecedor = EnumValorInputFornecedor.internet;
+        break;
       default:
         this.inputFornecedor = this.despesaForm?.value?.fornecedor || 'Epa';
     }
     return this.inputFornecedor;
   }
 
-  inputSomenteLeitura(inputCampo: string = ''): BooleanInput {
-    if (
-      (this.categoriaSelecionada == EnumCategoriasMensais.internet &&
-        inputCampo == 'fornecedor') ||
-      inputCampo == 'item'
-    ) {
-      return false;
-    }
-
+  inputSomenteLeitura(): BooleanInput {
     if (
       this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada == EnumCategoriasMensais.condominio ||

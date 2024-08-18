@@ -58,7 +58,7 @@
             matInput
             id="item"
             formControlName="item"
-            [readonly]="inputSomenteLeitura('item')"
+            [readonly]="inputSomenteLeitura()"
             [ngClass]="{
               'is-invalid':
                 despesaValidator.item.errors && despesaValidator.item.touched
@@ -135,7 +135,7 @@
         <input
           matInput
           formControlName="fornecedor"
-          [readonly]="inputSomenteLeitura('fornecedor')"
+          [readonly]="inputSomenteLeitura()"
         />
         <mat-error *ngIf="despesaForm.get('fornecedor').hasError('required')">
           Fornecedor é obrigatório.
