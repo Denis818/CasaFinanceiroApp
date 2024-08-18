@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { UserService } from 'src/app/modules/auth/services/user/user.service';
+import { MetricasNotification } from 'src/app/standalone/control-panel/components/listing-components/despesas/card-descricao-totais/metricas-notification.service';
 import { GrupoFaturaSeletorResponse } from '../../interfaces/grupo-fatura-seletor-response.interface';
 import { GrupoFaturaNotification } from '../../services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from '../../services/grupo-fatura.service';
@@ -39,6 +40,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private readonly grupoFatura: GrupoFaturaService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
+    private metricasNotification: MetricasNotification,
     private readonly storageService: StorageService,
     private readonly user: UserService,
     public readonly titleService: Title,
@@ -158,6 +160,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         grupoFaturaCode.toString()
       );
       this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
+      this.metricasNotification.notificarCardTotaisMetricaMudou();
     } else {
     }
   }
