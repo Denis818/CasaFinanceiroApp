@@ -26,6 +26,7 @@
           panelClass="categoria-select-painel create-despesa"
           formControlName="categoriaCode"
           (selectionChange)="getCategoriaSelected($event.value)"
+          placeholder="Selecione"
         >
           <mat-option
             *ngFor="let categoria of categorias"
