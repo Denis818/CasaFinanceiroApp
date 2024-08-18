@@ -4,8 +4,8 @@
       <thead>
         <tr>
           <th>Categoria</th>
-          <th>Total</th>
           <th>Quantidade de Itens</th>
+          <th>Total</th>
           <th app-tooltip-helper>
             Opções
             <mat-icon
@@ -27,8 +27,8 @@
             </div>
             <ng-template #viewDescricao>{{ categoria.descricao }}</ng-template>
           </td>
-          <td>{{ categoria.total | currency : "BRL" }}</td>
           <td>{{ categoria.quantidadeDeItens }}</td>
+          <td>{{ categoria.total | currency : "BRL" }}</td>
           <td [class.disable-options]="!isEditable(categoria.descricao)">
             <i *ngIf="!categoria.isEditing; else saveEdicao">
               <mat-icon
