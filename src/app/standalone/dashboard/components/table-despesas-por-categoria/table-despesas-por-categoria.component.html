@@ -12,13 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of listDespesasPorCategoria">
-          <td>{{ item.categoria }}</td>
+        <tr *ngFor="let item of listCategorias">
+          <td>{{ item.descricao }}</td>
           <td>{{ item.total | currency : "BRL" }}</td>
           <td>{{ item.quantidadeDeItens }}</td>
         </tr>
       </tbody>
-      <tfoot *ngIf="listDespesasPorCategoria.length == 0">
+      <tfoot *ngIf="listCategorias.length == 0">
         <tr>
           <td colspan="3">
             <div dados-nao-encontrados>Nenhuma informação encontrada</div>

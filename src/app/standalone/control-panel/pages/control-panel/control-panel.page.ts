@@ -39,7 +39,7 @@ export class ControlPanelPage {
   //#region  Lists
   openListCategoriaModal() {
     const dialogRef = this.dialog.open(ListCategoriaComponent, {
-      width: '400px',
+      width: '650px',
     });
 
     dialogRef.componentInstance.notificarCategoriaAtualizada.subscribe(() => {

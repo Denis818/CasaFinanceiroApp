@@ -7,7 +7,6 @@ import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfac
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { ResumoGrupoResponse } from '../../interfaces/resumo-grupo-response.interface';
-import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
 import { TotalPorGrupoResponse } from '../../interfaces/total-por-grupo-response.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -24,13 +23,6 @@ export class DashboardService extends BaseService {
     return this.sendHttpRequest<ApiResponse<ResumoGrupoResponse>>(
       'GET',
       this.url + '/despesas-dividas-por-membro'
-    ).pipe(map((response) => response.dados));
-  }
-
-  public getTotalPorCategoria(): Observable<TotalPorCategoriaResponse[]> {
-    return this.sendHttpRequest<ApiResponse<TotalPorCategoriaResponse[]>>(
-      'GET',
-      `${this.url}/total-por-categoria`
     ).pipe(map((response) => response.dados));
   }
 

@@ -10,7 +10,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
-import { TotalPorCategoriaResponse } from '../../interfaces/total-por-categoria-response.interface';
+import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
+import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
 registerLocaleData(localePt);
 
@@ -32,11 +33,12 @@ registerLocaleData(localePt);
   ],
 })
 export class TableDespesasPorCategoriaComponent implements OnInit, OnDestroy {
-  listDespesasPorCategoria: TotalPorCategoriaResponse[] = [];
+  listCategorias: Categoria[] = [];
   private reloadComponentSubscriber: Subscription;
 
   constructor(
     private readonly dashboardService: DashboardService,
+    private readonly categoriaService: CategoriaService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification
   ) {}
 
@@ -62,8 +64,8 @@ export class TableDespesasPorCategoriaComponent implements OnInit, OnDestroy {
   }
 
   getTotalPorCategoria() {
-    this.dashboardService.getTotalPorCategoria().subscribe((dados) => {
-      this.listDespesasPorCategoria = dados;
+    this.categoriaService.getAll().subscribe((dados) => {
+      this.listCategorias = dados;
     });
   }
 }
