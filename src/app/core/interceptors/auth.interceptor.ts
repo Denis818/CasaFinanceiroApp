@@ -64,7 +64,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (mensagem.statusCode === 401 && mensagem.descricao) {
           this.toastr.warning(mensagem.descricao, 'Acesso Negado');
         } else if (mensagem.statusCode === 404 && mensagem.descricao) {
-          this.toastr.error(mensagem.descricao, 'Não Encontrado');
+          this.toastr.warning(mensagem.descricao, 'Não Encontrado');
         } else {
           this.toastr.error(mensagem.descricao, 'Erro');
         }

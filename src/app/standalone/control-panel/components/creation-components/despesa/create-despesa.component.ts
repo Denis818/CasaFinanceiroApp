@@ -118,6 +118,10 @@ export class CreateDespesaComponent {
 
   onSubmit(): void {
     if (this.despesaForm.valid) {
+      if (this.despesaForm.value.categoriaCode) {
+        this.despesaForm.value.categoriaCode =
+          '00000000-0000-0000-0000-000000000000';
+      }
       this.despesaService.insert(this.despesaForm.value).subscribe({
         next: (wasInserted) => {
           if (wasInserted) {
