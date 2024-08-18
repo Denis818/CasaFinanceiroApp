@@ -12,7 +12,6 @@ export class MetricasNotification {
   }
 
   notificarCardTotaisMetricaMudou() {
-    console.log('Notifiqueiiiii')
     this.notificarMetricaMudou.next(true);
   }
 }

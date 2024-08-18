@@ -58,7 +58,6 @@ export class CardDescricaoTotaisComponent implements OnInit {
   }
 
   salvarMetricas(): void {
-    console.log(this.metricas);
     this.despesaService.updateParametroAlertaGastos(this.metricas).subscribe({
       next: (success) => {
         if (success) {

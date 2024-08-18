@@ -66,6 +66,8 @@ export class ListMembroComponent {
 
   updateMembro(code: string, membro: Membro): void {
     if (!this.membroAlterado(membro)) {
+      console.log(membro);
+      console.log(code);
       this.membroService.update(code, membro).subscribe({
         next: (membroAtualizado) => {
           if (membroAtualizado) {
