@@ -1,5 +1,5 @@
 export interface Membro {
-  id: number;
+  code: string;
   nome: string;
   telefone: string;
   dataInicio: Date;

@@ -80,14 +80,14 @@ export class ListgrupoFaturaComponent {
     this.resetPropertys(grupoFatura);
   }
 
-  updategrupoFatura(id: number, grupoFatura: GrupoFatura): void {
+  updategrupoFatura(code: string, grupoFatura: GrupoFatura): void {
     if (!this.grupoFaturaAlterado(grupoFatura)) {
       grupoFatura.nome = grupoFatura.nomeEditavel;
       grupoFatura.ano =
         this.storageService.getItem('ano') ||
         new Date().getFullYear().toString();
 
-      this.grupoFaturaService.update(id, grupoFatura).subscribe({
+      this.grupoFaturaService.update(code, grupoFatura).subscribe({
         next: (grupoFaturaAtualizado) => {
           if (grupoFaturaAtualizado) {
             this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
@@ -103,7 +103,7 @@ export class ListgrupoFaturaComponent {
   //#endregion
 
   //#region Delete
-  confirmDelete(idgrupoFatura: number): void {
+  confirmDelete(grupoFaturaCode: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
       data: {
@@ -114,13 +114,13 @@ export class ListgrupoFaturaComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deletegrupoFatura(idgrupoFatura);
+        this.deletegrupoFatura(grupoFaturaCode);
       }
     });
   }
 
-  deletegrupoFatura(grupoFaturaId: number): void {
-    this.grupoFaturaService.delete(grupoFaturaId).subscribe({
+  deletegrupoFatura(grupoFaturaCode: string): void {
+    this.grupoFaturaService.delete(grupoFaturaCode).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();

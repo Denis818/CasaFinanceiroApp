@@ -9,11 +9,11 @@
         <mat-label>Selecione uma Fatura</mat-label>
         <mat-select
           panelClass="grupo-fatura-select-panel create-despesa"
-          formControlName="grupoFaturaId"
+          formControlName="grupoFaturaCode"
         >
           <mat-option
             *ngFor="let grupoFatura of grupoFaturas"
-            [value]="grupoFatura.id"
+            [value]="grupoFatura.code"
           >
             {{ grupoFatura.nome }}
           </mat-option>
@@ -24,12 +24,12 @@
         <mat-label>Selecione uma categoria</mat-label>
         <mat-select
           panelClass="categoria-select-painel create-despesa"
-          formControlName="categoriaId"
+          formControlName="categoriaCode"
           (selectionChange)="getCategoriaSelected($event.value)"
         >
           <mat-option
             *ngFor="let categoria of categorias"
-            [value]="categoria.id"
+            [value]="categoria.code"
           >
             {{ categoria.descricao }}
           </mat-option>

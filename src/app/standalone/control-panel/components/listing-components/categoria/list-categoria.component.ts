@@ -66,9 +66,9 @@ export class ListCategoriaComponent {
     this.resetPropertys(categoria);
   }
 
-  updateCategoria(id: number, categoria: Categoria): void {
+  updateCategoria(code: string, categoria: Categoria): void {
     if (!this.categoriaAlterada(categoria)) {
-      this.categoriaService.update(id, categoria).subscribe({
+      this.categoriaService.update(code, categoria).subscribe({
         next: (categoriaAtualizada) => {
           if (categoriaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -96,7 +96,7 @@ export class ListCategoriaComponent {
   //#endregion
 
   //#region Delete
-  confirmDelete(idCategoria: number): void {
+  confirmDelete(code: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '380px',
       data: {
@@ -107,13 +107,13 @@ export class ListCategoriaComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteCategoria(idCategoria);
+        this.deleteCategoria(code);
       }
     });
   }
 
-  deleteCategoria(categoriaId: number): void {
-    this.categoriaService.delete(categoriaId).subscribe({
+  deleteCategoria(code: string): void {
+    this.categoriaService.delete(code).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');

@@ -10,7 +10,7 @@
       <tbody>
         <tr
           *ngFor="let membro of membros"
-          (keyup.enter)="updateMembro(membro.id, membro)"
+          (keyup.enter)="updateMembro(membro.code, membro)"
         >
           <td>
             <div *ngIf="membro.isEditing; else viewNome">
@@ -35,7 +35,7 @@
             </i>
 
             <ng-template #saveEdicao>
-              <mat-icon (click)="updateMembro(membro.id, membro)"
+              <mat-icon (click)="updateMembro(membro.code, membro)"
                 >save</mat-icon
               >
               <mat-icon space (click)="cancelEdit(membro)">cancel</mat-icon>
@@ -43,7 +43,7 @@
 
             <i space *ngIf="!membro.isEditing">
               <mat-icon
-                (click)="confirmDelete(membro.id)"
+                (click)="confirmDelete(membro.code)"
                 [class.disable-options]="isEditing"
                 >delete</mat-icon
               >

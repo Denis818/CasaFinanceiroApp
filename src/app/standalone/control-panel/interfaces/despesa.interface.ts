@@ -2,7 +2,7 @@ import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interfa
 import { Categoria } from './categoria.interface';
 
 export interface Despesa {
-  id: number;
+  code: string;
   dataCompra: Date;
   item: string;
   preco: number;
@@ -11,8 +11,8 @@ export interface Despesa {
   total: number;
   categoria: Categoria;
   grupoFatura: GrupoFatura;
-  categoriaId: number;
-  grupoFaturaId: number;
+  categoriaCode: string;
+  grupoFaturaCode: string;
 
   isDespesaEditing: boolean;
 }

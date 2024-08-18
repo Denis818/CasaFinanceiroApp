@@ -68,7 +68,7 @@
             <tbody>
               <tr
                 *ngFor="let despesa of despesasFiltradas"
-                (keyup.enter)="updateDespesa(despesa.id, despesa)"
+                (keyup.enter)="updateDespesa(despesa.code, despesa)"
                 [class.disabled]="isDespesaEditing && !despesa.isDespesaEditing"
               >
                 <td>
@@ -109,7 +109,7 @@
                   <div *ngIf="despesa.isDespesaEditing; else viewCategoria">
                     <mat-select
                       panelClass="categoria-select-painel"
-                      [(ngModel)]="despesa.categoria.id"
+                      [(ngModel)]="despesa.categoria.code"
                       (ngModelChange)="
                         tableEditManipulation.aoAlterarCategoria(
                           categorias,
@@ -120,7 +120,7 @@
                     >
                       <mat-option
                         *ngFor="let categoria of categorias"
-                        [value]="categoria.id"
+                        [value]="categoria.code"
                       >
                         {{ categoria.descricao }}
                       </mat-option>
@@ -179,11 +179,11 @@
                   <div *ngIf="despesa.isDespesaEditing; else viewGrupoFatura">
                     <mat-select
                       panelClass="grupo-fatura-select-panel"
-                      [(ngModel)]="despesa.grupoFatura.id"
+                      [(ngModel)]="despesa.grupoFatura.code"
                     >
                       <mat-option
                         *ngFor="let grupoFatura of grupoFaturas"
-                        [value]="grupoFatura.id"
+                        [value]="grupoFatura.code"
                       >
                         {{ grupoFatura.nome }}
                       </mat-option>
@@ -198,7 +198,7 @@
                     <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
                   </i>
                   <ng-template #saveEdicao>
-                    <mat-icon (click)="updateDespesa(despesa.id, despesa)"
+                    <mat-icon (click)="updateDespesa(despesa.code, despesa)"
                       >save</mat-icon
                     >
                     <mat-icon space (click)="cancelEdit(despesa)"
@@ -206,7 +206,7 @@
                     >
                   </ng-template>
                   <i space *ngIf="!despesa.isDespesaEditing">
-                    <mat-icon (click)="confirmDelete(despesa.id)"
+                    <mat-icon (click)="confirmDelete(despesa.code)"
                       >delete</mat-icon
                     >
                   </i>

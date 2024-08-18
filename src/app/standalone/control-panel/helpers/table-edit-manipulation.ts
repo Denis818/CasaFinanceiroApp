@@ -14,9 +14,9 @@ export class TableEditManipulation {
   aoAlterarCategoria(
     categorias: Categoria[],
     despesa: Despesa,
-    categoriaId: number
+    categoriaCode: string
   ) {
-    const categoria = categorias.find((c) => c.id === categoriaId);
+    const categoria = categorias.find((c) => c.code === categoriaCode);
     const novaCategoria = categoria?.descricao;
 
     this.inputItemEhFornecedor(despesa, novaCategoria);

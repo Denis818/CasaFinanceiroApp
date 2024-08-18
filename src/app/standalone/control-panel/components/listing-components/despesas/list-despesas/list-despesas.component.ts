@@ -221,7 +221,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
   }
 
   getNameFatura() {
-    let faturaId = parseInt(this.storageService.getItem('grupoFaturaId'));
+    let faturaId = this.storageService.getItem('grupo-fatura-code');
     this.despesaService.getNameFatura(faturaId).subscribe({
       next: (faturaName) => {
         this.faturaAtualName = faturaName;
@@ -250,17 +250,19 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     this.resetPropertys(despesa);
   }
 
-  updateDespesa(id: number, despesa: Despesa): void {
-    despesa.categoriaId = despesa.categoria.id;
-    despesa.grupoFaturaId = despesa.grupoFatura.id;
+  updateDespesa(code: string, despesa: Despesa): void {
+    despesa.categoriaCode = despesa.categoria.code;
+    despesa.grupoFaturaCode = despesa.grupoFatura.code;
 
     if (!this.despesaAlterada(despesa)) {
-      this.despesaService.update(id, despesa).subscribe({
+      this.despesaService.update(code, despesa).subscribe({
         next: (despesaAtualizada) => {
           if (despesaAtualizada) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           }
+
           this.getListDespesasPorGrupo();
+          this.cardTotaisListDespesas.getParametrosDeAlertasDeGastos();
         },
         error: () => this.getListDespesasPorGrupo(),
       });
@@ -273,20 +275,20 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
 
   //#region Delete
 
-  confirmDelete(idDespesa: number): void {
+  confirmDelete(despesaCode: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteDespesa(idDespesa);
+        this.deleteDespesa(despesaCode);
       }
     });
   }
 
-  deleteDespesa(despesaId: number): void {
-    this.despesaService.delete(despesaId).subscribe({
+  deleteDespesa(despesaCode: string): void {
+    this.despesaService.delete(despesaCode).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
@@ -312,8 +314,8 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
       this.despesaAtual.preco === despesa.preco &&
       this.despesaAtual.quantidade === despesa.quantidade &&
       this.despesaAtual.fornecedor === despesa.fornecedor &&
-      this.despesaAtual.categoria.id === despesa.categoriaId &&
-      this.despesaAtual.grupoFatura.id === despesa.grupoFaturaId
+      this.despesaAtual.categoria.code === despesa.categoriaCode &&
+      this.despesaAtual.grupoFatura.code === despesa.grupoFaturaCode
     );
   }
 

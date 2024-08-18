@@ -105,10 +105,10 @@ export class DespesaService extends CrudService<Despesa> {
     ).pipe(map((response) => response.dados));
   }
 
-  public getNameFatura(id: number): Observable<string> {
+  public getNameFatura(code: string): Observable<string> {
     return this.sendHttpRequest<ApiResponse<string>>(
       'GET',
-      `${environment.base_url_financy}/grupo-fatura/${id}`
+      `${environment.base_url_financy}/grupo-fatura/${code}`
     ).pipe(map((response) => response.dados));
   }
 }

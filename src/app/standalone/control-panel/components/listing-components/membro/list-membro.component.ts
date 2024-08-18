@@ -64,9 +64,9 @@ export class ListMembroComponent {
     this.resetPropertys(membro);
   }
 
-  updateMembro(id: number, membro: Membro): void {
+  updateMembro(code: string, membro: Membro): void {
     if (!this.membroAlterado(membro)) {
-      this.membroService.update(id, membro).subscribe({
+      this.membroService.update(code, membro).subscribe({
         next: (membroAtualizado) => {
           if (membroAtualizado) {
             this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
@@ -81,20 +81,20 @@ export class ListMembroComponent {
   //#endregion
 
   //#region Delete
-  confirmDelete(idMembro: number): void {
+  confirmDelete(membroCode: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteMembro(idMembro);
+        this.deleteMembro(membroCode);
       }
     });
   }
 
-  deleteMembro(membroId: number): void {
-    this.membroService.delete(membroId).subscribe({
+  deleteMembro(membroCode: string): void {
+    this.membroService.delete(membroCode).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');

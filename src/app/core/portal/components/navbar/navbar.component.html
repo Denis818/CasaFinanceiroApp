@@ -14,11 +14,11 @@
         <mat-form-field appearance="outline">
           <mat-select
             panelClass="grupo-fatura-select-panel"
-            formControlName="grupoFaturaId"
+            formControlName="grupoFaturaCode"
           >
             <mat-option
               *ngFor="let grupoFatura of grupoFaturas"
-              [value]="grupoFatura.id"
+              [value]="grupoFatura.code"
             >
               {{ grupoFatura.nome }}
             </mat-option>

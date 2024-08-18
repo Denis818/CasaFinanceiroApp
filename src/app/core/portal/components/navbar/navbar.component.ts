@@ -19,17 +19,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   darkMode: boolean = true;
   selectedTheme: string;
 
-  faturaDefault: number;
+  faturaDefaultCode: string;
 
   private grupoFaturasSubscriber: Subscription;
   private anoSubscriber: Subscription;
-  private grupoFaturaIdSubscriber: Subscription;
+  private grupoFaturaCodeSubscriber: Subscription;
 
   grupoFaturas: GrupoFaturaSeletorResponse[] = [];
   anos: string[] = ['2024', '2025', '2026', '2027'];
 
   grupoFaturasForm: FormGroup = new FormGroup({
-    grupoFaturaId: new FormControl(),
+    grupoFaturaCode: new FormControl(),
     ano: new FormControl(new Date().getFullYear().toString()),
   });
 
@@ -64,8 +64,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.anoSubscriber) {
       this.anoSubscriber.unsubscribe();
     }
-    if (this.grupoFaturaIdSubscriber) {
-      this.grupoFaturaIdSubscriber.unsubscribe();
+    if (this.grupoFaturaCodeSubscriber) {
+      this.grupoFaturaCodeSubscriber.unsubscribe();
     }
   }
 
@@ -75,13 +75,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const anoSalvo =
       this.storageService.getItem('ano') || new Date().getFullYear().toString();
 
-    const grupoFaturaIdSalvo =
-      parseInt(this.storageService.getItem('grupoFaturaId')) || null;
+    const grupoFaturaCodeSalvo =
+      parseInt(this.storageService.getItem('grupo-fatura-code')) || null;
 
     this.grupoFaturasForm.patchValue(
       {
         ano: anoSalvo,
-        grupoFaturaId: grupoFaturaIdSalvo,
+        grupoFaturaCode: grupoFaturaCodeSalvo,
       },
       { emitEvent: false }
     );
@@ -94,8 +94,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.atualizarAnoEGruposFatura();
       });
 
-    this.grupoFaturaIdSubscriber = this.grupoFaturasForm
-      .get('grupoFaturaId')
+    this.grupoFaturaCodeSubscriber = this.grupoFaturasForm
+      .get('grupoFaturaCode')
       .valueChanges.subscribe(() => {
         this.updateGrupoIdInStorage();
       });
@@ -109,11 +109,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (grupoFaturas) => {
           this.grupoFaturas = grupoFaturas;
-          this.faturaDefault = grupoFaturas[0]?.id;
+          this.faturaDefaultCode = grupoFaturas[0]?.code;
 
           this.grupoFaturasForm.patchValue(
             {
-              grupoFaturaId: this.getGrupoId(),
+              grupoFaturaCode: this.getGrupoCode(),
             },
             { emitEvent: false }
           );
@@ -123,19 +123,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
   }
 
-  getGrupoId(): number {
-    let grupoId =
-      parseInt(this.storageService.getItem('grupoFaturaId')) ||
-      this.faturaDefault;
+  getGrupoCode(): string {
+    let grupoCode =
+      this.storageService.getItem('grupo-fatura-code') ||
+      this.faturaDefaultCode;
 
     let grupo = this.grupoFaturas.find(
-      (grupoFatura) => grupoFatura.id === grupoId
+      (grupoFatura) => grupoFatura.code === grupoCode
     );
 
     if (grupo == null) {
-      return this.faturaDefault;
+      return this.faturaDefaultCode;
     }
-    return grupoId;
+    return grupoCode;
   }
 
   atualizarAnoEGruposFatura() {
@@ -150,10 +150,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   updateGrupoIdInStorage(): void {
-    let grupoFaturaId = this.grupoFaturasForm.get('grupoFaturaId').value;
+    let grupoFaturaCode = this.grupoFaturasForm.get('grupoFaturaCode').value;
 
-    if (grupoFaturaId) {
-      this.storageService.setItem('grupoFaturaId', grupoFaturaId.toString());
+    if (grupoFaturaCode) {
+      this.storageService.setItem(
+        'grupo-fatura-code',
+        grupoFaturaCode.toString()
+      );
       this.grupoFaturaNotification.notificarComponentesGrupoIdMudou();
     } else {
     }

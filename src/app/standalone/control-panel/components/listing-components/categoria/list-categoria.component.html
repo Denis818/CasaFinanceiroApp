@@ -17,7 +17,7 @@
       <tbody>
         <tr
           *ngFor="let categoria of categorias"
-          (keyup.enter)="updateCategoria(categoria.id, categoria)"
+          (keyup.enter)="updateCategoria(categoria.code, categoria)"
         >
           <td>
             <div *ngIf="categoria.isEditing; else viewDescricao">
@@ -35,7 +35,7 @@
             </i>
 
             <ng-template #saveEdicao>
-              <mat-icon (click)="updateCategoria(categoria.id, categoria)"
+              <mat-icon (click)="updateCategoria(categoria.code, categoria)"
                 >save</mat-icon
               >
               <mat-icon space (click)="cancelEdit(categoria)">cancel</mat-icon>
@@ -43,7 +43,7 @@
 
             <i space *ngIf="!categoria.isEditing">
               <mat-icon
-                (click)="confirmDelete(categoria.id)"
+                (click)="confirmDelete(categoria.code)"
                 [class.disable-options]="isEditing"
                 >delete</mat-icon
               >

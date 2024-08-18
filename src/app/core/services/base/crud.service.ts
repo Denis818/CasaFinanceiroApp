@@ -21,18 +21,18 @@ export abstract class CrudService<TEntity> extends BaseService {
     ).pipe(map((response) => response.dados));
   }
 
-  public update(id: number, item: TEntity): Observable<TEntity> {
+  public update(code: string, item: TEntity): Observable<TEntity> {
     return this.sendHttpRequest<ApiResponse<TEntity>>(
       'PUT',
-      `${this.url}/?id=${id}`,
+      `${this.url}/?code=${code}`,
       item
     ).pipe(map((response) => response.dados));
   }
 
-  public delete(id: number): Observable<boolean> {
+  public delete(code: string): Observable<boolean> {
     return this.sendHttpRequest<ApiResponse<boolean>>(
       'DELETE',
-      `${this.url}/?id=${id}`
+      `${this.url}/?code=${code}`
     ).pipe(map((response) => response.dados));
   }
 }

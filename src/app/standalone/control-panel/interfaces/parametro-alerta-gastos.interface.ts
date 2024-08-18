@@ -1,5 +1,5 @@
 export interface ParametroAlertaGastos {
-  id: number;
+  code: string;
   tipoMetrica: string;
   limiteVermelho: number;
   limiteAmarelo: number;

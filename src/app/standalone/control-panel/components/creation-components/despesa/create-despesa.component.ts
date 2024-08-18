@@ -52,7 +52,7 @@ export class CreateDespesaComponent {
 
   grupoFaturas: GrupoFatura[];
   grupoDefault: number;
-  grupoId = this.storageService.getItem('grupoFaturaId');
+  grupoId = this.storageService.getItem('grupo-fatura-code');
 
   despesaForm: FormGroup;
   get despesaValidator(): any {
@@ -75,8 +75,8 @@ export class CreateDespesaComponent {
     this.definirValoresMensaisNoInput();
   }
 
-  getCategoriaSelected(categoriaId: any) {
-    const categoria = this.categorias.find((c) => c.id === categoriaId);
+  getCategoriaSelected(categoriaCode: any) {
+    const categoria = this.categorias.find((c) => c.code === categoriaCode);
     this.categoriaSelecionada = categoria?.descricao;
 
     this.despesaForm.patchValue({
@@ -87,7 +87,7 @@ export class CreateDespesaComponent {
   }
 
   definirValoresMensaisNoInput() {
-    this.despesaForm.get('categoriaId').valueChanges.subscribe((value) => {
+    this.despesaForm.get('categoriaCode').valueChanges.subscribe((value) => {
       this.getCategoriaSelected(value);
     });
 
@@ -135,8 +135,8 @@ export class CreateDespesaComponent {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      grupoFaturaId: ['', [Validators.required]],
-      categoriaId: [1, [Validators.required]],
+      grupoFaturaCode: ['', [Validators.required]],
+      categoriaCode: [1, [Validators.required]],
 
       item: [
         '',
@@ -176,9 +176,9 @@ export class CreateDespesaComponent {
       preco: 0,
       quantidade: this.setValueInputQuantidade(),
       fornecedor: this.setValueInputFornecedor(),
-      categoriaId: this.despesaForm.value.categoriaId || 1,
-      grupoFaturaId:
-        this.despesaForm.value.grupoFaturaId || parseInt(this.grupoId),
+      categoriaCode: this.despesaForm.value.categoriaCode || 1,
+      grupoFaturaCode:
+        this.despesaForm.value.grupoFaturaCode || parseInt(this.grupoId),
     });
   }
 
