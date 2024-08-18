@@ -29,14 +29,14 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.storageService.getItem('token');
-    let faturaId = this.storageService.getItem('grupo-fatura-code');
-    faturaId = faturaId && parseInt(faturaId) !== 0 ? faturaId : null;
-
+    let faturaCode =
+      this.storageService.getItem('grupo-fatura-code') ??
+      '00000000-0000-0000-0000-000000000000';
 
     let headers = req.headers.set('Authorization', `Bearer ${token}`);
 
-    if (faturaId) {
-      headers = headers.set('grupo-fatura-code', faturaId);
+    if (faturaCode) {
+      headers = headers.set('grupo-fatura-code', faturaCode);
     }
 
     const authReq = req.clone({ headers });
