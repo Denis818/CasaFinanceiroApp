@@ -135,7 +135,10 @@ export class CreateDespesaComponent {
 
   public validation(): void {
     this.despesaForm = this.fb.group({
-      grupoFaturaCode: ['', [Validators.required]],
+      grupoFaturaCode: [
+        '00000000-0000-0000-0000-000000000000',
+        [Validators.required],
+      ],
       categoriaCode: [
         '00000000-0000-0000-0000-000000000000',
         [Validators.required],
