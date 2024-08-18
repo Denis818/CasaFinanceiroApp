@@ -1,8 +1,20 @@
 <router-outlet></router-outlet>
 
-<ngx-spinner type="ball-scale-multiple">
+<ngx-spinner name="loadingSpinner" type="ball-scale-multiple" size="large">
   <p spinner>Carregando...</p>
 </ngx-spinner>
+
+<ngx-spinner name="savingSpinner" type="ball-triangle-path" size="medium">
+  <p spinner>Salvando...</p>
+</ngx-spinner>
+
+<!-- <ngx-spinner
+  name="savingSpinner"
+  size="large"
+  template="<img src='assets/icons/save.gif' />"
+>
+  <p spinner>Salvando...</p>
+</ngx-spinner> -->
 
 <footer>
   <div>© 2024 Despesas de Casa.</div>

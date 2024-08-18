@@ -4,6 +4,7 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
+  HttpResponse,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -41,11 +42,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
-    this.requestCount++;
-    this.spinner.show();
+    // Chama a função para mostrar o spinner apropriado
+    this.showSpinner(req);
 
     return next.handle(authReq).pipe(
-      tap((event) => this.haveMessagesNotification(event)),
+      tap((event) => {
+        if (event instanceof HttpResponse) {
+          this.haveMessagesNotification(event);
+        }
+      }),
       catchError((error: HttpErrorResponse) => {
         this.errorNotification(error?.error?.mensagens);
         this.checkTokenExpired(error);
@@ -53,7 +58,13 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
       finalize(() => {
         this.requestCount--;
-        if (this.requestCount === 0) this.spinner.hide();
+        if (this.requestCount === 0) {
+          if (req.method === 'GET') {
+            this.spinner.hide('loadingSpinner');
+          } else if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
+            this.spinner.hide('savingSpinner');
+          }
+        }
       })
     );
   }
@@ -94,6 +105,16 @@ export class AuthInterceptor implements HttpInterceptor {
           this.toastr.warning(mensagem.descricao, 'Aviso');
         }
       });
+    }
+  }
+
+  private showSpinner(req: HttpRequest<any>): void {
+    this.requestCount++;
+
+    if (req.method === 'GET') {
+      this.spinner.show('loadingSpinner');
+    } else if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
+      this.spinner.show('savingSpinner');
     }
   }
 }
