@@ -3,7 +3,6 @@ import { Categoria } from './categoria.interface';
 
 export interface Despesa {
   code: string;
-  dataCompra: Date;
   item: string;
   preco: number;
   quantidade: number;
