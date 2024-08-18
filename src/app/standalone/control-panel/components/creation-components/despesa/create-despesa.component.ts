@@ -52,7 +52,7 @@ export class CreateDespesaComponent {
 
   grupoFaturas: GrupoFatura[];
   grupoDefault: number;
-  grupoId = this.storageService.getItem('grupo-fatura-code');
+  grupoCode = this.storageService.getItem('grupo-fatura-code');
 
   despesaForm: FormGroup;
   get despesaValidator(): any {
@@ -177,8 +177,7 @@ export class CreateDespesaComponent {
       quantidade: this.setValueInputQuantidade(),
       fornecedor: this.setValueInputFornecedor(),
       categoriaCode: this.despesaForm.value.categoriaCode || 1,
-      grupoFaturaCode:
-        this.despesaForm.value.grupoFaturaCode || parseInt(this.grupoId),
+      grupoFaturaCode: this.despesaForm.value.grupoFaturaCode || this.grupoCode,
     });
   }
 
