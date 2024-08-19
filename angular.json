@@ -109,10 +109,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "CasaFinanceiroApp:build:production"
+              "buildTarget": "CasaFinanceiroApp:build:production"
             },
             "development": {
-              "browserTarget": "CasaFinanceiroApp:build:development"
+              "buildTarget": "CasaFinanceiroApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -120,7 +120,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CasaFinanceiroApp:build"
+            "buildTarget": "CasaFinanceiroApp:build"
           }
         },
         "test": {
