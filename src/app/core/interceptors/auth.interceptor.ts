@@ -1,4 +1,11 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -35,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
-    this.spinnerService.showSpinner(req);
+  //  this.spinnerService.showSpinner(req.method);
 
     return next.handle(authReq).pipe(
       tap((event) => {
@@ -49,7 +56,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(() => of(error));
       }),
       finalize(() => {
-        this.spinnerService.hideSpinner();
+      //  this.spinnerService.hideSpinner();
       })
     );
   }

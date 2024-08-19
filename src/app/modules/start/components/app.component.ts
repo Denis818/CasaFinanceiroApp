@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
+import { SpinnerService } from 'src/app/core/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CasaFinanceiroApp';
+  loadingSpinnerOptions: AnimationOptions = {
+    path: '/assets/spinners/loading-animation.json',
+  };
+
+  savingSpinnerOptions: AnimationOptions = {
+    path: '/assets/spinners/saving-animation.json',
+  };
+
+  constructor(public spinnerService: SpinnerService) {}
 }
