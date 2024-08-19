@@ -58,13 +58,10 @@ export class AuthInterceptor implements HttpInterceptor {
       }),
       finalize(() => {
         this.requestCount--;
-        if (this.requestCount === 0) {
-          if (req.method === 'GET') {
+        if (this.requestCount === 0) {  
             this.spinner.hide('loadingSpinner');
-          } else if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
             this.spinner.hide('savingSpinner');
-          }
-        }
+        }  
       })
     );
   }
