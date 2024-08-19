@@ -6,12 +6,14 @@
   class="container-spin"
 >
   <div class="black-page"></div>
-  <div class="spin">
-    <ng-lottie width="350px" height="350px" [options]="spinnerLoadingOptions">
-    </ng-lottie>
 
-    <h1 class="loading">Carregando...</h1>
-  </div>
+  <ng-lottie
+    class="spin"
+    width="350px"
+    height="350px"
+    [options]="spinnerLoadingOptions"
+  >
+  </ng-lottie>
 </div>
 
 <div
@@ -22,13 +24,10 @@
   class="container-spin"
 >
   <div class="black-page"></div>
-  <div class="spin">
-    <ng-lottie
-      width="350px"
-      height="350px"
-      [options]="spinnerSavingOptions"
-    ></ng-lottie>
-
-    <!--  <h1 class="saving">Salvando...</h1> -->
-  </div>
+  <ng-lottie
+    class="spin"
+    width="350px"
+    height="350px"
+    [options]="spinnerSavingOptions"
+  ></ng-lottie>
 </div>

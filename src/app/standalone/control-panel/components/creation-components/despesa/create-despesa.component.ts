@@ -188,7 +188,7 @@ export class CreateDespesaComponent {
     this.dialogRef.close();
   }
 
-   setValueInputItem(): string {
+  setValueInputItem(): string {
     switch (this.categoriaSelecionada) {
       case EnumCategoriasMensais.aluguel:
         this.inputItem = EnumValorInputItem.parcelaApPonto;
@@ -209,7 +209,7 @@ export class CreateDespesaComponent {
   }
 
   setValueInputQuantidade() {
-    let quantidade = this.despesaForm?.value?.quantidade || 1;
+    let quantidade = 1;
 
     if (
       this.categoriaSelecionada === EnumCategoriasMensais.contaDeLuz ||
