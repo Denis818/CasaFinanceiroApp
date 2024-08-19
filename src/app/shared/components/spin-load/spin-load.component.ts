@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
+import { EnumTipoSpinner } from '../../enums/enum-tipo-spinner';
 import { SpinLoadService } from '../../services/spin-load.service';
 
 @Component({
@@ -10,11 +11,14 @@ import { SpinLoadService } from '../../services/spin-load.service';
 export class SpinLoadComponent {
   constructor(public spinLoadService: SpinLoadService) {}
 
-  optionsLoadingSpinner: AnimationOptions = {
-    path: '../../../../assets/spinners/loading-spinner.json',
+  spinnerLoading = EnumTipoSpinner.Loading;
+  spinnerSaving = EnumTipoSpinner.Saving;
+
+  spinnerLoadingOptions: AnimationOptions = {
+    path: `../../../../assets/spinners/${this.spinnerLoading}.json`,
   };
 
-  optionsSavingSpinner: AnimationOptions = {
-    path: '../../../../assets/spinners/saving-spinner.json',
+  spinnerSavingOptions: AnimationOptions = {
+    path: `../../../../assets/spinners/${this.spinnerSaving}.json`,
   };
 }
