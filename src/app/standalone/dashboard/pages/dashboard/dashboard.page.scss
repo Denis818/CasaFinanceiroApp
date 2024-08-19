@@ -7,22 +7,31 @@
       [app-multi-card] {
         [app-multi-card-header] {
           [download-button] {
+            display: flex;
             background-color: #fff;
-            padding: 5px 5px;
+            align-items: center;
+            padding: 8px;
             text-decoration: none;
-            display: inline-block;
             font-size: 14px;
             cursor: pointer;
             border: none;
             border-radius: 4px;
             transition-duration: 0.4s;
             white-space: nowrap;
+
+            & p {
+              margin: 0px 5px 0px 0px;
+            }
           }
 
           [download-button]:hover {
             background-color: #ffffffc4;
             box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1),
               0 17px 50px 0 rgba(0, 0, 0, 0.1);
+          }
+
+          .icon-help-button {
+            display: flex;
           }
         }
 
@@ -112,10 +121,6 @@
 
             [app-card-title] {
               margin-left: 5px !important;
-            }
-
-            [download-button] {
-              padding: 12px !important;
             }
           }
         }

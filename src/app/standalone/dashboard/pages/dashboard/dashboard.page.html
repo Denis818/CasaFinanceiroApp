@@ -3,9 +3,11 @@
     <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <div app-card-title>Despesa de casa</div>
-        <div>
+        <div class="icon-help-button">
           <button download-button (click)="downloadRelatorioDespesasCasa()">
-            Download do Relatório
+            <p>Download do Relatório</p>
+
+            <mat-icon>download</mat-icon>
           </button>
           <mat-icon
             class="icon-help"
@@ -49,12 +51,14 @@
     <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <div app-card-title>Despesa de moradia</div>
-        <div>
+        <div class="icon-help-button">
           <button
             download-button
             (click)="downloadRelatorioDespesasHabitacional()"
           >
-            Download do Relatório
+            <p>Download do Relatório</p>
+
+            <mat-icon>download</mat-icon>
           </button>
           <mat-icon
             class="icon-help"
