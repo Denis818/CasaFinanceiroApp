@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class SpinLoadService {
   spinnerName: string = 'default';
   enableSpinLoad: boolean = false;
+  spinnerIsActived = true;
 
   type: string = '';
 
@@ -15,11 +16,11 @@ export class SpinLoadService {
     this.requestCount++;
 
     if (method === 'GET') {
-      if (true) {
+      if (this.spinnerIsActived) {
         this.showSpinnerLoading();
       }
     } else if (['POST', 'PUT', 'DELETE'].includes(method)) {
-      if (true) {
+      if (this.spinnerIsActived) {
         this.showSpinnerSaving();
       }
     }
@@ -28,17 +29,20 @@ export class SpinLoadService {
   showSpinnerSaving() {
     this.spinnerName = 'saving-spinner';
     this.enableSpinLoad = true;
+    this.spinnerIsActived = false;
   }
 
   showSpinnerLoading() {
     this.spinnerName = 'loading-spinner';
     this.enableSpinLoad = true;
+    this.spinnerIsActived = false;
   }
 
   hideSpinner() {
     this.requestCount--;
     if (this.requestCount === 0) {
       this.enableSpinLoad = false;
+      this.spinnerIsActived = true;
     }
   }
 }
