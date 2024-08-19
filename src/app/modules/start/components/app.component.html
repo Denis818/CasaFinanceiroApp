@@ -1,20 +1,20 @@
 <router-outlet></router-outlet>
 
-<ngx-spinner name="loadingSpinner" type="ball-scale-multiple" size="large">
-  <p spinner>Carregando...</p>
-</ngx-spinner>
+<!-- Animação Lottie para carregamento -->
+<ng-lottie
+  *ngIf="spinnerService.isLoading"
+  [options]="loadingSpinnerOptions"
+  width="100px"
+  height="100px"
+></ng-lottie>
 
-<ngx-spinner name="savingSpinner" type="ball-triangle-path" size="medium">
-  <p spinner>Salvando...</p>
-</ngx-spinner>
-
-<!-- <ngx-spinner
-  name="savingSpinner"
-  size="large"
-  template="<img src='assets/icons/save.gif' />"
->
-  <p spinner>Salvando...</p>
-</ngx-spinner> -->
+<!-- Animação Lottie para salvamento -->
+<ng-lottie
+  *ngIf="spinnerService.isSaving"
+  [options]="savingSpinnerOptions"
+  width="100px"
+  height="100px"
+></ng-lottie>
 
 <footer>
   <div>© 2024 Despesas de Casa.</div>

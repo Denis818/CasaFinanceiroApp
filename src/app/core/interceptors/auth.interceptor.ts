@@ -42,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
-    this.spinnerService.showSpinner(req);
+    this.spinnerService.showSpinner(req.method);
 
     return next.handle(authReq).pipe(
       tap((event) => {

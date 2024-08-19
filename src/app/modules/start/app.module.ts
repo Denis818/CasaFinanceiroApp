@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
-
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-
-import { NgModule } from '@angular/core';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { ToastrModule } from 'ngx-toastr';
-
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import player from 'lottie-web';
+import { provideLottieOptions } from 'ngx-lottie';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 import { CoreModule } from 'src/app/core/core.module';
 import { PortalModule } from 'src/app/core/portal/portal.module';
 import { AuthModule } from '../auth/auth.module';
@@ -17,14 +15,14 @@ import { AppComponent } from './components/app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    NgxSpinnerModule,
     PortalModule,
     AuthModule,
     CoreModule,
     AppRoutingModule,
-    CommonModule,
-    NgxSpinnerModule,
-    BrowserAnimationsModule,
-    BrowserModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
@@ -33,13 +31,11 @@ import { AppComponent } from './components/app.component';
     }),
   ],
   providers: [
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: {
-        floatLabel: 'always',
-      },
-    },
+    provideLottieOptions({
+      player: () => player,
+    }),
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Adicione este schema para reconhecer 'ng-lottie'
 })
 export class AppModule {}
