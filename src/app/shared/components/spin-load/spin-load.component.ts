@@ -10,11 +10,11 @@ import { SpinLoadService } from '../../services/spin-load.service';
 export class SpinLoadComponent {
   constructor(public spinLoadService: SpinLoadService) {}
 
-  optionsLoading: AnimationOptions = {
-    path: '../../../../assets/spinners/loading-animation.json',
+  optionsLoadingSpinner: AnimationOptions = {
+    path: '../../../../assets/spinners/loading-spinner.json',
   };
 
-  optionsSaving: AnimationOptions = {
+  optionsSavingSpinner: AnimationOptions = {
     path: '../../../../assets/spinners/saving-spinner.json',
   };
 }

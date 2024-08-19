@@ -1,14 +1,31 @@
-@if(spinLoadService.enableSpinLoad){
-  <!-- loading-spiner -->
-
-<div class="container-spin" #spin>
+<div
+  *ngIf="
+    spinLoadService.enableSpinLoad &&
+    spinLoadService.spinnerName == 'loading-spinner'
+  "
+  class="container-spin"
+>
   <div class="black-page"></div>
-  <ng-lottie class="spin" [options]="optionsLoading"></ng-lottie>
+  <ng-lottie
+    width="350px"
+    height="350px"
+    class="spin"
+    [options]="this.optionsLoadingSpinner"
+  ></ng-lottie>
 </div>
 
-<!-- saving-spiner -->
-<div class="container-spin" #spin>
+<div
+  *ngIf="
+    spinLoadService.enableSpinLoad &&
+    spinLoadService.spinnerName == 'saving-spinner'
+  "
+  class="container-spin"
+>
   <div class="black-page"></div>
-  <ng-lottie class="spin" [options]="optionsSaving"></ng-lottie>
+  <ng-lottie
+    width="350px"
+    height="350px"
+    class="spin"
+    [options]="this.optionsSavingSpinner"
+  ></ng-lottie>
 </div>
-}

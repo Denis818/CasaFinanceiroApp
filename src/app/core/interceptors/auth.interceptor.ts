@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
-import { SpinnerService } from '../services/spinner/spinner.service';
+import { SpinLoadService } from 'src/app/shared/services/spin-load.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -20,9 +20,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private router: Router,
-    private spinnerService: SpinnerService,
     private toastr: ToastrService,
-    private readonly storageService: StorageService
+    private readonly storageService: StorageService,
+    private spinLoadService: SpinLoadService
   ) {}
 
   intercept(
@@ -42,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
-  //  this.spinnerService.showSpinner(req.method);
+    this.spinLoadService.showSpinner(req.method);
 
     return next.handle(authReq).pipe(
       tap((event) => {
@@ -56,7 +56,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(() => of(error));
       }),
       finalize(() => {
-      //  this.spinnerService.hideSpinner();
+        this.spinLoadService.hideSpinner();
       })
     );
   }
