@@ -1,18 +1,14 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
-@NgModule({
-  declarations: [],
-  imports: [HttpClientModule],
-
-  exports: [],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-  ],
-})
+@NgModule({ declarations: [],
+    exports: [], imports: [], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class CoreModule {}
