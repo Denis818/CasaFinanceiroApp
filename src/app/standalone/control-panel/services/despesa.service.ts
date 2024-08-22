@@ -36,19 +36,18 @@ export class DespesaService extends CrudService<Despesa> {
 
     const params = new HttpParams({ fromObject: { ...despesaFiltro } });
 
-    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
-      'GET',
-      `${this.url}/todos-grupos`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>({
+      metodo: 'GET',
+      url: `${this.url}/todos-grupos`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   public getRelatorioDeGastosDoGrupo(): Observable<RelatorioGastosDoGrupoResponse> {
-    return this.sendHttpRequest<ApiResponse<RelatorioGastosDoGrupoResponse>>(
-      'GET',
-      this.url + '/relatorio-gastos-grupo'
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<RelatorioGastosDoGrupoResponse>>({
+      metodo: 'GET',
+      url: this.url + '/relatorio-gastos-grupo',
+    }).pipe(map((response) => response.dados));
   }
 
   public getListDespesasPorGrupo(
@@ -66,12 +65,11 @@ export class DespesaService extends CrudService<Despesa> {
 
     const params = new HttpParams({ fromObject: { ...despesaFiltro } });
 
-    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>(
-      'GET',
-      `${this.url}/por-grupo`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<PaginationResponse<Despesa>>>({
+      metodo: 'GET',
+      url: `${this.url}/por-grupo`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   public conferirFaturaDoCartao(faturaCartao: number): Observable<string> {
@@ -80,35 +78,34 @@ export class DespesaService extends CrudService<Despesa> {
       faturaCartao.toString()
     );
 
-    return this.sendHttpRequest(
-      'GET',
-      `${this.url}/calcular-fatura`,
-      null,
-      params
-    ).pipe(map((response: any) => response.dados));
+    return this.sendHttpRequest({
+      metodo: 'GET',
+      url: `${this.url}/calcular-fatura`,
+      params: params,
+    }).pipe(map((response: any) => response.dados));
   }
 
   public getParametrosDeAlertasDeGastos(): Observable<ParametroAlertaGastos[]> {
-    return this.sendHttpRequest<ApiResponse<ParametroAlertaGastos[]>>(
-      'GET',
-      this.url + '/parametro-alerta-gastos'
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<ParametroAlertaGastos[]>>({
+      metodo: 'GET',
+      url: this.url + '/parametro-alerta-gastos',
+    }).pipe(map((response) => response.dados));
   }
 
   public updateParametroAlertaGastos(
     metricas: ParametroAlertaGastos[]
   ): Observable<boolean> {
-    return this.sendHttpRequest<ApiResponse<boolean>>(
-      'PUT',
-      `${this.url}/parametro-alerta-gastos`,
-      metricas
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<boolean>>({
+      metodo: 'PUT',
+      url: `${this.url}/parametro-alerta-gastos`,
+      dados: metricas,
+    }).pipe(map((response) => response.dados));
   }
 
   public getNameFatura(code: string): Observable<string> {
-    return this.sendHttpRequest<ApiResponse<string>>(
-      'GET',
-      `${environment.base_url_financy}/grupo-fatura/${code}`
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<string>>({
+      metodo: 'GET',
+      url: `${environment.base_url_financy}/grupo-fatura/${code}`,
+    }).pipe(map((response) => response.dados));
   }
 }

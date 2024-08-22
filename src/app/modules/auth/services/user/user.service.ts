@@ -20,11 +20,11 @@ export class UserService extends BaseService {
   }
 
   login(user: UserRequest): void {
-    this.sendHttpRequest<ApiResponse<TokenResponse>>(
-      'POST',
-      this.url + '/login',
-      user
-    )
+    this.sendHttpRequest<ApiResponse<TokenResponse>>({
+      metodo: 'POST',
+      url: this.url + '/login',
+      dados: user,
+    })
       .pipe(
         tap((response) => {
           this.guardarToken(response.dados);
@@ -49,10 +49,10 @@ export class UserService extends BaseService {
 
   //  Support Methods
   private getUserInfo(): void {
-    this.sendHttpRequest<ApiResponse<UserInfoResponse>>(
-      'GET',
-      this.url + '/info'
-    ).subscribe({
+    this.sendHttpRequest<ApiResponse<UserInfoResponse>>({
+      metodo: 'GET',
+      url: this.url + '/info',
+    }).subscribe({
       next: (response) => {
         this.storageService.setItem('userEmail', response.dados.email);
         this.storageService.setItem(

@@ -19,18 +19,17 @@ export class AuditoriaComprasService extends BaseService {
       .set('paginaAtual', paginaAtual.toString())
       .set('itensPorPagina', itensPorPagina.toString());
 
-    return this.sendHttpRequest<ApiResponse<SugestaoDeFornecedorResponse[]>>(
-      'GET',
-      `${this.url}/despesa/sugestoes-fornecedor`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<SugestaoDeFornecedorResponse[]>>({
+      metodo: 'GET',
+      url: `${this.url}/despesa/sugestoes-fornecedor`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   getGraficoSugestoesEconomia(): Observable<SugestaoEconomiaResponse[]> {
-    return this.sendHttpRequest<ApiResponse<SugestaoEconomiaResponse[]>>(
-      'GET',
-      `${this.url}/despesa/sugestoes-economia`
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<SugestaoEconomiaResponse[]>>({
+      metodo: 'GET',
+      url: `${this.url}/despesa/sugestoes-economia`,
+    }).pipe(map((response) => response.dados));
   }
 }

@@ -23,11 +23,10 @@ export class MembroService extends CrudService<Membro> {
       .set('isMoradia', isMoradia.toString())
       .set('titleMessage', titleMessage);
 
-    return this.sendHttpRequest(
-      'GET',
-      `${this.url}/enviar-mensagem`,
-      null,
-      params
-    ).pipe(map((response: any) => response.dados.redirectToWhatsApp));
+    return this.sendHttpRequest({
+      metodo: 'GET',
+      url: `${this.url}/enviar-mensagem`,
+      params: params,
+    }).pipe(map((response: any) => response.dados.redirectToWhatsApp));
   }
 }

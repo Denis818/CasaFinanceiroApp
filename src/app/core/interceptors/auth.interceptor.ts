@@ -10,9 +10,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, finalize, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
-import { SpinLoadService } from 'src/app/shared/services/spin-load.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -21,8 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private readonly storageService: StorageService,
-    private spinLoadService: SpinLoadService
+    private readonly storageService: StorageService
   ) {}
 
   intercept(
@@ -42,8 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
-    this.spinLoadService.showSpinner(req.method);
-
     return next.handle(authReq).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {
@@ -54,9 +50,6 @@ export class AuthInterceptor implements HttpInterceptor {
         this.errorNotification(error?.error?.mensagens);
         this.checkTokenExpired(error);
         return throwError(() => of(error));
-      }),
-      finalize(() => {
-        this.spinLoadService.hideSpinner();
       })
     );
   }

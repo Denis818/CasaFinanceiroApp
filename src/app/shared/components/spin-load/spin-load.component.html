@@ -1,33 +1,27 @@
-<div
-  *ngIf="
-    spinLoadService.enableSpinLoad &&
-    spinLoadService.tipoSpinner == spinnerLoading
-  "
-  class="container-spin"
->
+<div *ngIf="spinLoadService.enableSpinLoad" class="container-spin">
   <div class="black-page"></div>
 
   <ng-lottie
+    *ngIf="spinLoadService.tipoSpinner === spinnerLoading"
     class="spin"
     width="350px"
     height="350px"
     [options]="spinnerLoadingOptions"
-  >
-  </ng-lottie>
-</div>
+  ></ng-lottie>
 
-<div
-  *ngIf="
-    spinLoadService.enableSpinLoad &&
-    spinLoadService.tipoSpinner == spinnerSaving
-  "
-  class="container-spin"
->
-  <div class="black-page"></div>
   <ng-lottie
+    *ngIf="spinLoadService.tipoSpinner === spinnerSaving"
     class="spin"
     width="350px"
     height="350px"
     [options]="spinnerSavingOptions"
+  ></ng-lottie>
+
+  <ng-lottie
+    *ngIf="spinLoadService.tipoSpinner === spinnerDownloading"
+    class="spin"
+    width="150px"
+    height="150px"
+    [options]="spinnerDownloadingOptions"
   ></ng-lottie>
 </div>

@@ -26,12 +26,11 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
     }
 
     const params = new HttpParams().set('ano', ano);
-    return this.sendHttpRequest<ApiResponse<GrupoFaturaSeletorResponse[]>>(
-      'GET',
-      `${this.url}/seletor-grupo-fatura`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<GrupoFaturaSeletorResponse[]>>({
+      metodo: 'GET',
+      url: `${this.url}/seletor-grupo-fatura`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   public getListGruposFaturas(ano: string = ''): Observable<GrupoFatura[]> {
@@ -42,12 +41,11 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
     }
 
     const params = new HttpParams().set('ano', ano);
-    return this.sendHttpRequest<ApiResponse<GrupoFatura[]>>(
-      'GET',
-      `${this.url}`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<GrupoFatura[]>>({
+      metodo: 'GET',
+      url: `${this.url}`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   public getStatusFaturaByName(
@@ -55,12 +53,11 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
   ): Observable<StatusFaturaResponse> {
     const params = new HttpParams().set('status', status.toString());
 
-    return this.sendHttpRequest<ApiResponse<StatusFaturaResponse>>(
-      'GET',
-      `${this.url}/status-fatura`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<StatusFaturaResponse>>({
+      metodo: 'GET',
+      url: `${this.url}/status-fatura`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 
   public updateStatusFatura(
@@ -71,11 +68,10 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
       .set('status', status.toString())
       .set('faturaNome', faturaNome);
 
-    return this.sendHttpRequest<ApiResponse<StatusFaturaResponse>>(
-      'PUT',
-      `${this.url}/status-fatura`,
-      null,
-      params
-    ).pipe(map((response) => response.dados));
+    return this.sendHttpRequest<ApiResponse<StatusFaturaResponse>>({
+      metodo: 'PUT',
+      url: `${this.url}/status-fatura`,
+      params: params,
+    }).pipe(map((response) => response.dados));
   }
 }

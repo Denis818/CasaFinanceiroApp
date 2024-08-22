@@ -1,4 +1,5 @@
 export enum EnumTipoSpinner {
-  Loading = 'loading-spinner',
-  Saving = 'saving-spinner',
+  loading = 'loading-spinner',
+  saving = 'saving-spinner',
+  downloading = 'downloading-spinner',
 }
