@@ -22,6 +22,7 @@ import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.int
 
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Title } from '@angular/platform-browser';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
 import { ListgrupoFaturaComponent } from 'src/app/standalone/control-panel/components/listing-components/grupo-fatura/list-grupo-fatura.component';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
@@ -88,6 +89,7 @@ export class ConferenciaComprasPage implements OnDestroy {
   };
 
   constructor(
+    public readonly titleService: Title,
     private readonly despesaService: DespesaService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly categoriaService: CategoriaService,

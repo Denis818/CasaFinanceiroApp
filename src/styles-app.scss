@@ -324,6 +324,21 @@
   }
 }
 
+[app-title] {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+
+  .mat-icon {
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
+    margin-right: 10px;
+  }
+}
+
 [dados-nao-encontrados] {
   text-align: center;
   padding: 20px;

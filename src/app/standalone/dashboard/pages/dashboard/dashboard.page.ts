@@ -7,6 +7,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
@@ -54,7 +55,8 @@ export class DashboardPage implements OnInit, OnDestroy {
     private readonly dashboardService: DashboardService,
     private readonly grupoFaturaService: GrupoFaturaService,
     private readonly dialog: MatDialog,
-    private readonly grupoFaturaNotification: GrupoFaturaNotification
+    private readonly grupoFaturaNotification: GrupoFaturaNotification,
+    public readonly titleService: Title
   ) {}
 
   ngOnInit() {

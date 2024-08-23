@@ -1,4 +1,9 @@
 <div dashboard>
+  <h1 app-title>
+    <mat-icon>dashboard_customize</mat-icon>
+    {{ titleService.getTitle() }}
+  </h1>
+
   <div app-card-container app-tooltip-helper>
     <div app-multi-card class="header-with-button">
       <div app-multi-card-header>

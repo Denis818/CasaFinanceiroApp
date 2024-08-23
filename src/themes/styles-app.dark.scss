@@ -34,6 +34,10 @@ body {
       }
     }
 
+    [app-title] {
+      color: var(--dark-theme-text);
+    }
+
     [dashboard] {
       [app-card-container] {
         [app-multi-card] {
@@ -140,6 +144,7 @@ body {
         }
       }
     }
+
     [pagination] {
       --mdc-outlined-text-field-outline-color: var(--dark-theme-color);
       --mdc-outlined-text-field-hover-outline-color: var(--dark-theme-color);

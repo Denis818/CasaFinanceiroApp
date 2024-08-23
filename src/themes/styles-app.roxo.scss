@@ -25,6 +25,10 @@ body {
       }
     }
 
+    [app-title] {
+      color: var(--roxo-theme-color);
+    }
+
     [dashboard] {
       [app-card-container] {
         [app-multi-card] {

@@ -12,7 +12,8 @@
     [itens-nav] {
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: start;
+      margin-left: 62px;
       width: 100%;
 
       [opcoes] {
@@ -29,7 +30,7 @@
       [selected-group] {
         display: flex;
         justify-content: space-between;
-        width: 435px;
+        width: 400px;
         margin-right: 75px;
 
         .select-grupo-fatura {

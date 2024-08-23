@@ -1,4 +1,9 @@
 <div painel-controle>
+  <h1 app-title>
+    <mat-icon>settings_applications</mat-icon>
+    {{ titleService.getTitle() }}
+  </h1>
+
   <div options-header>
     <div insert-itens>
       <button app-button-action (click)="openCreateMembroModal()">

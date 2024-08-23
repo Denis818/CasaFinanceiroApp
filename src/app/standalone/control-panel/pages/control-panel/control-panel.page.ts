@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Title } from '@angular/platform-browser';
 import { CustomPaginator } from 'src/app/shared/utilities/paginator/custom-paginator';
 import { CreateCategoriaComponent } from '../../components/creation-components/categoria/create-categoria.component';
 import { CreateDespesaComponent } from '../../components/creation-components/despesa/create-despesa.component';
@@ -32,7 +33,10 @@ import { ListMembroComponent } from '../../components/listing-components/membro/
   providers: [{ provide: MatPaginatorIntl, useClass: CustomPaginator }],
 })
 export class ControlPanelPage {
-  constructor(private readonly dialog: MatDialog) {}
+  constructor(
+    private readonly dialog: MatDialog,
+    public readonly titleService: Title
+  ) {}
 
   @ViewChild(ListDespesasComponent) listDespesaModal: ListDespesasComponent;
 

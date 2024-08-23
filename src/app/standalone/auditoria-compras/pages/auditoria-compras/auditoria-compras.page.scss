@@ -4,6 +4,7 @@
     margin-bottom: 5px;
 
     [app-card] {
+      background-color: white;
       margin-bottom: 10px;
 
       [app-card-body] {
@@ -53,11 +54,15 @@
               padding-top: 14px;
               padding-bottom: 14px;
             }
+
+            .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+              background-color: white;
+            }
           }
         }
 
         [table-all-groups] {
-          --mat-table-background-color: #efefef;
+          /*  --mat-table-background-color: #efefef; */
 
           ::ng-deep {
             .mdc-data-table__cell,
@@ -85,6 +90,10 @@
             ::ng-deep {
               .mat-mdc-paginator {
                 color: #708090;
+              }
+
+              .mat-mdc-paginator-container {
+                background-color: white;
               }
 
               .mat-mdc-paginator-range-label {
