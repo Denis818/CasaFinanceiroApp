@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { EnumTipoSpinner } from 'src/app/shared/enums/enum-tipo-spinner';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { CrudService } from '../../services/base/crud.service';
@@ -72,6 +73,7 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
       metodo: 'PUT',
       url: `${this.url}/status-fatura`,
       params: params,
+      spinnerType: EnumTipoSpinner.saving,
     }).pipe(map((response) => response.dados));
   }
 }

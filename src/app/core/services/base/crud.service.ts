@@ -20,6 +20,7 @@ export abstract class CrudService<TEntity> extends BaseService {
       metodo: 'POST',
       url: this.url,
       dados: item,
+      spinnerType: EnumTipoSpinner.saving,
     }).pipe(
       map((response) => {
         return response.dados;
@@ -40,6 +41,7 @@ export abstract class CrudService<TEntity> extends BaseService {
     return this.sendHttpRequest<ApiResponse<boolean>>({
       metodo: 'DELETE',
       url: `${this.url}/?code=${code}`,
+      spinnerType: EnumTipoSpinner.saving,
     }).pipe(map((response) => response.dados));
   }
 }

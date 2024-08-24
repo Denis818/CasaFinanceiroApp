@@ -95,6 +95,7 @@ body {
     [app-card-container] {
       [app-multi-card] {
         border: 1px solid #333333;
+        background: none;
 
         [app-multi-card-header] {
           background-color: var(--dark-theme-color);

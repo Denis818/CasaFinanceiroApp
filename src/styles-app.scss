@@ -114,6 +114,7 @@
     border-radius: 8px;
     transition: box-shadow 0.4s ease-in-out;
     border: 1px solid #ccc;
+    background-color: #ffffff;
 
     &:hover {
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24);
@@ -327,7 +328,7 @@
 [app-title] {
   display: flex;
   align-items: center;
-  margin: 10px 0px 15px !important;
+  margin: 15px 0px 15px !important;
   font-weight: 500 !important;
   letter-spacing: 1px !important;
 

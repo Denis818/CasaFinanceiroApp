@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { CrudService } from 'src/app/core/services/base/crud.service';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
+import { EnumTipoSpinner } from 'src/app/shared/enums/enum-tipo-spinner';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { PaginationResponse } from '../../../shared/utilities/paginator/pagination-response.interface';
@@ -95,10 +96,12 @@ export class DespesaService extends CrudService<Despesa> {
   public updateParametroAlertaGastos(
     metricas: ParametroAlertaGastos[]
   ): Observable<boolean> {
+    console.log('Olaaa')
     return this.sendHttpRequest<ApiResponse<boolean>>({
       metodo: 'PUT',
       url: `${this.url}/parametro-alerta-gastos`,
       dados: metricas,
+      spinnerType: EnumTipoSpinner.saving,
     }).pipe(map((response) => response.dados));
   }
 

@@ -11,18 +11,15 @@ export abstract class BaseService {
   readonly storageService: StorageService = inject(StorageService);
 
   protected sendHttpRequest<T>(options: HttpRequestOptions): Observable<T> {
-    const {
-      metodo,
-      url,
-      dados,
-      params,
-      spinnerType = EnumTipoSpinner.loading,
-    } = options;
+    if (!options.spinnerType) {
+      options.spinnerType = EnumTipoSpinner.loading;
+    }
 
-    this.spinLoadService.showSpinner(spinnerType);
-    const requestResult = this.http.request<T>(metodo, url, {
-      body: dados,
-      params: params,
+    this.spinLoadService.showSpinner(options.spinnerType);
+
+    const requestResult = this.http.request<T>(options.metodo, options.url, {
+      body: options.dados,
+      params: options.params,
     });
     return requestResult.pipe(
       map((response) => {

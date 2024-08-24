@@ -1,19 +1,19 @@
 :host {
   [navbar] {
     position: fixed;
-    width: 100%;
+    width: 96%;
     color: white;
     display: flex;
     align-items: center;
     z-index: 5;
     padding: 5px;
-    border-bottom: solid 3px #fdfdfd;
+    justify-content: start;
+    margin-left: 60px;
 
     [itens-nav] {
       display: flex;
       align-items: center;
-      justify-content: start;
-      margin-left: 62px;
+      justify-content: space-between;
       width: 100%;
 
       [opcoes] {
@@ -31,7 +31,6 @@
         display: flex;
         justify-content: space-between;
         width: 400px;
-        margin-right: 75px;
 
         .select-grupo-fatura {
           width: 256px;
@@ -93,12 +92,10 @@
 
   @media screen and (max-width: 600px) {
     [navbar] {
-      [title] {
-        display: none;
-      }
+      width: 100%;
+      margin-left: 0px;
 
       [itens-nav] {
-        margin-left: 0px;
         [selected-group] {
           width: 60%;
           display: flex;
