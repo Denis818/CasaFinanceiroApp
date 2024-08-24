@@ -148,7 +148,7 @@
 }
 
 [app-card] {
-  background-color: #efefef;
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -196,7 +196,7 @@
 
   [pagination] {
     .mat-mdc-paginator-container {
-      background-color: #efefef;
+      background-color: #f9f9f9;
     }
   }
 }
@@ -220,7 +220,7 @@
     }
 
     th {
-      background-color: #f9f9f9;
+      background-color: #f7f7f7;
       font-weight: 500;
       color: #4e6376;
     }
