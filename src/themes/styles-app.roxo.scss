@@ -202,9 +202,13 @@ body {
       --mdc-outlined-text-field-label-text-color: var(--roxo-theme-color);
       --mdc-outlined-text-field-focus-label-text-color: var(--roxo-theme-color);
       --mdc-outlined-text-field-outline-color: #9762f2;
+      --mdc-outlined-text-field-hover-label-text-color: var(--roxo-theme-color);
       --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);
       --mdc-outlined-text-field-focus-outline-color: var(--roxo-theme-color);
       --mdc-outlined-text-field-caret-color: var(--roxo-theme-color);
+    }
+    .mdc-text-field--outlined .mdc-text-field--focused {
+      color: red !important;
     }
 
     [auditoria-compras] {
