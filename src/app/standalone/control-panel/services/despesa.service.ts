@@ -96,7 +96,6 @@ export class DespesaService extends CrudService<Despesa> {
   public updateParametroAlertaGastos(
     metricas: ParametroAlertaGastos[]
   ): Observable<boolean> {
-    console.log('Olaaa')
     return this.sendHttpRequest<ApiResponse<boolean>>({
       metodo: 'PUT',
       url: `${this.url}/parametro-alerta-gastos`,

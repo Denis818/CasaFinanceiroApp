@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 import { EnumTipoSpinner } from 'src/app/shared/enums/enum-tipo-spinner';
 import { HttpRequestOptions } from '../../interfaces/http-request-options.interface';
 import { SpinLoadService } from '../spinner/spin-load.service';
@@ -21,10 +21,14 @@ export abstract class BaseService {
       body: options.dados,
       params: options.params,
     });
+
     return requestResult.pipe(
       map((response) => {
-        this.spinLoadService.hideSpinner();
         return response;
+      }),
+
+      finalize(() => {
+        this.spinLoadService.hideSpinner();
       })
     );
   }
@@ -41,8 +45,11 @@ export abstract class BaseService {
 
     return requestResult.pipe(
       map((response) => {
-        this.spinLoadService.hideSpinner();
         return response;
+      }),
+
+      finalize(() => {
+        this.spinLoadService.hideSpinner();
       })
     );
   }
