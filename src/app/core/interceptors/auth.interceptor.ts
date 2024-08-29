@@ -47,7 +47,11 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        this.errorNotification(error?.error?.mensagens);
+        if (error.status === 429) {
+          this.toastr.warning('Tente mais tarde', 'Aviso');
+        } else {
+          this.errorNotification(error?.error?.mensagens);
+        }
         this.checkTokenExpired(error);
         return throwError(() => of(error));
       })
