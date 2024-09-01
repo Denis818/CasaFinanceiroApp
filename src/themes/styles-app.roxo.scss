@@ -108,6 +108,8 @@ body {
 
     [painel-controle] {
       [options-header] {
+        background-color: rgb(249 245 255) !important;
+
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
             background-color: var(--roxo-theme-background);

@@ -116,6 +116,7 @@ body {
 
     [painel-controle] {
       [options-header] {
+        background-color: rgb(240 250 255) !important;
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
             background-image: var(--azul-theme-background);
