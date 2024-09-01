@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { UserService } from 'src/app/modules/auth/services/user/user.service';
@@ -44,7 +45,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly storageService: StorageService,
     private readonly user: UserService,
     public readonly titleService: Title,
-    private temaCorNotification: TemaCorNotification
+    private temaCorNotification: TemaCorNotification,
+    private router: Router
   ) {
     this.selectedTheme =
       this.storageService.getItem('selectedTheme') || 'roxo-theme';
@@ -78,7 +80,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.storageService.getItem('ano') || new Date().getFullYear().toString();
 
     const grupoFaturaCodeSalvo =
-      parseInt(this.storageService.getItem('grupo-fatura-code')) || null;
+      this.storageService.getItem('grupo-fatura-code') || null;
+
+    console.log(grupoFaturaCodeSalvo);
 
     this.grupoFaturasForm.patchValue(
       {
@@ -196,5 +200,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
           },
         }
       );
+  }
+
+  shouldHideSelectedGroup(): boolean {
+    return false;// this.router.url.includes('comparativo-faturas');
   }
 }

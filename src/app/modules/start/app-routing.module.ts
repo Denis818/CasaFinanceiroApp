@@ -44,6 +44,16 @@ const routes: Routes = [
             )
           ).ConferenciaComprasPage,
       },
+      {
+        path: 'comparativo-faturas',
+        title: 'Comparativo de Faturas',
+        loadComponent: async () =>
+          (
+            await import(
+              'src/app/standalone/comparativo-faturas/pages/comparativo-faturas/comparativo-faturas.page'
+            )
+          ).ComparativoFaturasPage,
+      },
     ],
     canMatch: [AuthGuard],
   },

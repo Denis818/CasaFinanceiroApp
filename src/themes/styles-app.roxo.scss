@@ -1,10 +1,5 @@
 body {
   &.roxo-theme {
-    background: linear-gradient(
-      to right,
-      #ffffff -200%,
-      rgb(237 227 255 / 44%) 100%
-    );
     --roxo-theme-color: #673ab7;
     --roxo-theme-background: #673ab7;
 
@@ -108,8 +103,6 @@ body {
 
     [painel-controle] {
       [options-header] {
-        background-color: rgb(249 245 255) !important;
-
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
             background-color: var(--roxo-theme-background);

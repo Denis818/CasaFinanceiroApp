@@ -21,6 +21,7 @@
       <mat-icon>dashboard_customize</mat-icon>
       <span *ngIf="sidenavExpanded">Dashboard</span>
     </a>
+
     <a
       [routerLink]="'painel-controle'"
       (click)="setSelectedButton('painel-controle')"
@@ -39,6 +40,16 @@
     >
       <mat-icon>attach_money</mat-icon>
       <span *ngIf="sidenavExpanded">Auditoria de Compras</span>
+    </a>
+
+    <a
+      [routerLink]="'comparativo-faturas'"
+      (click)="setSelectedButton('comparativo-faturas')"
+      [ngClass]="{ selected: selectedButton === 'comparativo-faturas' }"
+      class="nav-link-icon"
+    >
+      <mat-icon>bar_chart</mat-icon>
+      <span *ngIf="sidenavExpanded">Comparativo de Faturas</span>
     </a>
   </div>
 </div>

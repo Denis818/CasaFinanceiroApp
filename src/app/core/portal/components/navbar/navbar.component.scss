@@ -5,27 +5,17 @@
     color: white;
     display: flex;
     align-items: center;
-    z-index: 5;
+    z-index: 5000;
     padding: 5px;
     justify-content: start;
     margin-left: 60px;
+    height: 40px;
 
     [itens-nav] {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-
-      [opcoes] {
-        width: 81px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      [logout-icon] {
-        margin-right: 15px;
-      }
 
       [selected-group] {
         display: flex;
@@ -34,6 +24,7 @@
 
         .select-grupo-fatura {
           width: 256px;
+          margin-right: 10px;
         }
 
         .select-ano {
@@ -82,6 +73,27 @@
           color: #000;
           margin-left: 16px;
         }
+      }
+
+      [actions] {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+
+        [actions-icons] {
+          width: 81px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          [logout-icon] {
+            margin-right: 15px;
+          }
+        }
+      }
+
+      .ocultar-selected-group {
+        display: none;
       }
     }
     & [title] {

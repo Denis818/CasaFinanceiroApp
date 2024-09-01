@@ -1,12 +1,5 @@
 body {
   &.azul-theme {
-    /*  background: linear-gradient(to right, #ffffff -115%, #d4f0ffab); */
-    background: linear-gradient(
-      to right,
-      #ffffff -200%,
-      rgb(230 246 255 / 84%) 100%
-    );
-
     --azul-theme-color: #1398e5;
     --azul-theme-background: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
 
@@ -116,7 +109,6 @@ body {
 
     [painel-controle] {
       [options-header] {
-        background-color: rgb(240 250 255) !important;
         [list-itens] {
           .mat-mdc-unelevated-button.mat-primary {
             background-image: var(--azul-theme-background);

@@ -41,6 +41,8 @@ export class SideNavComponent {
           this.setSelectedButton('painel-controle');
         } else if (event.urlAfterRedirects.includes('auditoria-compras')) {
           this.setSelectedButton('auditoria-compras');
+        } else if (event.urlAfterRedirects.includes('comparativo-faturas')) {
+          this.setSelectedButton('comparativo-faturas');
         }
       });
   }

@@ -1,0 +1,104 @@
+<div comparativo-faturas>
+  <h1 app-title>
+    <mat-icon>bar_chart</mat-icon>
+    {{ titleService.getTitle() }}
+  </h1>
+
+  <div class="container">
+    <div selections [formGroup]="grupoFaturasForm">
+      <div>
+        <label selection-title>Selecionar Fatura 1:</label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="grupoFaturaCode1">
+            <mat-option
+              *ngFor="let grupoFatura of grupoFaturas"
+              [value]="grupoFatura.code"
+            >
+              {{ grupoFatura.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <label selection-title>Selecionar Fatura 2:</label>
+        <mat-form-field appearance="outline">
+          <mat-select
+            panelClass="grupo-fatura-select-panel"
+            formControlName="grupoFaturaCode2"
+          >
+            <mat-option
+              *ngFor="let grupoFatura of grupoFaturas"
+              [value]="grupoFatura.code"
+            >
+              {{ grupoFatura.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div app-table>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>{{ getNomeGrupoFatura1() }}</th>
+            <th>{{ getNomeGrupoFatura2() }}</th>
+            <th>Diferença</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of comparativoFaturas">
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.despesaGrupoFatura1 | currency: 'BRL' }}</td>
+            <td>{{ item.despesaGrupoFatura2 | currency: 'BRL' }}</td>
+            <td
+              class="value-color"
+              [ngStyle]="{'color': getDifferenceColor(item.despesaGrupoFatura1, item.despesaGrupoFatura2)}"
+            >
+              {{ getDifference(item.despesaGrupoFatura1,
+              item.despesaGrupoFatura2) | currency: 'BRL' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total Geral</td>
+            <td>{{ getTotalGrupoFatura1() | currency: 'BRL' }}</td>
+            <td>{{ getTotalGrupoFatura2() | currency: 'BRL' }}</td>
+            <td
+              class="value-color"
+              [ngStyle]="{'color': getDifferenceColor(getTotalGrupoFatura1(), getTotalGrupoFatura2())}"
+            >
+              {{ getDifference(getTotalGrupoFatura1(), getTotalGrupoFatura2()) |
+              currency: 'BRL' }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="chart">
+      <h2 app-title>Gráfico Comparativo</h2>
+      <img
+        src="https://via.placeholder.com/800x300"
+        alt="Gráfico comparativo"
+      />
+    </div>
+
+    <div class="summary">
+      <div>
+        <h3>Diferença Total</h3>
+        <div class="value">+11%</div>
+      </div>
+      <div>
+        <h3>Maior Economia</h3>
+        <div class="value">Transporte</div>
+      </div>
+      <div>
+        <h3>Maior Aumento</h3>
+        <div class="value">Alimentação</div>
+      </div>
+    </div>
+  </div>
+</div>

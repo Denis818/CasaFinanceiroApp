@@ -1,6 +1,11 @@
 <nav navbar>
   <div itens-nav>
-    <div app-input-color selected-group [formGroup]="grupoFaturasForm">
+    <div
+      app-input-color
+      selected-group
+      [formGroup]="grupoFaturasForm"
+      [ngClass]="{ 'ocultar-selected-group': shouldHideSelectedGroup() }"
+    >
       <div class="select-grupo-fatura">
         <mat-form-field appearance="outline">
           <mat-select
@@ -29,16 +34,18 @@
       </div>
     </div>
 
-    <div opcoes>
-      <i>
-        <a class="icon-temas" [matMenuTriggerFor]="themeMenu">
-          <mat-icon>format_color_fill</mat-icon>
-        </a>
-      </i>
+    <div actions>
+      <div actions-icons>
+        <i>
+          <a class="icon-temas" [matMenuTriggerFor]="themeMenu">
+            <mat-icon>format_color_fill</mat-icon>
+          </a>
+        </i>
 
-      <i logout-icon (click)="logout()">
-        <mat-icon>logout</mat-icon>
-      </i>
+        <i logout-icon (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </i>
+      </div>
     </div>
   </div>
 
