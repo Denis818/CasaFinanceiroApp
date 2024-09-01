@@ -41,6 +41,10 @@ export class ComparativoFaturasPage implements OnInit {
 
   comparativoFaturas: ComparativoFaturas[] = [];
 
+  totalGrupoFatura1: number = 0;
+  totalGrupoFatura2: number = 0;
+  totalDifference: number = 0;
+
   constructor(
     public readonly titleService: Title,
     private readonly storageService: StorageService,
@@ -58,77 +62,7 @@ export class ComparativoFaturasPage implements OnInit {
     this.getListGrupoFaturaParaSeletorAsync();
     this.onGrupoFaturaChange();
   }
-
-  onGrupoFaturaChange() {
-    this.grupoFaturasForm.valueChanges.subscribe((values) => {
-      const grupoFaturaCode1 = values.grupoFaturaCode1;
-      const grupoFaturaCode2 = values.grupoFaturaCode2;
-
-      if (grupoFaturaCode1 && grupoFaturaCode2) {
-        this.comparativoFaturasService
-          .getComparativoFaturas(grupoFaturaCode1, grupoFaturaCode2)
-          .subscribe((comparativoFaturas) => {
-            this.comparativoFaturas = comparativoFaturas;
-          });
-      }
-    });
-  }
-
-  getTotalGrupoFatura1(): number {
-    return this.comparativoFaturas.reduce(
-      (acc, item) => acc + item.despesaGrupoFatura1,
-      0
-    );
-  }
-
-  getTotalGrupoFatura2(): number {
-    return this.comparativoFaturas.reduce(
-      (acc, item) => acc + item.despesaGrupoFatura2,
-      0
-    );
-  }
-
-  getNomeGrupoFatura1(): string {
-    const grupoFaturaCode1 =
-      this.grupoFaturasForm.get('grupoFaturaCode1')?.value;
-    const grupoFatura1 = this.grupoFaturas.find(
-      (gf) => gf.code === grupoFaturaCode1
-    );
-    return grupoFatura1 ? grupoFatura1.nome : 'Fatura 1';
-  }
-
-  getNomeGrupoFatura2(): string {
-    const grupoFaturaCode2 =
-      this.grupoFaturasForm.get('grupoFaturaCode2')?.value;
-    const grupoFatura2 = this.grupoFaturas.find(
-      (gf) => gf.code === grupoFaturaCode2
-    );
-    return grupoFatura2 ? grupoFatura2.nome : 'Fatura 2';
-  }
-
-  getDifference(
-    despesaGrupoFatura1: number,
-    despesaGrupoFatura2: number
-  ): number {
-    return despesaGrupoFatura1 - despesaGrupoFatura2;
-  }
-
-  getDifferenceColor(
-    despesaGrupoFatura1: number,
-    despesaGrupoFatura2: number
-  ): string {
-    const difference = this.getDifference(
-      despesaGrupoFatura1,
-      despesaGrupoFatura2
-    );
-    if (difference < 0) {
-      return '#0fe400';
-    } else if (difference > 0) {
-      return 'red';
-    } else {
-      return '#4e6376';
-    }
-  }
+  //#region Seletor de faturas
 
   getListGrupoFaturaParaSeletorAsync() {
     const ano = this.storageService.getItem('ano');
@@ -149,4 +83,62 @@ export class ComparativoFaturasPage implements OnInit {
       },
     });
   }
+  //#endregion
+
+  //#region Tabela de Comparação de Faturas
+  onGrupoFaturaChange() {
+    this.grupoFaturasForm.valueChanges.subscribe((values) => {
+      const grupoFaturaCode1 = values.grupoFaturaCode1;
+      const grupoFaturaCode2 = values.grupoFaturaCode2;
+
+      if (grupoFaturaCode1 && grupoFaturaCode2) {
+        this.comparativoFaturasService
+          .getComparativoFaturas(grupoFaturaCode1, grupoFaturaCode2)
+          .subscribe((comparativoFaturas) => {
+            this.comparativoFaturas = comparativoFaturas;
+
+            this.totalGrupoFatura1 = this.calcularTotalDespesasPorGroupo(1);
+            this.totalGrupoFatura2 = this.calcularTotalDespesasPorGroupo(2);
+            this.totalDifference =
+              this.totalGrupoFatura1 - this.totalGrupoFatura2;
+          });
+      }
+    });
+  }
+
+  calcularTotalDespesasPorGroupo(groupNumber: number): number {
+    return this.comparativoFaturas.reduce((total, despesa) => {
+      if (groupNumber === 1) {
+        return total + despesa.despesaGrupoFatura1;
+      } else if (groupNumber === 2) {
+        return total + despesa.despesaGrupoFatura2;
+      }
+      return total;
+    }, 0);
+  }
+
+  getDifferenceColor(
+    despesaGrupoFatura1: number,
+    despesaGrupoFatura2: number
+  ): string {
+    const difference = despesaGrupoFatura1 - despesaGrupoFatura2;
+    if (difference < 0) {
+      return '#0fe400';
+    } else if (difference > 0) {
+      return 'red';
+    } else {
+      return '#4e6376';
+    }
+  }
+
+  getNomeGrupoFatura(grupoFaturaForm: string): string {
+    const grupoFaturaCode = this.grupoFaturasForm.get(grupoFaturaForm)?.value;
+
+    const grupoFatura = this.grupoFaturas.find(
+      (gf) => gf.code === grupoFaturaCode
+    );
+
+    return grupoFatura ? grupoFatura.nome : 'Fatura';
+  }
+  //#endregion
 }
