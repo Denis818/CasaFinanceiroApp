@@ -140,7 +140,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
       next: (isReload) => {
         if (isReload) {
-          this.cardTotaisListDespesas.getParametrosDeAlertasDeGastos();
+          this.cardTotaisListDespesas?.getParametrosDeAlertasDeGastos();
         }
       },
     });

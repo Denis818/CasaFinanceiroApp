@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -46,7 +46,7 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class CardTotaisListDespesasComponent implements OnInit {
+export class CardTotaisListDespesasComponent {
   parametrosGastos: ParametroAlertaGastos[] = [];
 
   relatorioGastosDoGrupo: RelatorioGastosDoGrupoResponse = {
@@ -66,10 +66,6 @@ export class CardTotaisListDespesasComponent implements OnInit {
     private readonly despesaService: DespesaService,
     private readonly dialog: MatDialog
   ) {}
-
-  ngOnInit() {
-    this.getParametrosDeAlertasDeGastos();
-  }
 
   getParametrosDeAlertasDeGastos() {
     this.despesaService
