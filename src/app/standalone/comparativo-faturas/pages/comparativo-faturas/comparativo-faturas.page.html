@@ -4,80 +4,79 @@
     {{ titleService.getTitle() }}
   </h1>
 
-  <div class="container">
-    <div selections [formGroup]="grupoFaturasForm">
-      <div>
-        <label selection-title>Selecionar Fatura 1:</label>
-        <mat-form-field appearance="outline">
-          <mat-select formControlName="grupoFaturaCode1">
-            <mat-option
-              *ngFor="let grupoFatura of grupoFaturas"
-              [value]="grupoFatura.code"
-            >
-              {{ grupoFatura.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <label selection-title>Selecionar Fatura 2:</label>
-        <mat-form-field appearance="outline">
-          <mat-select
-            panelClass="grupo-fatura-select-panel"
-            formControlName="grupoFaturaCode2"
+  <div selections [formGroup]="grupoFaturasForm">
+    <div class="bottom">
+      <label selection-title>Selecionar Fatura 1:</label>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="grupoFaturaCode1">
+          <mat-option
+            *ngFor="let grupoFatura of grupoFaturas"
+            [value]="grupoFatura.code"
           >
-            <mat-option
-              *ngFor="let grupoFatura of grupoFaturas"
-              [value]="grupoFatura.code"
-            >
-              {{ grupoFatura.nome }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+            {{ grupoFatura.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-
-    <div app-table>
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Categoria</th>
-            <th>{{ getNomeGrupoFatura(1) }}</th>
-            <th>{{ getNomeGrupoFatura(2) }}</th>
-            <th>Diferença</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of comparativoFaturas">
-            <td>{{ item.categoria }}</td>
-            <td>{{ item.despesaGrupoFatura1 | currency: 'BRL' }}</td>
-            <td>{{ item.despesaGrupoFatura2 | currency: 'BRL' }}</td>
-            <td
-              class="value-color"
-              [ngStyle]="{'color': getDifferenceColor(item.despesaGrupoFatura1, item.despesaGrupoFatura2)}"
-            >
-              {{ item.despesaGrupoFatura1 - item.despesaGrupoFatura2 |
-              currency:'BRL' }}
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Total Geral</td>
-            <td>{{ totalGrupoFatura1 | currency: 'BRL' }}</td>
-            <td>{{ totalGrupoFatura2 | currency: 'BRL' }}</td>
-            <td
-              class="value-color"
-              [ngStyle]="{'color': getDifferenceColor(totalGrupoFatura1, totalGrupoFatura2)}"
-            >
-              {{ totalDifference | currency: 'BRL' }}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+    <div>
+      <label selection-title>Selecionar Fatura 2:</label>
+      <mat-form-field appearance="outline">
+        <mat-select
+          panelClass="grupo-fatura-select-panel"
+          formControlName="grupoFaturaCode2"
+        >
+          <mat-option
+            *ngFor="let grupoFatura of grupoFaturas"
+            [value]="grupoFatura.code"
+          >
+            {{ grupoFatura.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+  </div>
 
-    <!--     <div class="chart">
+  <div app-table>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>{{ getNomeGrupoFatura(1) }}</th>
+          <th>{{ getNomeGrupoFatura(2) }}</th>
+          <th>Diferença</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of comparativoFaturas">
+          <td>{{ item.categoria }}</td>
+          <td>{{ item.despesaGrupoFatura1 | currency: 'BRL' }}</td>
+          <td>{{ item.despesaGrupoFatura2 | currency: 'BRL' }}</td>
+          <td
+            class="value-color"
+            [ngStyle]="{'color': getDifferenceColor(item.despesaGrupoFatura1, item.despesaGrupoFatura2)}"
+          >
+            {{ item.despesaGrupoFatura1 - item.despesaGrupoFatura2 |
+            currency:'BRL' }}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total Geral</td>
+          <td>{{ totalGrupoFatura1 | currency: 'BRL' }}</td>
+          <td>{{ totalGrupoFatura2 | currency: 'BRL' }}</td>
+          <td
+            class="value-color"
+            [ngStyle]="{'color': getDifferenceColor(totalGrupoFatura1, totalGrupoFatura2)}"
+          >
+            {{ totalDifference | currency: 'BRL' }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!--     <div class="chart">
       <h2 app-title>Gráfico Comparativo</h2>
       <img
         src="https://via.placeholder.com/800x300"
@@ -85,27 +84,26 @@
       />
     </div> -->
 
-    <div class="summary">
-      <div class="item">
-        <h2 app-title>
-          Diferença Total
-          <mat-icon class="icon-help" [matTooltip]="tooltipMessage"
-            >help_outline
-          </mat-icon>
-        </h2>
+  <div class="summary">
+    <div class="item">
+      <h2 app-title>
+        Diferença Total
+        <mat-icon class="icon-help" [matTooltip]="tooltipMessage"
+          >help_outline
+        </mat-icon>
+      </h2>
 
-        <div class="value ajust-position">
-          {{ totalDifferencePercentage | number: '1.0-2' }}%
-        </div>
+      <div class="value ajust-position">
+        {{ totalDifferencePercentage | number: '1.0-2' }}%
       </div>
-      <div class="item">
-        <h2 app-title>Maior Economia</h2>
-        <div class="value">{{ maiorEconomiaCategoria }}</div>
-      </div>
-      <div class="item">
-        <h2 app-title>Maior Aumento</h2>
-        <div class="value">{{ maiorAumentoCategoria }}</div>
-      </div>
+    </div>
+    <div class="item">
+      <h2 app-title>Maior Economia</h2>
+      <div class="value">{{ maiorEconomiaCategoria }}</div>
+    </div>
+    <div class="item">
+      <h2 app-title>Maior Aumento</h2>
+      <div class="value">{{ maiorAumentoCategoria }}</div>
     </div>
   </div>
 </div>
