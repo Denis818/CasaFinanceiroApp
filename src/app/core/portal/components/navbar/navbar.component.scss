@@ -44,6 +44,11 @@
             width: 0px;
           }
 
+          .mat-mdc-menu-content,
+          .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text {
+            margin-top: 12px;
+          }
+
           .mat-mdc-form-field-bottom-align::before {
             display: inline;
           }
@@ -170,11 +175,19 @@
 }
 
 ::ng-deep {
+  div.mat-mdc-select-panel {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transform-origin: top center;
+    margin-top: 4px;
+  }
+
   .cdk-overlay-container {
     .cdk-overlay-connected-position-bounding-box {
       .cdk-overlay-pane {
         .mat-mdc-menu-panel {
           min-width: 200px;
+          min-height: 100px;
         }
       }
     }
@@ -237,5 +250,9 @@
         --mat-radio-checked-ripple-color: #2c2c2c;
       }
     }
+  }
+
+  .mat-mdc-menu-panel {
+    margin-top: 13px;
   }
 }
