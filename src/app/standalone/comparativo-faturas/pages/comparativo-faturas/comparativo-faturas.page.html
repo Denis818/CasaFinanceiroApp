@@ -42,8 +42,8 @@
         <thead>
           <tr>
             <th>Categoria</th>
-            <th>{{ getNomeGrupoFatura('grupoFaturaCode1') }}</th>
-            <th>{{ getNomeGrupoFatura('grupoFaturaCode2') }}</th>
+            <th>{{ getNomeGrupoFatura(1) }}</th>
+            <th>{{ getNomeGrupoFatura(2) }}</th>
             <th>Diferença</th>
           </tr>
         </thead>
@@ -77,26 +77,34 @@
       </table>
     </div>
 
-    <div class="chart">
+    <!--     <div class="chart">
       <h2 app-title>Gráfico Comparativo</h2>
       <img
         src="https://via.placeholder.com/800x300"
         alt="Gráfico comparativo"
       />
-    </div>
+    </div> -->
 
     <div class="summary">
-      <div>
-        <h3>Diferença Total</h3>
-        <div class="value">+11%</div>
+      <div class="item">
+        <h2 app-title>
+          Diferença Total
+          <mat-icon class="icon-help" [matTooltip]="tooltipMessage"
+            >help_outline
+          </mat-icon>
+        </h2>
+
+        <div class="value ajust-position">
+          {{ totalDifferencePercentage | number: '1.0-2' }}%
+        </div>
       </div>
-      <div>
-        <h3>Maior Economia</h3>
-        <div class="value">Transporte</div>
+      <div class="item">
+        <h2 app-title>Maior Economia</h2>
+        <div class="value">{{ maiorEconomiaCategoria }}</div>
       </div>
-      <div>
-        <h3>Maior Aumento</h3>
-        <div class="value">Alimentação</div>
+      <div class="item">
+        <h2 app-title>Maior Aumento</h2>
+        <div class="value">{{ maiorAumentoCategoria }}</div>
       </div>
     </div>
   </div>

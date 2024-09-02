@@ -45,6 +45,12 @@ export class ComparativoFaturasPage implements OnInit {
   totalGrupoFatura2: number = 0;
   totalDifference: number = 0;
 
+  totalDifferencePercentage: number = 0;
+  maiorEconomiaCategoria: string = '';
+  maiorAumentoCategoria: string = '';
+
+  tooltipMessage: string;
+
   constructor(
     public readonly titleService: Title,
     private readonly storageService: StorageService,
@@ -101,6 +107,8 @@ export class ComparativoFaturasPage implements OnInit {
             this.totalGrupoFatura2 = this.calcularTotalDespesasPorGroupo(2);
             this.totalDifference =
               this.totalGrupoFatura1 - this.totalGrupoFatura2;
+
+            this.initSummary();
           });
       }
     });
@@ -131,14 +139,69 @@ export class ComparativoFaturasPage implements OnInit {
     }
   }
 
-  getNomeGrupoFatura(grupoFaturaForm: string): string {
-    const grupoFaturaCode = this.grupoFaturasForm.get(grupoFaturaForm)?.value;
+  getNomeGrupoFatura(groupNumber: number): string {
+    const grupoFaturaCode =
+      groupNumber === 1
+        ? this.grupoFaturasForm.get('grupoFaturaCode1')?.value
+        : this.grupoFaturasForm.get('grupoFaturaCode2')?.value;
 
     const grupoFatura = this.grupoFaturas.find(
       (gf) => gf.code === grupoFaturaCode
     );
+    return grupoFatura ? grupoFatura.nome : `Fatura ${groupNumber}`;
+  }
 
-    return grupoFatura ? grupoFatura.nome : 'Fatura';
+  //#endregion
+
+  //#region Summary
+  initSummary() {
+    this.tooltipMessage = `Mostra em porcentagem, o quanto ${this.getNomeGrupoFatura(
+      1
+    )}
+    gastou a mais ou a menos em comparação com o ${this.getNomeGrupoFatura(
+      2
+    )}.`;
+
+    this.totalDifferencePercentage = this.calculateTotalDifferencePercentage(
+      this.totalGrupoFatura1,
+      this.totalGrupoFatura2
+    );
+
+    this.maiorEconomiaCategoria = this.findMaiorEconomia();
+    this.maiorAumentoCategoria = this.findMaiorAumento();
+  }
+
+  calculateTotalDifferencePercentage(total1: number, total2: number): number {
+    if (total2 === 0) {
+      return 0;
+    }
+    return ((total1 - total2) / total2) * 100;
+  }
+
+  findMaiorEconomia(): string {
+    let maiorEconomia = { categoria: '', valor: 0 };
+
+    this.comparativoFaturas.forEach((item) => {
+      const diferenca = item.despesaGrupoFatura2 - item.despesaGrupoFatura1;
+      if (diferenca > maiorEconomia.valor) {
+        maiorEconomia = { categoria: item.categoria, valor: diferenca };
+      }
+    });
+
+    return maiorEconomia.categoria ? maiorEconomia.categoria : 'Nenhum';
+  }
+
+  findMaiorAumento(): string {
+    let maiorAumento = { categoria: '', valor: 0 };
+
+    this.comparativoFaturas.forEach((item) => {
+      const diferenca = item.despesaGrupoFatura1 - item.despesaGrupoFatura2;
+      if (diferenca > maiorAumento.valor) {
+        maiorAumento = { categoria: item.categoria, valor: diferenca };
+      }
+    });
+
+    return maiorAumento.categoria ? maiorAumento.categoria : 'Nenhum';
   }
   //#endregion
 }
