@@ -64,7 +64,7 @@
   }
 
   mat-icon.icon-help {
-    color: #fff;
+    color: #fff !important;
     cursor: help;
     font-size: 17px;
     transition: transform 0.3s ease;
@@ -135,7 +135,7 @@
       }
 
       mat-icon.icon-help {
-        color: #fff;
+        color: #fff !important;
       }
     }
 
@@ -182,7 +182,7 @@
     }
 
     mat-icon.icon-help {
-      color: #fff;
+      color: #fff !important;
     }
   }
 
@@ -292,7 +292,7 @@
     }
 
     & mat-icon {
-      color: black;
+      color: black !important;
     }
   }
 

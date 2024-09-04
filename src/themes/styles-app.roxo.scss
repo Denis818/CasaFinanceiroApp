@@ -210,10 +210,14 @@ body {
       [app-multi-card-header] {
         i {
           .mat-icon {
-            color: var(--roxo-theme-color);
+            color: var(--roxo-theme-color) !important;
           }
         }
       }
+    }
+
+    .mat-icon.icon-help {
+      color: var(--roxo-theme-color);
     }
 
     // pagination

@@ -215,10 +215,14 @@ body {
       [app-multi-card-header] {
         i {
           .mat-icon {
-            color: var(--azul-theme-color);
+            color: var(--azul-theme-color) !important;
           }
         }
       }
+    }
+
+    .mat-icon.icon-help {
+      color: var(--azul-theme-color) ;
     }
 
     // ícone-seletor-options
