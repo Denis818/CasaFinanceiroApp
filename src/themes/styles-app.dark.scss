@@ -143,6 +143,10 @@ body {
         .mat-icon {
           color: var(--dark-theme-color) !important;
         }
+
+        tfoot td {
+          background-color: var(--dark-theme-background) !important;
+        }
       }
     }
 
