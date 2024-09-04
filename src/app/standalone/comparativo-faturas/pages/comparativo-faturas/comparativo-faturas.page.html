@@ -41,43 +41,45 @@
       <h2 app-card-title>Comparativo de Despesas</h2>
     </div>
     <div app-card-body>
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Categoria</th>
-            <th>{{ getNomeGrupoFatura(1) }}</th>
-            <th>{{ getNomeGrupoFatura(2) }}</th>
-            <th>Diferença</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of comparativoFaturas">
-            <td>{{ item.categoria }}</td>
-            <td>{{ item.despesaGrupoFatura1 | currency: 'BRL' }}</td>
-            <td>{{ item.despesaGrupoFatura2 | currency: 'BRL' }}</td>
-            <td
-              class="value-color"
-              [ngStyle]="{'color': getDifferenceColor(item.despesaGrupoFatura1, item.despesaGrupoFatura2)}"
-            >
-              {{ item.despesaGrupoFatura1 - item.despesaGrupoFatura2 |
-              currency:'BRL' }}
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Total Geral</td>
-            <td>{{ totalGrupoFatura1 | currency: 'BRL' }}</td>
-            <td>{{ totalGrupoFatura2 | currency: 'BRL' }}</td>
-            <td
-              class="value-color"
-              [ngStyle]="{'color': getDifferenceColor(totalGrupoFatura1, totalGrupoFatura2)}"
-            >
-              {{ totalDifference | currency: 'BRL' }}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+      <div app-table>
+        <table>
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>{{ getNomeGrupoFatura(1) }}</th>
+              <th>{{ getNomeGrupoFatura(2) }}</th>
+              <th>Diferença</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of comparativoFaturas">
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.despesaGrupoFatura1 | currency: 'BRL' }}</td>
+              <td>{{ item.despesaGrupoFatura2 | currency: 'BRL' }}</td>
+              <td
+                class="value-color"
+                [ngStyle]="{'color': getDifferenceColor(item.despesaGrupoFatura1, item.despesaGrupoFatura2)}"
+              >
+                {{ item.despesaGrupoFatura1 - item.despesaGrupoFatura2 |
+                currency:'BRL' }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total Geral</td>
+              <td>{{ totalGrupoFatura1 | currency: 'BRL' }}</td>
+              <td>{{ totalGrupoFatura2 | currency: 'BRL' }}</td>
+              <td
+                class="value-color"
+                [ngStyle]="{'color': getDifferenceColor(totalGrupoFatura1, totalGrupoFatura2)}"
+              >
+                {{ totalDifference | currency: 'BRL' }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
 
