@@ -158,7 +158,7 @@ export class ComparativoFaturasPage implements OnInit {
     this.tooltipMessage = `Mostra em porcentagem, o quanto ${this.getNomeGrupoFatura(
       1
     )}
-    gastou a mais ou a menos em comparação com o ${this.getNomeGrupoFatura(
+    gastou a mais em comparação com o ${this.getNomeGrupoFatura(
       2
     )}.`;
 
