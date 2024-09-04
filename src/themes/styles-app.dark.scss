@@ -375,7 +375,11 @@ body {
       border-top: 1px solid #414141;
     }
 
-    /* ícone-seletor-options */
+    /*seletor-options */
+    --mdc-outlined-text-field-focus-outline-color: var(--dark-theme-color);
+    --mdc-outlined-text-field-hover-outline-color: var(--dark-theme-color);
+    --mdc-outlined-text-field-outline-color: #cbcbcb;
+
     --mat-option-label-text-color: #151515;
     --mat-select-panel-background-color: #cbcbcb;
     --mat-option-selected-state-label-text-color: var(--dark-theme-color);

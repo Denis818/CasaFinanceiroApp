@@ -222,10 +222,14 @@ body {
     }
 
     .mat-icon.icon-help {
-      color: var(--azul-theme-color) ;
+      color: var(--azul-theme-color);
     }
 
-    // ícone-seletor-options
+    // seletor-options
+    --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
+    --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
+    --mdc-outlined-text-field-outline-color: #69b1ff;
+
     --mat-select-enabled-arrow-color: #69b1ff;
     --mat-option-selected-state-label-text-color: var(--azul-theme-color);
     --mat-select-focused-arrow-color: var(--azul-theme-color);

@@ -223,7 +223,7 @@ body {
     // pagination
     --mdc-outlined-text-field-outline-color: var(--roxo-theme-color);
     --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);
-    --mdc-outlined-text-field-focus-outline-color: var(--roxo-theme-color);
+    --mdc-outlined-text-field-focus-outline-color: #9762f2;
 
     // ícone-seletor-options
     --mat-select-enabled-arrow-color: #7f4dd6;
@@ -233,7 +233,11 @@ body {
       color: var(--roxo-theme-color);
     }
 
-    /* ícone-seletor-options */
+    /* seletor-options */
+    --mdc-outlined-text-field-focus-outline-color: var(--roxo-theme-color);
+    --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);
+    --mdc-outlined-text-field-outline-color: var(--roxo-theme-color);
+
     --mat-select-enabled-arrow-color: #7f4dd6;
     --mat-option-selected-state-label-text-color: var(--roxo-theme-color);
     --mat-select-focused-arrow-color: var(--roxo-theme-color);
