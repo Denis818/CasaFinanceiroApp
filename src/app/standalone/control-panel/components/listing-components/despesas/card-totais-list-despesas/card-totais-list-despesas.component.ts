@@ -72,7 +72,6 @@ export class CardTotaisListDespesasComponent {
       .getParametrosDeAlertasDeGastos()
       .subscribe((parametros) => {
         this.parametrosGastos = parametros;
-
         this.getRelatorioDeGastosDoGrupo();
       });
   }

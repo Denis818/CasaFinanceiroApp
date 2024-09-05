@@ -122,6 +122,12 @@ body {
       border: solid 2px var(--azul-theme-color);
     }
 
+    [input-filtrar] {
+      .mat-icon {
+        color: var(--azul-theme-color);
+      }
+    }
+
     [app-modal] {
       [app-modal-header] {
         background-image: var(--azul-theme-background);

@@ -1,9 +1,14 @@
 :host {
   [app-multi-card-body] {
     table {
-      td,
-      th {
+      th,
+      td {
         padding: 10px;
+        text-align: center;
+      }
+
+      th {
+        font-size: 14px;
       }
 
       tfoot tr td {

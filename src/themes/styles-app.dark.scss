@@ -136,10 +136,6 @@ body {
           background-color: rgb(45 45 45 / 53%) !important;
         }
 
-        & tr:nth-child(even) {
-          background-color: var(--dark-theme-background) !important;
-        }
-
         .mat-icon {
           color: var(--dark-theme-color) !important;
         }

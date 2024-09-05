@@ -82,8 +82,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const grupoFaturaCodeSalvo =
       this.storageService.getItem('grupo-fatura-code') || null;
 
-    console.log(grupoFaturaCodeSalvo);
-
     this.grupoFaturasForm.patchValue(
       {
         ano: anoSalvo,

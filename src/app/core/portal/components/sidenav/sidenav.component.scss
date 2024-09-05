@@ -106,6 +106,8 @@
       overflow-x: auto;
 
       [menu-links] {
+        display: flex;
+
         & a {
           padding: 0px 45px 0px 45px;
           text-decoration: none;

@@ -21,14 +21,19 @@
               .mat-mdc-form-field .mat-mdc-text-field-wrapper {
                 max-width: 100%;
                 border-radius: 10px;
-                height: 50px;
+                height: 45px;
               }
               .mat-mdc-form-field-icon-suffix {
-                margin-bottom: 5px;
+                margin-bottom: 9px;
               }
 
               .mat-mdc-form-field-bottom-align::before {
                 display: none;
+              }
+
+              .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+                .mat-mdc-form-field-infix {
+                padding-top: 13px;
               }
             }
 
@@ -43,7 +48,7 @@
             }
 
             .mat-mdc-form-field .mat-mdc-text-field-wrapper {
-              height: 50px;
+              height: 45px;
             }
 
             .mat-mdc-text-field-wrapper.mdc-text-field--outlined
@@ -97,14 +102,6 @@
 
             [space] {
               margin-left: 20px;
-            }
-
-            td {
-              padding: 6px;
-            }
-
-            & tr:nth-child(even) {
-              background-color: #f7f7f7;
             }
           }
         }

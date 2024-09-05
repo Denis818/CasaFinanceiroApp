@@ -31,7 +31,7 @@
           </mat-form-field>
 
           <div input-filtrar>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="custom-input-filter">
               <mat-label>Buscar</mat-label>
               <input
                 matInput
@@ -97,9 +97,7 @@
                       <input
                         type="text"
                         [(ngModel)]="despesa.item"
-                        [readonly]="
-                          tableEditManipulation.inputSomenteLeitura()
-                        "
+                        [readonly]="tableEditManipulation.inputSomenteLeitura()"
                       />
                     </ng-template>
                   </div>
@@ -135,9 +133,7 @@
                     <input
                       type="text"
                       [(ngModel)]="despesa.fornecedor"
-                      [readonly]="
-                        tableEditManipulation.inputSomenteLeitura()
-                      "
+                      [readonly]="tableEditManipulation.inputSomenteLeitura()"
                     />
                   </div>
                   <ng-template #viewFornecedor>{{

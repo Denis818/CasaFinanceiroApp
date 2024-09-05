@@ -1,6 +1,7 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import {
+  AfterViewInit,
   Component,
   LOCALE_ID,
   OnDestroy,
@@ -71,8 +72,9 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ListDespesasComponent implements OnDestroy, OnInit {
+export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   @ViewChild(CardTotaisListDespesasComponent)
   cardTotaisListDespesas: CardTotaisListDespesasComponent;
 
@@ -126,6 +128,16 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
+      next: (isReload) => {
+        if (isReload) {
+          this.cardTotaisListDespesas?.getParametrosDeAlertasDeGastos();
+        }
+      },
+    });
+  }
+
   reloadDespesas() {
     this.reloadPageSubscriber =
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
@@ -136,14 +148,6 @@ export class ListDespesasComponent implements OnDestroy, OnInit {
           }
         },
       });
-
-    this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
-      next: (isReload) => {
-        if (isReload) {
-          this.cardTotaisListDespesas?.getParametrosDeAlertasDeGastos();
-        }
-      },
-    });
   }
 
   //#region Abrir Modais
