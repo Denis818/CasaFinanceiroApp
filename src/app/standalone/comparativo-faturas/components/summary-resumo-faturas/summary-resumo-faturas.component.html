@@ -1,0 +1,15 @@
+<div summary>
+  <div class="item">
+    <mat-icon class="icon-help" [matTooltip]="tooltipMessage">help_outline</mat-icon>
+    <h2 app-title>Diferença Total</h2>
+    <div class="value">{{ totalDifferencePercentage | number: '1.0-2' }}%</div>
+  </div>
+  <div class="item">
+    <h2 app-title>Maior Economia</h2>
+    <div class="value">{{ maiorEconomiaCategoria }}</div>
+  </div>
+  <div class="item">
+    <h2 app-title>Maior Aumento</h2>
+    <div class="value">{{ maiorAumentoCategoria }}</div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div selections [formGroup]="grupoFaturasForm">
+  <div>
+    <label selection-title>Selecionar Fatura 1:</label>
+    <mat-form-field appearance="outline">
+      <mat-select formControlName="grupoFaturaCode1">
+        <mat-option
+          *ngFor="let grupoFatura of grupoFaturas"
+          [value]="grupoFatura.code"
+        >
+          {{ grupoFatura.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <label selection-title>Selecionar Fatura 2:</label>
+    <mat-form-field appearance="outline">
+      <mat-select
+        panelClass="grupo-fatura-select-panel"
+        formControlName="grupoFaturaCode2"
+      >
+        <mat-option
+          *ngFor="let grupoFatura of grupoFaturas"
+          [value]="grupoFatura.code"
+        >
+          {{ grupoFatura.nome }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
