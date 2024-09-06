@@ -1,8 +1,3 @@
-<app-selector-faturas
-  [grupoFaturasForm]="grupoFaturasForm"
-  (getListGruposFaturasParaSeletor)="getListGruposFaturasParaSeletor($event)"
-></app-selector-faturas>
-
 <div app-card>
   <div app-card-header>
     <h2 app-card-title>Comparativo de Despesas</h2>
@@ -65,11 +60,3 @@
     </div>
   </div>
 </div>
-
-<app-summary-resumo-faturas
-  [comparativoFaturas]="comparativoFaturas"
-  [totalGrupoFatura1]="totalGrupoFatura1"
-  [totalGrupoFatura2]="totalGrupoFatura2"
-  [nomeGrupoFatura1]="nomeGrupoFatura1"
-  [nomeGrupoFatura2]="nomeGrupoFatura2"
-></app-summary-resumo-faturas>
