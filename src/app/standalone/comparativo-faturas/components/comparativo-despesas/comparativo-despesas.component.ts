@@ -55,7 +55,8 @@ export class ComparativoDespesasComponent implements OnInit {
   maiorEconomiaCategoria: string = '';
   maiorAumentoCategoria: string = '';
 
-  tooltipMessage: string = '';
+  nomeGrupoFatura1: string = '';
+  nomeGrupoFatura2: string = '';
 
   constructor(
     public readonly titleService: Title,
@@ -113,6 +114,8 @@ export class ComparativoDespesasComponent implements OnInit {
             this.totalGrupoFatura2 = this.calcularTotalDespesasPorGroupo(2);
             this.totalDifference =
               this.totalGrupoFatura1 - this.totalGrupoFatura2;
+
+            this.getNomesGruposFaturas();
           });
       }
     });
@@ -143,16 +146,21 @@ export class ComparativoDespesasComponent implements OnInit {
     }
   }
 
-  getNomeGrupoFatura(groupNumber: number): string {
-    const grupoFaturaCode =
-      groupNumber === 1
-        ? this.grupoFaturasForm.get('grupoFaturaCode1')?.value
-        : this.grupoFaturasForm.get('grupoFaturaCode2')?.value;
+  getNomesGruposFaturas() {
+    const grupoFaturaCode1 =
+      this.grupoFaturasForm.get('grupoFaturaCode1')?.value;
+    const grupoFaturaCode2 =
+      this.grupoFaturasForm.get('grupoFaturaCode2')?.value;
 
-    const grupoFatura = this.grupoFaturas.find(
-      (gf) => gf.code === grupoFaturaCode
+    const grupoFatura1 = this.grupoFaturas.find(
+      (gf) => gf.code === grupoFaturaCode1
     );
-    return grupoFatura ? grupoFatura.nome : `Fatura ${groupNumber}`;
+    const grupoFatura2 = this.grupoFaturas.find(
+      (gf) => gf.code === grupoFaturaCode2
+    );
+
+    this.nomeGrupoFatura1 = grupoFatura1 ? grupoFatura1.nome : 'Fatura 1';
+    this.nomeGrupoFatura2 = grupoFatura2 ? grupoFatura2.nome : 'Fatura 2';
   }
   //#endregion
 }

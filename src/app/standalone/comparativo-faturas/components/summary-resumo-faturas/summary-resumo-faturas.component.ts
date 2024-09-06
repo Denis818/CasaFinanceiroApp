@@ -29,6 +29,9 @@ export class SummaryResumoFaturasComponent implements OnChanges {
   @Input() totalGrupoFatura1: number = 0;
   @Input() totalGrupoFatura2: number = 0;
 
+  @Input() nomeGrupoFatura1: string = '';
+  @Input() nomeGrupoFatura2: string = '';
+
   totalDifferencePercentage: number = 0;
   maiorEconomiaCategoria: string = '';
   maiorAumentoCategoria: string = '';
@@ -39,9 +42,8 @@ export class SummaryResumoFaturasComponent implements OnChanges {
   }
 
   initSummary() {
-    this.tooltipMessage = `Mostra em porcentagem o quanto ${this.getNomeGrupoFatura(
-      1
-    )} gastou a mais em comparação com o ${this.getNomeGrupoFatura(2)}.`;
+    this.tooltipMessage = `
+    Mostra em porcentagem o quanto ${this.nomeGrupoFatura1} gastou a mais em comparação com o ${this.nomeGrupoFatura2}.`;
 
     this.totalDifferencePercentage = this.calculateTotalDifferencePercentage(
       this.totalGrupoFatura1,
@@ -83,9 +85,5 @@ export class SummaryResumoFaturasComponent implements OnChanges {
     });
 
     return maiorAumento.categoria ? maiorAumento.categoria : 'Nenhum';
-  }
-
-  getNomeGrupoFatura(groupNumber: number): string {
-    return groupNumber === 1 ? 'Fatura 1' : 'Fatura 2';
   }
 }
