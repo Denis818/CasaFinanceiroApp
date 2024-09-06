@@ -1,6 +1,6 @@
 <app-selector-faturas
   [grupoFaturasForm]="grupoFaturasForm"
-  [grupoFaturas]="grupoFaturas"
+  (getListGruposFaturasParaSeletor)="getListGruposFaturasParaSeletor($event)"
 ></app-selector-faturas>
 
 <div app-card>

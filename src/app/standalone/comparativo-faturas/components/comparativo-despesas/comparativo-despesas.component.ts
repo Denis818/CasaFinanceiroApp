@@ -13,8 +13,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Title } from '@angular/platform-browser';
 import { GrupoFaturaSeletorResponse } from 'src/app/core/portal/interfaces/grupo-fatura-seletor-response.interface';
-import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
-import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { ComparativoFaturas } from '../../interfaces/comparativo-fatura.interface';
 import { ComparativoFaturaService } from '../../services/comparativo-faturas.service';
 import { SelectorFaturasComponent } from '../selector-faturas/selector-faturas.component';
@@ -60,9 +58,7 @@ export class ComparativoDespesasComponent implements OnInit {
 
   constructor(
     public readonly titleService: Title,
-    private readonly storageService: StorageService,
     private readonly fb: FormBuilder,
-    private readonly grupoFaturaService: GrupoFaturaService,
     private readonly comparativoFaturasService: ComparativoFaturaService
   ) {
     this.grupoFaturasForm = this.fb.group({
@@ -71,35 +67,11 @@ export class ComparativoDespesasComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.getListGrupoFaturaParaSeletorAsync();
-    this.onGrupoFaturaChange();
+  ngOnInit(): void {
+    this.getComparativoFaturas();
   }
 
-  //#region Seletor de faturas
-  getListGrupoFaturaParaSeletorAsync() {
-    const ano = this.storageService.getItem('ano');
-
-    this.grupoFaturaService.getListGrupoFaturaParaSeletorAsync(ano).subscribe({
-      next: (grupoFaturas) => {
-        this.grupoFaturas = grupoFaturas;
-
-        if (this.grupoFaturas.length > 0) {
-          this.grupoFaturasForm.patchValue({
-            grupoFaturaCode1: this.grupoFaturas[0].code,
-            grupoFaturaCode2:
-              this.grupoFaturas.length > 1
-                ? this.grupoFaturas[1].code
-                : this.grupoFaturas[0].code,
-          });
-        }
-      },
-    });
-  }
-  //#endregion
-
-  //#region Tabela de Comparação de Faturas
-  onGrupoFaturaChange() {
+  getComparativoFaturas() {
     this.grupoFaturasForm.valueChanges.subscribe((values) => {
       const grupoFaturaCode1 = values.grupoFaturaCode1;
       const grupoFaturaCode2 = values.grupoFaturaCode2;
@@ -162,5 +134,8 @@ export class ComparativoDespesasComponent implements OnInit {
     this.nomeGrupoFatura1 = grupoFatura1 ? grupoFatura1.nome : 'Fatura 1';
     this.nomeGrupoFatura2 = grupoFatura2 ? grupoFatura2.nome : 'Fatura 2';
   }
-  //#endregion
+
+  getListGruposFaturasParaSeletor(grupoFaturas: GrupoFaturaSeletorResponse[]) {
+    this.grupoFaturas = grupoFaturas;
+  }
 }
