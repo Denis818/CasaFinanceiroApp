@@ -25,17 +25,10 @@
             <td>{{ item.despesaGrupoFatura2 | currency : "BRL" }}</td>
             <td
               class="value-color"
-              [ngStyle]="{
-                color: getDifferenceColor(
-                  item.despesaGrupoFatura1,
-                  item.despesaGrupoFatura2
-                )
-              }"
+              [ngStyle]="{ color: getDifference(item).color }"
             >
-              {{
-                item.despesaGrupoFatura1 - item.despesaGrupoFatura2
-                  | currency : "BRL"
-              }}
+              {{ getDifference(item).value | currency : "BRL" }}
+              {{ getDifference(item).message }}
             </td>
           </tr>
         </tbody>
@@ -47,10 +40,24 @@
             <td
               class="value-color"
               [ngStyle]="{
-                color: getDifferenceColor(totalGrupoFatura1, totalGrupoFatura2)
+                color: getDifference({
+                  despesaGrupoFatura1: totalGrupoFatura1,
+                  despesaGrupoFatura2: totalGrupoFatura2
+                }).color
               }"
             >
-              {{ totalDifference | currency : "BRL" }}
+              {{
+                getDifference({
+                  despesaGrupoFatura1: totalGrupoFatura1,
+                  despesaGrupoFatura2: totalGrupoFatura2
+                }).value | currency : "BRL"
+              }}
+              {{
+                getDifference({
+                  despesaGrupoFatura1: totalGrupoFatura1,
+                  despesaGrupoFatura2: totalGrupoFatura2
+                }).message
+              }}
             </td>
           </tr>
         </tfoot>

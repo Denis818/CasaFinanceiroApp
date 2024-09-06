@@ -1,15 +1,35 @@
 <div summary>
   <div class="item">
-    <mat-icon class="icon-help" [matTooltip]="tooltipMessage">help_outline</mat-icon>
-    <h2 app-title>Diferença Total</h2>
-    <div class="value">{{ totalDifferencePercentage | number: '1.0-2' }}%</div>
+    <mat-icon class="icon-help" [matTooltip]="tooltipMessage"
+      >help_outline</mat-icon
+    >
+    <h2 app-title>{{ nomeGrupoFatura1 }}</h2>
+
+    <div class="value" [ngStyle]="{ color: getDifferenceColor() }">
+      <mat-icon *ngIf="totalDifferencePercentage > 0">arrow_upward</mat-icon>
+      <mat-icon *ngIf="totalDifferencePercentage < 0">arrow_downward</mat-icon>
+
+      {{ getDifferencePercentage() | number : "1.0-2" }}%
+      {{ messageDifferencePercentage() }}
+    </div>
   </div>
+
   <div class="item">
     <h2 app-title>Maior Economia</h2>
-    <div class="value">{{ maiorEconomiaCategoria }}</div>
+    <div
+      class="value"
+      [ngClass]="{ 'maior-economia}': maiorEconomiaCategoria != 'Nenhum' }"
+    >
+      {{ maiorEconomiaCategoria }}
+    </div>
   </div>
   <div class="item">
     <h2 app-title>Maior Aumento</h2>
-    <div class="value">{{ maiorAumentoCategoria }}</div>
+    <div
+      class="value"
+      [ngClass]="{ 'maior-aumento': maiorAumentoCategoria != 'Nenhum' }"
+    >
+      {{ maiorAumentoCategoria }}
+    </div>
   </div>
 </div>

@@ -104,18 +104,20 @@ export class ComparativoDespesasComponent implements OnInit {
     }, 0);
   }
 
-  getDifferenceColor(
-    despesaGrupoFatura1: number,
-    despesaGrupoFatura2: number
-  ): string {
-    const difference = despesaGrupoFatura1 - despesaGrupoFatura2;
-    if (difference < 0) {
-      return '#0fe400';
-    } else if (difference > 0) {
-      return 'red';
-    } else {
-      return '#4e6376';
+  getDifference(item: any): { value: number; message: string; color: string } {
+    const difference = item.despesaGrupoFatura1 - item.despesaGrupoFatura2;
+    let message = '';
+    let color = '#4e6376';
+
+    if (difference > 0) {
+      message = 'a mais';
+      color = 'red';
+    } else if (difference < 0) {
+      message = 'a menos';
+      color = '#0fe400';
     }
+
+    return { value: Math.abs(difference), message, color };
   }
 
   getNomesGruposFaturas() {

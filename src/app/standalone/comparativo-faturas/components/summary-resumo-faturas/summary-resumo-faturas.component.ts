@@ -45,7 +45,7 @@ export class SummaryResumoFaturasComponent implements OnChanges {
     this.tooltipMessage = `
     Mostra em porcentagem o quanto ${this.nomeGrupoFatura1} gastou a mais em comparação com o ${this.nomeGrupoFatura2}.`;
 
-    this.totalDifferencePercentage = this.calculateTotalDifferencePercentage(
+    this.totalDifferencePercentage = this.calculateDifferencePercentage(
       this.totalGrupoFatura1,
       this.totalGrupoFatura2
     );
@@ -54,11 +54,35 @@ export class SummaryResumoFaturasComponent implements OnChanges {
     this.maiorAumentoCategoria = this.findMaiorAumento();
   }
 
-  calculateTotalDifferencePercentage(total1: number, total2: number): number {
+  calculateDifferencePercentage(total1: number, total2: number): number {
     if (total2 === 0) {
       return 0;
     }
     return ((total1 - total2) / total2) * 100;
+  }
+
+  getDifferencePercentage(): number {
+    return Math.abs(this.totalDifferencePercentage);
+  }
+
+  messageDifferencePercentage(): string {
+    if (this.totalDifferencePercentage > 0) {
+      return 'a mais';
+    } else if (this.totalDifferencePercentage < 0) {
+      return `a menos`;
+    } else {
+      return '';
+    }
+  }
+
+  getDifferenceColor(): string {
+    if (this.totalDifferencePercentage > 0) {
+      return 'red';
+    } else if (this.totalDifferencePercentage < 0) {
+      return '#0fe400';
+    } else {
+      return '#4e6376';
+    }
   }
 
   findMaiorEconomia(): string {

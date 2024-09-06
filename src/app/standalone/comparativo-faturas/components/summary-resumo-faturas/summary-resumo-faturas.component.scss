@@ -32,9 +32,23 @@
       }
 
       & .value {
+        display: flex;
+        align-items: center;
         font-size: 22px;
         font-weight: 500;
         color: #4e6376;
+
+        &.maior-economia {
+          color: #0fe400;
+        }
+
+        &.maior-aumento {
+          color: red;
+        }
+
+        & .mat-icon {
+          margin-right: 4px;
+        }
       }
 
       & .mat-icon.icon-help {
