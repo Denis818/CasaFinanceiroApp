@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Title } from '@angular/platform-browser';
 import { GrupoFaturaSeletorResponse } from 'src/app/core/portal/interfaces/grupo-fatura-seletor-response.interface';
-import { ComparativoDespesasComponent } from '../../components/comparativo-despesas/table-comparativo-despesas.component';
 import { SelectorFaturasComponent } from '../../components/selector-faturas/selector-faturas.component';
 import { SummaryResumoFaturasComponent } from '../../components/summary-resumo-faturas/summary-resumo-faturas.component';
 import { ComparativoFaturas } from '../../interfaces/comparativo-fatura.interface';
@@ -21,7 +20,6 @@ registerLocaleData(localePt);
     CommonModule,
     MatIconModule,
     SelectorFaturasComponent,
-    ComparativoDespesasComponent,
     SummaryResumoFaturasComponent,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
