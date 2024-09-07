@@ -39,7 +39,7 @@
             </tr>
           </tbody>
           <tfoot>
-            <tr>
+            <tr *ngIf="comparativoFaturas.length > 0" colspan="4">
               <td>Total Geral</td>
               <td>{{ totalGrupoFatura1 | currency : "BRL" }}</td>
               <td>{{ totalGrupoFatura2 | currency : "BRL" }}</td>
@@ -59,6 +59,11 @@
                 }).message }}
               </td>
             </tr>
+            <tr *ngIf="comparativoFaturas.length == 0">
+              <td colspan="4">
+                <div dados-nao-encontrados>Nenhuma informação encontrada</div>
+              </td>
+            </tr>
           </tfoot>
         </table>
       </div>
@@ -73,3 +78,7 @@
     [nomeGrupoFatura2]="nomeGrupoFatura2"
   ></app-summary-resumo-faturas>
 </div>
+
+<ng-template #semDados>
+  <div dados-nao-encontrados>Nenhuma informação encontrada</div>
+</ng-template>
