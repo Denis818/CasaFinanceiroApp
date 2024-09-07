@@ -70,6 +70,7 @@ body {
                 --mdc-radio-selected-hover-icon-color: #00d51e;
                 --mdc-radio-selected-pressed-icon-color: #00d51e;
                 --mat-radio-checked-ripple-color: #00d51e;
+                --mdc-radio-selected-focus-icon-color: #00d51e;
               }
 
               .fatura-fechada {
@@ -83,6 +84,9 @@ body {
                   --dark-theme-color
                 ) !important;
                 --mat-radio-checked-ripple-color: var(
+                  --dark-theme-color
+                ) !important;
+                --mdc-radio-selected-focus-icon-color: var(
                   --dark-theme-color
                 ) !important;
               }

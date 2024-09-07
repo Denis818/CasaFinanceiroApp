@@ -16,7 +16,11 @@
       padding: 15px;
       flex: 1;
       margin-right: 15px;
+      transition: box-shadow 0.3s ease-in-out;
 
+      &:hover {
+        box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+      }
       &:last-child {
         margin-right: 0;
       }

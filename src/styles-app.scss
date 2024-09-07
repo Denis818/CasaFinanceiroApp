@@ -63,7 +63,7 @@
     text-align: start;
   }
 
-  mat-icon.icon-help {
+  .mat-icon.icon-help {
     color: #fff !important;
     cursor: help;
     font-size: 17px;
@@ -136,7 +136,7 @@
         margin: 0px;
       }
 
-      mat-icon.icon-help {
+      .mat-icon.icon-help {
         color: #fff !important;
       }
     }
@@ -169,7 +169,7 @@
     [app-tooltip-helper] {
       display: flex;
       align-items: center;
-      mat-icon.icon-help {
+      .mat-icon.icon-help {
         font-size: 25px;
       }
     }
@@ -182,7 +182,7 @@
       margin: 0px;
     }
 
-    mat-icon.icon-help {
+    .mat-icon.icon-help {
       color: #fff !important;
     }
   }
@@ -357,6 +357,14 @@
   font-family: Roboto, sans-serif;
 }
 
+.mat-icon.icon-help {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
 @media screen and (max-width: 600px) {
   [app-table] {
     table {
@@ -380,7 +388,7 @@
     }
   }
 
-  mat-icon.icon-help {
+  .mat-icon.icon-help {
     display: none;
   }
 }
