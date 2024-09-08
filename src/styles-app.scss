@@ -207,8 +207,8 @@
 
   table {
     width: 100%;
-    table-layout: fixed;
     overflow-x: auto;
+    table-layout: auto;
 
     tr {
       cursor: pointer;
@@ -220,22 +220,21 @@
       text-align: left;
       vertical-align: middle;
       border-bottom: 1px solid #e0e0e0;
-      font-size: 15px;
+      font-size: 14px;
+
+      font-size: 14px !important;
     }
 
     th {
-      padding: 10px;
-      padding-left: 36px;
       font-weight: 500;
-      color: #708090;
+      color: #4e6376;
       background-color: #f2f4f7;
-      text-transform: uppercase;
+      padding: 10px 30px;
     }
 
     td {
-      padding: 5px;
-      padding-left: 36px;
       color: #708090;
+      padding: 6px 30px;
     }
 
     tfoot td {

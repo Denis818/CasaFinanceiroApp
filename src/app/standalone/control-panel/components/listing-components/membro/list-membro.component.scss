@@ -1,8 +1,9 @@
 :host {
   [membro-list] {
     table {
-      td {
-        padding: 6px;
+      td,
+      th {
+        text-align: center;
       }
 
       input[type="text"] {
