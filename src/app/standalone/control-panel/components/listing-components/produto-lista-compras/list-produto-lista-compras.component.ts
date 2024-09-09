@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { ProdutoListaCompras } from '../../../interfaces/produto-lista-compras.interface';
 import { ProdutoListaComprasService } from '../../../services/produto-lista-compras.service';
+import { CreateProdutoListaComprasComponent } from '../../creation-components/produto-lista-compras/create-produto-lista-compras.component';
 
 @Component({
   selector: 'app-produto-lista-compras',
@@ -50,6 +51,20 @@ export class ListProdutoListaComprasComponent {
       },
     });
   }
+
+  //#region  Create
+  openCreateProdutoListaComprasModal(): void {
+    const dialogRef = this.dialog.open(CreateProdutoListaComprasComponent, {
+      width: '400px',
+    });
+
+    dialogRef.componentInstance.notificarItemAdicionadoListaCompras.subscribe(
+      () => {
+        this.getAllProdutoListaCompras();
+      }
+    );
+  }
+  //#endregion
 
   //#region Update
   openEdit(produtoListaCompras: ProdutoListaCompras): void {

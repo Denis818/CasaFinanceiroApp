@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -28,6 +28,8 @@ import { ProdutoListaComprasService } from '../../../services/produto-lista-comp
   ],
 })
 export class CreateProdutoListaComprasComponent {
+  @Output() notificarItemAdicionadoListaCompras = new EventEmitter<void>();
+
   produtoListaComprasForm: FormGroup;
 
   get produtoListaComprasValidator(): any {
@@ -54,7 +56,7 @@ export class CreateProdutoListaComprasComponent {
                 ` Item ${this.produtoListaComprasForm.value.item} adicionado com sucesso!`,
                 'Finalizado!'
               );
-
+              this.notificarItemAdicionadoListaCompras.emit();
               this.onClose();
             }
           },

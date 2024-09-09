@@ -2,7 +2,8 @@
   [list-compras] {
     [app-table] {
       overflow-y: scroll;
-      height: 700px;
+      height: 685px;
+      border: solid 1px #ccc;
 
       table {
         th {
@@ -34,12 +35,45 @@
         }
       }
     }
+
+    [app-button] {
+      width: 100%;
+      border-radius: 0px;
+      outline: none;
+      box-shadow: none;
+      transition: none;
+
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+
+      &:active {
+        transform: none;
+        box-shadow: none;
+      }
+
+      span {
+        transition: transform 0.2s ease;
+        display: inline-block;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+
+        .mat-icon {
+          margin-right: 3px;
+          vertical-align: middle;
+          line-height: 0.9;
+        }
+      }
+    }
   }
 
   @media (max-width: 1600px) {
     [list-compras] {
       [app-table] {
-        height: 600px !important;
+        height: 580px !important;
       }
     }
   }
