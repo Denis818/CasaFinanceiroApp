@@ -392,11 +392,7 @@
   }
 }
 
-[app-card-body],
-[app-multi-card-body],
-.mat-typography,
-table,
-.mat-mdc-select-panel {
+* {
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;

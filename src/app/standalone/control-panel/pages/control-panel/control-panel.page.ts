@@ -11,12 +11,12 @@ import { CreateCategoriaComponent } from '../../components/creation-components/c
 import { CreateDespesaComponent } from '../../components/creation-components/despesa/create-despesa.component';
 import { CreategrupoFaturaComponent } from '../../components/creation-components/grupo-fatura/create-grupo-fatura.component';
 import { CreateMembroComponent } from '../../components/creation-components/membro/create-membro.component';
+import { CreateProdutoListaComprasComponent } from '../../components/creation-components/produto-lista-compras/create-produto-lista-compras.component';
 import { ListCategoriaComponent } from '../../components/listing-components/categoria/list-categoria.component';
 import { ListDespesasComponent } from '../../components/listing-components/despesas/list-despesas/list-despesas.component';
 import { ListgrupoFaturaComponent } from '../../components/listing-components/grupo-fatura/list-grupo-fatura.component';
 import { ListMembroComponent } from '../../components/listing-components/membro/list-membro.component';
 import { ListProdutoListaComprasComponent } from '../../components/listing-components/produto-lista-compras/list-produto-lista-compras.component';
-import { CreateProdutoListaComprasComponent } from '../../components/creation-components/produto-lista-compras/create-produto-lista-compras.component';
 
 @Component({
   selector: 'control-panel-page',
@@ -46,6 +46,7 @@ export class ControlPanelPage {
   openListProdutoListaComprasModal() {
     const dialogRef = this.dialog.open(ListProdutoListaComprasComponent, {
       width: '400px',
+      panelClass: 'list-produto-lista-compras',
     });
 
     dialogRef.afterClosed();

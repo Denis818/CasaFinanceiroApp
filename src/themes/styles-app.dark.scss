@@ -394,11 +394,7 @@ body {
     /* end */
 
     /* scroll bar */
-    [app-card-body],
-    [app-multi-card-body],
-    table,
-    .mat-typography,
-    .mat-mdc-select-panel {
+    * {
       &::-webkit-scrollbar {
         width: 8px;
         height: 8px;

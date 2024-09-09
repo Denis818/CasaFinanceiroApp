@@ -57,3 +57,11 @@ body {
 .custom-input-filter {
   height: 10px !important;
 }
+
+/* modal list painel controle */
+
+@media (max-width: 1600px) {
+  .list-produto-lista-compras {
+    margin-top: 45px;
+  }
+}
