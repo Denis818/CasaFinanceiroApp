@@ -4,7 +4,6 @@ import { map, Observable } from 'rxjs';
 import { TemaCorNotification } from 'src/app/core/portal/services/tema-cor-notification.service';
 import { BaseService } from 'src/app/core/services/base/base.service';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
-import { EnumTipoSpinner } from 'src/app/shared/enums/enum-tipo-spinner';
 import { ApiResponse } from 'src/app/shared/interfaces/api/api-response';
 import { environment } from 'src/environments/environment';
 import { ResumoGrupoResponse } from '../../interfaces/resumo-grupo-response.interface';
@@ -27,7 +26,7 @@ export class DashboardService extends BaseService {
     }).pipe(map((response) => response.dados));
   }
 
-  public downloadRelatorioDespesasHabitacional() {
+  public exportarRelatorioDespesasHabitacional() {
     this.sendHttpRequestForDownload(
       this.url + '/pdf-despesas-moradia'
     ).subscribe({
@@ -44,7 +43,7 @@ export class DashboardService extends BaseService {
     });
   }
 
-  public downloadRelatorioDespesasCasa() {
+  public exportarRelatorioDespesasCasa() {
     this.sendHttpRequestForDownload(this.url + '/pdf-despesas-casa').subscribe({
       next: (blob) => {
         const url = window.URL.createObjectURL(blob);

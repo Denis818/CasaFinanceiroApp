@@ -36,35 +36,42 @@
       }
     }
 
-    [app-button] {
+    [actions] {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
-      border-radius: 0px;
-      outline: none;
-      box-shadow: none;
-      transition: none;
 
-      &:hover {
-        transform: none;
+      [app-button] {
+        width: 50%;
+        border-radius: 0px;
+        outline: none;
         box-shadow: none;
-      }
-
-      &:active {
-        transform: none;
-        box-shadow: none;
-      }
-
-      span {
-        transition: transform 0.2s ease;
-        display: inline-block;
+        transition: none;
 
         &:hover {
-          transform: translateY(-2px);
+          transform: none;
+          box-shadow: none;
         }
 
-        .mat-icon {
-          margin-right: 3px;
-          vertical-align: middle;
-          line-height: 0.9;
+        &:active {
+          transform: none;
+          box-shadow: none;
+        }
+
+        span {
+          transition: transform 0.2s ease;
+          display: inline-block;
+
+          &:hover {
+            transform: translateY(-2px);
+          }
+
+          .mat-icon {
+            margin-right: 3px;
+            vertical-align: middle;
+            line-height: 0.9;
+          }
         }
       }
     }

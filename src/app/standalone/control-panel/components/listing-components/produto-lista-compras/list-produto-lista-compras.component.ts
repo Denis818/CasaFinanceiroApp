@@ -133,9 +133,14 @@ export class ListProdutoListaComprasComponent {
 
   //#endregion
 
+  exportaPdfListaCompras() {
+    this.produtoListaComprasService.exportarPdfListaCompras();
+  }
+
   produtoListaComprasAlterada(produtoListaCompras: ProdutoListaCompras) {
     return this.produtoListaComprasAtual.item === produtoListaCompras.item;
   }
+
   resetPropertys(produtoListaCompras: ProdutoListaCompras) {
     produtoListaCompras.isEditing = false;
     this.isEditing = false;

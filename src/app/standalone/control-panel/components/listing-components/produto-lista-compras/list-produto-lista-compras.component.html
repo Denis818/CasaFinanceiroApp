@@ -55,10 +55,19 @@
     </table>
   </div>
 
-  <button app-button (click)="openCreateProdutoListaComprasModal()">
-    <span>
-      <mat-icon>add_circle</mat-icon>
-      Novo Item
-    </span>
-  </button>
+  <div actions>
+    <button app-button (click)="openCreateProdutoListaComprasModal()">
+      <span>
+        <mat-icon>add_circle</mat-icon>
+        Novo Item
+      </span>
+    </button>
+
+    <button app-button (click)="exportaPdfListaCompras()">
+      <span>
+        <mat-icon>download</mat-icon>
+        Exportar Pdf
+      </span>
+    </button>
+  </div>
 </div>

@@ -146,12 +146,12 @@ export class DashboardPage implements OnInit, OnDestroy {
     });
   }
 
-  downloadRelatorioDespesasHabitacional() {
-    this.dashboardService.downloadRelatorioDespesasHabitacional();
+  exportarRelatorioDespesasHabitacional() {
+    this.dashboardService.exportarRelatorioDespesasHabitacional();
   }
 
-  downloadRelatorioDespesasCasa() {
-    this.dashboardService.downloadRelatorioDespesasCasa();
+  exportarRelatorioDespesasCasa() {
+    this.dashboardService.exportarRelatorioDespesasCasa();
   }
 
   openMensagemWhatsAppModal(nome: string, isHabitacional: boolean): void {
