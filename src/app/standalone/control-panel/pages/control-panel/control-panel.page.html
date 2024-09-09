@@ -6,6 +6,14 @@
 
   <div options-header>
     <div insert-itens>
+      <button app-button-action (click)="openCreateProdutoListaComprasModal()">
+        <div icon-bg>
+          <mat-icon>list</mat-icon>
+        </div>
+
+        <span title-button>Adicionar a Lista de compras</span>
+      </button>
+
       <button app-button-action (click)="openCreateMembroModal()">
         <div icon-bg>
           <mat-icon>group_add</mat-icon>
@@ -58,6 +66,14 @@
 
       <button mat-flat-button color="primary" (click)="openListMembroModal()">
         Ver Membros
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openListProdutoListaComprasModal()"
+      >
+        Ver Lista de Compras
       </button>
     </div>
   </div>

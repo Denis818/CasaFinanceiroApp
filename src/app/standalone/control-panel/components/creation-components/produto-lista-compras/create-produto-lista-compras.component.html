@@ -1,0 +1,61 @@
+<div app-modal>
+  <div app-modal-header>
+    <h2>Adicionar produtoListaCompras</h2>
+  </div>
+
+  <div app-modal-body app-input-color>
+    <form
+      [formGroup]="produtoListaComprasForm"
+      (ngSubmit)="onSubmit()"
+      form-custom
+    >
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Item</mat-label>
+        <input
+          matInput
+          formControlName="item"
+          [ngClass]="{
+            'is-invalid':
+              produtoListaComprasValidator.item.errors &&
+              produtoListaComprasValidator.item.touched
+          }"
+        />
+        <mat-error
+          *ngIf="produtoListaComprasValidator['item'].hasError('required')"
+        >
+          Item é obrigatório.
+        </mat-error>
+        <mat-error
+          *ngIf="produtoListaComprasValidator['item'].hasError('minlength')"
+        >
+          Item deve ter no mínimo 3 caracteres.
+        </mat-error>
+        <mat-error
+          *ngIf="produtoListaComprasValidator['item'].hasError('maxlength')"
+        >
+          Item deve ter no máximo 25 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!produtoListaComprasForm.valid"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

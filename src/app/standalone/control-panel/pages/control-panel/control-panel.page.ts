@@ -15,6 +15,8 @@ import { ListCategoriaComponent } from '../../components/listing-components/cate
 import { ListDespesasComponent } from '../../components/listing-components/despesas/list-despesas/list-despesas.component';
 import { ListgrupoFaturaComponent } from '../../components/listing-components/grupo-fatura/list-grupo-fatura.component';
 import { ListMembroComponent } from '../../components/listing-components/membro/list-membro.component';
+import { ListProdutoListaComprasComponent } from '../../components/listing-components/produto-lista-compras/list-produto-lista-compras.component';
+import { CreateProdutoListaComprasComponent } from '../../components/creation-components/produto-lista-compras/create-produto-lista-compras.component';
 
 @Component({
   selector: 'control-panel-page',
@@ -41,6 +43,14 @@ export class ControlPanelPage {
   @ViewChild(ListDespesasComponent) listDespesaModal: ListDespesasComponent;
 
   //#region  Lists
+  openListProdutoListaComprasModal() {
+    const dialogRef = this.dialog.open(ListProdutoListaComprasComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed();
+  }
+
   openListCategoriaModal() {
     const dialogRef = this.dialog.open(ListCategoriaComponent, {
       width: '650px',
@@ -93,6 +103,12 @@ export class ControlPanelPage {
 
   openCreateCategoriaModal(): void {
     this.dialog.open(CreateCategoriaComponent, {
+      width: '400px',
+    });
+  }
+
+  openCreateProdutoListaComprasModal(): void {
+    this.dialog.open(CreateProdutoListaComprasComponent, {
       width: '400px',
     });
   }
