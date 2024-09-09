@@ -89,6 +89,20 @@
     [app-table] {
       table {
         display: inline-table;
+        table-layout: fixed;
+      }
+    }
+
+    [actions] {
+      flex-direction: column;
+
+      [app-button] {
+        width: 100% !important;
+        padding: 5px;
+
+        &:last-child {
+          border-top: solid 1px #ccc;
+        }
       }
     }
   }
