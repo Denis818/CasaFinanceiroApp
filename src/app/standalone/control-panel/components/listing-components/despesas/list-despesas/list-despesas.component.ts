@@ -298,6 +298,7 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
         this.getListDespesasPorGrupo();
+        this.cardTotaisListDespesas.getParametrosDeAlertasDeGastos();
       },
     });
   }
