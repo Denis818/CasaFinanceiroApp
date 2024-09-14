@@ -153,6 +153,12 @@
     }
   }
 
+  @media (max-width: 1600px) {
+    [app-table] table td {
+      padding: 6px 20px;
+    }
+  }
+
   @media (max-width: 1500px) {
     [despesa-list-by-group] {
       [app-card] {
