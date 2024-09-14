@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { Membro } from 'src/app/standalone/control-panel/interfaces/membro.interface';
@@ -26,6 +27,7 @@ import { MembroService } from 'src/app/standalone/control-panel/services/membro.
     MatIconModule,
     MatTableModule,
     MatDialogModule,
+    MatTooltipModule,
     ConfirmDeleteComponent,
   ],
 })
@@ -116,5 +118,9 @@ export class ListMembroComponent {
     membro.isEditing = false;
     this.isEditing = false;
     this.membroAtual = null;
+  }
+
+  isEditable(nome: string): boolean {
+    return nome !== 'Jhon Lenon' && nome !== 'Peu' && nome !== 'Laila';
   }
 }

@@ -60,6 +60,12 @@ body {
 }
 /* End */
 
+.disable,
+.disable-options {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
 /* modal list painel controle */
 
 @media (max-width: 1600px) {
