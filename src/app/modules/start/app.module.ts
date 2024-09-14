@@ -30,10 +30,13 @@ import { AppComponent } from './components/app.component';
     BrowserModule,
     LottieComponent,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 6000,
+      extendedTimeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       progressBar: true,
+      closeButton: true,
+      tapToDismiss: true,
     }),
   ],
   providers: [

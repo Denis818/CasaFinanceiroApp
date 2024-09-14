@@ -16,16 +16,16 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-//cor do input ao ser selecionado
-.mat-mdc-form-field-focus-overlay {
-  background-color: rgb(0 0 0 / 0%);
-}
-//end select fatura
-
 .mat-typography h1 {
   margin: 0px;
   line-height: 0px;
 }
+
+//cor do input ao ser selecionado
+.mat-mdc-form-field-focus-overlay {
+  background-color: rgb(0 0 0 / 0%);
+}
+/* End */
 
 //navbar
 .ano-select-panel {
@@ -44,6 +44,7 @@ body {
     width: 60% !important;
   }
 }
+/* End */
 
 //painel controle
 .categoria-select-painel {
@@ -57,6 +58,7 @@ body {
 .custom-input-filter {
   height: 10px !important;
 }
+/* End */
 
 /* modal list painel controle */
 
@@ -65,3 +67,64 @@ body {
     margin-top: 45px;
   }
 }
+/* End */
+
+/* Toast notification */
+.toast-container .ngx-toastr {
+  &:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.toast-success,
+.toast-error,
+.toast-info,
+.toast-warning {
+  font-family: "Arial", sans-serif;
+  animation: shake 0.3s, fadeOut 0.5s 4.5s;
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #ed2336;
+}
+
+.toast-warning {
+  background-color: #ff9800;
+}
+.toast-info {
+  background-color: #17a2b8;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+/* End */
