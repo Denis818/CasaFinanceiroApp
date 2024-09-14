@@ -208,7 +208,7 @@
   table {
     width: 100%;
     overflow-x: auto;
-    table-layout: auto;
+    table-layout: fixed;
 
     tr {
       cursor: pointer;

@@ -68,31 +68,32 @@
               outline: none;
               width: 90%;
               background-color: transparent;
-              text-align: center;
+              text-align: left;
               font-size: 15px;
               color: #708090;
-              border-bottom: 1px solid #d3d3d3;
+              border-bottom: 2px solid #d3d3d3;
             }
 
             input.preco {
-              text-align: center !important;
+              text-align: left !important;
             }
 
             ::ng-deep {
+              .mat-mdc-form-field {
+                width: 450px;
+              }
               .mat-mdc-select-value {
                 border: none;
                 outline: none;
                 width: 90%;
+                min-width: 160px;
                 background-color: transparent;
-                text-align: center;
+                text-align: left;
                 font-size: 15px;
                 color: #708090;
-                border-bottom: 1px solid #d3d3d3;
+                border-bottom: 2px solid #d3d3d3;
               }
 
-              .mat-mdc-select-trigger {
-                right: -4%;
-              }
               .cdk-overlay-connected-position-bounding-box {
                 & .cdk-overlay-pane {
                   width: 14% !important;
