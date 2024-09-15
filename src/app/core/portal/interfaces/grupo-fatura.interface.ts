@@ -7,7 +7,4 @@ export interface GrupoFatura {
   quantidadeDespesas: number;
   totalDespesas: number;
   statusFaturas: StatusFatura[];
-
-  nomeEditavel: string;
-  isEditing: boolean;
 }

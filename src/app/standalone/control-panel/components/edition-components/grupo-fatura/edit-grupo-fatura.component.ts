@@ -29,6 +29,21 @@ export class EditGrupoFaturaComponent {
     @Inject(MAT_DIALOG_DATA) public grupoFatura: GrupoFatura
   ) {}
 
+  meses = [
+    { viewValue: 'Janeiro' },
+    { viewValue: 'Fevereiro' },
+    { viewValue: 'Março' },
+    { viewValue: 'Abril' },
+    { viewValue: 'Maio' },
+    { viewValue: 'Junho' },
+    { viewValue: 'Julho' },
+    { viewValue: 'Agosto' },
+    { viewValue: 'Setembro' },
+    { viewValue: 'Outubro' },
+    { viewValue: 'Novembro' },
+    { viewValue: 'Dezembro' },
+  ];
+
   onCancel(): void {
     this.dialogRef.close();
   }

@@ -88,7 +88,6 @@ export class ListgrupoFaturaComponent {
   }
 
   updategrupoFatura(code: string, grupoFatura: GrupoFatura): void {
-    grupoFatura.nome = grupoFatura.nomeEditavel;
     grupoFatura.ano =
       this.storageService.getItem('ano') || new Date().getFullYear().toString();
 
