@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
@@ -38,6 +39,7 @@ import { DespesaService } from 'src/app/standalone/control-panel/services/despes
     MatInputModule,
     CurrencyMaskModule,
     MatSelectModule,
+    MatIconModule,
   ],
 })
 export class CreateDespesaComponent {

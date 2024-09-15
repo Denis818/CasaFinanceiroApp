@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { MembroService } from 'src/app/standalone/control-panel/services/membro.service';
@@ -25,6 +26,7 @@ import { MembroService } from 'src/app/standalone/control-panel/services/membro.
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatIconModule,
   ],
 })
 export class CreateMembroComponent {

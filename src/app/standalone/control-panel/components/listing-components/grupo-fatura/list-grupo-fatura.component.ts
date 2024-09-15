@@ -2,7 +2,11 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Component, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -51,7 +55,8 @@ export class ListgrupoFaturaComponent {
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
-    private readonly storageService: StorageService
+    private readonly storageService: StorageService,
+    private readonly dialogRef: MatDialogRef<ListgrupoFaturaComponent>
   ) {
     this.getAllgrupoFaturas();
   }
@@ -178,5 +183,9 @@ export class ListgrupoFaturaComponent {
     } else {
       return 'Fatura Pendente';
     }
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
   }
 }

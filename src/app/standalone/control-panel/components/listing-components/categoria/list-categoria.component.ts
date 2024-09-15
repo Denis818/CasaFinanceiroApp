@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -39,6 +43,7 @@ export class ListCategoriaComponent {
   categorias: Categoria[] = [];
   constructor(
     private readonly categoriaService: CategoriaService,
+    private readonly dialogRef: MatDialogRef<ListCategoriaComponent>,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog
   ) {
@@ -121,4 +126,8 @@ export class ListCategoriaComponent {
   }
 
   //#endregion
+
+  onClose(): void {
+    this.dialogRef.close();
+  }
 }

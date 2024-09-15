@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -40,7 +44,8 @@ export class ListMembroComponent {
   constructor(
     private readonly membroService: MembroService,
     private readonly toastr: ToastrService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly dialogRef: MatDialogRef<ListMembroComponent>
   ) {
     this.getAllMembros();
   }
@@ -122,5 +127,9 @@ export class ListMembroComponent {
 
   isEditable(nome: string): boolean {
     return nome !== 'Jhon Lenon' && nome !== 'Peu' && nome !== 'Laila';
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
   }
 }

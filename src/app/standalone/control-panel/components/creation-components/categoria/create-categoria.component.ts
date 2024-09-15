@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
@@ -24,6 +25,7 @@ import { CategoriaService } from 'src/app/standalone/control-panel/services/cate
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
+    MatIconModule,
     MatInputModule,
   ],
 })

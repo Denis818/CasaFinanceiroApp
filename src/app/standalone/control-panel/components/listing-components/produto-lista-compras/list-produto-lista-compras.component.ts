@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -39,7 +43,8 @@ export class ListProdutoListaComprasComponent {
   constructor(
     private readonly produtoListaComprasService: ProdutoListaComprasService,
     private readonly toastr: ToastrService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly dialogRef: MatDialogRef<ListProdutoListaComprasComponent>
   ) {
     this.getAllProdutoListaCompras();
   }
@@ -145,5 +150,9 @@ export class ListProdutoListaComprasComponent {
     produtoListaCompras.isEditing = false;
     this.isEditing = false;
     this.produtoListaComprasAtual = null;
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
   }
 }

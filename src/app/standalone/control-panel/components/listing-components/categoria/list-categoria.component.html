@@ -1,39 +1,49 @@
 <div categoria-list>
-  <div app-table>
-    <table>
-      <thead>
-        <tr>
-          <th>Categoria</th>
-          <th>Quantidade de Itens</th>
-          <th>Total</th>
-          <th app-tooltip-helper>
-            Opções
-            <mat-icon
-              class="icon-help"
-              matTooltip="Edição e exclusão desativadas devido a políticas internas."
-              >help_outline</mat-icon
-            >
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let categoria of categorias">
-          <td>{{ categoria.descricao }}</td>
-          <td>{{ categoria.quantidadeDeItens }}</td>
-          <td>{{ categoria.total | currency : "BRL" }}</td>
-          <td [class.disable-options]="!isEditable(categoria.descricao)">
-            <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
-            <mat-icon (click)="confirmDelete(categoria.code)">delete</mat-icon>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot *ngIf="categorias.length == 0">
-        <tr>
-          <td colspan="4">
-            <div dados-nao-encontrados>Nenhuma categoria encontrada</div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+  <div app-card class="card-dialog">
+    <div app-card-header>
+      <h2 app-card-title>Lista de Categorias</h2>
+      <mat-icon class="close" (click)="onClose()">close</mat-icon>
+    </div>
+    <div app-card-body>
+      <div app-table>
+        <table>
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Quantidade de Itens</th>
+              <th>Total</th>
+              <th app-tooltip-helper>
+                Opções
+                <mat-icon
+                  class="icon-help"
+                  matTooltip="Edição e exclusão desativadas devido a políticas internas."
+                  >help_outline</mat-icon
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let categoria of categorias">
+              <td>{{ categoria.descricao }}</td>
+              <td>{{ categoria.quantidadeDeItens }}</td>
+              <td>{{ categoria.total | currency : "BRL" }}</td>
+              <td [class.disable-options]="!isEditable(categoria.descricao)">
+                <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
+                <mat-icon (click)="confirmDelete(categoria.code)"
+                  >delete</mat-icon
+                >
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="categorias.length == 0">
+            <tr>
+              <td colspan="4">
+                <div dados-nao-encontrados>Nenhuma categoria encontrada</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
