@@ -3,20 +3,13 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
-    ButtonComponent,
-  ],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule],
 })
 export class ModalComponent {
   public dialogRef?: MatDialogRef<any> = inject(MatDialogRef<any>);
