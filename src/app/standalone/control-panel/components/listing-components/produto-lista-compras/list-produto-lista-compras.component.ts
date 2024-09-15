@@ -16,6 +16,7 @@ import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete
 import { ProdutoListaCompras } from '../../../interfaces/produto-lista-compras.interface';
 import { ProdutoListaComprasService } from '../../../services/produto-lista-compras.service';
 import { CreateProdutoListaComprasComponent } from '../../creation-components/produto-lista-compras/create-produto-lista-compras.component';
+import { EditProdutoListaComprasComponent } from '../../edition-components/produto-lista-compras/edit-produto-lista-compras.component';
 
 @Component({
   selector: 'app-produto-lista-compras',
@@ -73,40 +74,33 @@ export class ListProdutoListaComprasComponent {
 
   //#region Update
   openEdit(produtoListaCompras: ProdutoListaCompras): void {
-    if (!this.isEditing) {
-      this.isEditing = true;
-      produtoListaCompras.isEditing = !produtoListaCompras.isEditing;
-      this.produtoListaComprasAtual = JSON.parse(
-        JSON.stringify(produtoListaCompras)
-      );
-    }
-  }
+    const dialogRef = this.dialog.open(EditProdutoListaComprasComponent, {
+      width: '450px',
+      data: { ...produtoListaCompras },
+    });
 
-  cancelEdit(produtoListaCompras: ProdutoListaCompras) {
-    Object.assign(produtoListaCompras, this.produtoListaComprasAtual);
-    this.resetPropertys(produtoListaCompras);
+    dialogRef.afterClosed().subscribe((result: ProdutoListaCompras) => {
+      if (result) {
+        this.updateProdutoListaCompras(result.code, result);
+      }
+    });
   }
 
   updateProdutoListaCompras(
     code: string,
     produtoListaCompras: ProdutoListaCompras
   ): void {
-    if (!this.produtoListaComprasAlterada(produtoListaCompras)) {
-      this.produtoListaComprasService
-        .update(code, produtoListaCompras)
-        .subscribe({
-          next: (produtoListaComprasAtualizada) => {
-            if (produtoListaComprasAtualizada) {
-              this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-            }
-
-            this.getAllProdutoListaCompras();
-          },
-          error: () => this.getAllProdutoListaCompras(),
-        });
-    }
-
-    this.resetPropertys(produtoListaCompras);
+    this.produtoListaComprasService
+      .update(code, produtoListaCompras)
+      .subscribe({
+        next: (produtoListaComprasAtualizada) => {
+          if (produtoListaComprasAtualizada) {
+            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          }
+          this.getAllProdutoListaCompras();
+        },
+        error: () => this.getAllProdutoListaCompras(),
+      });
   }
 
   //#endregion
@@ -140,16 +134,6 @@ export class ListProdutoListaComprasComponent {
 
   exportaPdfListaCompras() {
     this.produtoListaComprasService.exportarPdfListaCompras();
-  }
-
-  produtoListaComprasAlterada(produtoListaCompras: ProdutoListaCompras) {
-    return this.produtoListaComprasAtual.item === produtoListaCompras.item;
-  }
-
-  resetPropertys(produtoListaCompras: ProdutoListaCompras) {
-    produtoListaCompras.isEditing = false;
-    this.isEditing = false;
-    this.produtoListaComprasAtual = null;
   }
 
   onClose(): void {

@@ -8,49 +8,14 @@
       <th>Opções</th>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let grupoFatura of grupoFaturas"
-        (keyup.enter)="updategrupoFatura(grupoFatura.code, grupoFatura)"
-      >
+      <tr *ngFor="let grupoFatura of grupoFaturas">
+        <td>{{ grupoFatura.nome }}</td>
+        <td>{{ setStatusFatura(grupoFatura.statusFaturas) }}</td>
+        <td>{{ grupoFatura.quantidadeDespesas }}</td>
+        <td>{{ grupoFatura.totalDespesas | currency : "BRL" }}</td>
         <td>
-          <div *ngIf="grupoFatura.isEditing; else viewNome">
-            <span matPrefix>Fatura de&nbsp;</span>
-            <input type="text" [(ngModel)]="grupoFatura.nomeEditavel" />
-          </div>
-          <ng-template #viewNome>{{ grupoFatura.nome }}</ng-template>
-        </td>
-        <td>
-          {{ setStatusFatura(grupoFatura.statusFaturas) }}
-        </td>
-        <td>
-          {{ grupoFatura.quantidadeDespesas }}
-        </td>
-        <td>
-          {{ grupoFatura.totalDespesas | currency : "BRL" }}
-        </td>
-        <td>
-          <i *ngIf="!grupoFatura.isEditing; else saveEdicao">
-            <mat-icon
-              (click)="openEdit(grupoFatura)"
-              [class.disable-options]="isEditing"
-              >edit</mat-icon
-            >
-          </i>
-
-          <ng-template #saveEdicao>
-            <mat-icon (click)="updategrupoFatura(grupoFatura.code, grupoFatura)"
-              >save</mat-icon
-            >
-            <mat-icon space (click)="cancelEdit(grupoFatura)">cancel</mat-icon>
-          </ng-template>
-
-          <i space *ngIf="!grupoFatura.isEditing">
-            <mat-icon
-              (click)="confirmDelete(grupoFatura.code)"
-              [class.disable-options]="isEditing"
-              >delete</mat-icon
-            >
-          </i>
+          <mat-icon (click)="openEdit(grupoFatura)">edit</mat-icon>
+          <mat-icon (click)="confirmDelete(grupoFatura.code)">delete</mat-icon>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,18 @@
+<app-modal
+  [textTitle]="'Editar Grupo de Fatura'"
+  [textConfirmButton]="'Salvar'"
+  [textCancelButton]="'Cancelar'"
+  [formClass]="'form-two-columns'"
+  (confirmClick)="onSave()"
+  (cancelClick)="onCancel()"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Nome do Grupo</mat-label>
+    <input matInput [(ngModel)]="grupoFatura.nomeEditavel" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ano</mat-label>
+    <input matInput [(ngModel)]="grupoFatura.ano" />
+  </mat-form-field>
+</app-modal>

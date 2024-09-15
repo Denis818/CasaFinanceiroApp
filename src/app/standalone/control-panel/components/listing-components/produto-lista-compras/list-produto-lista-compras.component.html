@@ -8,47 +8,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let item of produtoListaCompras"
-          (keyup.enter)="updateProdutoListaCompras(item.code, item)"
-        >
+        <tr *ngFor="let item of produtoListaCompras">
+          <td>{{ item.item }}</td>
           <td>
-            <div *ngIf="item.isEditing; else viewItem">
-              <input type="text" [(ngModel)]="item.item" />
-            </div>
-            <ng-template #viewItem>{{ item.item }}</ng-template>
-          </td>
-
-          <td>
-            <i *ngIf="!item.isEditing; else saveEdicao">
-              <mat-icon
-                (click)="openEdit(item)"
-                [class.disable-options]="isEditing"
-                >edit</mat-icon
-              >
-            </i>
-
-            <ng-template #saveEdicao>
-              <mat-icon (click)="updateProdutoListaCompras(item.code, item)"
-                >save</mat-icon
-              >
-              <mat-icon space (click)="cancelEdit(item)">cancel</mat-icon>
-            </ng-template>
-
-            <i space *ngIf="!item.isEditing">
-              <mat-icon
-                (click)="confirmDelete(item.code)"
-                [class.disable-options]="isEditing"
-                >delete</mat-icon
-              >
-            </i>
+            <mat-icon (click)="openEdit(item)">edit</mat-icon>
+            <mat-icon (click)="confirmDelete(item.code)">delete</mat-icon>
           </td>
         </tr>
       </tbody>
       <tfoot *ngIf="produtoListaCompras.length == 0">
         <tr>
           <td colspan="4">
-            <div dados-nao-encontrados>Nenhuma Item encontrado</div>
+            <div dados-nao-encontrados>Nenhum item encontrado</div>
           </td>
         </tr>
       </tfoot>

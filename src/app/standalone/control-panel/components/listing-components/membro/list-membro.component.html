@@ -15,52 +15,19 @@
         </th>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let membro of membros"
-          (keyup.enter)="updateMembro(membro.code, membro)"
-        >
-          <td>
-            <div *ngIf="membro.isEditing; else viewNome">
-              <input type="text" [(ngModel)]="membro.nome" />
-            </div>
-            <ng-template #viewNome>{{ membro.nome }}</ng-template>
-          </td>
-          <td>
-            <div *ngIf="membro.isEditing; else viewTelefone">
-              <input type="text" [(ngModel)]="membro.telefone" />
-            </div>
-            <ng-template #viewTelefone>{{ membro.telefone }}</ng-template>
-          </td>
+        <tr *ngFor="let membro of membros">
+          <td>{{ membro.nome }}</td>
+          <td>{{ membro.telefone }}</td>
           <td>{{ membro.dataInicio }}</td>
           <td [class.disable-options]="!isEditable(membro.nome)">
-            <i *ngIf="!membro.isEditing; else saveEdicao">
-              <mat-icon
-                (click)="openEdit(membro)"
-                [class.disable-options]="isEditing"
-                >edit</mat-icon
-              >
-            </i>
-
-            <ng-template #saveEdicao>
-              <mat-icon (click)="updateMembro(membro.code, membro)"
-                >save</mat-icon
-              >
-              <mat-icon space (click)="cancelEdit(membro)">cancel</mat-icon>
-            </ng-template>
-
-            <i space *ngIf="!membro.isEditing">
-              <mat-icon
-                (click)="confirmDelete(membro.code)"
-                [class.disable-options]="isEditing"
-                >delete</mat-icon
-              >
-            </i>
+            <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+            <mat-icon (click)="confirmDelete(membro.code)">delete</mat-icon>
           </td>
         </tr>
       </tbody>
       <tfoot *ngIf="membros.length == 0">
         <tr>
-          <td colspan="3">
+          <td colspan="4">
             <div dados-nao-encontrados>Nenhum membro encontrado</div>
           </td>
         </tr>

@@ -22,6 +22,7 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
+import { EditGrupoFaturaComponent } from '../../edition-components/grupo-fatura/edit-grupo-fatura.component';
 
 registerLocaleData(localePt);
 
@@ -71,39 +72,36 @@ export class ListgrupoFaturaComponent {
       });
     });
   }
-  //#region Update
 
+  //#region Update
   openEdit(grupoFatura: GrupoFatura): void {
-    if (!this.isEditing) {
-      this.isEditing = true;
-      grupoFatura.isEditing = !grupoFatura.isEditing;
-      this.grupoFaturaAtual = JSON.parse(JSON.stringify(grupoFatura));
-    }
-  }
-  cancelEdit(grupoFatura: GrupoFatura) {
-    Object.assign(grupoFatura, this.grupoFaturaAtual);
-    this.resetPropertys(grupoFatura);
+    const dialogRef = this.dialog.open(EditGrupoFaturaComponent, {
+      width: '600px',
+      data: { ...grupoFatura },
+    });
+
+    dialogRef.afterClosed().subscribe((result: GrupoFatura) => {
+      if (result) {
+        this.updategrupoFatura(result.code, result);
+      }
+    });
   }
 
   updategrupoFatura(code: string, grupoFatura: GrupoFatura): void {
-    if (!this.grupoFaturaAlterado(grupoFatura)) {
-      grupoFatura.nome = grupoFatura.nomeEditavel;
-      grupoFatura.ano =
-        this.storageService.getItem('ano') ||
-        new Date().getFullYear().toString();
+    grupoFatura.nome = grupoFatura.nomeEditavel;
+    grupoFatura.ano =
+      this.storageService.getItem('ano') || new Date().getFullYear().toString();
 
-      this.grupoFaturaService.update(code, grupoFatura).subscribe({
-        next: (grupoFaturaAtualizado) => {
-          if (grupoFaturaAtualizado) {
-            this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
-            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-          }
-          this.getAllgrupoFaturas();
-        },
-        error: () => this.getAllgrupoFaturas(),
-      });
-    }
-    this.resetPropertys(grupoFatura);
+    this.grupoFaturaService.update(code, grupoFatura).subscribe({
+      next: (grupoFaturaAtualizado) => {
+        if (grupoFaturaAtualizado) {
+          this.grupoFaturaNotification.notificarAlteracaoNoSeletorGrupoFatura();
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        }
+        this.getAllgrupoFaturas();
+      },
+      error: () => this.getAllgrupoFaturas(),
+    });
   }
   //#endregion
 
@@ -138,20 +136,11 @@ export class ListgrupoFaturaComponent {
 
   //#endregion
 
+  //#region Support methods
   extrairMesDoNome(nome: string): string {
     const regex = /Fatura de ([\wÀ-ú]+) \d{4}/i;
     const match = nome.match(regex);
     return match ? match[1] : nome;
-  }
-
-  grupoFaturaAlterado(grupoFatura: GrupoFatura): boolean {
-    return this.grupoFaturaAtual.nomeEditavel === grupoFatura.nomeEditavel;
-  }
-
-  resetPropertys(grupoFatura: GrupoFatura) {
-    grupoFatura.isEditing = false;
-    this.isEditing = false;
-    this.grupoFaturaAtual = null;
   }
 
   setStatusFatura(statusFaturas: StatusFatura[]): string {
@@ -184,6 +173,7 @@ export class ListgrupoFaturaComponent {
       return 'Fatura Pendente';
     }
   }
+  //#endregion
 
   onClose(): void {
     this.dialogRef.close();

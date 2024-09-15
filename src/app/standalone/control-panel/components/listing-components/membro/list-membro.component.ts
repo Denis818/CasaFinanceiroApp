@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { Membro } from 'src/app/standalone/control-panel/interfaces/membro.interface';
 import { MembroService } from 'src/app/standalone/control-panel/services/membro.service';
+import { EditMembroComponent } from '../../edition-components/membro/edit-membro.component';
 
 @Component({
   selector: 'modal-list-membro',
@@ -57,33 +58,29 @@ export class ListMembroComponent {
   }
 
   //#region Update
-
   openEdit(membro: Membro): void {
-    if (!this.isEditing) {
-      this.isEditing = true;
-      membro.isEditing = !membro.isEditing;
-      this.membroAtual = JSON.parse(JSON.stringify(membro));
-    }
-  }
+    const dialogRef = this.dialog.open(EditMembroComponent, {
+      width: '600px',
+      data: { ...membro },
+    });
 
-  cancelEdit(membro: Membro) {
-    Object.assign(membro, this.membroAtual);
-    this.resetPropertys(membro);
+    dialogRef.afterClosed().subscribe((membro: Membro) => {
+      if (membro) {
+        this.updateMembro(membro.code, membro);
+      }
+    });
   }
 
   updateMembro(code: string, membro: Membro): void {
-    if (!this.membroAlterado(membro)) {
-      this.membroService.update(code, membro).subscribe({
-        next: (membroAtualizado) => {
-          if (membroAtualizado) {
-            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-          }
-          this.getAllMembros();
-        },
-        error: () => this.getAllMembros(),
-      });
-    }
-    this.resetPropertys(membro);
+    this.membroService.update(code, membro).subscribe({
+      next: (membroAtualizado) => {
+        if (membroAtualizado) {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+        }
+        this.getAllMembros();
+      },
+      error: () => this.getAllMembros(),
+    });
   }
   //#endregion
 
@@ -111,19 +108,6 @@ export class ListMembroComponent {
     });
   }
   //#endregion
-
-  membroAlterado(membro: Membro) {
-    return (
-      this.membroAtual.nome === membro.nome &&
-      membro.telefone === this.membroAtual.telefone
-    );
-  }
-
-  resetPropertys(membro: Membro) {
-    membro.isEditing = false;
-    this.isEditing = false;
-    this.membroAtual = null;
-  }
 
   isEditable(nome: string): boolean {
     return nome !== 'Jhon Lenon' && nome !== 'Peu' && nome !== 'Laila';

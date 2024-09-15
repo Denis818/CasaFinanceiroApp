@@ -1,5 +1,5 @@
 <app-modal
-  [textTitle]="'Editar Categoria'"
+  [textTitle]="'Editar Item da Lista de Compras'"
   [textConfirmButton]="'Salvar'"
   [textCancelButton]="'Cancelar'"
   [formClass]="'form-one-colum'"
@@ -7,7 +7,7 @@
   (cancelClick)="onCancel()"
 >
   <mat-form-field appearance="outline">
-    <mat-label>Descrição</mat-label>
-    <input matInput [(ngModel)]="categoria.descricao" />
+    <mat-label>Item</mat-label>
+    <input matInput [(ngModel)]="produtoListaCompras.item" />
   </mat-form-field>
 </app-modal>

@@ -22,7 +22,6 @@ registerLocaleData(localePt);
   templateUrl: './edit-despesa.component.html',
   styleUrls: ['./edit-despesa.component.scss'],
   standalone: true,
-
   imports: [
     CommonModule,
     FormsModule,
