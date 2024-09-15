@@ -1,0 +1,27 @@
+<div app-modal>
+  <div app-modal-header>
+    <h2>{{ textTitle }}</h2>
+    <mat-icon (click)="onNoClick()">close</mat-icon>
+  </div>
+
+  <div app-modal-body app-input-color>
+    <mat-dialog-content class="dialog-content-custom" [ngClass]="formClass">
+      <ng-content></ng-content>
+    </mat-dialog-content>
+
+    <div class="buttons">
+      <button
+        type="button"
+        mat-raised-button
+        color="warn"
+        (click)="onNoClick()"
+      >
+        {{ textCancelButton }}
+      </button>
+
+      <button mat-flat-button color="primary" (click)="onConfirmClick()">
+        {{ textConfirmButton }}
+      </button>
+    </div>
+  </div>
+</div>

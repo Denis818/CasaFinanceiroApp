@@ -13,6 +13,4 @@ export interface Despesa {
   grupoFatura: GrupoFatura;
   categoriaCode: string;
   grupoFaturaCode: string;
-
-  isDespesaEditing: boolean;
 }

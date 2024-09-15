@@ -3,6 +3,4 @@ export interface Categoria {
   descricao: string;
   total: number;
   quantidadeDeItens: number;
-
-  isEditing: boolean;
 }

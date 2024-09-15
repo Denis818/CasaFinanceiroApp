@@ -1,0 +1,57 @@
+<app-modal
+  [textTitle]="'Editar Despesa'"
+  [textConfirmButton]="'Salvar'"
+  [textCancelButton]="'Cancelar'"
+  [formClass]="'form-two-columns'"
+  (confirmClick)="onSave()"
+  (cancelClick)="onCancel()"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Grupo de Fatura</mat-label>
+    <mat-select
+      [(ngModel)]="despesa.grupoFatura.code"
+      panelClass="select-options"
+    >
+      <mat-option
+        *ngFor="let grupoFatura of grupoFaturas"
+        [value]="grupoFatura.code"
+      >
+        {{ grupoFatura.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Categoria</mat-label>
+    <mat-select [(ngModel)]="despesa.categoria.code">
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria.code">
+        {{ categoria.descricao }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Item</mat-label>
+    <input matInput [(ngModel)]="despesa.item" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fornecedor</mat-label>
+    <input matInput [(ngModel)]="despesa.fornecedor" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Preço</mat-label>
+    <input
+      matInput
+      currencyMask
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+      [(ngModel)]="despesa.preco"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Quantidade</mat-label>
+    <input matInput [(ngModel)]="despesa.quantidade" />
+  </mat-form-field>
+</app-modal>

@@ -1,0 +1,13 @@
+<app-modal
+  [textTitle]="'Editar Categoria'"
+  [textConfirmButton]="'Salvar'"
+  [textCancelButton]="'Cancelar'"
+  [formClass]="'form-one-columns'"
+  (confirmClick)="onSave()"
+  (cancelClick)="onCancel()"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Descrição</mat-label>
+    <input matInput [(ngModel)]="categoria.descricao" />
+  </mat-form-field>
+</app-modal>

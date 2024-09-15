@@ -5,7 +5,7 @@
     color: white;
     display: flex;
     align-items: center;
-    z-index: 5000;
+    z-index: 1000;
     padding: 5px;
     justify-content: start;
     margin-left: 60px;
@@ -255,5 +255,22 @@
 
   .mat-mdc-menu-panel {
     margin-top: 13px;
+  }
+
+  .ano-select-panel {
+    padding: 0px !important;
+  }
+
+  .grupo-fatura-select-panel {
+    padding: 0px !important;
+    min-width: 255px !important;
+
+    &.create-despesa {
+      width: 80% !important;
+    }
+
+    &.create-fatura {
+      width: 60% !important;
+    }
   }
 }

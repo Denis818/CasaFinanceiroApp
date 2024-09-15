@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
 import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
+import { EditCategoriaComponent } from '../../edition-components/categoria/edit-categoria.component';
 
 @Component({
   selector: 'modal-listcategoria',
@@ -54,34 +55,29 @@ export class ListCategoriaComponent {
 
   //#region Update
   openEdit(categoria: Categoria): void {
-    if (!this.isEditing) {
-      this.isEditing = true;
-      categoria.isEditing = !categoria.isEditing;
-      this.categoriaAtual = JSON.parse(JSON.stringify(categoria));
-    }
-  }
+    const dialogRef = this.dialog.open(EditCategoriaComponent, {
+      width: '400px',
+      data: { ...categoria },
+    });
 
-  cancelEdit(categoria: Categoria) {
-    Object.assign(categoria, this.categoriaAtual);
-    this.resetPropertys(categoria);
+    dialogRef.afterClosed().subscribe((result: Categoria) => {
+      if (result) {
+        this.updateCategoria(result.code, result);
+      }
+    });
   }
 
   updateCategoria(code: string, categoria: Categoria): void {
-    if (!this.categoriaAlterada(categoria)) {
-      this.categoriaService.update(code, categoria).subscribe({
-        next: (categoriaAtualizada) => {
-          if (categoriaAtualizada) {
-            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-            this.notificarCategoriaAtualizada.emit();
-          }
-
-          this.getAllCategorias();
-        },
-        error: () => this.getAllCategorias(),
-      });
-    }
-
-    this.resetPropertys(categoria);
+    this.categoriaService.update(code, categoria).subscribe({
+      next: (categoriaAtualizada) => {
+        if (categoriaAtualizada) {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
+          this.notificarCategoriaAtualizada.emit();
+        }
+        this.getAllCategorias();
+      },
+      error: () => this.getAllCategorias(),
+    });
   }
 
   isEditable(descricao: string): boolean {
@@ -125,13 +121,4 @@ export class ListCategoriaComponent {
   }
 
   //#endregion
-
-  categoriaAlterada(categoria: Categoria) {
-    return this.categoriaAtual.descricao === categoria.descricao;
-  }
-  resetPropertys(categoria: Categoria) {
-    categoria.isEditing = false;
-    this.isEditing = false;
-    this.categoriaAtual = null;
-  }
 }

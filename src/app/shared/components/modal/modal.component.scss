@@ -1,0 +1,61 @@
+:host {
+  [app-modal-header] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+
+    h2 {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+    }
+
+    .mat-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      color: #b5b5b5;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: #ff6464;
+      }
+    }
+  }
+
+  [app-modal-body] {
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .dialog-content-custom {
+      padding: 0px;
+      padding-top: 5px;
+    }
+
+    .form-two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-one-columns {
+      ::ng-deep {
+        mat-form-field {
+          width: 100%;
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .form-two-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+}

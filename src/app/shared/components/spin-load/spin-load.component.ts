@@ -6,7 +6,7 @@ import { EnumTipoSpinner } from '../../enums/enum-tipo-spinner';
 @Component({
   selector: 'app-spin-load',
   templateUrl: './spin-load.component.html',
-  styleUrl: './spin-load.component.css',
+  styleUrl: './spin-load.component.scss',
 })
 export class SpinLoadComponent {
   constructor(public spinLoadService: SpinLoadService) {}

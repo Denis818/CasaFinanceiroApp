@@ -23,7 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { Subject, Subscription } from 'rxjs';
+import { forkJoin, Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
@@ -42,6 +42,7 @@ import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
 import { DespesaService } from 'src/app/standalone/control-panel/services/despesa.service';
 import { ChecarFaturaCartaoComponent } from '../../../checar-fatura-cartao/checar-fatura-cartao.component';
+import { EditDespesaComponent } from '../../../edition-components/despesa/edit-despesa.component';
 import { CardDescricaoTotaisComponent } from '../card-descricao-totais/card-descricao-totais.component';
 import { MetricasNotification } from '../card-descricao-totais/metricas-notification.service';
 import { CardTotaisListDespesasComponent } from '../card-totais-list-despesas/card-totais-list-despesas.component';
@@ -86,7 +87,6 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
   categorias: Categoria[] = [];
   grupoFaturas: GrupoFatura[];
 
-  isDespesaEditing: boolean = false;
   despesaAtual: Despesa;
 
   despesasFiltradas: Despesa[] = [];
@@ -204,24 +204,6 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
       });
-
-    this.isDespesaEditing = false;
-  }
-
-  getAllCategorias() {
-    this.categoriaService.getAll().subscribe({
-      next: (categorias) => {
-        this.categorias = categorias;
-      },
-    });
-  }
-
-  getAllGrupoFatura() {
-    this.grupoFaturaService.getListGruposFaturas().subscribe({
-      next: (grupoFaturas) => {
-        this.grupoFaturas = grupoFaturas;
-      },
-    });
   }
 
   getNameFatura() {
@@ -238,41 +220,40 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
   //#region Update
 
   openEdit(despesa: Despesa): void {
-    if (!this.isDespesaEditing) {
-      this.isDespesaEditing = true;
-      despesa.isDespesaEditing = !despesa.isDespesaEditing;
+    forkJoin({
+      categorias: this.categoriaService.getAll(),
+      grupoFaturas: this.grupoFaturaService.getListGruposFaturas(),
+    }).subscribe(({ categorias, grupoFaturas }) => {
+      const dialogRef = this.dialog.open(EditDespesaComponent, {
+        width: '600px',
+        data: {
+          despesa: { ...despesa },
+          categorias: categorias,
+          grupoFaturas: grupoFaturas,
+        },
+      });
 
-      this.despesaAtual = JSON.parse(JSON.stringify(despesa));
-
-      this.getAllCategorias();
-      this.getAllGrupoFatura();
-    }
-  }
-
-  cancelEdit(despesa: Despesa) {
-    Object.assign(despesa, this.despesaAtual);
-    this.resetPropertys(despesa);
+      dialogRef.afterClosed().subscribe((result: Despesa) => {
+        if (result) {
+          this.updateDespesa(result.code, result);
+        }
+      });
+    });
   }
 
   updateDespesa(code: string, despesa: Despesa): void {
     despesa.categoriaCode = despesa.categoria.code;
     despesa.grupoFaturaCode = despesa.grupoFatura.code;
 
-    if (!this.despesaAlterada(despesa)) {
-      this.despesaService.update(code, despesa).subscribe({
-        next: (despesaAtualizada) => {
-          if (despesaAtualizada) {
-            this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
-          }
-
+    this.despesaService.update(code, despesa).subscribe({
+      next: (despesaAtualizada) => {
+        if (despesaAtualizada) {
+          this.toastr.success('Atualizado com sucesso!', 'Finalizado!');
           this.getListDespesasPorGrupo();
-          this.cardTotaisListDespesas.getParametrosDeAlertasDeGastos();
-        },
-        error: () => this.getListDespesasPorGrupo(),
-      });
-    }
-
-    this.resetPropertys(despesa);
+        }
+      },
+      error: () => this.getListDespesasPorGrupo(),
+    });
   }
 
   //#endregion
@@ -313,21 +294,5 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
     this.getListDespesasPorGrupo();
   }
 
-  despesaAlterada(despesa: Despesa): boolean {
-    return (
-      this.despesaAtual.item === despesa.item &&
-      this.despesaAtual.preco === despesa.preco &&
-      this.despesaAtual.quantidade === despesa.quantidade &&
-      this.despesaAtual.fornecedor === despesa.fornecedor &&
-      this.despesaAtual.categoria.code === despesa.categoriaCode &&
-      this.despesaAtual.grupoFatura.code === despesa.grupoFaturaCode
-    );
-  }
-
-  resetPropertys(despesa: Despesa) {
-    despesa.isDespesaEditing = false;
-    this.isDespesaEditing = false;
-    this.despesaAtual = null;
-  }
   //#endregion
 }
