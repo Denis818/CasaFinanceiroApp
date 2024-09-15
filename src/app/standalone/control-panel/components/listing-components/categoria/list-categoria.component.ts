@@ -38,7 +38,6 @@ export class ListCategoriaComponent {
   @Output() notificarCategoriaAtualizada = new EventEmitter<void>();
 
   categoriaAtual: Categoria;
-  isEditing: boolean = false;
 
   categorias: Categoria[] = [];
   constructor(

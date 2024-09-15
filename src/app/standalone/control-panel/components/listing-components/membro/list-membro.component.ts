@@ -40,7 +40,6 @@ export class ListMembroComponent {
   membros: Membro[] = [];
 
   membroAtual: Membro;
-  isEditing: boolean = false;
 
   constructor(
     private readonly membroService: MembroService,

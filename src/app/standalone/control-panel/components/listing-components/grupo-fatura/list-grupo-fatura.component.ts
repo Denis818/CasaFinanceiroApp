@@ -49,7 +49,6 @@ export class ListgrupoFaturaComponent {
   nomeMes: string;
 
   grupoFaturaAtual: GrupoFatura;
-  isEditing: boolean = false;
 
   constructor(
     private readonly grupoFaturaService: GrupoFaturaService,

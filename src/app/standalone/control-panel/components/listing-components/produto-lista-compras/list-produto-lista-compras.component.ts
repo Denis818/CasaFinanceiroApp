@@ -37,7 +37,6 @@ import { EditProdutoListaComprasComponent } from '../../edition-components/produ
 })
 export class ListProdutoListaComprasComponent {
   produtoListaComprasAtual: ProdutoListaCompras;
-  isEditing: boolean = false;
 
   produtoListaCompras: ProdutoListaCompras[] = [];
 

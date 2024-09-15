@@ -3,6 +3,4 @@ export interface Membro {
   nome: string;
   telefone: string;
   dataInicio: Date;
-
-  isEditing: boolean;
 }
