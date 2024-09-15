@@ -287,6 +287,9 @@
     td {
       color: #708090;
       padding: 6px 30px;
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
     }
 
     tfoot td {

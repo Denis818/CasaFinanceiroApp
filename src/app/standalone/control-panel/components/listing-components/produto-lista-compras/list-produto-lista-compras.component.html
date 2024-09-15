@@ -18,7 +18,9 @@
               <td>{{ item.item }}</td>
               <td>
                 <mat-icon (click)="openEdit(item)">edit</mat-icon>
-                <mat-icon (click)="confirmDelete(item.code)">delete</mat-icon>
+                <mat-icon space (click)="confirmDelete(item.code)"
+                  >delete</mat-icon
+                >
               </td>
             </tr>
           </tbody>

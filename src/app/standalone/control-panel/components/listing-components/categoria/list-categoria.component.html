@@ -29,7 +29,7 @@
               <td>{{ categoria.total | currency : "BRL" }}</td>
               <td [class.disable-options]="!isEditable(categoria.descricao)">
                 <mat-icon (click)="openEdit(categoria)">edit</mat-icon>
-                <mat-icon (click)="confirmDelete(categoria.code)"
+                <mat-icon space (click)="confirmDelete(categoria.code)"
                   >delete</mat-icon
                 >
               </td>

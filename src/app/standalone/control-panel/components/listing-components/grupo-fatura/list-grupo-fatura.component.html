@@ -21,7 +21,7 @@
             <td>{{ grupoFatura.totalDespesas | currency : "BRL" }}</td>
             <td>
               <mat-icon (click)="openEdit(grupoFatura)">edit</mat-icon>
-              <mat-icon (click)="confirmDelete(grupoFatura.code)"
+              <mat-icon space (click)="confirmDelete(grupoFatura.code)"
                 >delete</mat-icon
               >
             </td>

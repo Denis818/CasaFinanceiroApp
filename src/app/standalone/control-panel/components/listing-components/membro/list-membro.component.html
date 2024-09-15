@@ -27,7 +27,7 @@
               <td>{{ membro.dataInicio }}</td>
               <td [class.disable-options]="!isEditable(membro.nome)">
                 <mat-icon (click)="openEdit(membro)">edit</mat-icon>
-                <mat-icon (click)="confirmDelete(membro.code)">delete</mat-icon>
+                <mat-icon space (click)="confirmDelete(membro.code)">delete</mat-icon>
               </td>
             </tr>
           </tbody>
