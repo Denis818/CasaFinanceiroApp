@@ -1,37 +1,45 @@
 <div membro-list>
-  <div app-table>
-    <table>
-      <thead>
-        <th>Membro</th>
-        <th>Telefone</th>
-        <th>Data de Início</th>
-        <th app-tooltip-helper>
-          Opções
-          <mat-icon
-            class="icon-help"
-            matTooltip="Edição e exclusão desativadas devido a políticas internas."
-            >help_outline</mat-icon
-          >
-        </th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let membro of membros">
-          <td>{{ membro.nome }}</td>
-          <td>{{ membro.telefone }}</td>
-          <td>{{ membro.dataInicio }}</td>
-          <td [class.disable-options]="!isEditable(membro.nome)">
-            <mat-icon (click)="openEdit(membro)">edit</mat-icon>
-            <mat-icon (click)="confirmDelete(membro.code)">delete</mat-icon>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot *ngIf="membros.length == 0">
-        <tr>
-          <td colspan="4">
-            <div dados-nao-encontrados>Nenhum membro encontrado</div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+  <div app-card class="card-dialog">
+    <div app-card-header>
+      <h2 app-card-title>Lista de Membros</h2>
+      <mat-icon class="close" (click)="onClose()">close</mat-icon>
+    </div>
+    <div app-card-body>
+      <div app-table>
+        <table>
+          <thead>
+            <th>Membro</th>
+            <th>Telefone</th>
+            <th>Data de Início</th>
+            <th app-tooltip-helper>
+              Opções
+              <mat-icon
+                class="icon-help"
+                matTooltip="Edição e exclusão desativadas devido a políticas internas."
+                >help_outline</mat-icon
+              >
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let membro of membros">
+              <td>{{ membro.nome }}</td>
+              <td>{{ membro.telefone }}</td>
+              <td>{{ membro.dataInicio }}</td>
+              <td [class.disable-options]="!isEditable(membro.nome)">
+                <mat-icon (click)="openEdit(membro)">edit</mat-icon>
+                <mat-icon (click)="confirmDelete(membro.code)">delete</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="membros.length == 0">
+            <tr>
+              <td colspan="4">
+                <div dados-nao-encontrados>Nenhum membro encontrado</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

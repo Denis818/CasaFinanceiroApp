@@ -1,30 +1,40 @@
-<div app-table>
-  <table>
-    <thead>
-      <th>Grupo de Fatura</th>
-      <th>Status da Fatura</th>
-      <th>Quantidade de Itens</th>
-      <th>Total de Despesas</th>
-      <th>Opções</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let grupoFatura of grupoFaturas">
-        <td>{{ grupoFatura.nome }}</td>
-        <td>{{ setStatusFatura(grupoFatura.statusFaturas) }}</td>
-        <td>{{ grupoFatura.quantidadeDespesas }}</td>
-        <td>{{ grupoFatura.totalDespesas | currency : "BRL" }}</td>
-        <td>
-          <mat-icon (click)="openEdit(grupoFatura)">edit</mat-icon>
-          <mat-icon (click)="confirmDelete(grupoFatura.code)">delete</mat-icon>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot *ngIf="grupoFaturas.length == 0">
-      <tr>
-        <td colspan="5">
-          <div dados-nao-encontrados>Nenhum grupo encontrado</div>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+<div app-card class="card-dialog">
+  <div app-card-header>
+    <h2 app-card-title>Lista de Grupos de Faturas</h2>
+    <mat-icon class="close" (click)="onClose()">close</mat-icon>
+  </div>
+  <div app-card-body>
+    <div app-table>
+      <table>
+        <thead>
+          <th>Grupo de Fatura</th>
+          <th>Status da Fatura</th>
+          <th>Quantidade de Itens</th>
+          <th>Total de Despesas</th>
+          <th>Opções</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let grupoFatura of grupoFaturas">
+            <td>{{ grupoFatura.nome }}</td>
+            <td>{{ setStatusFatura(grupoFatura.statusFaturas) }}</td>
+            <td>{{ grupoFatura.quantidadeDespesas }}</td>
+            <td>{{ grupoFatura.totalDespesas | currency : "BRL" }}</td>
+            <td>
+              <mat-icon (click)="openEdit(grupoFatura)">edit</mat-icon>
+              <mat-icon (click)="confirmDelete(grupoFatura.code)"
+                >delete</mat-icon
+              >
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="grupoFaturas.length == 0">
+          <tr>
+            <td colspan="5">
+              <div dados-nao-encontrados>Nenhum grupo encontrado</div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
 </div>
