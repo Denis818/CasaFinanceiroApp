@@ -2,17 +2,16 @@
   [textTitle]="'Editar Grupo de Fatura'"
   [textConfirmButton]="'Salvar'"
   [textCancelButton]="'Cancelar'"
-  [formClass]="'form-two-columns'"
+  [formClass]="'form-one-colum'"
   (confirmClick)="onSave()"
   (cancelClick)="onCancel()"
 >
   <mat-form-field appearance="outline">
-    <mat-label>Nome do Grupo</mat-label>
-    <input matInput [(ngModel)]="grupoFatura.nome" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Ano</mat-label>
-    <input matInput [(ngModel)]="grupoFatura.ano" />
+    <mat-label>Nome do Grupo (Mês)</mat-label>
+    <mat-select [(ngModel)]="grupoFatura.nome">
+      <mat-option *ngFor="let mes of meses" [value]="mes.viewValue">
+        {{ mes.viewValue }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </app-modal>

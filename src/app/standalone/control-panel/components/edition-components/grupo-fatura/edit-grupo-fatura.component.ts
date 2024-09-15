@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -7,6 +7,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
@@ -21,14 +22,10 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
     MatDialogModule,
     MatInputModule,
     ModalComponent,
+    MatSelectModule,
   ],
 })
-export class EditGrupoFaturaComponent {
-  constructor(
-    public dialogRef: MatDialogRef<EditGrupoFaturaComponent>,
-    @Inject(MAT_DIALOG_DATA) public grupoFatura: GrupoFatura
-  ) {}
-
+export class EditGrupoFaturaComponent implements OnInit {
   meses = [
     { viewValue: 'Janeiro' },
     { viewValue: 'Fevereiro' },
@@ -44,11 +41,28 @@ export class EditGrupoFaturaComponent {
     { viewValue: 'Dezembro' },
   ];
 
+  constructor(
+    public dialogRef: MatDialogRef<EditGrupoFaturaComponent>,
+    @Inject(MAT_DIALOG_DATA) public grupoFatura: GrupoFatura
+  ) {}
+
+  ngOnInit(): void {
+    this.extrairMes();
+  }
+
   onCancel(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
     this.dialogRef.close(this.grupoFatura);
+  }
+
+  extrairMes(): void {
+    const regex = /Fatura de (\w+) \d{4}/;
+    const match = this.grupoFatura.nome.match(regex);
+    if (match) {
+      this.grupoFatura.nome = match[1];
+    }
   }
 }

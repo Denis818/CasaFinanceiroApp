@@ -76,7 +76,7 @@ export class ListgrupoFaturaComponent {
   //#region Update
   openEdit(grupoFatura: GrupoFatura): void {
     const dialogRef = this.dialog.open(EditGrupoFaturaComponent, {
-      width: '600px',
+      width: '400px',
       data: { ...grupoFatura },
     });
 
