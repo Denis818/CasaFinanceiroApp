@@ -81,7 +81,7 @@ export class ControlPanelPage {
   //#region Create
   openCreateDespesaModal(): void {
     const dialogRef = this.dialog.open(CreateDespesaComponent, {
-      width: '400px',
+      width: '600px',
     });
 
     dialogRef.componentInstance.notificarDespesaInserida.subscribe(() => {
