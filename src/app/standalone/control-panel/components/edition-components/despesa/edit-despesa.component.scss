@@ -1,3 +1,9 @@
+:host {
+  input.money {
+    text-align: left !important;
+  }
+}
+
 ::ng-deep {
   .select-options {
     max-height: 260px !important;

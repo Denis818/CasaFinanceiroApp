@@ -43,6 +43,7 @@
   <mat-form-field appearance="outline">
     <mat-label>Preço</mat-label>
     <input
+      class="money"
       matInput
       currencyMask
       [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
