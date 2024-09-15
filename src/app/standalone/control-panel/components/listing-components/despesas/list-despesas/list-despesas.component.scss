@@ -152,6 +152,10 @@
     [app-table] table td {
       padding: 6px 20px;
     }
+
+    [app-table] table th {
+      padding: 10px 20px;
+    }
   }
 
   @media (max-width: 1500px) {
