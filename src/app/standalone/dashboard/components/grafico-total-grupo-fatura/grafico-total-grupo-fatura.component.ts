@@ -65,7 +65,7 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
       });
 
     this.reloadComponentSubscriber =
-      this.grupoFaturaNotification.recarregarComponentComNovoAno.subscribe({
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getGraficoTotaisComprasPorMes();
