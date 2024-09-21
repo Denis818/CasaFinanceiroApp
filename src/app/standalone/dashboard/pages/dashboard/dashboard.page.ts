@@ -41,7 +41,6 @@ registerLocaleData(localePt);
 })
 export class DashboardPage implements OnInit, OnDestroy {
   scrollIcon = 'expand_more';
-  private initialized = false;
 
   statusFaturaCasa: string;
   statusFaturaMoradia: string;
@@ -58,10 +57,12 @@ export class DashboardPage implements OnInit, OnDestroy {
     private readonly dialog: MatDialog,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     public readonly titleService: Title
-  ) {}
+  ) {
+    this.reloadPage();
+  }
 
   ngOnInit() {
-    this.reloadPage();
+    // this.reloadPage();
   }
 
   ngOnDestroy() {
@@ -74,13 +75,11 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.reloadPageSubscriber =
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
-          if (isReload && this.initialized) {
+          if (isReload) {
             console.log('chamando metodo carregaDados');
             this.getDespesasDivididasPorMembro();
             this.atualizarStatusFatura();
           }
-          
-          this.initialized = true;
         },
       });
   }
