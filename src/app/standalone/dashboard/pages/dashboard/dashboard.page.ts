@@ -88,7 +88,6 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
           if (isReload) {
             this.atualizarStatusFatura();
             this.inicializarDashboard();
-            this.grupoFaturaNotification.resetNotificacaoComponentesGrupoIdMudou();
           }
         },
       });
