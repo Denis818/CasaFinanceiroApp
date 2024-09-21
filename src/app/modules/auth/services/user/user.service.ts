@@ -36,7 +36,7 @@ export class UserService extends BaseService {
         next: (success) => {
           if (success?.authenticated) {
             this.toastr.success(`Bem vindo de volta!`);
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/portal/dashboard');
           }
         },
       });

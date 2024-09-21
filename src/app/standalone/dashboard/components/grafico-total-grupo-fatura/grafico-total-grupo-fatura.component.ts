@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Subscription } from 'rxjs';
-import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { TemaCorNotification } from 'src/app/core/portal/services/tema-cor-notification.service';
 import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { GraphicConfiguration } from 'src/app/shared/components/graphic/interfaces/graphic-configuration.interface';
@@ -36,12 +35,10 @@ registerLocaleData(localePt);
 export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   graphicConfig: GraphicConfiguration;
 
-  private reloadComponentSubscriber: Subscription;
   private temaCorNotificationSubscriber: Subscription;
 
   constructor(
     private readonly dashboardService: DashboardService,
-    private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private temaCorNotification: TemaCorNotification
   ) {}
 
@@ -50,22 +47,12 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.reloadComponentSubscriber?.unsubscribe();
     this.temaCorNotificationSubscriber?.unsubscribe();
   }
 
   reloadComponent() {
     this.temaCorNotificationSubscriber =
       this.temaCorNotification.recarregarComponentComNovoTema.subscribe({
-        next: (isReload) => {
-          if (isReload) {
-            this.getGraficoTotaisComprasPorMes();
-          }
-        },
-      });
-
-    this.reloadComponentSubscriber =
-      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getGraficoTotaisComprasPorMes();

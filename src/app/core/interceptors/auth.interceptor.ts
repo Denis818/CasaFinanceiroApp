@@ -28,9 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.storageService.getItem('token');
-    let faturaCode =
-      this.storageService.getItem('grupo-fatura-code') ??
-      '00000000-0000-0000-0000-000000000000';
+    let faturaCode = this.storageService.getItem('grupo-fatura-code');
 
     let headers = req.headers.set('Authorization', `Bearer ${token}`);
 
