@@ -141,7 +141,7 @@ export class DashboardService extends BaseService {
     const limite = 5700;
 
     if (total > limite) {
-      return '#ff0000d9';
+      return '#ed2336';
     } else if (total >= limite * 0.9) {
       return '#e5bd00db';
     } else {
