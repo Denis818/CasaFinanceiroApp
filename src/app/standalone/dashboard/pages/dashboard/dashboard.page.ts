@@ -1,12 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import {
-  AfterViewInit,
-  Component,
-  LOCALE_ID,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -45,13 +39,7 @@ registerLocaleData(localePt);
     TableDespesasPorCategoriaComponent,
   ],
 })
-export class DashboardPage implements AfterViewInit, OnDestroy {
-  @ViewChild(GraficoTotalGrupoFaturaComponent)
-  graficoTotalGrupoFatura: GraficoTotalGrupoFaturaComponent;
-
-  @ViewChild(TableDespesasPorCategoriaComponent)
-  tableDespesasPorCategoria: TableDespesasPorCategoriaComponent;
-
+export class DashboardPage implements OnInit, OnDestroy {
   scrollIcon = 'expand_more';
 
   statusFaturaCasa: string;
@@ -71,14 +59,12 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
     public readonly titleService: Title
   ) {}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.reloadPage();
   }
 
   ngOnDestroy() {
-    if (this.reloadPageSubscriber) {
-      this.reloadPageSubscriber.unsubscribe();
-    }
+    this.reloadPageSubscriber?.unsubscribe();
   }
 
   reloadPage() {
@@ -86,17 +72,11 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
+            this.getDespesasDivididasPorMembro();
             this.atualizarStatusFatura();
-            this.inicializarDashboard();
           }
         },
       });
-  }
-
-  inicializarDashboard() {
-    this.getDespesasDivididasPorMembro();
-    this.graficoTotalGrupoFatura.getGraficoTotaisComprasPorMes();
-    this.tableDespesasPorCategoria.getTotalPorCategoria();
   }
 
   atualizarStatusFatura() {
