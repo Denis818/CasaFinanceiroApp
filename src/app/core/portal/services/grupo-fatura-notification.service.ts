@@ -32,4 +32,8 @@ export class GrupoFaturaNotification {
   notificarAlteracaoNoSeletorGrupoFatura() {
     this.notificarSeletorGrupoFatura.next(true);
   }
+
+  resetNotificacaoComponentesGrupoIdMudou(): void {
+    this.notificarGrupoIdMudou.next(false);
+  }
 }

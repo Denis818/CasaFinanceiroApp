@@ -5,7 +5,6 @@ import {
   Component,
   LOCALE_ID,
   OnDestroy,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -73,7 +72,7 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
+export class ListDespesasComponent implements OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(CardTotaisListDespesasComponent)
@@ -82,7 +81,8 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
   faturaAtualName: string = '';
 
   private tempoParaAplicarFiltroPorItem = new Subject<string>();
-  private reloadPageSubscriber: Subscription;
+  private reloadPageDespesasSubscriber: Subscription;
+  private reloadPageMetricasSubscriber: Subscription;
 
   categorias: Categoria[] = [];
   grupoFaturas: GrupoFatura[];
@@ -114,37 +114,36 @@ export class ListDespesasComponent implements OnDestroy, OnInit, AfterViewInit {
     private readonly storageService: StorageService
   ) {}
 
-  ngOnInit(): void {
-    this.reloadDespesas();
+  ngAfterViewInit(): void {
+    this.reloadPage();
     this.tempoParaFiltrar();
   }
 
   ngOnDestroy() {
-    if (this.reloadPageSubscriber) {
-      this.reloadPageSubscriber.unsubscribe();
+    if (this.reloadPageDespesasSubscriber) {
+      this.reloadPageDespesasSubscriber.unsubscribe();
     }
-    if (this.tempoParaAplicarFiltroPorItem) {
-      this.tempoParaAplicarFiltroPorItem.unsubscribe();
+    if (this.reloadPageMetricasSubscriber) {
+      this.reloadPageMetricasSubscriber.unsubscribe();
     }
   }
 
-  ngAfterViewInit(): void {
-    this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
-      next: (isReload) => {
-        if (isReload) {
-          this.cardTotaisListDespesas?.getParametrosDeAlertasDeGastos();
-        }
-      },
-    });
-  }
-
-  reloadDespesas() {
-    this.reloadPageSubscriber =
+  reloadPage() {
+    this.reloadPageDespesasSubscriber =
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
             this.getNameFatura();
             this.getListDespesasPorGrupo();
+          }
+        },
+      });
+
+    this.reloadPageMetricasSubscriber =
+      this.metricasNotification.recarregarCardTotaisComNovaMetrica.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            this.cardTotaisListDespesas?.getParametrosDeAlertasDeGastos();
           }
         },
       });

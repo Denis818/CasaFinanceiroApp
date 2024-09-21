@@ -86,13 +86,18 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
           if (isReload) {
-            this.getDespesasDivididasPorMembro();
             this.atualizarStatusFatura();
-            this.graficoTotalGrupoFatura.getGraficoTotaisComprasPorMes();
-            this.tableDespesasPorCategoria.getTotalPorCategoria();
+            this.inicializarDashboard();
+            this.grupoFaturaNotification.resetNotificacaoComponentesGrupoIdMudou();
           }
         },
       });
+  }
+
+  inicializarDashboard() {
+    this.getDespesasDivididasPorMembro();
+    this.graficoTotalGrupoFatura.getGraficoTotaisComprasPorMes();
+    this.tableDespesasPorCategoria.getTotalPorCategoria();
   }
 
   atualizarStatusFatura() {
