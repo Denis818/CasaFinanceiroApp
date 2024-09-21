@@ -47,11 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 429) {
-          this.toastr.warning('Tente mais tarde', 'Aviso');
-        } else {
-          this.errorNotification(error?.error?.mensagens);
-        }
+        this.errorNotification(error?.error?.mensagens);
         this.checkTokenExpired(error);
         return throwError(() => of(error));
       })
@@ -71,6 +67,9 @@ export class AuthInterceptor implements HttpInterceptor {
             break;
           case 404:
             this.toastr.warning(mensagem.descricao, 'Não Encontrado');
+            break;
+          case 429:
+            this.toastr.warning('Tente mais tarde', 'Aviso');
             break;
           default:
             this.toastr.error(mensagem.descricao, 'Erro');
