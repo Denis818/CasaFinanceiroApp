@@ -41,6 +41,7 @@ registerLocaleData(localePt);
 })
 export class DashboardPage implements OnInit, OnDestroy {
   scrollIcon = 'expand_more';
+  private initialized = false;
 
   statusFaturaCasa: string;
   statusFaturaMoradia: string;
@@ -68,13 +69,18 @@ export class DashboardPage implements OnInit, OnDestroy {
   }
 
   reloadPage() {
+    this.reloadPageSubscriber?.unsubscribe();
+
     this.reloadPageSubscriber =
       this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
         next: (isReload) => {
-          if (isReload) {
+          if (isReload && this.initialized) {
+            console.log('chamando metodo carregaDados');
             this.getDespesasDivididasPorMembro();
             this.atualizarStatusFatura();
           }
+          
+          this.initialized = true;
         },
       });
   }
