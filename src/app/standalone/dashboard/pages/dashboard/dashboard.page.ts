@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Title } from '@angular/platform-browser';
-import { Subscription, throttleTime } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
@@ -71,17 +71,15 @@ export class DashboardPage implements OnInit, OnDestroy {
     this.reloadPageSubscriber?.unsubscribe();
 
     this.reloadPageSubscriber =
-      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId
-        .pipe(throttleTime(500))
-        .subscribe({
-          next: (isReload) => {
-            if (isReload) {
-              console.log('chamando metodo carregaDados');
-              this.getDespesasDivididasPorMembro();
-              this.atualizarStatusFatura();
-            }
-          },
-        });
+      this.grupoFaturaNotification.recarregarPaginaComNovoGrupoId.subscribe({
+        next: (isReload) => {
+          if (isReload) {
+            console.log('chamando metodo carregaDados');
+            this.getDespesasDivididasPorMembro();
+            this.atualizarStatusFatura();
+          }
+        },
+      });
   }
 
   atualizarStatusFatura() {
