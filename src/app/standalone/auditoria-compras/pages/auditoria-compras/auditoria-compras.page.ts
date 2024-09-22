@@ -20,7 +20,7 @@ import { Pagination } from 'src/app/shared/utilities/paginator/pagination';
 import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
 import { Despesa } from 'src/app/standalone/control-panel/interfaces/despesa.interface';
 
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Title } from '@angular/platform-browser';
 import { EnumFiltroDespesa } from 'src/app/shared/enums/enum-filtro-despesa';
@@ -58,7 +58,6 @@ registerLocaleData(localePt);
 })
 export class ConferenciaComprasPage implements OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = [
     'Grupo de Fatura',
@@ -75,7 +74,6 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   categorias: Categoria[] = [];
   despesas: Despesa[] = [];
-  sortedData: Despesa[];
 
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
@@ -146,8 +144,7 @@ export class ConferenciaComprasPage implements OnDestroy {
         this.tipoFiltro
       )
       .subscribe((listPaginada) => {
-        this.despesas = listPaginada.itens;
-        this.sortedData = this.despesas.slice();
+        this.despesas = listPaginada.itens.slice();
         this.page.totalItens = listPaginada.totalItens;
         this.page.paginaAtual = listPaginada.paginaAtual;
       });
@@ -170,13 +167,11 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   //#region Ordenador
   sortData(sort: Sort) {
-    const data = this.despesas.slice();
     if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
       return;
     }
 
-    this.sortedData = data.sort((a, b) => {
+    this.despesas = this.despesas.slice().sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'Grupo de Fatura':

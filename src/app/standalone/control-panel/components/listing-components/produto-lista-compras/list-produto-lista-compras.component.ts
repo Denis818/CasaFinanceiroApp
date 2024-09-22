@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -9,7 +9,8 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
@@ -33,12 +34,15 @@ import { EditProdutoListaComprasComponent } from '../../edition-components/produ
     MatDialogModule,
     ConfirmDeleteComponent,
     MatTooltipModule,
+    MatSortModule,
   ],
 })
 export class ListProdutoListaComprasComponent {
   produtoListaComprasAtual: ProdutoListaCompras;
 
-  produtoListaCompras: ProdutoListaCompras[] = [];
+  listProdutoListaCompras = new MatTableDataSource<ProdutoListaCompras>([]);
+  displayedColumns: string[] = ['item', 'opcoes'];
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private readonly produtoListaComprasService: ProdutoListaComprasService,
@@ -52,7 +56,8 @@ export class ListProdutoListaComprasComponent {
   getAllProdutoListaCompras() {
     this.produtoListaComprasService.getAll().subscribe({
       next: (produtoListaCompras) => {
-        this.produtoListaCompras = produtoListaCompras;
+        this.listProdutoListaCompras.data = produtoListaCompras;
+        this.listProdutoListaCompras.sort = this.sort;
       },
     });
   }
