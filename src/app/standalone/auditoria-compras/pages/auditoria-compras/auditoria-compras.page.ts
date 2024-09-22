@@ -79,7 +79,7 @@ export class ConferenciaComprasPage implements OnDestroy {
 
   filtro: string = '';
   tipoFiltro: EnumFiltroDespesa = EnumFiltroDespesa.Item;
-  listTipoFiltro = this.listFiltroDespesa.listTipoFiltroConferenciaCompras;
+  listTipoFiltro = this.listFiltroDespesa.listTipoFiltrAuditoriaCompras;
 
   tamanhosDePagina: number[] = [5, 10, 50, 100];
   page: Pagination = {

@@ -3,4 +3,5 @@ export enum EnumFiltroDespesa {
   Categoria = 'Categoria',
   Fornecedor = 'Fornecedor',
   GrupoFatura = 'GrupoFatura',
+  Preco = 'Preco',
 }

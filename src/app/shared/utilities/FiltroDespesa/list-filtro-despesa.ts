@@ -5,16 +5,18 @@ import { EnumFiltroDespesa } from '../../enums/enum-filtro-despesa';
   providedIn: 'root',
 })
 export class ListFiltroDespesa {
-  listTipoFiltroConferenciaCompras = [
+  listTipoFiltrAuditoriaCompras = [
     { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
     { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
     { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
     { value: EnumFiltroDespesa.GrupoFatura, viewValue: 'Grupo de Fatura' },
+    { value: EnumFiltroDespesa.Preco, viewValue: 'Preço' },
   ];
 
   listTipoFiltroPainelControle = [
     { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
     { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
     { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
+    { value: EnumFiltroDespesa.Preco, viewValue: 'Preço' },
   ];
 }
