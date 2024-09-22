@@ -1,11 +1,6 @@
 <nav navbar>
   <div itens-nav>
-    <div
-      app-input-color
-      selected-group
-      [formGroup]="grupoFaturasForm"
-      [ngClass]="{ 'ocultar-selected-group': shouldHideSelectedGroup() }"
-    >
+    <div app-input-color selected-group [formGroup]="grupoFaturasForm">
       <div class="select-grupo-fatura">
         <mat-form-field appearance="outline">
           <mat-select

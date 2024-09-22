@@ -19,7 +19,6 @@ import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
-import { FaturaCodeService } from 'src/app/core/services/fatura-code.service';
 import { MensagemWhatsAppComponent } from 'src/app/standalone/dashboard/components/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraficoTotalGrupoFaturaComponent } from '../../components/grafico-total-grupo-fatura/grafico-total-grupo-fatura.component';
 import { TableDespesasPorCategoriaComponent } from '../../components/table-despesas-por-categoria/table-despesas-por-categoria.component';
@@ -67,7 +66,6 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
   constructor(
     private readonly dashboardService: DashboardService,
     private readonly grupoFaturaService: GrupoFaturaService,
-    private readonly faturaCodeService: FaturaCodeService,
     private readonly dialog: MatDialog,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     public readonly titleService: Title
@@ -95,7 +93,7 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
   }
 
   carregarDados() {
-    if (this.faturaCodeService.hasFaturaCode()) {
+    if (this.grupoFaturaService.hasFaturaCode()) {
       this.getDespesasDivididasPorMembro();
       this.atualizarStatusFatura();
       this.graficoTotalGrupoFaturaComponent?.getGraficoTotaisComprasPorMes();

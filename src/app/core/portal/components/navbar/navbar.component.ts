@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { UserService } from 'src/app/modules/auth/services/user/user.service';
@@ -45,32 +44,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly storageService: StorageService,
     private readonly user: UserService,
     public readonly titleService: Title,
-    private temaCorNotification: TemaCorNotification,
-    private router: Router
-  ) {
-    this.selectedTheme =
-      this.storageService.getItem('selectedTheme') || 'roxo-theme';
-    this.applyTheme(this.selectedTheme);
-
-    this.reloadGrupoFaturas();
-  }
+    private temaCorNotification: TemaCorNotification
+  ) {}
 
   ngOnInit(): void {
+    this.setTheme();
     this.inicializarValoresDoFormulario();
     this.subscriberMudancasNoFormulario();
     this.atualizarAnoEGruposFatura();
+
+    this.reloadGrupoFaturaParaSeletor();
   }
 
   ngOnDestroy(): void {
-    if (this.grupoFaturasSubscriber) {
-      this.grupoFaturasSubscriber.unsubscribe();
-    }
-    if (this.anoSubscriber) {
-      this.anoSubscriber.unsubscribe();
-    }
-    if (this.grupoFaturaCodeSubscriber) {
-      this.grupoFaturaCodeSubscriber.unsubscribe();
-    }
+    this.grupoFaturasSubscriber?.unsubscribe();
+    this.anoSubscriber?.unsubscribe();
+    this.grupoFaturaCodeSubscriber?.unsubscribe();
   }
 
   //#region Select Grupos Faturas
@@ -105,9 +94,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
       });
   }
 
-  getListGrupoFaturaParaSeletorAsync() {
+  getListGrupoFaturaParaSeletor() {
     this.grupoFatura
-      .getListGrupoFaturaParaSeletorAsync(
+      .getListGrupoFaturaParaSeletor(
         this.grupoFaturasForm.get('ano').value
       )
       .subscribe({
@@ -150,7 +139,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.grupoFaturaNotification.notificarComponentesAnoMudou();
     }
 
-    this.getListGrupoFaturaParaSeletorAsync();
+    this.getListGrupoFaturaParaSeletor();
   }
 
   updateGrupoIdInStorage(): void {
@@ -168,8 +157,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   //#endregion
 
-  logout() {
-    this.user.logout();
+  //#region Tema do site
+  setTheme() {
+    this.selectedTheme =
+      this.storageService.getItem('selectedTheme') || 'roxo-theme';
+
+    this.applyTheme(this.selectedTheme);
   }
 
   onThemeChange(event: any): void {
@@ -186,21 +179,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.renderer.addClass(this.document.body, theme);
     this.storageService.setItem('selectedTheme', theme);
   }
+  //#endregion
 
-  reloadGrupoFaturas() {
+  reloadGrupoFaturaParaSeletor() {
     this.grupoFaturasSubscriber =
       this.grupoFaturaNotification.recarregarSeletorGrupoFaturaComAlteracoes.subscribe(
         {
           next: (isReload) => {
             if (isReload) {
-              this.getListGrupoFaturaParaSeletorAsync();
+              this.getListGrupoFaturaParaSeletor();
             }
           },
         }
       );
   }
 
-  shouldHideSelectedGroup(): boolean {
-    return false;// this.router.url.includes('comparativo-faturas');
+  logout() {
+    this.user.logout();
   }
 }

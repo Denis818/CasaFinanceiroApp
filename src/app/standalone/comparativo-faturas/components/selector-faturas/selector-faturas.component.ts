@@ -35,13 +35,13 @@ export class SelectorFaturasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getListGrupoFaturaParaSeletorAsync();
+    this.getListGrupoFaturaParaSeletor();
   }
 
-  getListGrupoFaturaParaSeletorAsync() {
+  getListGrupoFaturaParaSeletor() {
     const ano = this.storageService.getItem('ano');
 
-    this.grupoFaturaService.getListGrupoFaturaParaSeletorAsync(ano).subscribe({
+    this.grupoFaturaService.getListGrupoFaturaParaSeletor(ano).subscribe({
       next: (grupoFaturas) => {
         this.grupoFaturas = grupoFaturas;
 

@@ -97,11 +97,8 @@
           }
         }
       }
-
-      .ocultar-selected-group {
-        display: none;
-      }
     }
+
     & [title] {
       margin-left: 65px;
       white-space: nowrap;
@@ -115,7 +112,7 @@
 
       [itens-nav] {
         margin-left: 0px;
-        
+
         [selected-group] {
           width: 60%;
           display: flex;

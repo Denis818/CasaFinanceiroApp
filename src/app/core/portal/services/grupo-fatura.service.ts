@@ -17,7 +17,7 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
     super(`${environment.base_url_financy}/grupo-fatura`);
   }
 
-  public getListGrupoFaturaParaSeletorAsync(
+  public getListGrupoFaturaParaSeletor(
     ano: string = ''
   ): Observable<GrupoFaturaSeletorResponse[]> {
     if (!ano) {

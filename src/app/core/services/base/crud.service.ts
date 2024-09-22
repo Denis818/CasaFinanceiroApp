@@ -44,4 +44,8 @@ export abstract class CrudService<TEntity> extends BaseService {
       spinnerType: EnumTipoSpinner.saving,
     }).pipe(map((response) => response.dados));
   }
+
+  public hasFaturaCode(): boolean {
+    return !!this.storageService.getItem('grupo-fatura-code');
+  }
 }
