@@ -100,13 +100,21 @@
     align-items: center;
     border: 1px solid #5c56964e;
     color: #4c489d;
-    box-shadow: var(
-      --mdc-protected-button-container-elevation,
-      0px 3px 1px -2px rgb(76 72 157 / 20%),
-      0px 2px 2px 0px rgb(76 72 157 / 20%),
-      0px 1px 5px 0px rgb(76 72 157 / 20%)
-    );
     border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
     mat-icon {
       transform: scale(1.8);

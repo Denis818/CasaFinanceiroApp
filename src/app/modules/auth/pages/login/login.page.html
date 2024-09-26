@@ -25,10 +25,21 @@
         </mat-icon>
       </mat-form-field>
 
-      <button type="submit" mat-raised-button class="login-submit">
-        Conecte-se agora
-        <mat-icon>chevron_right</mat-icon>
-      </button>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 480px;
+        "
+      >
+        <button type="submit" mat-raised-button>
+          Conecte-se agora
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+
+        <app-oauth-google></app-oauth-google>
+      </div>
     </form>
   </div>
   <div class="screen-background">

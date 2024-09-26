@@ -19,6 +19,10 @@ export class UserService extends BaseService {
     super();
   }
 
+  signinGoogle() {
+    window.location.href = this.url + '/login-google';
+  }
+
   login(user: UserRequest): void {
     this.sendHttpRequest<ApiResponse<TokenResponse>>({
       metodo: 'POST',
@@ -47,7 +51,7 @@ export class UserService extends BaseService {
     this.router.navigateByUrl('/login');
   }
 
-  //  Support Methods
+  //#region   Support Methods
   private getUserInfo(): void {
     this.sendHttpRequest<ApiResponse<UserInfoResponse>>({
       metodo: 'GET',
@@ -76,5 +80,5 @@ export class UserService extends BaseService {
   removeAuthLocalStorage() {
     this.storageService.cleanAndPreserverItem(['grupoFaturaCode']);
   }
-  //
+  //#endregion
 }
