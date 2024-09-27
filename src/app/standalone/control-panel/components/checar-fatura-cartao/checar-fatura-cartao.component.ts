@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -40,7 +40,7 @@ registerLocaleData(localePt);
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class ChecarFaturaCartaoComponent {
+export class ChecarFaturaCartaoComponent implements OnInit {
   valorSubtraido: number = 0;
   faturaCartao: number = 0;
   totalDespesa: number = 0;
@@ -56,7 +56,9 @@ export class ChecarFaturaCartaoComponent {
     private readonly despesaService: DespesaService,
     private readonly dialogRef: MatDialogRef<ChecarFaturaCartaoComponent>,
     private readonly fb: FormBuilder
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
   }
 

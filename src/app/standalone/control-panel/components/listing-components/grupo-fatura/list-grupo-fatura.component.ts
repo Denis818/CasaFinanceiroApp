@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -44,7 +44,7 @@ registerLocaleData(localePt);
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class ListgrupoFaturaComponent {
+export class ListgrupoFaturaComponent implements OnInit {
   grupoFaturas: GrupoFatura[] = [];
   nomeMes: string;
 
@@ -57,7 +57,9 @@ export class ListgrupoFaturaComponent {
     private readonly dialog: MatDialog,
     private readonly storageService: StorageService,
     private readonly dialogRef: MatDialogRef<ListgrupoFaturaComponent>
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.getAllgrupoFaturas();
   }
 

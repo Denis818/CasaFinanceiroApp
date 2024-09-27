@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -29,7 +29,7 @@ import { ProdutoListaComprasService } from '../../../services/produto-lista-comp
     MatIconModule,
   ],
 })
-export class CreateProdutoListaComprasComponent {
+export class CreateProdutoListaComprasComponent implements OnInit {
   @Output() notificarItemAdicionadoListaCompras = new EventEmitter<void>();
 
   produtoListaComprasForm: FormGroup;
@@ -43,7 +43,9 @@ export class CreateProdutoListaComprasComponent {
     private readonly dialogRef: MatDialogRef<CreateProdutoListaComprasComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
   }
 

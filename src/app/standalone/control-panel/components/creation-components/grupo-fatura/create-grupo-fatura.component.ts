@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -33,7 +33,7 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
     MatSelectModule,
   ],
 })
-export class CreategrupoFaturaComponent {
+export class CreategrupoFaturaComponent implements OnInit {
   grupoFaturaForm: FormGroup;
   userInput: string = '';
 
@@ -62,10 +62,11 @@ export class CreategrupoFaturaComponent {
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService,
     private readonly storageService: StorageService
-  ) {
+  ) {}
+  
+  ngOnInit(): void {
     this.validation();
   }
-
   onSubmit(): void {
     if (this.grupoFaturaForm.valid) {
       let grupoFatura = {

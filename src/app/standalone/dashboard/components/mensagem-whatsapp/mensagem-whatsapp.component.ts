@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -31,7 +31,7 @@ import { MembroService } from 'src/app/standalone/control-panel/services/membro.
     MatTooltipModule,
   ],
 })
-export class MensagemWhatsAppComponent {
+export class MensagemWhatsAppComponent implements OnInit {
   valoresForm: FormGroup;
 
   get valoresValidator(): any {
@@ -43,7 +43,9 @@ export class MensagemWhatsAppComponent {
     private readonly membroService: MembroService,
     private readonly dialogRef: MatDialogRef<MensagemWhatsAppComponent>,
     private readonly fb: FormBuilder
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
     this.resetForm();
   }

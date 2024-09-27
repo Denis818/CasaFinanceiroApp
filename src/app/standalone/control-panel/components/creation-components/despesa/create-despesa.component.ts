@@ -1,6 +1,6 @@
 import { BooleanInput } from '@angular/cdk/coercion';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
+import { GrupoFaturaSeletorResponse } from 'src/app/core/portal/interfaces/grupo-fatura-seletor-response.interface';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { EnumCategoriasMensais } from 'src/app/standalone/control-panel/enums/enum-categorias-mensais';
@@ -42,7 +42,7 @@ import { DespesaService } from 'src/app/standalone/control-panel/services/despes
     MatIconModule,
   ],
 })
-export class CreateDespesaComponent {
+export class CreateDespesaComponent implements OnInit {
   @Output() notificarDespesaInserida = new EventEmitter<void>();
 
   inputItem: string;
@@ -52,7 +52,7 @@ export class CreateDespesaComponent {
   categorias: Categoria[] = [];
   categoriaSelecionada: string;
 
-  grupoFaturas: GrupoFatura[];
+  grupoFaturas: GrupoFaturaSeletorResponse[];
   grupoDefault: number;
   grupoCode = this.storageService.getItem('grupo-fatura-code');
 
@@ -69,7 +69,9 @@ export class CreateDespesaComponent {
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService,
     private readonly storageService: StorageService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
     this.resetForm();
     this.getAllCategorias();
@@ -103,7 +105,7 @@ export class CreateDespesaComponent {
   }
 
   getAllgrupoFaturas() {
-    this.grupoFaturaService.getListGruposFaturas().subscribe({
+    this.grupoFaturaService.getListGrupoFaturaParaSeletor().subscribe({
       next: (grupoFaturas) => {
         this.grupoFaturas = grupoFaturas;
       },

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -29,7 +29,7 @@ import { CategoriaService } from 'src/app/standalone/control-panel/services/cate
     MatInputModule,
   ],
 })
-export class CreateCategoriaComponent {
+export class CreateCategoriaComponent implements OnInit {
   categoriaForm: FormGroup;
 
   get categoriaValidator(): any {
@@ -41,7 +41,9 @@ export class CreateCategoriaComponent {
     private readonly dialogRef: MatDialogRef<CreateCategoriaComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
   }
 

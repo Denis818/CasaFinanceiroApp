@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -29,7 +29,7 @@ import { MembroService } from 'src/app/standalone/control-panel/services/membro.
     MatIconModule,
   ],
 })
-export class CreateMembroComponent {
+export class CreateMembroComponent implements OnInit {
   membroForm: FormGroup;
 
   get membroValidator(): any {
@@ -41,7 +41,9 @@ export class CreateMembroComponent {
     private readonly dialogRef: MatDialogRef<CreateMembroComponent>,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.validation();
   }
 

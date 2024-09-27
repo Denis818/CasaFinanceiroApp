@@ -45,14 +45,14 @@ export class ComparativoFaturasPage {
     public readonly titleService: Title,
     private readonly fb: FormBuilder,
     private readonly comparativoFaturasService: ComparativoFaturaService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.grupoFaturasForm = this.fb.group({
       grupoFaturaCode1: [''],
       grupoFaturaCode2: [''],
     });
-  }
-
-  ngOnInit(): void {
+    
     this.getComparativoFaturas();
   }
 

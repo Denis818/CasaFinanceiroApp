@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartOptions } from 'chart.js';
@@ -19,7 +19,7 @@ registerLocaleData(localePt);
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   imports: [CommonModule, MatIconModule, MatTooltipModule, GraphicComponent],
 })
-export class GraficoSugestoesEconomiaComponent implements OnDestroy {
+export class GraficoSugestoesEconomiaComponent implements OnInit, OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   fornecedores: string[] = [];
@@ -28,7 +28,9 @@ export class GraficoSugestoesEconomiaComponent implements OnDestroy {
   constructor(
     private readonly comprasService: AuditoriaComprasService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.reloadDespesas();
   }
 
