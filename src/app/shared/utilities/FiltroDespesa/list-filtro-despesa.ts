@@ -5,18 +5,25 @@ import { EnumFiltroDespesa } from '../../enums/enum-filtro-despesa';
   providedIn: 'root',
 })
 export class ListFiltroDespesa {
-  listTipoFiltrAuditoriaCompras = [
+  private readonly baseListFilter = [
     { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
     { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
     { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
-    { value: EnumFiltroDespesa.GrupoFatura, viewValue: 'Grupo de Fatura' },
-    { value: EnumFiltroDespesa.Preco, viewValue: 'Preço' },
+    { value: EnumFiltroDespesa.Preco, viewValue: 'Preço Igual' },
+    {
+      value: EnumFiltroDespesa.PrecoMenorOuIgual,
+      viewValue: 'Preço Menor ou Igual',
+    },
+    {
+      value: EnumFiltroDespesa.PrecoMaiorOuIgual,
+      viewValue: 'Preço Maior ou Igual',
+    },
   ];
 
-  listTipoFiltroPainelControle = [
-    { value: EnumFiltroDespesa.Item, viewValue: 'Item' },
-    { value: EnumFiltroDespesa.Categoria, viewValue: 'Categoria' },
-    { value: EnumFiltroDespesa.Fornecedor, viewValue: 'Fornecedor' },
-    { value: EnumFiltroDespesa.Preco, viewValue: 'Preço' },
+  listTipoFiltroPainelControle = [...this.baseListFilter];
+
+  listTipoFiltrAuditoriaCompras = [
+    { value: EnumFiltroDespesa.GrupoFatura, viewValue: 'Grupo de Fatura' },
+    ...this.baseListFilter,
   ];
 }

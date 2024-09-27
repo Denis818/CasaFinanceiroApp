@@ -21,6 +21,7 @@
         <mat-form-field appearance="outline">
           <mat-label class="filter-label">Filtrar por:</mat-label>
           <mat-select
+            panelClass="filter-select-panel"
             [(ngModel)]="tipoFiltro"
             (selectionChange)="aoSelecionarFiltro()"
           >

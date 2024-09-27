@@ -4,4 +4,6 @@ export enum EnumFiltroDespesa {
   Fornecedor = 'Fornecedor',
   GrupoFatura = 'GrupoFatura',
   Preco = 'Preco',
+  PrecoMenorOuIgual = 'PrecoMenorOuIgual',
+  PrecoMaiorOuIgual = 'PrecoMaiorOuIgual',
 }

@@ -52,6 +52,12 @@
 }
 /* End */
 
+/* Seletor de filtragem */
+div.mat-mdc-select-panel.filter-select-panel {
+  min-width: 215px;
+}
+/* End */
+
 /* Toast notification */
 .toast-container .ngx-toastr {
   &:hover {
