@@ -1,6 +1,12 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  LOCALE_ID,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -56,7 +62,7 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],
 })
-export class ConferenciaComprasPage implements OnDestroy {
+export class ConferenciaComprasPage implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = [
@@ -92,7 +98,9 @@ export class ConferenciaComprasPage implements OnDestroy {
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
     private readonly categoriaService: CategoriaService,
     private readonly listFiltroDespesa: ListFiltroDespesa
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.tempoParaFiltrar();
 
     this.grupoFaturaNotification.recarregarComponentComNovoAno.subscribe({

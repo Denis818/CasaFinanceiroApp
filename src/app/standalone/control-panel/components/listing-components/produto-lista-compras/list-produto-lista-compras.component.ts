@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -37,7 +37,7 @@ import { EditProdutoListaComprasComponent } from '../../edition-components/produ
     MatSortModule,
   ],
 })
-export class ListProdutoListaComprasComponent {
+export class ListProdutoListaComprasComponent implements OnInit {
   produtoListaComprasAtual: ProdutoListaCompras;
 
   listProdutoListaCompras = new MatTableDataSource<ProdutoListaCompras>([]);
@@ -49,7 +49,9 @@ export class ListProdutoListaComprasComponent {
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
     private readonly dialogRef: MatDialogRef<ListProdutoListaComprasComponent>
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.getAllProdutoListaCompras();
   }
 

@@ -17,37 +17,28 @@ export class SpinLoadService {
     switch (spinnerType) {
       case EnumTipoSpinner.loading:
         if (this.spinnerIsActived) {
-          this.runSpinner(spinnerType);
+          this.runSpinner(EnumTipoSpinner.loading);
         }
         break;
       case EnumTipoSpinner.saving:
         if (this.spinnerIsActived) {
-          this.runSpinner(spinnerType);
+          this.runSpinner(EnumTipoSpinner.saving);
         }
         break;
       case EnumTipoSpinner.downloading:
         if (this.spinnerIsActived) {
-          this.runSpinner(spinnerType);
+          this.runSpinner(EnumTipoSpinner.downloading);
         }
         break;
     }
   }
 
   runSpinner(spinner: EnumTipoSpinner) {
-    this.enableSpinLoad = true;
-    this.spinnerIsActived = false;
-
-    switch (spinner) {
-      case EnumTipoSpinner.loading:
-        this.tipoSpinner = EnumTipoSpinner.loading;
-        break;
-      case EnumTipoSpinner.saving:
-        this.tipoSpinner = EnumTipoSpinner.saving;
-        break;
-      case EnumTipoSpinner.downloading:
-        this.tipoSpinner = EnumTipoSpinner.downloading;
-        break;
-    }
+    setTimeout(() => {
+      this.enableSpinLoad = true;
+      this.tipoSpinner = spinner;
+      this.spinnerIsActived = false;
+    });
   }
 
   hideSpinner() {

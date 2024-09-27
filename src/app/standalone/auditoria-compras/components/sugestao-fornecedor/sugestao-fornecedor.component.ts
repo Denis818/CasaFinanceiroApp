@@ -7,7 +7,7 @@ import {
 } from '@angular/animations';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, LOCALE_ID, OnDestroy } from '@angular/core';
+import { Component, LOCALE_ID, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -64,7 +64,7 @@ registerLocaleData(localePt);
     MatPaginatorModule,
   ],
 })
-export class SugestaoFornecedorComponent implements OnDestroy {
+export class SugestaoFornecedorComponent implements OnInit, OnDestroy {
   private reloadPageSubscriber: Subscription;
 
   sugestoesDeFornecedores: SugestaoDeFornecedorResponse[] = [];
@@ -76,7 +76,9 @@ export class SugestaoFornecedorComponent implements OnDestroy {
   constructor(
     private readonly comprasService: AuditoriaComprasService,
     private readonly grupoFaturaNotification: GrupoFaturaNotification
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.reloadDespesas();
   }
 

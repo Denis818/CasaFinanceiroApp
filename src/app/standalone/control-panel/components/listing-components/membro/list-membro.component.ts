@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -36,7 +36,7 @@ import { EditMembroComponent } from '../../edition-components/membro/edit-membro
     ConfirmDeleteComponent,
   ],
 })
-export class ListMembroComponent {
+export class ListMembroComponent implements OnInit {
   membros: Membro[] = [];
 
   membroAtual: Membro;
@@ -46,7 +46,9 @@ export class ListMembroComponent {
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog,
     private readonly dialogRef: MatDialogRef<ListMembroComponent>
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.getAllMembros();
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
@@ -34,7 +34,7 @@ import { EditCategoriaComponent } from '../../edition-components/categoria/edit-
     MatTooltipModule,
   ],
 })
-export class ListCategoriaComponent {
+export class ListCategoriaComponent implements OnInit {
   @Output() notificarCategoriaAtualizada = new EventEmitter<void>();
 
   categoriaAtual: Categoria;
@@ -45,7 +45,9 @@ export class ListCategoriaComponent {
     private readonly dialogRef: MatDialogRef<ListCategoriaComponent>,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog
-  ) {
+  ) {}
+  
+  ngOnInit(): void {
     this.getAllCategorias();
   }
 
