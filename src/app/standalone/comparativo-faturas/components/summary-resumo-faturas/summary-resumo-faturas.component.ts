@@ -43,7 +43,7 @@ export class SummaryResumoFaturasComponent implements OnChanges {
 
   initSummary() {
     this.tooltipMessage = `
-    Mostra em porcentagem o quanto ${this.nomeGrupoFatura1} gastou a mais em comparação com o ${this.nomeGrupoFatura2}.`;
+    Mostra em porcentagem o quanto ${this.nomeGrupoFatura1} gastou a mais em comparação com a ${this.nomeGrupoFatura2}.`;
 
     this.totalDifferencePercentage = this.calculateDifferencePercentage(
       this.totalGrupoFatura1,
