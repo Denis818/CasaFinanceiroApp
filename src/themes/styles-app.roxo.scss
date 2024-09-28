@@ -35,6 +35,10 @@ body {
           [app-multi-card-header] {
             [download-button] {
               color: var(--roxo-theme-color) !important;
+
+              .mat-icon.icon-help {
+                color: var(--roxo-theme-color);
+              }
             }
           }
 

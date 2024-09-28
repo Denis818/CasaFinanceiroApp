@@ -8,18 +8,16 @@
     <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <h2 app-card-title>Despesa de casa</h2>
-        <div class="icon-help-button">
-          <button download-button (click)="exportarRelatorioDespesasCasa()">
-            <p>Download do Relatório</p>
 
-            <mat-icon>download</mat-icon>
-          </button>
+        <button download-button (click)="exportarRelatorioDespesasCasa()">
+          <p>Download do Relatório</p>
+          <mat-icon>download</mat-icon>
           <mat-icon
             class="icon-help"
             matTooltip="Baixar um PDF onde descreve os cálculos feitos sobre os valores das despesas relacionadas a Almoço, Lanches, Higiene etc..."
             >help_outline
           </mat-icon>
-        </div>
+        </button>
       </div>
       <div app-multi-card-body>
         <div status-fatura>
@@ -56,21 +54,19 @@
     <div app-multi-card class="header-with-button">
       <div app-multi-card-header>
         <h2 app-card-title>Despesa de moradia</h2>
-        <div class="icon-help-button">
-          <button
-            download-button
-            (click)="exportarRelatorioDespesasHabitacional()"
-          >
-            <p>Download do Relatório</p>
 
-            <mat-icon>download</mat-icon>
-          </button>
+        <button
+          download-button
+          (click)="exportarRelatorioDespesasHabitacional()"
+        >
+          <p>Download do Relatório</p>
+          <mat-icon>download</mat-icon>
           <mat-icon
             class="icon-help"
             matTooltip="Baixar um PDF onde descreve os calculos feitos sobre os valores das despesas relacionadas a Aluguel, Condomínio, e Conta de Luz foram somados."
             >help_outline</mat-icon
           >
-        </div>
+        </button>
       </div>
       <div app-multi-card-body>
         <div status-fatura>

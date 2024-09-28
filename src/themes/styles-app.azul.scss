@@ -35,6 +35,9 @@ body {
           [app-multi-card-header] {
             [download-button] {
               color: var(--azul-theme-color) !important;
+              .mat-icon.icon-help {
+                color: var(--azul-theme-color);
+              }
             }
           }
 
