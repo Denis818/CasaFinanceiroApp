@@ -72,7 +72,7 @@ export class ControlPanelPage {
 
   openListgrupoFaturasModal() {
     const dialogRef = this.dialog.open(ListgrupoFaturaComponent, {
-      width: '1000px',
+      width: '1200px',
     });
     dialogRef.afterClosed();
   }
