@@ -1,38 +1,33 @@
 :host {
   [list-compras] {
-    [app-table] {
+    [app-mat-table-custom] {
       overflow-y: scroll;
       height: 685px;
       border: solid 1px #ccc;
 
-      table {
-        th {
-          mat-icon.icon-help {
-            height: 16px;
-            width: 14px;
-            font-size: 14px;
-          }
+      [space] {
+        margin-left: 20px;
+      }
+
+      ::ng-deep {
+        .mdc-data-table__cell,
+        .mdc-data-table__header-cell {
+          padding: 10px 30px 10px 30px;
         }
 
-        input[type="text"] {
-          border: none;
-          outline: none;
-          width: 90%;
-          background-color: transparent;
-          text-align: center;
-          font-size: 15px;
+        .mat-mdc-row {
+          height: 40px;
           color: #708090;
-          border-bottom: 2px solid #d3d3d3;
+          font-size: 14px;
         }
 
-        [space] {
-          margin-left: 20px;
+        .mat-mdc-header-row {
+          height: 35px;
+          color: #4e6376;
         }
 
-        ::ng-deep {
-          .mat-sort-header-container {
-            border: none !important;
-          }
+        .mat-sort-header-container {
+          border: none !important;
         }
       }
     }
@@ -80,14 +75,14 @@
 
   @media (max-width: 1600px) {
     [list-compras] {
-      [app-table] {
+      [app-mat-table-custom] {
         height: 500px !important;
       }
     }
   }
 
   @media screen and (max-width: 600px) {
-    [app-table] {
+    [app-mat-table-custom] {
       table {
         display: inline-table;
         table-layout: fixed;

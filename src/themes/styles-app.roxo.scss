@@ -234,6 +234,12 @@ body {
       color: var(--roxo-theme-color);
     }
 
+    .mat-mdc-table tbody {
+      .mat-icon {
+        color: var(--roxo-theme-color);
+      }
+    }
+
     // pagination
     --mdc-outlined-text-field-outline-color: var(--roxo-theme-color);
     --mdc-outlined-text-field-hover-outline-color: var(--roxo-theme-color);

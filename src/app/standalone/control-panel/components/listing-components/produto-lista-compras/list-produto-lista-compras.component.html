@@ -5,7 +5,7 @@
       <mat-icon class="close" (click)="onClose()">close</mat-icon>
     </div>
     <div app-card-body>
-      <div app-table>
+      <div app-mat-table-custom>
         <table mat-table matSort [dataSource]="listProdutoListaCompras">
           <ng-container matColumnDef="item">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>

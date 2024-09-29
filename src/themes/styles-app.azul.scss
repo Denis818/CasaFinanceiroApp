@@ -238,6 +238,12 @@ body {
       color: var(--azul-theme-color);
     }
 
+    .mat-mdc-table tbody {
+      .mat-icon {
+        color: var(--azul-theme-color);
+      }
+    }
+
     // seletor-options
     --mdc-outlined-text-field-focus-outline-color: var(--azul-theme-color);
     --mdc-outlined-text-field-hover-outline-color: var(--azul-theme-color);
