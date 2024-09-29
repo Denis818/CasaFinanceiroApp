@@ -61,6 +61,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
         switch (mensagem.statusCode) {
           case 401:
+            this.toastr.warning(mensagem.descricao, 'Não Autenticado');
+            break;
+          case 403:
             this.toastr.warning(mensagem.descricao, 'Acesso Negado');
             break;
           case 404:
@@ -84,7 +87,7 @@ export class AuthInterceptor implements HttpInterceptor {
       this.unauthorizedErrorCount++;
 
       if (this.unauthorizedErrorCount >= 3) {
-        this.router.navigate(['/login']);
+        this.router.navigate(['auth/login']);
         this.unauthorizedErrorCount = 0;
       }
     } else {

@@ -22,7 +22,7 @@ export class UserService extends BaseService {
   login(user: UserRequest): void {
     this.sendHttpRequest<ApiResponse<TokenResponse>>({
       metodo: 'POST',
-      url: this.url + '/login',
+      url: this.url + '/auth/login',
       dados: user,
     })
       .pipe(
@@ -44,7 +44,7 @@ export class UserService extends BaseService {
 
   logout(): void {
     this.removeAuthLocalStorage();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('auth/login');
   }
 
   //  Support Methods

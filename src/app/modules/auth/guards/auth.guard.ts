@@ -15,39 +15,12 @@ export class AuthGuard {
 
   canMatch(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const token = this.storageService.getItem('token');
-    const expiration = this.storageService.getItem('expirationToken');
 
-    if (token && expiration) {
-      const expirationDate = new Date(expiration);
-      const now = new Date();
-
-      const nowUTC = new Date(
-        Date.UTC(
-          now.getFullYear(),
-          now.getMonth(),
-          now.getDate(),
-          now.getHours(),
-          now.getMinutes(),
-          now.getSeconds()
-        )
-      );
-
-      if (expirationDate <= nowUTC) {
-        this.resetLocalStorage();
-        this.router.navigateByUrl('/login');
-        return false;
-      }
+    if (token) {
+      return true;
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('auth/login');
       return false;
     }
-    return true;
-  }
-
-  private resetLocalStorage(): void {
-    this.storageService.cleanAndPreserverItem([
-      'grupoFaturaCode',
-      'selectedButton',
-    ]);
   }
 }

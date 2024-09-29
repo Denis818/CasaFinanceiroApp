@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPage } from './pages/login/login.page';
-import { AppRoutingModule } from '../start/app-routing.module';
 
 @NgModule({
   declarations: [LoginPage],
@@ -16,6 +16,7 @@ import { AppRoutingModule } from '../start/app-routing.module';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    AuthRoutingModule,
   ],
 })
 export class AuthModule {}
