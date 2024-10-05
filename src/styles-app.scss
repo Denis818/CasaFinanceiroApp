@@ -157,6 +157,14 @@
         margin: 0px;
       }
 
+      [app-tooltip-helper] {
+        display: flex;
+        align-items: center;
+        .mat-icon.icon-help {
+          font-size: 25px;
+        }
+      }
+
       .mat-icon.icon-help {
         color: #fff;
       }
@@ -302,7 +310,7 @@
       cursor: pointer;
 
       transition: transform 0.3s ease;
-
+      
       &:hover {
         transform: translateY(-3px);
       }
