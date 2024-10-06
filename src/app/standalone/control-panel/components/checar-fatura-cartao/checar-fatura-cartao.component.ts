@@ -68,7 +68,7 @@ export class ChecarFaturaCartaoComponent implements OnInit {
 
       this.despesaService.conferirFaturaDoCartao(this.faturaCartao).subscribe({
         next: (valores: any) => {
-          this.valorSubtraido = valores.valorSubtraido;
+          this.valorSubtraido = Math.abs(valores.valorSubtraido);
           this.totalDespesa = valores.totalDespesa;
           this.isValueCalculed = true;
         },
