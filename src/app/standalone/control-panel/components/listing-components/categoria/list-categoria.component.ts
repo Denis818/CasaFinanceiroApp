@@ -46,7 +46,7 @@ export class ListCategoriaComponent implements OnInit {
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog
   ) {}
-  
+
   ngOnInit(): void {
     this.getAllCategorias();
   }
@@ -91,8 +91,7 @@ export class ListCategoriaComponent implements OnInit {
       descricao !== 'Almoço/Janta' &&
       descricao !== 'Aluguel' &&
       descricao !== 'Condomínio' &&
-      descricao !== 'Conta de Luz' &&
-      descricao !== 'Internet'
+      descricao !== 'Conta de Luz'
     );
   }
   //#endregion

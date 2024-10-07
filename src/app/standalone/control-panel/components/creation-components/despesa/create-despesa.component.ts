@@ -203,9 +203,6 @@ export class CreateDespesaComponent implements OnInit {
       case EnumCategoriasMensais.contaDeLuz:
         this.inputItem = EnumValorInputItem.contaDeLuz;
         break;
-      case EnumCategoriasMensais.internet:
-        this.inputItem = EnumValorInputItem.internet;
-        break;
       default:
         this.inputItem = 'Compra';
     }
@@ -218,7 +215,6 @@ export class CreateDespesaComponent implements OnInit {
     if (
       this.categoriaSelecionada === EnumCategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada === EnumCategoriasMensais.condominio ||
-      this.categoriaSelecionada === EnumCategoriasMensais.internet ||
       this.categoriaSelecionada === EnumCategoriasMensais.aluguel
     ) {
       quantidade = 1;
@@ -239,9 +235,6 @@ export class CreateDespesaComponent implements OnInit {
       case EnumValorInputItem.contaDeLuz:
         this.inputFornecedor = EnumValorInputFornecedor.cemig;
         break;
-      case EnumValorInputItem.internet:
-        this.inputFornecedor = EnumValorInputFornecedor.internet;
-        break;
       default:
         this.inputFornecedor = this.despesaForm?.value?.fornecedor || 'Epa';
     }
@@ -252,7 +245,6 @@ export class CreateDespesaComponent implements OnInit {
     if (
       this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada == EnumCategoriasMensais.condominio ||
-      this.categoriaSelecionada == EnumCategoriasMensais.internet ||
       this.categoriaSelecionada == EnumCategoriasMensais.aluguel
     ) {
       return true;

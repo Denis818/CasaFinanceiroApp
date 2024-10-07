@@ -3,5 +3,4 @@ export enum EnumValorInputItem {
   parcelaCaixa = 'Parcela Caixa',
   condominio = 'Condomínio Ap Ponto',
   contaDeLuz = 'Conta de Luz',
-  internet = 'Wifi',
 }

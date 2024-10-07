@@ -33,7 +33,6 @@ export class TableEditManipulation {
     if (
       this.categoriaSelecionada == EnumCategoriasMensais.contaDeLuz ||
       this.categoriaSelecionada == EnumCategoriasMensais.condominio ||
-      this.categoriaSelecionada == EnumCategoriasMensais.internet ||
       this.categoriaSelecionada == EnumCategoriasMensais.aluguel
     ) {
       return true;
@@ -58,12 +57,6 @@ export class TableEditManipulation {
 
       case EnumCategoriasMensais.contaDeLuz:
         this.inputItem(despesa, EnumValorInputItem.contaDeLuz);
-        this.inputFornecedor(despesa);
-        this.inputQuantidade(despesa, 1);
-        break;
-
-      case EnumCategoriasMensais.internet:
-        this.inputItem(despesa, EnumValorInputItem.internet);
         this.inputFornecedor(despesa);
         this.inputQuantidade(despesa, 1);
         break;
@@ -114,9 +107,6 @@ export class TableEditManipulation {
         break;
       case EnumValorInputItem.contaDeLuz:
         despesa.fornecedor = EnumValorInputFornecedor.cemig;
-        break;
-      case EnumValorInputItem.internet:
-        despesa.fornecedor = EnumValorInputFornecedor.internet;
         break;
     }
   }
