@@ -110,10 +110,18 @@ export class EditDespesaComponent implements OnInit {
 
   onSave(): void {
     if (this.despesaForm.valid) {
-      this.dialogRef.close({
+      const updatedDespesa = {
         ...this.data.despesa,
+        grupoFatura: this.grupoFaturas.find(
+          (grupo) => grupo.code === this.despesaForm.value.grupoFaturaCode
+        ),
+        categoria: this.categorias.find(
+          (categoria) => categoria.code === this.despesaForm.value.categoriaCode
+        ),
         ...this.despesaForm.value,
-      });
+      };
+
+      this.dialogRef.close(updatedDespesa);
     }
   }
 }
