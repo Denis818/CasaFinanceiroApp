@@ -6,8 +6,19 @@
   (confirmClick)="onSave()"
   (cancelClick)="onCancel()"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Descrição</mat-label>
-    <input matInput [(ngModel)]="categoria.descricao" />
-  </mat-form-field>
+  <form [formGroup]="categoriaForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <input matInput formControlName="descricao" />
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('required')">
+        Descrição é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('minlength')">
+        Descrição deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="categoriaValidator['descricao'].hasError('maxlength')">
+        Descrição deve ter no máximo 25 caracteres.
+      </mat-error>
+    </mat-form-field>
+  </form>
 </app-modal>

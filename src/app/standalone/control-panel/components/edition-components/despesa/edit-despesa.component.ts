@@ -1,7 +1,13 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -27,14 +33,25 @@ registerLocaleData(localePt);
     FormsModule,
     CurrencyMaskModule,
     MatDialogModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
     ModalComponent,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class EditDespesaComponent {
+export class EditDespesaComponent implements OnInit {
+  despesaForm: FormGroup;
+
+  get despesaValidator() {
+    return this.despesaForm.controls;
+  }
+
+  categorias = this.data.categorias;
+  grupoFaturas = this.data.grupoFaturas;
+
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditDespesaComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -44,15 +61,59 @@ export class EditDespesaComponent {
     }
   ) {}
 
-  despesa = this.data.despesa;
-  categorias = this.data.categorias;
-  grupoFaturas = this.data.grupoFaturas;
+  ngOnInit(): void {
+    this.despesaForm = this.fb.group({
+      grupoFaturaCode: [
+        this.data.despesa.grupoFatura?.code || '',
+        [Validators.required],
+      ],
+      categoriaCode: [
+        this.data.despesa.categoria?.code ||
+          '00000000-0000-0000-0000-000000000000',
+        [Validators.required],
+      ],
+      item: [
+        this.data.despesa.item || '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(80),
+        ],
+      ],
+      preco: [
+        this.data.despesa.preco || '',
+        [Validators.required, Validators.min(0), Validators.max(9999.99)],
+      ],
+      quantidade: [
+        this.data.despesa.quantidade || '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]+$'),
+          Validators.min(1),
+          Validators.max(99999),
+        ],
+      ],
+      fornecedor: [
+        this.data.despesa.fornecedor || '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(80),
+        ],
+      ],
+    });
+  }
 
   onCancel(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
-    this.dialogRef.close(this.despesa);
+    if (this.despesaForm.valid) {
+      this.dialogRef.close({
+        ...this.data.despesa,
+        ...this.despesaForm.value,
+      });
+    }
   }
 }

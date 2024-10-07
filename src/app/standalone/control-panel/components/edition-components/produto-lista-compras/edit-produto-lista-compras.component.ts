@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -21,19 +27,45 @@ import { ProdutoListaCompras } from '../../../interfaces/produto-lista-compras.i
     MatDialogModule,
     MatInputModule,
     ModalComponent,
+    ReactiveFormsModule,
   ],
 })
-export class EditProdutoListaComprasComponent {
+export class EditProdutoListaComprasComponent implements OnInit {
+  produtoListaComprasForm: FormGroup;
+
+  get produtoValidator() {
+    return this.produtoListaComprasForm.controls;
+  }
+
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditProdutoListaComprasComponent>,
     @Inject(MAT_DIALOG_DATA) public produtoListaCompras: ProdutoListaCompras
   ) {}
 
-  onCancel(): void {
-    this.dialogRef.close();
+  ngOnInit(): void {
+    this.produtoListaComprasForm = this.fb.group({
+      item: [
+        this.produtoListaCompras.item || '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+    });
   }
 
   onSave(): void {
-    this.dialogRef.close(this.produtoListaCompras);
+    if (this.produtoListaComprasForm.valid) {
+      this.dialogRef.close({
+        ...this.produtoListaCompras,
+        ...this.produtoListaComprasForm.value,
+      });
+    }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
   }
 }

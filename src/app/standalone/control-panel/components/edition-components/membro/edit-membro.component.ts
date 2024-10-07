@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -21,19 +27,51 @@ import { Membro } from '../../../interfaces/membro.interface';
     MatDialogModule,
     MatInputModule,
     ModalComponent,
+    ReactiveFormsModule,
   ],
 })
-export class EditMembroComponent {
+export class EditMembroComponent implements OnInit {
+  membroForm: FormGroup;
+
+  get membroValidator() {
+    return this.membroForm.controls;
+  }
+
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditMembroComponent>,
     @Inject(MAT_DIALOG_DATA) public membro: Membro
   ) {}
+
+  ngOnInit(): void {
+    this.membroForm = this.fb.group({
+      nome: [
+        this.membro.nome || '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(25),
+        ],
+      ],
+      telefone: [
+        this.membro.telefone || '',
+        [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(17),
+          Validators.pattern(/^[\d\s()+-]*$/),
+        ],
+      ],
+    });
+  }
 
   onCancel(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
-    this.dialogRef.close(this.membro);
+    if (this.membroForm.valid) {
+      this.dialogRef.close({ ...this.membro, ...this.membroForm.value });
+    }
   }
 }

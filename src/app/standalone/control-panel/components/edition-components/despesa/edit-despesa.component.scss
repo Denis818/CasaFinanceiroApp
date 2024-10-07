@@ -2,6 +2,10 @@
   input.money {
     text-align: left !important;
   }
+
+  form {
+    display: contents;
+  }
 }
 
 ::ng-deep {

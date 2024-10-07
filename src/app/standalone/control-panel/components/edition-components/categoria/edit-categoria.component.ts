@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -22,20 +27,42 @@ import { Categoria } from '../../../interfaces/categoria.interface';
     MatDialogModule,
     MatInputModule,
     ModalComponent,
+    ReactiveFormsModule,
   ],
 })
 export class EditCategoriaComponent implements OnInit {
-  ngOnInit() {}
+  categoriaForm: FormGroup;
+
+  get categoriaValidator() {
+    return this.categoriaForm.controls;
+  }
+
   constructor(
+    private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditCategoriaComponent>,
     @Inject(MAT_DIALOG_DATA) public categoria: Categoria
   ) {}
+
+  ngOnInit(): void {
+    this.categoriaForm = this.fb.group({
+      descricao: [
+        this.categoria.descricao,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+    });
+  }
 
   onCancel(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
-    this.dialogRef.close(this.categoria);
+    if (this.categoriaForm.valid) {
+      this.dialogRef.close({ ...this.categoria, ...this.categoriaForm.value });
+    }
   }
 }

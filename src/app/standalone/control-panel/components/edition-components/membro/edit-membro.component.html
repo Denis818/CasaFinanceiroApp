@@ -6,13 +6,36 @@
   (confirmClick)="onSave()"
   (cancelClick)="onCancel()"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Nome</mat-label>
-    <input matInput [(ngModel)]="membro.nome" />
-  </mat-form-field>
+  <form [formGroup]="membroForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" />
+      <mat-error *ngIf="membroValidator['nome'].hasError('required')">
+        Nome é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['nome'].hasError('minlength')">
+        Nome deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['nome'].hasError('maxlength')">
+        Nome deve ter no máximo 25 caracteres.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Telefone</mat-label>
-    <input matInput [(ngModel)]="membro.telefone" />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Telefone</mat-label>
+      <input matInput formControlName="telefone" />
+      <mat-error *ngIf="membroValidator['telefone'].hasError('required')">
+        Telefone é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['telefone'].hasError('minlength')">
+        Telefone deve ter no mínimo 11 caracteres.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['telefone'].hasError('maxlength')">
+        Telefone deve ter no máximo 17 caracteres.
+      </mat-error>
+      <mat-error *ngIf="membroValidator['telefone'].hasError('pattern')">
+        Telefone deve conter apenas números, espaços, parênteses, "+" e "-".
+      </mat-error>
+    </mat-form-field>
+  </form>
 </app-modal>

@@ -6,53 +6,102 @@
   (confirmClick)="onSave()"
   (cancelClick)="onCancel()"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Grupo de Fatura</mat-label>
-    <mat-select
-      [(ngModel)]="despesa.grupoFatura.code"
-      panelClass="select-options"
-    >
-      <mat-option
-        *ngFor="let grupoFatura of grupoFaturas"
-        [value]="grupoFatura.code"
+  <form [formGroup]="despesaForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Grupo de Fatura</mat-label>
+      <mat-select formControlName="grupoFaturaCode" panelClass="select-options">
+        <mat-option
+          *ngFor="let grupoFatura of grupoFaturas"
+          [value]="grupoFatura.code"
+        >
+          {{ grupoFatura.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="despesaValidator['grupoFaturaCode'].hasError('required')"
       >
-        {{ grupoFatura.nome }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+        Grupo de Fatura é obrigatório.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Categoria</mat-label>
-    <mat-select [(ngModel)]="despesa.categoria.code">
-      <mat-option *ngFor="let categoria of categorias" [value]="categoria.code">
-        {{ categoria.descricao }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="categoriaCode">
+        <mat-option
+          *ngFor="let categoria of categorias"
+          [value]="categoria.code"
+        >
+          {{ categoria.descricao }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="despesaValidator['categoriaCode'].hasError('required')">
+        Categoria é obrigatória.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Item</mat-label>
-    <input matInput [(ngModel)]="despesa.item" />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Item</mat-label>
+      <input matInput formControlName="item" />
+      <mat-error *ngIf="despesaValidator['item'].hasError('required')">
+        Item é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['item'].hasError('minlength')">
+        Item deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['item'].hasError('maxlength')">
+        Item deve ter no máximo 80 caracteres.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Fornecedor</mat-label>
-    <input matInput [(ngModel)]="despesa.fornecedor" />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Fornecedor</mat-label>
+      <input matInput formControlName="fornecedor" />
+      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('required')">
+        Fornecedor é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('minlength')">
+        Fornecedor deve ter no mínimo 3 caracteres.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['fornecedor'].hasError('maxlength')">
+        Fornecedor deve ter no máximo 80 caracteres.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Preço</mat-label>
-    <input
-      class="money"
-      matInput
-      currencyMask
-      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-      [(ngModel)]="despesa.preco"
-    />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Preço</mat-label>
+      <input
+        class="money"
+        matInput
+        currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        formControlName="preco"
+      />
+      <mat-error *ngIf="despesaValidator['preco'].hasError('required')">
+        Preço é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['preco'].hasError('min')">
+        Preço deve ser no mínimo 0.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['preco'].hasError('max')">
+        Preço deve ser no máximo 9999.99.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Quantidade</mat-label>
-    <input matInput [(ngModel)]="despesa.quantidade" />
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Quantidade</mat-label>
+      <input matInput formControlName="quantidade" />
+      <mat-error *ngIf="despesaValidator['quantidade'].hasError('required')">
+        Quantidade é obrigatória.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['quantidade'].hasError('pattern')">
+        Quantidade deve ser um número válido.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['quantidade'].hasError('min')">
+        Quantidade deve ser no mínimo 1.
+      </mat-error>
+      <mat-error *ngIf="despesaValidator['quantidade'].hasError('max')">
+        Quantidade deve ser no máximo 99999.
+      </mat-error>
+    </mat-form-field>
+  </form>
 </app-modal>
