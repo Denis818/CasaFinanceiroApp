@@ -6,6 +6,14 @@
         text-align: center;
       }
 
+      th {
+        mat-icon.icon-help {
+          height: 14px;
+          width: 14px;
+          font-size: 14px;
+        }
+      }
+
       input[type="text"] {
         border: none;
         outline: none;

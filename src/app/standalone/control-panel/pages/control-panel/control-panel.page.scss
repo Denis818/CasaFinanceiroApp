@@ -28,6 +28,12 @@
         button {
           margin: 10px;
         }
+
+        ::ng-deep {
+          .mat-mdc-unelevated-button.mat-primary {
+            --mat-filled-button-state-layer-color: none;
+          }
+        }
       }
 
       [insert-itens] {
