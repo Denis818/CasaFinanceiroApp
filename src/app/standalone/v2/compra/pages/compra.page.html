@@ -1,0 +1,139 @@
+<div compras>
+  <div app-card>
+    <div app-card-header>
+      <h2 app-card-title>Lista de Compras Divididas por Dois</h2>
+    </div>
+    <div app-card-body>
+      <div app-table>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Parcelas</th>
+              <th>Valor por pacela</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let compra of listComprasDivdidasPorDois">
+              <td>{{ compra.nome }}</td>
+              <td>{{ compra.parcelas }}</td>
+              <td>{{ compra.valorPorParcela | currency:'BRL' }}</td>
+              <td>{{ compra.valorTotal | currency:'BRL' }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr *ngIf="listComprasDivdidasPorDois.length > 0">
+              <td colspan="3">Total</td>
+              <td>
+                {{valorTotalSomadoListComprasDivdidasPorDois | currency:'BRL'}}
+              </td>
+            </tr>
+            <tr *ngIf="listComprasDivdidasPorDois.length > 0">
+              <td colspan="3">Divido por Dois</td>
+              <td>
+                {{valorTotalDividoListComprasDivdidasPorDois | currency:'BRL'}}
+              </td>
+            </tr>
+            <tr *ngIf="listComprasDivdidasPorDois.length == 0">
+              <td colspan="4">
+                <div dados-nao-encontrados>Nenhum encontrado</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div app-card>
+    <div app-card-header>
+      <h2 app-card-title>Lista de Compras Somente da Laila</h2>
+    </div>
+    <div app-card-body>
+      <div app-table>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Parcelas</th>
+              <th>Valor por pacela</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let compra of listCompras">
+              <td>{{ compra.nome }}</td>
+              <td>{{ compra.parcelas }}</td>
+              <td>{{ compra.valorPorParcela | currency:'BRL' }}</td>
+              <td>{{ compra.valorTotal | currency:'BRL' }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr *ngIf="listCompras.length > 0">
+              <td colspan="3">Total</td>
+              <td>{{valorTotalSomadoListCompras | currency:'BRL'}}</td>
+            </tr>
+            <tr *ngIf="listCompras.length == 0">
+              <td colspan="4">
+                <div dados-nao-encontrados>Nenhum encontrado</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div app-card>
+    <div app-card-header>
+      <h2 app-card-title>Lista de Recebimentos</h2>
+    </div>
+    <div app-card-body>
+      <div app-table>
+        <table display-table>
+          <thead>
+            <tr>
+              <th>Data do Pagamento</th>
+              <th>Valor Pago</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recebimento of listRecebimentos">
+              <td>{{ recebimento.data | date:'dd/MM/yyyy' }}</td>
+              <td>{{ recebimento.valor | currency:'BRL' }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr *ngIf="listRecebimentos.length > 0">
+              <td colspan="1">Total</td>
+              <td>{{valorTotalSomadoListRecebimentos | currency:'BRL'}}</td>
+            </tr>
+            <tr *ngIf="listCompras.length == 0">
+              <td colspan="2">
+                <div dados-nao-encontrados>Nenhum encontrado</div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div summary>
+    <div class="item">
+      <h2 app-title>Valor total já recebido</h2>
+      <div class="value">
+        {{ valorTotalSomadoListRecebimentos | currency:'BRL' }}
+      </div>
+    </div>
+    <div class="item">
+      <h2 app-title>Valor total a ser Pago</h2>
+      <div class="value">
+        {{ valorTotalDividoListComprasDivdidasPorDois +
+        valorTotalSomadoListCompras - valorTotalSomadoListRecebimentos |
+        currency:'BRL'}}
+      </div>
+    </div>
+  </div>
+</div>

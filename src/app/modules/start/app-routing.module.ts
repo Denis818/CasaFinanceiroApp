@@ -53,6 +53,13 @@ const routes: Routes = [
             )
           ).ComparativoFaturasPage,
       },
+      {
+        path: 'valores-a-receber',
+        title: 'Valores a Receber',
+        loadComponent: async () =>
+          (await import('src/app/standalone/v2/compra/pages/compra.page'))
+            .CompraPage,
+      },
     ],
     canMatch: [AuthGuard],
   },

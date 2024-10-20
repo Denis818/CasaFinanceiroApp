@@ -43,6 +43,8 @@ export class SideNavComponent {
           this.setSelectedButton('auditoria-compras');
         } else if (event.urlAfterRedirects.includes('comparativo-faturas')) {
           this.setSelectedButton('comparativo-faturas');
+        } else if (event.urlAfterRedirects.includes('valores-a-receber')) {
+          this.setSelectedButton('valores-a-receber');
         }
       });
   }
