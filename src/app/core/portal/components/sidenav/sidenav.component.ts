@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,7 +12,10 @@ export class SideNavComponent {
   selectedButton: string = '';
   sidenavExpanded = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private readonly localStorage: StorageService
+  ) {
     this.updateSelectedButtonFromRoute();
   }
 
@@ -47,5 +51,11 @@ export class SideNavComponent {
           this.setSelectedButton('valores-a-receber');
         }
       });
+  }
+
+  isMaster(): boolean {
+    const email = this.localStorage.getItem('userEmail');
+    console.log(email);
+    return email === 'master@gmail.com';
   }
 }

@@ -52,14 +52,22 @@
       <span *ngIf="sidenavExpanded">Comparativo de Faturas</span>
     </a>
 
-    <a
-      [routerLink]="'valores-a-receber'"
-      (click)="setSelectedButton('valores-a-receber')"
-      [ngClass]="{ selected: selectedButton === 'valores-a-receber' }"
-      class="nav-link-icon"
+    <div
+      [ngClass]="{
+        'ocultar-link': isMaster()
+      }"
     >
-      <mat-icon>attach_money</mat-icon>
-      <span *ngIf="sidenavExpanded">Valores a Receber</span>
-    </a>
+      <a
+        [routerLink]="'valores-a-receber'"
+        (click)="setSelectedButton('valores-a-receber')"
+        [ngClass]="{
+          selected: selectedButton === 'valores-a-receber'
+        }"
+        class="nav-link-icon"
+      >
+        <mat-icon>attach_money</mat-icon>
+        <span *ngIf="sidenavExpanded">Valores a Receber</span>
+      </a>
+    </div>
   </div>
 </div>
