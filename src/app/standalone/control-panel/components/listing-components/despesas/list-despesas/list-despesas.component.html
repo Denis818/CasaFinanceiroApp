@@ -60,7 +60,6 @@
                 <th>Preço</th>
                 <th>Quantidade</th>
                 <th>Total</th>
-                <th>Grupo de Fatura</th>
                 <th>Opções</th>
               </tr>
             </thead>
@@ -72,7 +71,6 @@
                 <td>{{ despesa.preco | currency : "BRL" }}</td>
                 <td>{{ despesa.quantidade }}</td>
                 <td>{{ despesa.total | currency : "BRL" }}</td>
-                <td>{{ despesa.grupoFatura.nome }}</td>
                 <td>
                   <mat-icon (click)="openEdit(despesa)">edit</mat-icon>
                   <mat-icon space (click)="confirmDelete(despesa.code)"
