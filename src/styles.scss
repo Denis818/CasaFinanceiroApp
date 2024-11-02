@@ -3,6 +3,7 @@
 @import "themes/styles-app.roxo.scss";
 @import "themes/styles-app.dark.scss";
 @import "themes/styles-app.azul.scss";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 :root {
   --mdc-outlined-text-field-outline-width: 2px !important;

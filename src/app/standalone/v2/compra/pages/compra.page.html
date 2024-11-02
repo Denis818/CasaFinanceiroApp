@@ -1,7 +1,15 @@
-<div compras>
+<h1 app-title>
+  <mat-icon>attach_money</mat-icon>
+  {{ titleService.getTitle() }}
+</h1>
+<div container>
   <div app-card>
     <div app-card-header>
       <h2 app-card-title>Lista de Compras Divididas por Dois</h2>
+
+      <div icon-bg (click)="addComprasDivididas()">
+        <mat-icon>add</mat-icon>
+      </div>
     </div>
     <div app-card-body>
       <div app-table>
@@ -12,6 +20,7 @@
               <th>Parcelas</th>
               <th>Valor por pacela</th>
               <th>Total</th>
+              <th>Opções</th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +29,11 @@
               <td>{{ compra.parcelas }}</td>
               <td>{{ compra.valorPorParcela | currency:'BRL' }}</td>
               <td>{{ compra.valorTotal | currency:'BRL' }}</td>
+              <td>
+                <mat-icon space (click)="confirmDelete(compra.code)"
+                  >delete</mat-icon
+                >
+              </td>
             </tr>
           </tbody>
           <tfoot>
@@ -28,12 +42,14 @@
               <td>
                 {{valorTotalSomadoListComprasDivdidasPorDois | currency:'BRL'}}
               </td>
+              <td></td>
             </tr>
             <tr *ngIf="listComprasDivdidasPorDois.length > 0">
               <td colspan="3">Divido por Dois</td>
               <td>
                 {{valorTotalDividoListComprasDivdidasPorDois | currency:'BRL'}}
               </td>
+              <td></td>
             </tr>
             <tr *ngIf="listComprasDivdidasPorDois.length == 0">
               <td colspan="4">
@@ -49,6 +65,10 @@
   <div app-card>
     <div app-card-header>
       <h2 app-card-title>Lista de Compras Somente da Laila</h2>
+
+      <div icon-bg (click)="addComprasSomente()">
+        <mat-icon>add</mat-icon>
+      </div>
     </div>
     <div app-card-body>
       <div app-table>
@@ -88,6 +108,10 @@
   <div app-card>
     <div app-card-header>
       <h2 app-card-title>Lista de Recebimentos</h2>
+
+      <div icon-bg (click)="addValorRecebido()">
+        <mat-icon>add</mat-icon>
+      </div>
     </div>
     <div app-card-body>
       <div app-table>
@@ -96,21 +120,28 @@
             <tr>
               <th>Data do Pagamento</th>
               <th>Valor Pago</th>
+              <th>Opções</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let recebimento of listRecebimentos">
-              <td>{{ recebimento.data | date:'dd/MM/yyyy' }}</td>
+              <td>{{ recebimento.data }}</td>
               <td>{{ recebimento.valor | currency:'BRL' }}</td>
+              <td>
+                <mat-icon space (click)="confirmDelete(recebimento.code, true)"
+                  >delete</mat-icon
+                >
+              </td>
             </tr>
           </tbody>
           <tfoot>
             <tr *ngIf="listRecebimentos.length > 0">
               <td colspan="1">Total</td>
               <td>{{valorTotalSomadoListRecebimentos | currency:'BRL'}}</td>
+              <td></td>
             </tr>
             <tr *ngIf="listCompras.length == 0">
-              <td colspan="2">
+              <td colspan="3">
                 <div dados-nao-encontrados>Nenhum encontrado</div>
               </td>
             </tr>

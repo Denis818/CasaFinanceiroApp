@@ -55,7 +55,6 @@ export class SideNavComponent {
 
   isMaster(): boolean {
     const email = this.localStorage.getItem('userEmail');
-    console.log(email);
     return email === 'master@gmail.com';
   }
 }

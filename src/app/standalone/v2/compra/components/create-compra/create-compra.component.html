@@ -1,0 +1,85 @@
+<div app-modal>
+  <div app-modal-header>
+    <h2>Adicionar Compra</h2>
+    <mat-icon class="close" (click)="onClose()">close</mat-icon>
+  </div>
+
+  <div app-modal-body app-input-color>
+    <form [formGroup]="compraForm" (ngSubmit)="onSubmit()" form-custom>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Item</mat-label>
+        <input
+          matInput
+          formControlName="nome"
+          [ngClass]="{
+            'is-invalid':
+              compraValidator.nome.errors && compraValidator.nome.touched
+          }"
+        />
+        <mat-error *ngIf="compraValidator['nome'].hasError('required')">
+          Item é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="compraValidator['nome'].hasError('minlength')">
+          Item deve ter no mínimo 3 caracteres.
+        </mat-error>
+        <mat-error *ngIf="compraValidator['nome'].hasError('maxlength')">
+          Item deve ter no máximo 50 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Parcela</mat-label>
+        <input
+          matInput
+          formControlName="parcelas"
+          [ngClass]="{
+            'is-invalid':
+              compraValidator.parcelas.errors &&
+              compraValidator.parcelas.touched
+          }"
+        />
+        <mat-error *ngIf="compraValidator['parcelas'].hasError('required')">
+          Parcela é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Valor</mat-label>
+        <input
+          matInput
+          formControlName="valorTotal"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          [ngClass]="{
+            'is-invalid':
+              compraValidator.valorTotal.errors &&
+              compraValidator.valorTotal.touched
+          }"
+        />
+        <mat-error *ngIf="compraValidator['valorTotal'].hasError('required')">
+          Valor é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!compraForm.valid"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

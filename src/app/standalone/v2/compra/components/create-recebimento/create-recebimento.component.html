@@ -1,0 +1,73 @@
+<div app-modal>
+  <div app-modal-header>
+    <h2>Adicionar Pagamento</h2>
+    <mat-icon class="close" (click)="onClose()">close</mat-icon>
+  </div>
+
+  <div app-modal-body app-input-color>
+    <form [formGroup]="recebimentoForm" (ngSubmit)="onSubmit()" form-custom>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Valor</mat-label>
+        <input
+          matInput
+          formControlName="valor"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          [ngClass]="{
+            'is-invalid':
+              recebimentoValidator.valor.errors &&
+              recebimentoValidator.valor.touched
+          }"
+        />
+        <mat-error *ngIf="recebimentoValidator['valor'].hasError('required')">
+          Valor é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="recebimentoValidator['valor'].hasError('min')">
+          Valor não pode ser menor que R$ 1,00.
+        </mat-error>
+        <mat-error *ngIf="recebimentoValidator['valor'].hasError('max')">
+          Valor não pode ser maior que R$ 999.999,99.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data do Pagamento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="data"
+          [ngClass]="{
+            'is-invalid':
+              recebimentoValidator.data.errors &&
+              recebimentoValidator.data.touched
+          }"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="recebimentoValidator['data'].hasError('required')">
+          Data do Pagamento é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onClose()"
+        >
+          Cancelar
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!recebimentoForm.valid"
+          type="submit"
+        >
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
