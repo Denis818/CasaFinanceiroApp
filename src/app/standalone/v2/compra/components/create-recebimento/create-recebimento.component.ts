@@ -120,10 +120,6 @@ export class CreateRecebimentoComponent implements OnInit {
             this.dialogRef.close(true);
           }
         },
-        error: (err) => {
-          console.error('Erro ao enviar a data:', err);
-          this.toastr.error('Erro ao enviar a data.');
-        },
       });
     }
   }
