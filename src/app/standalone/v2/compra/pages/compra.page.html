@@ -79,6 +79,7 @@
               <th>Parcelas</th>
               <th>Valor por pacela</th>
               <th>Total</th>
+              <th>Opções</th>
             </tr>
           </thead>
           <tbody>
@@ -87,15 +88,21 @@
               <td>{{ compra.parcelas }}</td>
               <td>{{ compra.valorPorParcela | currency:'BRL' }}</td>
               <td>{{ compra.valorTotal | currency:'BRL' }}</td>
+              <td>
+                <mat-icon space (click)="confirmDelete(compra.code)"
+                  >delete</mat-icon
+                >
+              </td>
             </tr>
           </tbody>
           <tfoot>
             <tr *ngIf="listCompras.length > 0">
               <td colspan="3">Total</td>
               <td>{{valorTotalSomadoListCompras | currency:'BRL'}}</td>
+              <td></td>
             </tr>
             <tr *ngIf="listCompras.length == 0">
-              <td colspan="4">
+              <td colspan="5">
                 <div dados-nao-encontrados>Nenhum encontrado</div>
               </td>
             </tr>
