@@ -1,20 +1,20 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompraPage } from './compra.page';
+import { CreateCobrancaComponent } from './create-cobranca.component';
 
-describe('CompraPage', () => {
-  let component: CompraPage;
-  let fixture: ComponentFixture<CompraPage>;
+describe('CreateCompraComponent', () => {
+  let component: CreateCobrancaComponent;
+  let fixture: ComponentFixture<CreateCobrancaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CompraPage],
+      declarations: [CreateCobrancaComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompraPage);
+    fixture = TestBed.createComponent(CreateCobrancaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

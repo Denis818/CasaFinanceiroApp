@@ -30,7 +30,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
-import { RecebimentoService } from '../../services/recebimento.service';
+import { PagamentoService } from '../../services/pagamento.service';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -45,9 +45,9 @@ export const MY_DATE_FORMATS = {
 };
 
 @Component({
-  selector: 'app-create-recebimento',
-  templateUrl: './create-recebimento.component.html',
-  styleUrls: ['./create-recebimento.component.css'],
+  selector: 'app-create-pagamento',
+  templateUrl: './create-pagamento.component.html',
+  styleUrls: ['./create-pagamento.component.css'],
   standalone: true,
   imports: [
     CommonModule,
@@ -85,17 +85,17 @@ export const MY_DATE_FORMATS = {
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
   ],
 })
-export class CreateRecebimentoComponent implements OnInit {
-  recebimentoForm: FormGroup;
+export class CreatePagamentoComponent implements OnInit {
+  pagamentoForm: FormGroup;
 
-  get recebimentoValidator(): any {
-    return this.recebimentoForm.controls;
+  get pagamentoValidator(): any {
+    return this.pagamentoForm.controls;
   }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private readonly dialogRef: MatDialogRef<CreateRecebimentoComponent>,
-    private readonly recebimentoService: RecebimentoService,
+    private readonly dialogRef: MatDialogRef<CreatePagamentoComponent>,
+    private readonly pagamentoService: PagamentoService,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
   ) {}
@@ -105,17 +105,17 @@ export class CreateRecebimentoComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.recebimentoForm.valid) {
-      const formattedData = this.recebimentoForm.value;
+    if (this.pagamentoForm.valid) {
+      const formattedData = this.pagamentoForm.value;
 
       // Formata a data no padrão 'dd/MM/yyyy'
       if (formattedData.data) {
         formattedData.data = moment(formattedData.data).format('DD/MM/YYYY');
       }
 
-      this.recebimentoService.insert(formattedData).subscribe({
-        next: (recebimentoInserido) => {
-          if (recebimentoInserido) {
+      this.pagamentoService.insert(formattedData).subscribe({
+        next: (pagamentoInserido) => {
+          if (pagamentoInserido) {
             this.toastr.success(`Adicionado com sucesso!`, 'Finalizado!');
             this.dialogRef.close(true);
           }
@@ -125,7 +125,7 @@ export class CreateRecebimentoComponent implements OnInit {
   }
 
   public validation(): void {
-    this.recebimentoForm = this.fb.group({
+    this.pagamentoForm = this.fb.group({
       valor: [
         '',
         [Validators.required, Validators.min(1.0), Validators.max(9999.99)],

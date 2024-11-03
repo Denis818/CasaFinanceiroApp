@@ -15,14 +15,14 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ToastrService } from 'ngx-toastr';
-import { CompraService } from '../../services/compras.service';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { ToastrService } from 'ngx-toastr';
+import { CobrancaService } from '../../services/cobranca.service';
 
 @Component({
-  selector: 'app-create-compra',
-  templateUrl: './create-compra.component.html',
-  styleUrls: ['./create-compra.component.css'],
+  selector: 'app-create-cobranca',
+  templateUrl: './create-cobranca.component.html',
+  styleUrls: ['./create-cobranca.component.css'],
   standalone: true,
   imports: [
     CommonModule,
@@ -35,17 +35,17 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     CurrencyMaskModule,
   ],
 })
-export class CreateCompraComponent implements OnInit {
-  compraForm: FormGroup;
+export class CreateCobrancaComponent implements OnInit {
+  cobrancaForm: FormGroup;
 
-  get compraValidator(): any {
-    return this.compraForm.controls;
+  get cobrancaValidator(): any {
+    return this.cobrancaForm.controls;
   }
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private readonly dialogRef: MatDialogRef<CreateCompraComponent>,
-    private readonly compraService: CompraService,
+    private readonly dialogRef: MatDialogRef<CreateCobrancaComponent>,
+    private readonly cobrancaService: CobrancaService,
     private readonly fb: FormBuilder,
     private readonly toastr: ToastrService
   ) {}
@@ -55,17 +55,17 @@ export class CreateCompraComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.compraForm.valid) {
-      const compraPayload = {
-        ...this.compraForm.value,
+    if (this.cobrancaForm.valid) {
+      const cobrancaPayload = {
+        ...this.cobrancaForm.value,
         dividioPorDois: this.data.divididoPorDois,
       };
 
-      this.compraService.insert(compraPayload).subscribe({
-        next: (compraInserida) => {
-          if (compraInserida) {
+      this.cobrancaService.insert(cobrancaPayload).subscribe({
+        next: (cobrancaInserida) => {
+          if (cobrancaInserida) {
             this.toastr.success(
-              ` Compra ${compraPayload.nome} criada com sucesso!`,
+              ` cobranca ${cobrancaPayload.nome} criada com sucesso!`,
               'Finalizado!'
             );
             this.dialogRef.close(true);
@@ -76,7 +76,7 @@ export class CreateCompraComponent implements OnInit {
   }
 
   public validation(): void {
-    this.compraForm = this.fb.group({
+    this.cobrancaForm = this.fb.group({
       nome: [
         '',
         [

@@ -5,7 +5,7 @@
   </div>
 
   <div app-modal-body app-input-color>
-    <form [formGroup]="recebimentoForm" (ngSubmit)="onSubmit()" form-custom>
+    <form [formGroup]="pagamentoForm" (ngSubmit)="onSubmit()" form-custom>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Valor</mat-label>
         <input
@@ -15,17 +15,17 @@
           [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
           [ngClass]="{
             'is-invalid':
-              recebimentoValidator.valor.errors &&
-              recebimentoValidator.valor.touched
+              pagamentoValidator.valor.errors &&
+              pagamentoValidator.valor.touched
           }"
         />
-        <mat-error *ngIf="recebimentoValidator['valor'].hasError('required')">
+        <mat-error *ngIf="pagamentoValidator['valor'].hasError('required')">
           Valor é obrigatório.
         </mat-error>
-        <mat-error *ngIf="recebimentoValidator['valor'].hasError('min')">
+        <mat-error *ngIf="pagamentoValidator['valor'].hasError('min')">
           Valor não pode ser menor que R$ 1,00.
         </mat-error>
-        <mat-error *ngIf="recebimentoValidator['valor'].hasError('max')">
+        <mat-error *ngIf="pagamentoValidator['valor'].hasError('max')">
           Valor não pode ser maior que R$ 999.999,99.
         </mat-error>
       </mat-form-field>
@@ -38,13 +38,13 @@
           formControlName="data"
           [ngClass]="{
             'is-invalid':
-              recebimentoValidator.data.errors &&
-              recebimentoValidator.data.touched
+              pagamentoValidator.data.errors &&
+              pagamentoValidator.data.touched
           }"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="recebimentoValidator['data'].hasError('required')">
+        <mat-error *ngIf="pagamentoValidator['data'].hasError('required')">
           Data do Pagamento é obrigatório.
         </mat-error>
       </mat-form-field>
@@ -62,7 +62,7 @@
         <button
           mat-flat-button
           color="primary"
-          [disabled]="!recebimentoForm.valid"
+          [disabled]="!pagamentoForm.valid"
           type="submit"
         >
           Salvar

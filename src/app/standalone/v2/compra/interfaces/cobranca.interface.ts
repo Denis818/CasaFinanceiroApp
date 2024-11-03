@@ -1,5 +1,5 @@
-export class Compra {
-  code:string
+export class Cobranca {
+  code: string;
   nome: string;
   parcelas: number;
   valorTotal: number;

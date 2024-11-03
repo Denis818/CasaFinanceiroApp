@@ -11,19 +11,19 @@ import { Title } from '@angular/platform-browser';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDeleteComponent } from 'src/app/shared/components/confirm-delete/confirm-delete.component';
-import { CreateCompraComponent } from '../components/create-compra/create-compra.component';
-import { CreateRecebimentoComponent } from '../components/create-recebimento/create-recebimento.component';
-import { Compra } from '../interfaces/compra.interface';
-import { Recebimento } from '../interfaces/recebimento.interface';
-import { CompraService } from '../services/compras.service';
-import { RecebimentoService } from '../services/recebimento.service';
+import { CreateCobrancaComponent } from '../components/create-cobranca/create-cobranca.component';
+import { CreatePagamentoComponent } from '../components/create-pagamento/create-pagamento.component';
+import { Cobranca } from '../interfaces/cobranca.interface';
+import { Pagamento } from '../interfaces/pagamento.interface';
+import { CobrancaService } from '../services/cobranca.service';
+import { PagamentoService } from '../services/pagamento.service';
 
 registerLocaleData(localePt);
 
 @Component({
-  selector: 'app-compra',
-  templateUrl: './compra.page.html',
-  styleUrls: ['./compra.page.scss'],
+  selector: 'app-cobranca',
+  templateUrl: './cobranca.page.html',
+  styleUrls: ['./cobranca.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -37,36 +37,36 @@ registerLocaleData(localePt);
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
-export class CompraPage implements OnInit {
-  listComprasDivdidasPorDois: Compra[] = [];
-  listCompras: Compra[] = [];
-  listRecebimentos: Recebimento[] = [];
+export class CobrancaPage implements OnInit {
+  listCobrancaDivdidasPorDois: Cobranca[] = [];
+  listCobranca: Cobranca[] = [];
+  listPagamento: Pagamento[] = [];
 
-  valorTotalSomadoListCompras = 0;
-  valorTotalSomadoListComprasDivdidasPorDois = 0;
-  valorTotalDividoListComprasDivdidasPorDois = 0;
-  valorTotalSomadoListRecebimentos = 0;
+  valorTotalSomadoListCobranca = 0;
+  valorTotalSomadoListCobrancaDivdidasPorDois = 0;
+  valorTotalDividoListCobrancaDivdidasPorDois = 0;
+  valorTotalSomadoListPagamento = 0;
 
   constructor(
-    private readonly compraService: CompraService,
-    private readonly recebimentoService: RecebimentoService,
+    private readonly cobrancaService: CobrancaService,
+    private readonly Pagamentoervice: PagamentoService,
     public readonly titleService: Title,
     private readonly toastr: ToastrService,
     private readonly dialog: MatDialog
   ) {}
 
   ngOnInit() {
-    this.getAllComprasSomente();
-    this.getAllComprasDivididasPorDois();
-    this.getAllRecebimentos();
+    this.getAllCobrancaSomente();
+    this.getAllCobrancaDivididasPorDois();
+    this.getAllPagamento();
   }
 
   //#region GETs
-  getAllComprasSomente() {
-    this.compraService.getAll().subscribe({
-      next: (compras) => {
-        this.listCompras = compras;
-        this.valorTotalSomadoListCompras = compras.reduce(
+  getAllCobrancaSomente() {
+    this.cobrancaService.getAll().subscribe({
+      next: (Cobranca) => {
+        this.listCobranca = Cobranca;
+        this.valorTotalSomadoListCobranca = Cobranca.reduce(
           (acc, compra) => acc + compra.valorTotal,
           0
         );
@@ -74,27 +74,27 @@ export class CompraPage implements OnInit {
     });
   }
 
-  getAllComprasDivididasPorDois() {
-    this.compraService.getAllComprasDivididasPorDois().subscribe({
-      next: (comprasDivididasPorDois) => {
-        this.listComprasDivdidasPorDois = comprasDivididasPorDois;
-        this.valorTotalSomadoListComprasDivdidasPorDois =
-          comprasDivididasPorDois.reduce(
+  getAllCobrancaDivididasPorDois() {
+    this.cobrancaService.getAllComprasDivididasPorDois().subscribe({
+      next: (CobrancaDivididasPorDois) => {
+        this.listCobrancaDivdidasPorDois = CobrancaDivididasPorDois;
+        this.valorTotalSomadoListCobrancaDivdidasPorDois =
+          CobrancaDivididasPorDois.reduce(
             (acc, compra) => acc + compra.valorTotal,
             0
           );
 
-        this.valorTotalDividoListComprasDivdidasPorDois =
-          this.valorTotalSomadoListComprasDivdidasPorDois / 2;
+        this.valorTotalDividoListCobrancaDivdidasPorDois =
+          this.valorTotalSomadoListCobrancaDivdidasPorDois / 2;
       },
     });
   }
 
-  getAllRecebimentos() {
-    this.recebimentoService.getAll().subscribe({
-      next: (recebimentos) => {
-        this.listRecebimentos = recebimentos;
-        this.valorTotalSomadoListRecebimentos = recebimentos.reduce(
+  getAllPagamento() {
+    this.Pagamentoervice.getAll().subscribe({
+      next: (Pagamento) => {
+        this.listPagamento = Pagamento;
+        this.valorTotalSomadoListPagamento = Pagamento.reduce(
           (acc, compra) => acc + compra.valor,
           0
         );
@@ -104,40 +104,40 @@ export class CompraPage implements OnInit {
   //#endregion
 
   //#region ADD
-  addComprasDivididas() {
-    const dialogRef = this.dialog.open(CreateCompraComponent, {
+  addCobrancaDivididas() {
+    const dialogRef = this.dialog.open(CreateCobrancaComponent, {
       width: '400px',
       data: { divididoPorDois: true },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getAllComprasDivididasPorDois();
+        this.getAllCobrancaDivididasPorDois();
       }
     });
   }
 
-  addComprasSomente() {
-    const dialogRef = this.dialog.open(CreateCompraComponent, {
+  addCobrancaSomente() {
+    const dialogRef = this.dialog.open(CreateCobrancaComponent, {
       width: '400px',
       data: { divididoPorDois: false },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getAllComprasSomente();
+        this.getAllCobrancaSomente();
       }
     });
   }
 
   addValorRecebido() {
-    const dialogRef = this.dialog.open(CreateRecebimentoComponent, {
+    const dialogRef = this.dialog.open(CreatePagamentoComponent, {
       width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getAllRecebimentos();
+        this.getAllPagamento();
       }
     });
   }
@@ -161,24 +161,24 @@ export class CompraPage implements OnInit {
   }
 
   deleteCompra(code: string): void {
-    this.compraService.delete(code).subscribe({
+    this.cobrancaService.delete(code).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
-        this.getAllComprasSomente();
-        this.getAllComprasDivididasPorDois();
+        this.getAllCobrancaSomente();
+        this.getAllCobrancaDivididasPorDois();
       },
     });
   }
 
   deleteRecebimento(code: string): void {
-    this.recebimentoService.delete(code).subscribe({
+    this.Pagamentoervice.delete(code).subscribe({
       next: (hasDeleted) => {
         if (hasDeleted) {
           this.toastr.success('Deletado com sucesso!', 'Finalizado!');
         }
-        this.getAllRecebimentos();
+        this.getAllPagamento();
       },
     });
   }
