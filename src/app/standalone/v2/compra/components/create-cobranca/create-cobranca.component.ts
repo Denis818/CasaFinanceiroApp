@@ -22,7 +22,7 @@ import { CobrancaService } from '../../services/cobranca.service';
 @Component({
   selector: 'app-create-cobranca',
   templateUrl: './create-cobranca.component.html',
-  styleUrls: ['./create-cobranca.component.css'],
+  styleUrls: ['./create-cobranca.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

@@ -47,7 +47,7 @@ export const MY_DATE_FORMATS = {
 @Component({
   selector: 'app-create-pagamento',
   templateUrl: './create-pagamento.component.html',
-  styleUrls: ['./create-pagamento.component.css'],
+  styleUrls: ['./create-pagamento.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
