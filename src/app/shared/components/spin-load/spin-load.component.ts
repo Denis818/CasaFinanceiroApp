@@ -12,11 +12,16 @@ export class SpinLoadComponent {
   constructor(public spinLoadService: SpinLoadService) {}
 
   spinnerLoading = EnumTipoSpinner.loading;
+  spinnerMoedaLoading = EnumTipoSpinner.moedaLoading;
   spinnerSaving = EnumTipoSpinner.saving;
   spinnerDownloading = EnumTipoSpinner.downloading;
 
   spinnerLoadingOptions: AnimationOptions = {
     path: `../../../../assets/spinners/${this.spinnerLoading}.json`,
+  };
+
+  spinnerMoedaLoadingOptions: AnimationOptions = {
+    path: `../../../../assets/spinners/${this.spinnerMoedaLoading}.json`,
   };
 
   spinnerSavingOptions: AnimationOptions = {

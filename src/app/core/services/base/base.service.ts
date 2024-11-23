@@ -3,19 +3,21 @@ import { inject } from '@angular/core';
 import { finalize, map, Observable } from 'rxjs';
 import { EnumTipoSpinner } from 'src/app/shared/enums/enum-tipo-spinner';
 import { HttpRequestOptions } from '../../interfaces/http-request-options.interface';
+import { SpinLoadService } from '../spinner/spin-load.service';
 import { StorageService } from '../storage/storage.service';
 export abstract class BaseService {
   private readonly http: HttpClient = inject(HttpClient);
   readonly storageService: StorageService = inject(StorageService);
 
-  //private readonly spinLoadService: SpinLoadService = inject(SpinLoadService);
+  private readonly spinLoadService: SpinLoadService = inject(SpinLoadService);
 
   protected sendHttpRequest<T>(options: HttpRequestOptions): Observable<T> {
     if (!options.spinnerType) {
-      options.spinnerType = EnumTipoSpinner.loading;
+      options.spinnerType = EnumTipoSpinner.moedaLoading;
     }
 
-    //this.spinLoadService.showSpinner(options.spinnerType);
+    this.spinLoadService.showSpinner(options.spinnerType);
+
     const requestResult = this.http.request<T>(options.metodo, options.url, {
       body: options.dados,
       params: options.params,
@@ -27,7 +29,7 @@ export abstract class BaseService {
       }),
 
       finalize(() => {
-        //this.spinLoadService.hideSpinner();
+        this.spinLoadService.hideSpinner();
       })
     );
   }
@@ -36,7 +38,7 @@ export abstract class BaseService {
     url: string,
     spinnerType: EnumTipoSpinner = EnumTipoSpinner.downloading
   ): Observable<Blob> {
-    //this.spinLoadService.showSpinner(spinnerType);
+    this.spinLoadService.showSpinner(spinnerType);
 
     const requestResult = this.http.request<Blob>('GET', url, {
       responseType: 'blob' as 'json',
@@ -48,7 +50,7 @@ export abstract class BaseService {
       }),
 
       finalize(() => {
-        //this.spinLoadService.hideSpinner();
+        this.spinLoadService.hideSpinner();
       })
     );
   }

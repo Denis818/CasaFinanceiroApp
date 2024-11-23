@@ -20,6 +20,11 @@ export class SpinLoadService {
           this.runSpinner(EnumTipoSpinner.loading);
         }
         break;
+      case EnumTipoSpinner.moedaLoading:
+        if (this.spinnerIsActived) {
+          this.runSpinner(EnumTipoSpinner.moedaLoading);
+        }
+        break;
       case EnumTipoSpinner.saving:
         if (this.spinnerIsActived) {
           this.runSpinner(EnumTipoSpinner.saving);
