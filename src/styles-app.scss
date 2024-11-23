@@ -271,6 +271,7 @@
     width: 100%;
     overflow-x: auto;
     table-layout: fixed;
+    white-space: nowrap;
 
     tr {
       cursor: pointer;
@@ -310,7 +311,7 @@
       cursor: pointer;
 
       transition: transform 0.3s ease;
-      
+
       &:hover {
         transform: translateY(-3px);
       }

@@ -13,7 +13,7 @@ export abstract class BaseService {
 
   protected sendHttpRequest<T>(options: HttpRequestOptions): Observable<T> {
     if (!options.spinnerType) {
-      options.spinnerType = EnumTipoSpinner.moedaLoading;
+      options.spinnerType = EnumTipoSpinner.loading;
     }
 
     this.spinLoadService.showSpinner(options.spinnerType);

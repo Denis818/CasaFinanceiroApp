@@ -10,11 +10,10 @@
       padding: 0;
 
       table {
-        white-space: nowrap;
-
         td {
           font-size: 16px;
           padding: 6px 30px;
+          white-space: nowrap;
         }
       }
     }
@@ -81,8 +80,6 @@
     }
 
     [app-table] [display-table] {
-      display: inline-table;
-
       table {
         td {
           padding: 10px 30px;
