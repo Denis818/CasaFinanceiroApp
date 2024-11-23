@@ -8,18 +8,21 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private unauthorizedErrorCount = 0;
+  private requestCount = 0;
 
   constructor(
     private router: Router,
     private toastr: ToastrService,
+    private spinnerNgx: NgxSpinnerService,
     private readonly storageService: StorageService
   ) {}
 
@@ -38,6 +41,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = req.clone({ headers });
 
+    this.requestCount++;
+    this.spinnerNgx.show();
+
     return next.handle(authReq).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {
@@ -48,6 +54,10 @@ export class AuthInterceptor implements HttpInterceptor {
         this.errorNotification(error?.error?.mensagens);
         this.checkTokenExpired(error);
         return throwError(() => of(error));
+      }),
+      finalize(() => {
+        this.requestCount--;
+        if (this.requestCount === 0) this.spinnerNgx.hide();
       })
     );
   }
