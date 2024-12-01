@@ -25,7 +25,7 @@
 
         .select-grupo-fatura {
           width: 256px;
-          margin-right: 10px;
+          margin-right: 30px;
         }
 
         .select-ano {
@@ -61,6 +61,12 @@
           .mat-mdc-text-field-wrapper.mdc-text-field--outlined
             .mat-mdc-form-field-infix {
             padding-top: 9px;
+          }
+
+          .select-grupo-fatura {
+            .mdc-text-field--outlined {
+              width: 275px;
+            }
           }
 
           .select-ano {
@@ -121,6 +127,7 @@
 
           .select-grupo-fatura {
             width: 70%;
+            margin-right: 15px;
           }
 
           .select-ano {
@@ -139,6 +146,12 @@
             .mat-mdc-form-field-infix {
               padding-top: 7px;
               padding-bottom: 7px;
+            }
+
+            .select-grupo-fatura {
+              .mdc-text-field--outlined {
+                width: 180px;
+              }
             }
 
             .select-ano {
