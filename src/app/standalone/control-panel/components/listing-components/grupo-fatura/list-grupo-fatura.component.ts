@@ -40,7 +40,6 @@ registerLocaleData(localePt);
     MatIconModule,
     MatTableModule,
     MatDialogModule,
-    ConfirmDeleteComponent,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })

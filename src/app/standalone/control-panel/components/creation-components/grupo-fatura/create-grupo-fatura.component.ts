@@ -12,6 +12,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ToastrService } from 'ngx-toastr';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
@@ -31,6 +32,7 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
     MatInputModule,
     MatIconModule,
     MatSelectModule,
+    CurrencyMaskModule,
   ],
 })
 export class CreategrupoFaturaComponent implements OnInit {
@@ -63,7 +65,7 @@ export class CreategrupoFaturaComponent implements OnInit {
     private readonly toastr: ToastrService,
     private readonly storageService: StorageService
   ) {}
-  
+
   ngOnInit(): void {
     this.validation();
   }
@@ -95,6 +97,7 @@ export class CreategrupoFaturaComponent implements OnInit {
   public validation(): void {
     this.grupoFaturaForm = this.fb.group({
       nome: ['Janeiro', [Validators.required]],
+      desconto: [0, [Validators.min(0)]],
     });
   }
 

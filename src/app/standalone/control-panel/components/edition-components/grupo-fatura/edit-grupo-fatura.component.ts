@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -8,6 +14,7 @@ import {
 } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { GrupoFatura } from 'src/app/core/portal/interfaces/grupo-fatura.interface';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
@@ -18,11 +25,13 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     MatInputModule,
     ModalComponent,
     MatSelectModule,
+    CurrencyMaskModule,
   ],
 })
 export class EditGrupoFaturaComponent implements OnInit {
@@ -41,13 +50,24 @@ export class EditGrupoFaturaComponent implements OnInit {
     { viewValue: 'Dezembro' },
   ];
 
+  grupoFaturaForm!: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<EditGrupoFaturaComponent>,
-    @Inject(MAT_DIALOG_DATA) public grupoFatura: GrupoFatura
+    @Inject(MAT_DIALOG_DATA) public grupoFatura: GrupoFatura,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.extrairMes();
+    this.validation();
+  }
+
+  public validation(): void {
+    const mes = this.extrairMes(this.grupoFatura?.nome) || 'Janeiro'; // Extrai o mês do nome da fatura
+    this.grupoFaturaForm = this.fb.group({
+      nome: [mes, [Validators.required]],
+      desconto: [this.grupoFatura?.desconto || 0, [Validators.min(0)]],
+    });
   }
 
   onCancel(): void {
@@ -55,14 +75,25 @@ export class EditGrupoFaturaComponent implements OnInit {
   }
 
   onSave(): void {
-    this.dialogRef.close(this.grupoFatura);
+    if (this.grupoFaturaForm.valid) {
+      console.log(this.grupoFaturaForm.value);
+      this.dialogRef.close({
+        ...this.grupoFatura,
+        ...this.grupoFaturaForm.value,
+      });
+    }
   }
 
-  extrairMes(): void {
-    const regex = /Fatura de (\w+) \d{4}/;
-    const match = this.grupoFatura.nome.match(regex);
+  extrairMes(nome: string): string {
+    if (!nome) return null;
+
+    const regex = /Fatura de ([A-Za-zÀ-ÖØ-öø-ÿ]+) \d{4}/;
+    const match = nome.match(regex);
+
     if (match) {
-      this.grupoFatura.nome = match[1];
+      nome = match[1];
     }
+
+    return nome;
   }
 }

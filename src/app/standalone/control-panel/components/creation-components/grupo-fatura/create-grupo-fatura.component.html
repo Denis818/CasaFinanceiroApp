@@ -19,6 +19,26 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Desconto</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="desconto"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          [ngClass]="{
+            'is-invalid':
+              grupoFaturaValidator.desconto.errors &&
+              grupoFaturaValidator.desconto.touched
+          }"
+          placeholder="R$ 0"
+        />
+        <mat-error *ngIf="grupoFaturaValidator['desconto'].hasError('min')">
+          Desconto não pode ser menor que R$ 0.
+        </mat-error>
+      </mat-form-field>
+
       <div class="form-actions">
         <button
           type="button"

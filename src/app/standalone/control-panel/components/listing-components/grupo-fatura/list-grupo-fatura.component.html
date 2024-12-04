@@ -10,6 +10,7 @@
           <th>Grupo de Fatura</th>
           <th>Status da Fatura</th>
           <th>Quantidade de Itens</th>
+          <th>Desconto</th>
           <th>Total de Despesas</th>
           <th>Opções</th>
         </thead>
@@ -18,6 +19,7 @@
             <td>{{ grupoFatura.nome }}</td>
             <td>{{ setStatusFatura(grupoFatura.statusFaturas) }}</td>
             <td>{{ grupoFatura.quantidadeDespesas }}</td>
+            <td>{{ grupoFatura.desconto ?? 0 | currency : "BRL" }}</td>
             <td>{{ grupoFatura.totalDespesas | currency : "BRL" }}</td>
             <td>
               <mat-icon (click)="openEdit(grupoFatura)">edit</mat-icon>

@@ -6,12 +6,32 @@
   (confirmClick)="onSave()"
   (cancelClick)="onCancel()"
 >
-  <mat-form-field appearance="outline">
-    <mat-label>Nome do Grupo (Mês)</mat-label>
-    <mat-select [(ngModel)]="grupoFatura.nome">
-      <mat-option *ngFor="let mes of meses" [value]="mes.viewValue">
-        {{ mes.viewValue }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="grupoFaturaForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do Grupo (Mês)</mat-label>
+      <mat-select formControlName="nome">
+        <mat-option *ngFor="let mes of meses" [value]="mes.viewValue">
+          {{ mes.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="grupoFaturaForm.get('nome')?.hasError('required')">
+        O nome do grupo é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Desconto</mat-label>
+      <input
+        class="money"
+        matInput
+        currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+        formControlName="desconto"
+      />
+
+      <mat-error *ngIf="grupoFaturaForm.get('desconto')?.hasError('min')">
+        Preço deve ser no mínimo 0.
+      </mat-error>
+    </mat-form-field>
+  </form>
 </app-modal>

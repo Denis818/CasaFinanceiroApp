@@ -6,5 +6,6 @@ export interface GrupoFatura {
   ano: string;
   quantidadeDespesas: number;
   totalDespesas: number;
+  desconto: number;
   statusFaturas: StatusFatura[];
 }
