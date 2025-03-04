@@ -5,6 +5,12 @@ body {
     --dark-theme-background: #222222;
     --dark-theme-text: #e3e3e3;
 
+    .mat-mdc-unelevated-button.mat-primary {
+      --mdc-filled-button-container-color: #ffffff !important;
+      --mdc-filled-button-label-text-color: rgb(44 62 80);
+      --mat-app-primary: rgb(44 62 80) !important;
+    }
+
     background-color: var(--dark-theme-background);
     color: var(--dark-theme-text);
 

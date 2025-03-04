@@ -3,6 +3,11 @@ body {
     --azul-theme-color: #1398e5;
     --azul-theme-background: linear-gradient(#50b3eb, #2fa4e7 60%, #2c9ad9);
 
+    .mat-mdc-unelevated-button.mat-primary {
+      --mdc-filled-button-container-color: #1398e5 !important;
+      --mat-app-primary: #1398e5 !important;
+    }
+
     [navbar] {
       background-color: #50b3eb;
     }

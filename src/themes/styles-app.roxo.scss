@@ -3,6 +3,11 @@ body {
     --roxo-theme-color: #673ab7;
     --roxo-theme-background: #673ab7;
 
+    .mat-mdc-unelevated-button.mat-primary {
+      --mdc-filled-button-container-color: #673ab7 !important;
+      --mat-app-primary: #673ab7 !important;
+    }
+
     [navbar] {
       background-color: var(--roxo-theme-background);
     }
