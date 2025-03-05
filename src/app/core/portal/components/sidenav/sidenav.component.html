@@ -11,12 +11,10 @@
 
   <div menu-links>
     <hr line />
-
     <a
       [routerLink]="'dashboard'"
       (click)="setSelectedButton('dashboard')"
       [ngClass]="{ selected: selectedButton === 'dashboard' }"
-      class="nav-link-icon"
     >
       <mat-icon>dashboard_customize</mat-icon>
       <span *ngIf="sidenavExpanded">Dashboard</span>
@@ -26,7 +24,6 @@
       [routerLink]="'painel-controle'"
       (click)="setSelectedButton('painel-controle')"
       [ngClass]="{ selected: selectedButton === 'painel-controle' }"
-      class="nav-link-icon"
     >
       <mat-icon>settings_applications</mat-icon>
       <span *ngIf="sidenavExpanded">Painel de Controle</span>
@@ -36,7 +33,6 @@
       [routerLink]="'auditoria-compras'"
       (click)="setSelectedButton('auditoria-compras')"
       [ngClass]="{ selected: selectedButton === 'auditoria-compras' }"
-      class="nav-link-icon"
     >
       <mat-icon>attach_money</mat-icon>
       <span *ngIf="sidenavExpanded">Auditoria de Compras</span>
@@ -46,24 +42,16 @@
       [routerLink]="'comparativo-faturas'"
       (click)="setSelectedButton('comparativo-faturas')"
       [ngClass]="{ selected: selectedButton === 'comparativo-faturas' }"
-      class="nav-link-icon"
     >
       <mat-icon>bar_chart</mat-icon>
       <span *ngIf="sidenavExpanded">Comparativo de Faturas</span>
     </a>
 
-    <div
-      [ngClass]="{
-        'ocultar-link': isMaster()
-      }"
-    >
+    <div [ngClass]="{ 'ocultar-link': isMaster() }">
       <a
         [routerLink]="'valores-a-receber'"
         (click)="setSelectedButton('valores-a-receber')"
-        [ngClass]="{
-          selected: selectedButton === 'valores-a-receber'
-        }"
-        class="nav-link-icon"
+        [ngClass]="{ selected: selectedButton === 'valores-a-receber' }"
       >
         <mat-icon>attach_money</mat-icon>
         <span *ngIf="sidenavExpanded">Valores a Receber</span>

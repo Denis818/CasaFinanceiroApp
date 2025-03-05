@@ -15,16 +15,6 @@ body {
     [sidenav] {
       background-color: var(--roxo-theme-background);
 
-      [menu-links] {
-        & a {
-          color: rgb(255 255 255 / 71%) !important;
-
-          &.selected {
-            color: white !important;
-          }
-        }
-      }
-
       [line] {
         border-color: #ad7eff !important;
       }
