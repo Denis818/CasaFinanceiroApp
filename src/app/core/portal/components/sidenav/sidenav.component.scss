@@ -27,24 +27,20 @@
         font-size: 16px;
         padding: 14px 12px;
         border-radius: 6px;
-        transition: all 0.3s ease-in-out;
+        transition: background-color 0.3s, padding-left 0.4s;
 
         &:hover {
           background: rgba(255, 255, 255, 0.1);
           color: #ffffff;
+          padding-left: 1.5rem;
         }
 
         &.selected {
           background: rgba(255, 255, 255, 0.2);
           color: #ffffff;
-
-          mat-icon {
-            transform: scale(1.1);
-          }
         }
 
         mat-icon {
-          transition: transform 0.3s;
           flex-shrink: 0;
           font-size: 24px;
         }
