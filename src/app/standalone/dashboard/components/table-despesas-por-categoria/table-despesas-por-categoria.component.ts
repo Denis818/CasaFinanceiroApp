@@ -7,7 +7,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { GraphicComponent } from 'src/app/shared/components/graphic/graphic-component/graphic.component';
 import { Categoria } from 'src/app/standalone/control-panel/interfaces/categoria.interface';
 import { CategoriaService } from 'src/app/standalone/control-panel/services/categoria.service';
 registerLocaleData(localePt);
@@ -20,7 +19,6 @@ registerLocaleData(localePt);
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   imports: [
     CommonModule,
-    GraphicComponent,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
