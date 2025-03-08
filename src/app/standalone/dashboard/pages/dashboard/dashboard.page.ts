@@ -113,34 +113,30 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
             data.categorias
           );
 
-          this.atualizarStatusFatura();
+          this.getStatusFatura();
         },
         error: (err) => console.error(err),
       });
     }
   }
 
-  atualizarStatusFatura() {
-    this.getStatusFatura(EnumStatusFatura.CasaAberto);
-    this.getStatusFatura(EnumStatusFatura.MoradiaAberto);
-  }
-
-  getStatusFatura(status: EnumStatusFatura) {
+  getStatusFatura() {
     this.grupoFaturaService
-      .getStatusFaturaByName(status as EnumStatusFatura)
+      .getStatusFaturaByName(
+        EnumStatusFatura.CasaAberto.toString(),
+        EnumStatusFatura.MoradiaAberto.toString()
+      )
       .subscribe({
         next: (statusFatura) => {
-          if (status.includes('Casa')) {
-            this.statusFaturaCasa =
-              statusFatura.estado === EnumStatusFatura.CasaAberto
-                ? 'aberto'
-                : 'fechado';
-          } else {
-            this.statusFaturaMoradia =
-              statusFatura.estado === EnumStatusFatura.MoradiaAberto
-                ? 'aberto'
-                : 'fechado';
-          }
+          this.statusFaturaCasa =
+            statusFatura.estadoCasa === EnumStatusFatura.CasaAberto
+              ? 'aberto'
+              : 'fechado';
+
+          this.statusFaturaMoradia =
+            statusFatura.estadoMoradia === EnumStatusFatura.MoradiaAberto
+              ? 'aberto'
+              : 'fechado';
         },
       });
   }
@@ -169,7 +165,7 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
           );
 
           if (!unauthorized) {
-            this.atualizarStatusFatura();
+            this.getStatusFatura();
           }
         },
       });

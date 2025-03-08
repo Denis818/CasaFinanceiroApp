@@ -76,7 +76,6 @@ export class EditGrupoFaturaComponent implements OnInit {
 
   onSave(): void {
     if (this.grupoFaturaForm.valid) {
-      console.log(this.grupoFaturaForm.value);
       this.dialogRef.close({
         ...this.grupoFatura,
         ...this.grupoFaturaForm.value,

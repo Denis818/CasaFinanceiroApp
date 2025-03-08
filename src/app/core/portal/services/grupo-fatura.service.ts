@@ -9,7 +9,10 @@ import { EnumFaturaType } from '../enums/enum-fatura-type';
 import { EnumStatusFatura } from '../enums/enum-status-fatura';
 import { GrupoFaturaSeletorResponse } from '../interfaces/grupo-fatura-seletor-response.interface';
 import { GrupoFatura } from '../interfaces/grupo-fatura.interface';
-import { StatusFaturaResponse } from '../interfaces/status-fatura-response.interface';
+import {
+  StatusFaturaResponse,
+  StatusFaturasCasaEhMoradiaDto,
+} from '../interfaces/status-fatura-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
@@ -50,11 +53,14 @@ export abstract class GrupoFaturaService extends CrudService<GrupoFatura> {
   }
 
   public getStatusFaturaByName(
-    status: EnumStatusFatura
-  ): Observable<StatusFaturaResponse> {
-    const params = new HttpParams().set('status', status.toString());
+    statusCasa: string,
+    statusMoradia: string
+  ): Observable<StatusFaturasCasaEhMoradiaDto> {
+    const params = new HttpParams()
+      .set('statusCasa', statusCasa)
+      .set('statusMoradia', statusMoradia);
 
-    return this.sendHttpRequest<ApiResponse<StatusFaturaResponse>>({
+    return this.sendHttpRequest<ApiResponse<StatusFaturasCasaEhMoradiaDto>>({
       metodo: 'GET',
       url: `${this.url}/status-fatura`,
       params: params,

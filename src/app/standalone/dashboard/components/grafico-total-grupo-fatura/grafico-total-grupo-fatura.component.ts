@@ -55,7 +55,6 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   public atualizarGrafico(dados: TotalPorGrupoResponse[]) {
     this.lastDados = dados;
     const graficoCor = this.updateThemeColor();
-    console.log(graficoCor);
     this.graphicConfig = {
       chartData: {
         labels: dados.map((item) => item.grupoNome),
@@ -148,7 +147,6 @@ export class GraficoTotalGrupoFaturaComponent implements OnInit, OnDestroy {
   private updateThemeColor(): string {
     const theme = this.storageService.getItem('selectedTheme') || 'roxo-theme';
 
-    console.log(theme);
     switch (theme) {
       case 'azul-theme':
         return '#1398e5';
