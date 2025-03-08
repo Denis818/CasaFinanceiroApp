@@ -32,9 +32,7 @@ export class TableDespesasPorCategoriaComponent {
 
   constructor(private readonly categoriaService: CategoriaService) {}
 
-  getTotalPorCategoria() {
-    this.categoriaService.getAll().subscribe((dados) => {
-      this.listCategorias = dados;
-    });
+  getTotalPorCategoria(categorias: Categoria[]) {
+    this.listCategorias = categorias;
   }
 }

@@ -109,7 +109,9 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
             data.despesaGrupoParaGrafico
           );
 
-          this.tableDespesasPorCategoriaComponent?.getTotalPorCategoria();
+          this.tableDespesasPorCategoriaComponent?.getTotalPorCategoria(
+            data.categorias
+          );
 
           this.atualizarStatusFatura();
         },
