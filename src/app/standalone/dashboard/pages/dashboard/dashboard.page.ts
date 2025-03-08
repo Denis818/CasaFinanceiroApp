@@ -19,6 +19,7 @@ import { EnumFaturaType } from 'src/app/core/portal/enums/enum-fatura-type';
 import { EnumStatusFatura } from 'src/app/core/portal/enums/enum-status-fatura';
 import { GrupoFaturaNotification } from 'src/app/core/portal/services/grupo-fatura-notification.service';
 import { GrupoFaturaService } from 'src/app/core/portal/services/grupo-fatura.service';
+import { StorageService } from 'src/app/core/services/storage/storage.service';
 import { MensagemWhatsAppComponent } from 'src/app/standalone/dashboard/components/mensagem-whatsapp/mensagem-whatsapp.component';
 import { GraficoTotalGrupoFaturaComponent } from '../../components/grafico-total-grupo-fatura/grafico-total-grupo-fatura.component';
 import { TableDespesasPorCategoriaComponent } from '../../components/table-despesas-por-categoria/table-despesas-por-categoria.component';
@@ -68,6 +69,7 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
     private readonly grupoFaturaService: GrupoFaturaService,
     private readonly dialog: MatDialog,
     private readonly grupoFaturaNotification: GrupoFaturaNotification,
+    private readonly storageService: StorageService,
     public readonly titleService: Title
   ) {}
 
@@ -94,10 +96,25 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
 
   carregarDados() {
     if (this.grupoFaturaService.hasFaturaCode()) {
-      this.getDespesasDivididasPorMembro();
-      this.atualizarStatusFatura();
-      this.graficoTotalGrupoFaturaComponent?.getGraficoTotaisComprasPorMes();
-      this.tableDespesasPorCategoriaComponent?.getTotalPorCategoria();
+      const ano =
+        this.storageService.getItem('ano') ||
+        new Date().getFullYear().toString();
+
+      this.dashboardService.getDashboardData(ano).subscribe({
+        next: (data) => {
+          this.despesasPorMembros =
+            data.despesasDivididasMensal.despesasPorMembro;
+
+          this.graficoTotalGrupoFaturaComponent?.atualizarGrafico(
+            data.despesaGrupoParaGrafico
+          );
+
+          this.tableDespesasPorCategoriaComponent?.getTotalPorCategoria();
+
+          this.atualizarStatusFatura();
+        },
+        error: (err) => console.error(err),
+      });
     }
   }
 
@@ -154,12 +171,6 @@ export class DashboardPage implements AfterViewInit, OnDestroy {
           }
         },
       });
-  }
-
-  getDespesasDivididasPorMembro() {
-    this.dashboardService.getDespesasDivididasPorMembro().subscribe((dados) => {
-      this.despesasPorMembros = dados.despesasPorMembro;
-    });
   }
 
   exportarRelatorioDespesasHabitacional() {
